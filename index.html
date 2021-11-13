@@ -12,7 +12,6 @@
 <body>
   <h1>Inventurverwaltung</h1>
   <div class="container-main">
-    <br>
     <div class="container-inventar">
       <h2>Inventar</h2>
       <form action="" class="inventar-form">
@@ -46,7 +45,6 @@
         </div>
       </form>
     </div>
-    <br>
     <div class="container-person">
       <h2>Person</h2>
       <form action="" class="person-form">
@@ -63,7 +61,6 @@
         </div>
       </form>
     </div>
-    <br>
     <div class="container-ort">
       <h2>Ort</h2>
       <form action="" class="ort-form">
@@ -91,20 +88,23 @@
       </form>
     </div>
   </div>
-  <table>
-    <tr>
-      <td>Emil</td>
-      <td>Tobias</td>
-      <hr>
-      <td>Linus</td>
-    </tr>
-    <hr>
-    <hr>
-    <tr>
-      <td>16</td>
-      <td>14</td>
-      <td>10</td>
-    </tr>
+  <table class="main-table">
+    <thead>
+        <tr>
+            <th>testName</th>
+            <th>testPoints</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Dominik</td>
+            <td>6000</td>
+        </tr>
+        <tr class="active-row">
+            <td>Melissa</td>
+            <td>5150</td>
+        </tr>
+    </tbody>
   </table>
   <script src="app.js">
   </script>

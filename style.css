@@ -6,8 +6,8 @@ h1{
     justify-content: space-evenly;
     text-align: center;
     flex-direction: row;
-    padding: 2px;
-    gap: 5px;
+    padding: 12px;
+    gap: 15px;
     
     
 }
@@ -18,11 +18,12 @@ h1{
     width: 100%;
     margin: 2px;
     padding: 2px;
-    border: 1px solid white;
+    border: thin solid white;
     border-radius: 2px;
     -moz-border-radius: 2px; 
     -webkit-border-radius: 10px;
     resize: vertical;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.377);
     
     }
 h3{
@@ -52,7 +53,7 @@ body{
         
     }
     body{
-        color: rgb(157, 137, 211);
+        color: #ff99ff;
     }
     
 }
@@ -64,7 +65,7 @@ input[type=text]{
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    background-color:  rgb(163, 149, 241) ;
+    background-color:  rgb(216, 209, 250) ;
     color: white;
   }
   select{
@@ -124,3 +125,17 @@ input[type=text]{
   button:active{
     background: rgb(75, 61, 202);
   }
+  .main-table{
+    margin: auto;
+    border-radius: 2px;
+    -moz-border-radius: 2px; 
+    -webkit-border-radius: 10px;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.644);
+}
+.main-table thead tr{
+    background:rgb(58, 48, 148);
+    
+}
