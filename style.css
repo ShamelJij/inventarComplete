@@ -1,8 +1,14 @@
-.container-main {
+h1{
+    text-align: center;
+}
+.container-main{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     text-align: center;
     flex-direction: row;
+    padding: 2px;
+    gap: 5px;
+    
     
 }
 .container-inventar .inventar-form,
@@ -12,7 +18,7 @@
     width: 100%;
     margin: 2px;
     padding: 2px;
-    border: 2px solid white;
+    border: 1px solid white;
     border-radius: 2px;
     -moz-border-radius: 2px; 
     -webkit-border-radius: 10px;
@@ -21,14 +27,14 @@
     }
 h3{
         text-align: start;
+        padding: 0 0 0 12px;
     }
 
 label{
     float: left;
     width: 25%;
     margin-top: 6px;
-    padding: 12px 12px 12px 0;
-    display: inline-block;
+    padding: 12px 12px 12px 12px;
 }
 
 body{

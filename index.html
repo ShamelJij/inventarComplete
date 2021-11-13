@@ -10,9 +10,8 @@
 </head>
 
 <body>
-  
+  <h1>Inventurverwaltung</h1>
   <div class="container-main">
-    <h1>Inventurverwaltung</h1>
     <br>
     <div class="container-inventar">
       <h2>Inventar</h2>
@@ -42,6 +41,7 @@
           <label for="abschreibungZeitraumBis">bis</label>
           <input type="date" name="abschreibungZeitraumVon" id="abschreibungZeitraumVonid">
         </div>
+        <button class="container-main-button" id="inventar-speicher">Speicher</button>
       </form>
     </div>
     <br>
@@ -56,10 +56,10 @@
         <input type="number" name="personalnummer" id="personalnummerid">
         <label for="PEmail">E-Mail</label>
         <input type="email" name="PEmail" id="PEmailid">
+        <button class="container-main-button" id="person-speicher">Speicher</button>
       </form>
     </div>
     <br>
-    
     <div class="container-ort">
       <h2>Ort</h2>
       <form action="" class="ort-form">
@@ -80,6 +80,7 @@
           <input type="number">
           <label for="zimmer">Zimmer</label>
           <input type="text">
+          <button class="container-main-button" id="ort-speicher">Speicher</button>
         </div>
       </form>
     </div>
@@ -102,5 +103,4 @@
   <script src="app.js">
   </script>
 </body>
-
 </html>
