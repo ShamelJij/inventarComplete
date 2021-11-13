@@ -70,7 +70,7 @@ input[type=text]{
   select{
     text-align: center;
     font-family: inherit;
-    width: 60%;
+    width: 75%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -107,4 +107,20 @@ input[type=text]{
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+  }
+  button{
+    border-radius: 4px;
+    font-family: inherit;
+    color: inherit;
+    border: 1px solid white;
+    padding: 12px;
+    margin: 12px;
+    background-image: linear-gradient(to bottom right, rgb(141, 126, 226), rgb(73, 59, 192));
+     
+  }
+  button:hover{
+    background: rgb(141, 126, 226);
+  }
+  button:active{
+    background: rgb(75, 61, 202);
   }
