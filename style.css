@@ -125,17 +125,28 @@ input[type=text]{
   button:active{
     background: rgb(75, 61, 202);
   }
+  
   .main-table{
     margin: auto;
-    border-radius: 2px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
     -moz-border-radius: 2px; 
-    -webkit-border-radius: 10px;
+    -webkit-border-radius: 2px;
     border-collapse: collapse;
-    font-size: 0.9em;
     min-width: 400px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.644);
 }
 .main-table thead tr{
     background:rgb(58, 48, 148);
     
+}
+.main-table th, .main-table td{
+    padding: 12px 15px;
+}
+.main-table tbody tr:nth-of-type(even){
+    background-color: rgb(100, 87, 216);
+}
+.main-table tbody tr:last-of-type{
+    border-bottom: rgb(58, 48, 148);
 }
