@@ -3,19 +3,32 @@
     justify-content: space-around;
     text-align: center;
     flex-direction: row;
-     
-    
     
 }
-
-.container-inventar {
+.container-inventar .inventar-form,
+.container-person .person-form,
+.container-ort .ort-form {
     
-    
-    flex-direction: column;
+    width: 100%;
+    margin: 2px;
+    padding: 2px;
+    border: 2px solid white;
+    border-radius: 2px;
+    -moz-border-radius: 2px; 
+    -webkit-border-radius: 10px;
+    resize: vertical;
     
     }
+h3{
+        text-align: start;
+    }
+
 label{
-    display: block;/*fix this*/
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+    padding: 12px 12px 12px 0;
+    display: inline-block;
 }
 
 body{
@@ -26,8 +39,6 @@ body{
     background-repeat: no-repeat;
     background-attachment: fixed;    
     background-image: linear-gradient(to bottom right, rgb(30, 18, 145), rgb(109, 89, 223));
-
-
 }
 @media (max-width: 800px){
     .container-main{
@@ -40,13 +51,15 @@ body{
     
 }
 input[type=text]{
-    width: 80%;
+    width: 75%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    background-color:  rgb(163, 149, 241) ;
+    color: white;
   }
   select{
     text-align: center;
@@ -61,7 +74,7 @@ input[type=text]{
   }
   input[type=date]{
     font-family: inherit;
-    width: 100%;
+    width: 75%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -71,7 +84,7 @@ input[type=text]{
   }
   input[type=number]{
     font-family: inherit;
-    width: 40%;
+    width: 75%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -81,7 +94,7 @@ input[type=text]{
   }
   input[type=email]{
     font-family: inherit;
-    width: 100%;
+    width: 75%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;

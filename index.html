@@ -10,17 +10,20 @@
 </head>
 
 <body>
+  
   <div class="container-main">
+    <h1>Inventurverwaltung</h1>
     <br>
     <div class="container-inventar">
-      <form action="">
+      <h2>Inventar</h2>
+      <form action="" class="inventar-form">
         <label for="status">Status</label>
         <select name="selectStatus" id="statusid">
           <option value="aktiv">Aktiv</option>
           <option value="abgebucht">Abgebucht</option>
         </select>
         <div class="anschaffungsDatumDiv">
-          <label for="anschaffungsDatum">Anschaffugs Datum</label>
+          <h3 for="anschaffungsDatum">Anschaffugs Datum</h3>
           <label for="anschaffvon">von</label>
           <input type="date" name="anschaffVon" id="anschaffVonid">
           <label for="anschaffBis">bis</label>
@@ -33,7 +36,7 @@
         <label for="preisnetto">Preis (netto)</label>
         <input type="number" name="preisnetto" id="preisnettoid">
         <div class="abschreibungZeitraumDiv">
-          <label for="abschreibungZeitraum">Abschreibung Zeitraum</label>
+          <h3 for="abschreibungZeitraum">Abschreibung Zeitraum</h3>
           <label for="abschreibungZeitraumVon">von</label>
           <input type="date" name="abschreibungZeitraumVon" id="abschreibungZeitraumVonif">
           <label for="abschreibungZeitraumBis">bis</label>
@@ -43,37 +46,61 @@
     </div>
     <br>
     <div class="container-person">
-      <label for="PName">Name</label>
-      <input type="text" name="PName" id="PNameid">
-      <label for="PVorname">Vorname</label>
-      <input type="text" name="PVorname" id="Vornameid">
-      <label for="personalnummer">Personalnummer</label>
-      <input type="number" name="personalnummer" id="personalnummerid">
-      <label for="PEmail">E-Mail</label>
-      <input type="email" name="PEmail" id="PEmailid">
+      <h2>Person</h2>
+      <form action="" class="person-form">
+        <label for="PName">Name</label>
+        <input type="text" name="PName" id="PNameid">
+        <label for="PVorname">Vorname</label>
+        <input type="text" name="PVorname" id="Vornameid">
+        <label for="personalnummer">Personalnummer</label>
+        <input type="number" name="personalnummer" id="personalnummerid">
+        <label for="PEmail">E-Mail</label>
+        <input type="email" name="PEmail" id="PEmailid">
+      </form>
     </div>
     <br>
+    
     <div class="container-ort">
-      <label for="ortBezeichnung">Bezeichnung</label>
-      <input type="text" name="ortBezeichnung" id="ortBezeichnungid">
-      <div class="strasseHaus">
-        <label for="strasse">Straße</label>
-        <input type="text" name="strasse" id="strasseid">
-        <label for="hausnummer">Hausnummer</label>
-        <input type="number" name="hausnummer" id="hausnummerid">
-      </div>
-      <div class="plzOrt">
-        <label for="plz">PLZ</label>
-        <input type="number" name="plz" id="plzid">
-        <label for="ort">Ort</label>
-        <input type="text" name="ort" id="ortid">
-        <label for="stockwerk">Stockwerk</label>
-        <input type="number">
-        <label for="zimmer">Zimmer</label>
-        <input type="text">
-      </div>
+      <h2>Ort</h2>
+      <form action="" class="ort-form">
+        <label for="ortBezeichnung">Bezeichnung</label>
+        <input type="text" name="ortBezeichnung" id="ortBezeichnungid">
+        <div class="strasseHaus">
+          <label for="strasse">Straße</label>
+          <input type="text" name="strasse" id="strasseid">
+          <label for="hausnummer">Hausnummer</label>
+          <input type="number" name="hausnummer" id="hausnummerid">
+        </div>
+        <div class="plzOrt">
+          <label for="plz">PLZ</label>
+          <input type="number" name="plz" id="plzid">
+          <label for="ort">Ort</label>
+          <input type="text" name="ort" id="ortid">
+          <label for="stockwerk">Stockwerk</label>
+          <input type="number">
+          <label for="zimmer">Zimmer</label>
+          <input type="text">
+        </div>
+      </form>
     </div>
   </div>
+  <table>
+    <tr>
+      <td>Emil</td>
+      <td>Tobias</td>
+      <hr>
+      <td>Linus</td>
+    </tr>
+    <hr>
+    <hr>
+    <tr>
+      <td>16</td>
+      <td>14</td>
+      <td>10</td>
+    </tr>
+  </table>
+  <script src="app.js">
+  </script>
 </body>
 
 </html>
