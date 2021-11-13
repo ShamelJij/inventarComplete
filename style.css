@@ -1,1 +1,91 @@
-this is is css file
+.container-main {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    flex-direction: row;
+     
+    
+    
+}
+
+.container-inventar {
+    
+    
+    flex-direction: column;
+    
+    }
+label{
+    display: block;/*fix this*/
+}
+
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #eee;
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;    
+    background-image: linear-gradient(to bottom right, rgb(30, 18, 145), rgb(109, 89, 223));
+
+
+}
+@media (max-width: 800px){
+    .container-main{
+        flex-direction: column;
+        
+    }
+    body{
+        color: rgb(157, 137, 211);
+    }
+    
+}
+input[type=text]{
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  select{
+    text-align: center;
+    font-family: inherit;
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input[type=date]{
+    font-family: inherit;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input[type=number]{
+    font-family: inherit;
+    width: 40%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  input[type=email]{
+    font-family: inherit;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }

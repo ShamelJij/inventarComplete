@@ -1,2 +1,79 @@
-  html 
-         
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container-main">
+    <br>
+    <div class="container-inventar">
+      <form action="">
+        <label for="status">Status</label>
+        <select name="selectStatus" id="statusid">
+          <option value="aktiv">Aktiv</option>
+          <option value="abgebucht">Abgebucht</option>
+        </select>
+        <div class="anschaffungsDatumDiv">
+          <label for="anschaffungsDatum">Anschaffugs Datum</label>
+          <label for="anschaffvon">von</label>
+          <input type="date" name="anschaffVon" id="anschaffVonid">
+          <label for="anschaffBis">bis</label>
+          <input type="date" name="anschaffBis" id="anschaffBisid">
+        </div>
+        <label for="inventarBezeichnung">Bezeichnung</label>
+        <input type="text" name="inventarBezeichnung" id="inventarBezeichnungid">
+        <label for="seriennummer">Seriennummer</label>
+        <input type="number" name="seriennummer" id="seriennummerid">
+        <label for="preisnetto">Preis (netto)</label>
+        <input type="number" name="preisnetto" id="preisnettoid">
+        <div class="abschreibungZeitraumDiv">
+          <label for="abschreibungZeitraum">Abschreibung Zeitraum</label>
+          <label for="abschreibungZeitraumVon">von</label>
+          <input type="date" name="abschreibungZeitraumVon" id="abschreibungZeitraumVonif">
+          <label for="abschreibungZeitraumBis">bis</label>
+          <input type="date" name="abschreibungZeitraumVon" id="abschreibungZeitraumVonid">
+        </div>
+      </form>
+    </div>
+    <br>
+    <div class="container-person">
+      <label for="PName">Name</label>
+      <input type="text" name="PName" id="PNameid">
+      <label for="PVorname">Vorname</label>
+      <input type="text" name="PVorname" id="Vornameid">
+      <label for="personalnummer">Personalnummer</label>
+      <input type="number" name="personalnummer" id="personalnummerid">
+      <label for="PEmail">E-Mail</label>
+      <input type="email" name="PEmail" id="PEmailid">
+    </div>
+    <br>
+    <div class="container-ort">
+      <label for="ortBezeichnung">Bezeichnung</label>
+      <input type="text" name="ortBezeichnung" id="ortBezeichnungid">
+      <div class="strasseHaus">
+        <label for="strasse">Straße</label>
+        <input type="text" name="strasse" id="strasseid">
+        <label for="hausnummer">Hausnummer</label>
+        <input type="number" name="hausnummer" id="hausnummerid">
+      </div>
+      <div class="plzOrt">
+        <label for="plz">PLZ</label>
+        <input type="number" name="plz" id="plzid">
+        <label for="ort">Ort</label>
+        <input type="text" name="ort" id="ortid">
+        <label for="stockwerk">Stockwerk</label>
+        <input type="number">
+        <label for="zimmer">Zimmer</label>
+        <input type="text">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
