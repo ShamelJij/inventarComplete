@@ -32,7 +32,7 @@
 }
 @keyframes fall {
     to {
-    transform: translateY(25vh);
+    transform: translateY(1000%);
     }
 }
 .glow {
