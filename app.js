@@ -26,6 +26,6 @@ function createStars(){
 	document.getElementById('snow').appendChild(stars);
 	setTimeout(() => {
 		stars.remove();
-	}, 800)
+	}, 4000)
 }
                  
