@@ -1,4 +1,5 @@
-setInterval(createSnowFlake,50); 
+setInterval(createSnowFlake,50);
+setInterval(createStars,5); 
 function createSnowFlake() {
     const snow_flake = document.createElement('b');
 	snow_flake.textContent = "❄";
@@ -13,25 +14,18 @@ function createSnowFlake() {
 		snow_flake.remove();
 	}, 12000)
 }
-
-
-
-
-
-
-
-
-/*function createSnowFlake() {
-	const snow_flake = document.createElement('i');
-   	snow_flake.classList.add('snow-flake');
-	snow_flake.style.left = Math.random() * window.innerWidth + 'px';
-	snow_flake.style.animationDuration = Math.random() * 3 + 2 + 's'; // between 2 - 5 seconds
-	snow_flake.style.opacity = Math.random();
-	snow_flake.style.fontSize = Math.random() * 10 + 10 + 'px';
-	
-	document.body.appendChild(snow_flake);
-	
+function createStars(){
+	const stars= document.createElement('b')
+	stars.textContent=('✹');
+	stars.classList.add('glowcla');
+	stars.classList.add('glow');
+	stars.style.left = Math.random() * window.innerWidth +'px';
+	stars.style.bottom = Math.random() * window.innerHeight +'px';
+	stars.style.opacity = Math.random();
+	stars.style.fontSize= Math.random() * 10 + 10 + 'px';
+	document.getElementById('snow').appendChild(stars);
 	setTimeout(() => {
-		snow_flake.remove();
-	}, 5000)
-}*/ //a new javascript file                 
+		stars.remove();
+	}, 800)
+}
+                 
