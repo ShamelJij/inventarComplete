@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="inventar-form"> 
+        
+            <table>
+                <tr>
+                    <td>
+                        <form autocomplete="off" onsubmit="onFormSubmit()">
+                            <div>
+                                <label for="statusid">Status</label>
+                                <input type="text" name="statusid" id="statusid">
+                            </div>
+                            <div>
+                                <label for="anschaffVonid">Anschaffugs Datum von</label>
+                                <input type="number" name="anschaffVonid" id="anschaffVonid">
+                            </div>
+                            <div>
+                                <label for="anschaffBisid">Anschaffugs Datum bis</label>
+                                <input type="number" name="anschaffBisid" id="anschaffBisid">
+                            </div>
+                            <div>
+                                <label for="inventarBezeichnungid">Bezeichnung</label>
+                                <input type="text" name="inventarBezeichnungid" id="inventarBezeichnungid">
+                            </div>
+                            <div>
+                                <label for="seriennummerid">Seriennummer</label>
+                                <input type="number" name="seriennummerid" id="seriennummerid">
+                            </div>
+                            <div>
+                                <label for="preisnettoid">Preis (netto)</label>
+                                <input type="number" name="preisnettoid" id="preisnettoid">
+                            </div>
+                            <div>
+                                <label for="abschreibungZeitraumVonid">Abschreibungzeitraum von</label>
+                                <input type="number" name="abschreibungZeitraumVonid" id="abschreibungZeitraumVonid">
+                            </div>
+                            <div>
+                                <label for="abschreibungZeitraumBisid">Abschreibungzeitraum bis</label>
+                                <input type="number" name="abschreibungZeitraumBisid" id="abschreibungZeitraumBisid">
+                            </div>
+        
+                            <div class="form_action--button">
+                                <input type="submit" value="Submit">
+                                <input type="reset" value="Reset">
+                            </div>
+                        </form>
+                        <hr>
+        
+        <div class="main-table" >
+                        <td>
+                            <table class="main-table " id="storeList">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Anschaffugs Datum von</th>
+                                        <th>Anschaffugs Datum bis</th>
+                                        <th>Bezeichnung</th>
+                                        <th>Seriennummer</th>
+                                        <th>Preis (netto)</th>
+                                        <th>Abschreibungzeitraum von</th>
+                                        <th>Abschreibungzeitraum bis</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+        
+                                </tbody>
+                            </table>
+                        </td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript" src="./app.js"></script>   
+</body>
+</html>
