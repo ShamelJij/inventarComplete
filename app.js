@@ -60,6 +60,10 @@ function onEdit(td){
     document.getElementById('preisnettoid').value = selectedRow.cells[5].innerHTML;
     document.getElementById('abschreibungZeitraumVonid').value = selectedRow.cells[6].innerHTML;
     document.getElementById('abschreibungZeitraumBisid').value = selectedRow.cells[7].innerHTML;
+    function calcDatum{
+    var datumone = document.getElementById('abschreibungZeitraumVonid').value;
+    var datumtwo = document.getElementById('abschreibungZeitraumBisid').value;
+    }
 }
 
 function updateRecord(formData){
