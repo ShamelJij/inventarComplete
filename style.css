@@ -8,24 +8,24 @@ h1{
     flex-direction: row;
     padding: 12px;
     gap: 15px;
-    
-    
+
+
 }
 .container-inventar .inventar-form,
 .container-person .person-form,
 .container-ort .ort-form{
-    
+
     width: 100%;
     margin: 2px;
     padding: 20px 2px;
     border: thin solid white;
     border-radius: 2px;
-    -moz-border-radius: 2px; 
+    -moz-border-radius: 2px;
     -webkit-border-radius: 10px;
     resize: vertical;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    
-    }
+
+}
 .container-submit .submit-form{
 
     width: 15%;
@@ -40,9 +40,9 @@ h1{
     text-align: center;
 }
 h3{
-        text-align: start;
-        padding: 0 0 0 12px;
-    }
+    text-align: start;
+    padding: 0 0 0 12px;
+}
 
 label{
     float: left;
@@ -57,18 +57,18 @@ body{
     height: 100%;
     margin: 0;
     background-repeat: no-repeat;
-    background-attachment: fixed;    
+    background-attachment: fixed;
     background-image: linear-gradient(to bottom right, #79B4B7, #4d7a7e);
 }
 @media (max-width: 800px){
     .container-main{
         flex-direction: column;
-        
+
     }
     body{
         color: #000000;
     }
-    
+
 }
 input[type=text]{
     width: 75%;
@@ -78,9 +78,9 @@ input[type=text]{
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    
-  }
-  select{
+
+}
+select{
     text-align: center;
     font-family: inherit;
     width: 75%;
@@ -89,8 +89,8 @@ input[type=text]{
     display: inline-block;
     border-radius: 4px;
     box-sizing: border-box;
-  }
-  input[type=date]{
+}
+input[type=date]{
     font-family: inherit;
     width: 75%;
     padding: 12px 20px;
@@ -98,8 +98,8 @@ input[type=text]{
     display: inline-block;
     border-radius: 4px;
     box-sizing: border-box;
-  }
-  input[type=number]{
+}
+input[type=number]{
     font-family: inherit;
     width: 75%;
     padding: 12px 20px;
@@ -107,8 +107,8 @@ input[type=text]{
     display: inline-block;
     border-radius: 4px;
     box-sizing: border-box;
-  }
-  input[type=email]{
+}
+input[type=email]{
     font-family: inherit;
     width: 75%;
     padding: 12px 20px;
@@ -116,8 +116,8 @@ input[type=text]{
     display: inline-block;
     border-radius: 4px;
     box-sizing: border-box;
-  }
-  button, .container-main-button{
+}
+button, .container-main-button{
     border-radius: 4px;
     font-family: inherit;
     color: inherit;
@@ -125,15 +125,15 @@ input[type=text]{
     padding: 12px;
     margin: 12px;
     background-image: linear-gradient(to bottom right, #79B4B7, #4d7a7e);
-     
-  }
-  button:hover, .container-main-button:hover{
+
+}
+button:hover, .container-main-button:hover{
     background: #79B4B7;
-  }
-  button:active, container-main-button:hover{
+}
+button:active, container-main-button:hover{
     background: #4d7a7e;
-  }
-  input[type="submit"],input[type="reset"]{
+}
+input[type="submit"],input[type="reset"]{
     border-radius: 4px;
     font-family: inherit;
     color: inherit;
@@ -142,12 +142,12 @@ input[type=text]{
     margin: 12px;
     background-image: linear-gradient(to bottom right, #79B4B7, #4d7a7e);
 }
-    input[type="submit"]:hover{
-        background: #79B4B7;
+input[type="submit"]:hover{
+    background: #79B4B7;
 }
 
-    input[type="reset"]:hover{
-        background: #79B4B7;
+input[type="reset"]:hover{
+    background: #79B4B7;
 }
 
 input[type="submit"]:active{
@@ -157,8 +157,8 @@ input[type="submit"]:active{
 input[type="reset"]:active{
     background: #4d7a7e;
 }
-  
-  .main-table{
+
+.main-table{
     margin: 25px auto;
     border:#4d7a7e;
     border-radius: 12px;
@@ -169,8 +169,8 @@ input[type="reset"]:active{
 }
 .main-table thead tr{
     background-color:#4d7a7e;
-    
-    
+
+
 }
 .main-table th, .main-table td{
     padding: 12px 15px;
