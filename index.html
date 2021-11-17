@@ -17,13 +17,14 @@
                 <label for="statusid">Status</label>
                 <input type="text" name="statusid" id="statusid">
             </div>
+             <h3>Anschaffugsdatum</h3>
             <div>
-                <label for="anschaffVonid">Anschaffugs Datum von</label>
-                <input type="number" name="anschaffVonid" id="anschaffVonid">
+                <label for="anschaffVonid">von</label>
+                <input type="date" name="anschaffVonid" id="anschaffVonid">
             </div>
             <div>
-                <label for="anschaffBisid">Anschaffugs Datum bis</label>
-                <input type="number" name="anschaffBisid" id="anschaffBisid">
+                <label for="anschaffBisid">bis</label>
+                <input type="date" name="anschaffBisid" id="anschaffBisid">
             </div>
             <div>
                 <label for="inventarBezeichnungid">Bezeichnung</label>
@@ -37,13 +38,14 @@
                 <label for="preisnettoid">Preis (netto)</label>
                 <input type="number" name="preisnettoid" id="preisnettoid">
             </div>
+             <h3>Abschreibung Zeitraum</h3>
             <div>
-                <label for="abschreibungZeitraumVonid">Abschreibungzeitraum von</label>
-                <input type="number" name="abschreibungZeitraumVonid" id="abschreibungZeitraumVonid">
+                <label for="abschreibungZeitraumVonid">von</label>
+                <input type="date" name="abschreibungZeitraumVonid" id="abschreibungZeitraumVonid">
             </div>
             <div>
-                <label for="abschreibungZeitraumBisid">Abschreibungzeitraum bis</label>
-                <input type="number" name="abschreibungZeitraumBisid" id="abschreibungZeitraumBisid">
+                <label for="abschreibungZeitraumBisid">bis</label>
+                <input type="date" name="abschreibungZeitraumBisid" id="abschreibungZeitraumBisid">
             </div>
 
             <div class="form_action--button">
@@ -52,6 +54,22 @@
             </div>
         </form>
     </div>
+      <div class="container-person">
+          <h2>Person</h2>
+          <form action="" class="person-form" autocomplete="off">
+              <label for="PNameid">Name</label>
+              <input type="text" name="PName" id="PNameid">
+              <label for="PVornameid">Vorname</label>
+              <input type="text" name="PVorname" id="PVornameid">
+              <label for="personalnummerid">Personalnummer</label>
+              <input type="number" name="personalnummer" id="personalnummerid">
+              <label for="PEmailid">E-Mail</label>
+              <input type="email" name="PEmail" id="PEmailid">
+              <div class="container-main-button">
+                  <button onClick="event.preventDefault();" id="person-speicher">Speicher</button>
+              </div>
+          </form>
+      </div>
   </div> 
 <div class="container-table">
     <h1>Inventar Tabelle</h1>
@@ -69,7 +87,6 @@
             </tr>
         </thead>
         <tbody>
-
         </tbody>
     </table>
 </div>
