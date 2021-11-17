@@ -68,10 +68,10 @@ function updateRecord(formData){
     selectedRow.cells[1].innerHTML = formData.anschaffVonid;
     selectedRow.cells[2].innerHTML = formData.anschaffBisid;
     selectedRow.cells[3].innerHTML = formData.inventarBezeichnungid;
-    selectedRow.cells[3].innerHTML = formData.seriennummerid;
-    selectedRow.cells[3].innerHTML = formData.preisnettoid;
-    selectedRow.cells[3].innerHTML = formData.abschreibungZeitraumVonid;
-    selectedRow.cells[3].innerHTML = formData.abschreibungZeitraumBisid;
+    selectedRow.cells[4].innerHTML = formData.seriennummerid;
+    selectedRow.cells[5].innerHTML = formData.preisnettoid;
+    selectedRow.cells[6].innerHTML = formData.abschreibungZeitraumVonid;
+    selectedRow.cells[7].innerHTML = formData.abschreibungZeitraumBisid;
 }
 
 //Delete the data

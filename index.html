@@ -47,11 +47,6 @@
                 <label for="abschreibungZeitraumBisid">bis</label>
                 <input type="date" name="abschreibungZeitraumBisid" id="abschreibungZeitraumBisid">
             </div>
-
-            <div class="form_action--button">
-                <input type="submit" value="Submit">
-                <input type="reset" value="Reset">
-            </div>
         </form>
     </div>
       <div class="container-person">
@@ -65,20 +60,47 @@
               <input type="number" name="personalnummer" id="personalnummerid">
               <label for="PEmailid">E-Mail</label>
               <input type="email" name="PEmail" id="PEmailid">
-              <div class="container-main-button">
-                  <button onClick="event.preventDefault();" id="person-speicher">Speicher</button>
+          </form>
+      </div>
+      <div class="container-ort">
+          <h2>Ort</h2>
+          <form action="" class="ort-form" autocomplete="off">
+              <label for="ortBezeichnungid">Bezeichnung</label>
+              <input type="text" name="ortBezeichnung" id="ortBezeichnungid">
+              <div class="strasseHaus">
+                  <label for="strasseid">Straße</label>
+                  <input type="text" name="strasse" id="strasseid">
+                  <label for="hausnummerid">Hausnummer</label>
+                  <input type="number" name="hausnummer" id="hausnummerid">
+              </div>
+              <div class="plzOrt">
+                  <label for="plzid">PLZ</label>
+                  <input type="number" name="plz" id="plzid">
+                  <label for="ortid">Ort</label>
+                  <input type="text" name="ort" id="ortid">
+                  <label for="stockwerkid">Stockwerk</label>
+                  <input type="number" name="stockwerk" id="stockwerkid">
+                  <label for="zimmerid">Zimmer</label>
+                  <input type="text" name="zimmer" id="zimmerid">
               </div>
           </form>
       </div>
-  </div> 
+  </div>
+    <div class="container-submit">
+        <form action="" class="submit-form">
+        <input type="submit" value="Submit" class="container-main-button">
+        <input type="reset" value="Reset" class="container-main-button">
+        </form>
+    </div>
+    <hr>
 <div class="container-table">
     <h1>Inventar Tabelle</h1>
     <table class="main-table " id="storeList">
         <thead>
             <tr>
                 <th>Status</th>
-                <th>Anschaffugs Datum von</th>
-                <th>Anschaffugs Datum bis</th>
+                <th>Anschaffugsdatum von</th>
+                <th>Anschaffugsdatum bis</th>
                 <th>Bezeichnung</th>
                 <th>Seriennummer</th>
                 <th>Preis (netto)</th>

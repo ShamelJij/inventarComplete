@@ -13,11 +13,11 @@ h1{
 }
 .container-inventar .inventar-form,
 .container-person .person-form,
-.container-ort .ort-form {
+.container-ort .ort-form{
     
     width: 100%;
     margin: 2px;
-    padding: 2px;
+    padding: 20px 2px;
     border: thin solid white;
     border-radius: 2px;
     -moz-border-radius: 2px; 
@@ -26,6 +26,19 @@ h1{
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     
     }
+.container-submit .submit-form{
+
+    width: 15%;
+    margin: auto auto;
+    padding: 20px;
+    border: thin solid white;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 10px;
+    resize: vertical;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
 h3{
         text-align: start;
         padding: 0 0 0 12px;
@@ -104,7 +117,7 @@ input[type=text]{
     border-radius: 4px;
     box-sizing: border-box;
   }
-  button{
+  button, .container-main-button{
     border-radius: 4px;
     font-family: inherit;
     color: inherit;
@@ -114,10 +127,10 @@ input[type=text]{
     background-image: linear-gradient(to bottom right, #79B4B7, #4d7a7e);
      
   }
-  button:hover{
+  button:hover, .container-main-button:hover{
     background: #79B4B7;
   }
-  button:active{
+  button:active, container-main-button:hover{
     background: #4d7a7e;
   }
   input[type="submit"],input[type="reset"]{
