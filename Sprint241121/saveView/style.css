@@ -25,7 +25,8 @@ body{
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;    
-    background-image: linear-gradient(to bottom right, #79B4B7, #4d7a7e);
+    background-image: linear-gradient(to bottom right, #aee3e6, #0f2b2e);
+    
 }
 @media (max-width: 800px){
     .container-main{
@@ -107,7 +108,7 @@ input[type=text]{
     border: 1px solid white;
     padding: 12px;
     margin: 12px;
-    background-image: linear-gradient(to bottom right, #79B4B7, #4d7a7e);
+    background-image: linear-gradient(to bottom right,#79B4B7, #4d7a7e);
 }
     input[type="submit"]:hover{
         background: #79B4B7;
