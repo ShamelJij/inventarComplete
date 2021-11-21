@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="snow-curve" id="snow">
+    <b class="snowcla snow-flake">❄</b>
+    <b class="glowcla glow">✹</b>
+</div>
+    <h1>Inventurverwaltung</h1>
+  <div class="container-main">
+    <div class="container-inventar">
+		 <h2>Inventar</h2>
+         <form autocomplete="off" onsubmit="onFormSubmit()" class="inventar-form">
+            <div>
+                <label for="statusid">Status</label>
+                <input type="text" name="statusid" id="statusid">
+            </div>
+             <h3>Anschaffugsdatum</h3>
+            <div>
+                <label for="anschaffVonid">von</label>
+                <input type="date" name="anschaffVonid" id="anschaffVonid">
+            </div>
+            <div>
+                <label for="anschaffBisid">bis</label>
+                <input type="date" name="anschaffBisid" id="anschaffBisid">
+            </div>
+            <div>
+                <label for="inventarBezeichnungid">Bezeichnung</label>
+                <input type="text" name="inventarBezeichnungid" id="inventarBezeichnungid">
+            </div>
+            <div>
+                <label for="seriennummerid">Seriennummer</label>
+                <input type="number" name="seriennummerid" id="seriennummerid">
+            </div>
+            <div>
+                <label for="preisnettoid">Preis (netto)</label>
+                <input type="number" name="preisnettoid" id="preisnettoid">
+            </div>
+             <h3>Abschreibung Zeitraum</h3>
+            <div>
+                <label for="abschreibungZeitraumVonid">von</label>
+                <input type="date" name="abschreibungZeitraumVonid" id="abschreibungZeitraumVonid">
+            </div>
+            <div>
+                <label for="abschreibungZeitraumBisid">bis</label>
+                <input type="date" name="abschreibungZeitraumBisid" id="abschreibungZeitraumBisid">
+            </div>
+             <div class="container-submit">
+                 <form  class="submit-form">
+                     <input type="submit" value="Submit" class="container-main-button">
+                     <input type="reset" value="Reset" class="container-main-button">
+                 </form>
+             </div>
+        </form>
+
+            <h1>Inventar Tabelle</h1>
+            <table class="main-table " id="storeList">
+                <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Anschaffugsdatum von</th>
+                    <th>Anschaffugsdatum bis</th>
+                    <th>Bezeichnung</th>
+                    <th>Seriennummer</th>
+                    <th>Preis (netto)</th>
+                    <th>Abschreibungzeitraum von</th>
+                    <th>Abschreibungzeitraum bis</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+    </div>
+
+    </div>
+
+    <hr>
+
+    <hr>
+
+<script type="text/javascript" src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1 id="output">
+            <input type="text" id="input">
+            <button onclick= "save();">save</button>
+            <button onclick= "view();">view</button>
+        </h1>
+    </div>
+    <h1>Inventurverwaltung</h1>
+  <div class="container-main">
+    <div class="container-inventar">
+		 <h2>Inventar</h2>
+      <form class="inventar-form" autocomplete="off" onsubmit="onFormSubmit()">
+        <label for="statusid">Status</label>
+        <select name="selectStatus" id="statusid">
+          <option value="aktiv">Aktiv</option>
+          <option value="abgebucht">Abgebucht</option>
+        </select>
+        <div class="anschaffungsDatumDiv">
+          <h3>Anschaffugs Datum</h3>
+          <label for="anschaffVonid">von</label>
+          <input type="date" name="anschaffVon" id="anschaffVonid">
+          <label for="anschaffBisid">bis</label>
+          <input type="date" name="anschaffBis" id="anschaffBisid">
+        </div>
+        <label for="inventarBezeichnungid">Bezeichnung</label>
+        <input type="text" name="inventarBezeichnung" id="inventarBezeichnungid">
+        <label for="seriennummerid">Seriennummer</label>
+        <input type="number" name="seriennummer" id="seriennummerid">
+        <label for="preisnettoid">Preis (netto)</label>
+        <input type="number" name="preisnetto" id="preisnettoid">
+        <div class="abschreibungZeitraumDiv">
+          <h3>Abschreibung Zeitraum</h3>
+          <label for="abschreibungZeitraumVonid">von</label>
+          <input type="date" name="abschreibungZeitraumVon" id="abschreibungZeitraumVonid">
+          <label for="abschreibungZeitraumBisid">bis</label>
+          <input type="date" name="abschreibungZeitraumVon" id="abschreibungZeitraumBisid">
+        </div>
+        <div class="container-main-button">
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </div>
+      </form>
+    </div>
+    <div class="container-person">
+      <h2>Person</h2>
+      <form action="" class="person-form" autocomplete="off">
+        <label for="PNameid">Name</label>
+        <input type="text" name="PName" id="PNameid">
+        <label for="PVornameid">Vorname</label>
+        <input type="text" name="PVorname" id="PVornameid">
+        <label for="personalnummerid">Personalnummer</label>
+        <input type="number" name="personalnummer" id="personalnummerid">
+        <label for="PEmailid">E-Mail</label>
+        <input type="email" name="PEmail" id="PEmailid">
+        <div class="container-main-button">
+          <button onClick="event.preventDefault();" id="person-speicher">Speicher</button>
+        </div>
+      </form>
+    </div>
+    <div class="container-ort">
+      <h2>Ort</h2>
+      <form action="" class="ort-form" autocomplete="off">
+        <label for="ortBezeichnungid">Bezeichnung</label>
+        <input type="text" name="ortBezeichnung" id="ortBezeichnungid">
+        <div class="strasseHaus">
+          <label for="strasseid">Straße</label>
+          <input type="text" name="strasse" id="strasseid">
+          <label for="hausnummerid">Hausnummer</label>
+          <input type="number" name="hausnummer" id="hausnummerid">
+        </div>
+        <div class="plzOrt">
+          <label for="plzid">PLZ</label>
+          <input type="number" name="plz" id="plzid">
+          <label for="ortid">Ort</label>
+          <input type="text" name="ort" id="ortid">
+          <label for="stockwerkid">Stockwerk</label>
+          <input type="number" name="stockwerk" id="stockwerkid">
+          <label for="zimmerid">Zimmer</label>
+          <input type="text" name="zimmer" id="zimmerid">
+          <div class="container-main-button">
+            <button class="container-main-button" id="ort-speicher">Speicher</button>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>
+<div class="container-table">
+    <h1>Inventar Tabelle</h1>
+    <table class="main-table" id="storeList">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Anschaffugs Datum von</th>
+                <th>Anschaffugs Datum bis</th>
+                <th>Bezeichnung</th>
+                <th>Seriennummer</th>
+                <th>Preis (netto)</th>
+                <th>Abschreibung Zeitraum von</th>
+                <th>Abschreibung Zeitraum bis</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript" src="./app.js"></script>   
+</body>
+</html>
