@@ -42,7 +42,7 @@
                                 <form action="" class="store-form">
                                     <fieldset>
                                         <legend><h2>Inventar</h2></legend>
-                                        <fieldset id="statusid">
+                                        <fieldset id="statusid" class="form-container">
                                             <legend><label for="statusid">Status</label></legend>
                                             <form>
                                                 <input type="radio" name="statusRadio" id="statusOpen" value="open">
@@ -55,22 +55,24 @@
                                         <legend for="purchaseDate">Anschaffungsdatum</legend>
                                         <input type="month" name="purchaseDate" id="purchaseDate" value="2019-04">
                                     </fieldset>
-                                    <label for="itemName">Bezeichnung</label>
-                                    <input type="text" name="itemName" id="itemName">
+                                    <div class="form-container">
+                                    <label for="itemName" class="fLabel">Bezeichnung</label>
+                                    <input type="text" name="itemName" id="itemName" class="fInput">
                                     <br>
-                                    <label for="serialNumber">Seriennummer</label>
-                                    <input type="number" name="serialNumber" id="serialNumber">
+                                    <label for="serialNumber" class="fLabel">Seriennummer</label>
+                                    <input type="number" name="serialNumber" id="serialNumber" min="100000" class="fInput">
                                     <br>
-                                    <label for="nettoPrice">Preis (netto)</label>
-                                    <input type="number" name="nettoPrice" id="nettoPrice">
+                                    <label for="nettoPrice" class="fLabel">Preis (netto)</label>
+                                    <input type="number" name="nettoPrice" id="nettoPrice" min="100" placeholder="€" class="fInput">&nbsp;€
+                                    </div>
                                     <br>
                                     <fieldset class="bookingDuration">
                                         <legend for="bookingDuration">Abschreibung Zeitraum</legend>
                                         <label for="bookingStart">von</label>
-                                        <input type="date" name="bookingStart" id="bookingStart">
-                                        <br>
+                                        <input type="month" name="bookingStart" id="bookingStart" value="2019-04">
+                                        <hr>
                                         <label for=" bookingEnd">bis</label>
-                                        <input type="date" name="bookingEnd" id="bookingEnd">
+                                        <input type="month" name="bookingEnd" id="bookingEnd" value="2019-04">
                                     </fieldset>
                                     <div class="container-main-button">
                                         <button id="inventar-speicher" onclick="myFunction_set();">Speicher</button>

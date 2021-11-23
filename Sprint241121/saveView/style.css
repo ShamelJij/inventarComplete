@@ -103,8 +103,10 @@ main {
 .pages .page.is-active {
     display: block;
 }
-fieldset{
-    border:2px solid #79B4B7;
+fieldset, hr{
+    border:2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to bottom left, #79B4B7, #4d7a7e);
 
 }
 input[type=text]{
