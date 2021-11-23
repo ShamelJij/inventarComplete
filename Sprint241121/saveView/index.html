@@ -45,32 +45,33 @@
                                         <fieldset id="statusid">
                                             <legend><label for="statusid">Status</label></legend>
                                             <form>
-                                                <input type="radio" id="statusOpen" value="open">
+                                                <input type="radio" name="statusRadio" id="statusOpen" value="open">
                                                 <label for="statusOpen">Aktiv</label>
-                                                <input type="radio" id="statusBooked" value="booked">
+                                                <input type="radio" name="statusRadio" id="statusBooked" value="booked">
                                                 <label for="statusBooked">Abgebucht</label>
                                             </form>
                                         </fieldset>
-                                    <div class="">
-                                        <h3>Datum</h3>
-                                        <label for="anschaffvon">von</label>
-                                        <input type="date" name="anschaffVon" id="anschaffVonid">
-                                        <label for="anschaffBis">bis</label>
-                                        <input type="date" name="anschaffBis" id="anschaffBisid">
-                                    </div>
-                                    <label for="inventarBezeichnung">Bezeichnung</label>
-                                    <input type="text" name="inventarBezeichnung" id="inventarBezeichnungid">
-                                    <label for="seriennummer">Seriennummer</label>
-                                    <input type="number" name="seriennummer" id="seriennummerid">
-                                    <label for="preisnetto">Preis (netto)</label>
-                                    <input type="number" name="preisnetto" id="preisnettoid">
-                                    <div class="abschreibungZeitraumDiv">
-                                        <h3 for="abschreibungZeitraum">Abschreibung Zeitraum</h3>
-                                        <label for="abschreibungZeitraumVon">von</label>
-                                        <input type="date" name="abschreibungZeitraumVon" id="abschreibungZeitraumVonif">
-                                        <label for="abschreibungZeitraumBis">bis</label>
-                                        <input type="date" name="abschreibungZeitraumVon" id="abschreibungZeitraumVonid">
-                                    </div>
+                                    <fieldset class="purchaseDate">
+                                        <legend for="purchaseDate">Anschaffungsdatum</legend>
+                                        <input type="month" name="purchaseDate" id="purchaseDate" value="2019-04">
+                                    </fieldset>
+                                    <label for="itemName">Bezeichnung</label>
+                                    <input type="text" name="itemName" id="itemName">
+                                    <br>
+                                    <label for="serialNumber">Seriennummer</label>
+                                    <input type="number" name="serialNumber" id="serialNumber">
+                                    <br>
+                                    <label for="nettoPrice">Preis (netto)</label>
+                                    <input type="number" name="nettoPrice" id="nettoPrice">
+                                    <br>
+                                    <fieldset class="bookingDuration">
+                                        <legend for="bookingDuration">Abschreibung Zeitraum</legend>
+                                        <label for="bookingStart">von</label>
+                                        <input type="date" name="bookingStart" id="bookingStart">
+                                        <br>
+                                        <label for=" bookingEnd">bis</label>
+                                        <input type="date" name="bookingEnd" id="bookingEnd">
+                                    </fieldset>
                                     <div class="container-main-button">
                                         <button id="inventar-speicher" onclick="myFunction_set();">Speicher</button>
                                     </div>
