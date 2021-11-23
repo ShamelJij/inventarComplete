@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e1b4f157-e527-47eb-8005-3590473617a8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint241121/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Sprint241121/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Sprint241121/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Sprint241121/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprint241121/saveView/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Sprint241121/saveView/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprint241121/saveView/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Sprint241121/saveView/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sprint241121/saveView/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Sprint241121/saveView/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +44,8 @@
       <option name="presentableId" value="Default" />
       <updated>1637159592941</updated>
       <workItem from="1637159594854" duration="5193000" />
+      <workItem from="1637658195898" duration="46000" />
+      <workItem from="1637658259065" duration="28274000" />
     </task>
     <servers />
   </component>
@@ -59,5 +62,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

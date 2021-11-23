@@ -1,60 +1,83 @@
+:root{
+    --darkcolor: #0f2b2e;
+    lightColor: #aee3e6;
+    --fontcolor: green;
+    shadowColor:rgba(0, 0, 0, 0.5);
+
+}
 h1{
     text-align: center;
+    color: var(--fontcolor);
 }
-.container-main, header nav{
+.container-main{
+
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     text-align: center;
     flex-direction: row;
-    padding: 12px ;
-    gap: 15px;
-    
+    padding: 4px;
+    gap: 4px;
 }
-label{
-    float: left;
-    width: 25%;
-    margin-top: 6px;
-    padding: 12px 12px 12px 12px;
-}
-
-body, .pages{
+body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #eee;
     height: 100%;
+    width: 100%;
     margin: 0;
     background-repeat: no-repeat;
-    background-attachment: fixed;    
+    background-attachment: fixed;
+    background-image: linear-gradient(to bottom right, #aee3e6, var(--darkcolor));
+}
+.pages{font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: inherit;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-image: linear-gradient(to bottom right, #aee3e6, #0f2b2e);
-    
+
+}
+header nav {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: inherit;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
 }
 @media (max-width: 800px){
     .container-main{
         flex-direction: column;
         
     }
-    body{
+    body, nav, header nav .tabs{
+        display: flex;
         color: #000000;
+        justify-content: center;
     }
     
 }
 header nav .tabs {
     list-style-type: none;
-
-    display: flex;
-    justify-content: flex-end;
+    display: block;
+    width: 200px;
+    padding: 2px;
 }
 
 header nav .tabs .tab {
     display: block;
+    list-style-type: none;
 }
 
 header nav .tabs .tab a[data-switcher] {
     display: block;
-    padding: 15px 30px;
+    padding: 20px;
+    margin: 20px;
     text-decoration: none;
-    color: #FFF;
+    color: inherit;
     background-color: #4d7a7e;
     cursor: pointer;
+    border-top-right-radius: 20px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
+
 }
 
 header nav .tabs .tab:hover a[data-switcher] {
@@ -67,15 +90,15 @@ header nav .tabs .tab.is-active a[data-switcher] {
 }
 
 main {
-    padding-left: 142px;
-    padding-right: 142px;
+    width: 100%;
+    padding-left: 120px;
+    padding-right: 120px;
 }
 
 .pages {
-    margin-top: 100px;
-    padding: 50px 30px;
+    margin-top: 4px;
+    padding: 30px;
     border-radius: 8px;
-    background-color: #FFF;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
 }
 
@@ -86,6 +109,10 @@ main {
 .pages .page.is-active {
     display: block;
 }
+fieldset{
+    border:2px solid #79B4B7;
+
+}
 input[type=text]{
     width: 75%;
     padding: 12px 20px;
@@ -94,7 +121,7 @@ input[type=text]{
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    
+    cursor: pointer;
   }
   select{
     text-align: center;
@@ -105,6 +132,7 @@ input[type=text]{
     display: inline-block;
     border-radius: 4px;
     box-sizing: border-box;
+    cursor: pointer;
   }
   input[type=date]{
     font-family: inherit;
@@ -135,13 +163,14 @@ input[type=text]{
   }
   button{
     border-radius: 4px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
     font-family: inherit;
     color: inherit;
-    border: 1px solid white;
+    border: 1px solid #4d7a7e ;
     padding: 12px;
     margin: 12px;
     background-image: linear-gradient(to bottom right, #79B4B7, #4d7a7e);
-     
+    cursor: pointer;
   }
   button:hover{
     background: #79B4B7;
@@ -194,7 +223,7 @@ input[type="reset"]:active{
     background-color: #79B4B7;
 }
 .main-table tbody tr:last-of-type{
-    border-bottom: #4d7a7e;
+    border-bottom: 4px solid black;
 }
 hr{
     width: 50%;
