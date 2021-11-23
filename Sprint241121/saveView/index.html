@@ -72,7 +72,7 @@
                                         <input type="date" name="abschreibungZeitraumVon" id="abschreibungZeitraumVonid">
                                     </div>
                                     <div class="container-main-button">
-                                        <button id="inventar-speicher">Speicher</button>
+                                        <button id="inventar-speicher" onclick="myFunction_set();">Speicher</button>
                                     </div>
                                     </fieldset>
                                 </form>
@@ -101,7 +101,19 @@
                     </div>
                     <div class="page" data-page="4">
                         <h2>Page 4</h2>
-                        <input type="color">
+                        <fieldset>
+                            <legend>Color settings</legend>
+                            <label for="darkColor">Dark Color</label>
+                            <input type="color" id="darkColor">
+                            <label for="brightColor">Bright Color</label>
+                            <input type="color" id="brightColor">
+                            <label for="fontColor">Font Color</label>
+                            <input type="color" id="fontColor">
+                            <label for="shadowColor">Shadows Color</label>
+                            <input type="color" id="shadowColor">
+                        </fieldset>
+                        <h1>this this first test</h1>
+                        <h1>this is the second test</h1>
                     </div>
                 </section>
             </main>

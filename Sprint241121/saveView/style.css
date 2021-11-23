@@ -1,5 +1,13 @@
+:root{
+    --darkcolor: #0f2b2e;
+    lightColor: #aee3e6;
+    --fontcolor: green;
+    shadowColor:rgba(0, 0, 0, 0.5);
+
+}
 h1{
     text-align: center;
+    color: var(--fontcolor);
 }
 .container-main{
 
@@ -18,7 +26,7 @@ body {
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-image: linear-gradient(to bottom right, #aee3e6, #0f2b2e);
+    background-image: linear-gradient(to bottom right, #aee3e6, var(--darkcolor));
 }
 .pages{font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: inherit;

@@ -66,3 +66,56 @@ function buildTable(data){
 
     }
 }
+//the setting page
+var fontColor;
+var defaultColor = "white";
+window.addEventListener("load", changeFont, false);
+function changeFont(){
+    fontColor = document.querySelector("#fontColor");
+    fontColor.value = defaultColor;
+    fontColor.addEventListener("input",updateFirst,false);
+    fontColor.addEventListener("change", updateAll, false);
+    fontColor.select();
+    }
+    function updateFirst(event){
+    var h1 = document.querySelector("h1");
+    if (h1) {
+        h1.style.color = event.target.value;
+    }
+    }
+    function updateAll(event){
+    document.querySelectorAll("h1").forEach(function (h1){
+        h1.style.color=event.target.value;
+    })
+    }
+var darkColor;
+var defaultColor = "#0f2b2e";
+window.addEventListener("load", changeDarkColor, false);
+function changeDarkColor(){
+    darkColor = document.querySelector("#darkColor");
+    darkColor.value = defaultColor;
+    darkColor.addEventListener("change", updateAll, false);
+    darkColor.select();
+    var b = document.querySelector('body');
+    b.style.setProperty('--darkcolor', darkColor)
+}
+function updateAllDarkColor(event){
+    document.querySelectorAll("").forEach(function (h1){
+        h1.style.color=event.target.value;
+    })
+}
+var r = document.querySelector(':root');
+
+// Create a function for getting a variable value
+function myFunction_get() {
+    // Get the styles (properties and values) for the root
+    var rs = getComputedStyle(r);
+    // Alert the value of the --blue variable
+    alert("The value of --fontcolor is: " + rs.getPropertyValue('--fontcolor'));
+}
+
+// Create a function for setting a variable value
+function myFunction_set() {
+    // Set the value of variable --blue to another value (in this case "lightblue")
+    r.style.setProperty('--fontcolor', 'red');
+}
