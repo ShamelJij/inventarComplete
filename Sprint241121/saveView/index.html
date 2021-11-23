@@ -9,65 +9,103 @@
 </head>
 <body>
 <h1>Inventar</h1>
-<div class="container-main">
-
-    <div class="container-header">
-        <header>
-            <nav>
-                <ol class="tabs">
-                    <li class="tab is-active">
-                        <a data-switcher data-tab="1">Eingabe</a>
-                    </li>
-                    <li class="tab">
-                        <a data-switcher data-tab="2">Tabelle</a>
-                    </li>
-                    <li class="tab">
-                        <a data-switcher data-tab="3">Seite</a>
-                    </li>
-                    <li class="tab">
-                        <a data-switcher data-tab="4">Einstellungen</a>
-                    </li>
-                </ol>
-            </nav>
-        </header>
-    </div>
-    <main>
-        <section class="pages">
-            <div class="page is-active" data-page="1">
-                <h1>Inventar</h1>
-                <div id="input-container">
-                    <input type="text" id="input">
-                    <button onclick= "save();">save</button>
-                    <button onclick= "view();">view</button>
-                </div>
-            </div>
-            <div class="page" data-page="2">
-                <h1>Table</h1>
-                <div class="container-table">
-                    <h1>Inventar Tabelle</h1>
-                    <table class="main-table">
-                        <thead>
-                        <tr>
-                            <th>testName</th>
-                        </tr>
-                        </thead>
-                        <tbody id="myTable">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="page" data-page="3">
-                <h2>Page 3</h2>
-                <p>Welcome to the services page</p>
-            </div>
-            <div class="page" data-page="4">
-                <h2>Page 4</h2>
-                <p>Welcome to the contact page</p>
-            </div>
-        </section>
-    </main>
-
+<div id="input-container">
+    <input type="text" id="input">
+    <button onclick= "save();">save</button>
+    <button onclick= "view();">view</button>
 </div>
+        <div class="container-main">
+            <div class="container-header">
+                <header>
+                    <nav>
+                        <ol class="tabs">
+                            <li class="tab is-active">
+                                <a data-switcher data-tab="1">Eingabe</a>
+                            </li>
+                            <li class="tab">
+                                <a data-switcher data-tab="2">Tabelle</a>
+                            </li>
+                            <li class="tab">
+                                <a data-switcher data-tab="3">Seite</a>
+                            </li>
+                            <li class="tab">
+                                <a data-switcher data-tab="4">Einstellungen</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </header>
+            </div>
+            <main>
+                <section class="pages">
+                    <div class="page is-active" data-page="1">
+                            <div class="container-inventar">
+                                <form action="" class="store-form">
+                                    <fieldset>
+                                        <legend><h2>Inventar</h2></legend>
+                                        <fieldset id="statusid">
+                                            <legend><label for="statusid">Status</label></legend>
+                                            <form>
+                                                <input type="radio" id="statusOpen" value="open">
+                                                <label for="statusOpen">Aktiv</label>
+                                                <input type="radio" id="statusBooked" value="booked">
+                                                <label for="statusBooked">Abgebucht</label>
+                                            </form>
+                                        </fieldset>
+                                    <div class="">
+                                        <h3>Datum</h3>
+                                        <label for="anschaffvon">von</label>
+                                        <input type="date" name="anschaffVon" id="anschaffVonid">
+                                        <label for="anschaffBis">bis</label>
+                                        <input type="date" name="anschaffBis" id="anschaffBisid">
+                                    </div>
+                                    <label for="inventarBezeichnung">Bezeichnung</label>
+                                    <input type="text" name="inventarBezeichnung" id="inventarBezeichnungid">
+                                    <label for="seriennummer">Seriennummer</label>
+                                    <input type="number" name="seriennummer" id="seriennummerid">
+                                    <label for="preisnetto">Preis (netto)</label>
+                                    <input type="number" name="preisnetto" id="preisnettoid">
+                                    <div class="abschreibungZeitraumDiv">
+                                        <h3 for="abschreibungZeitraum">Abschreibung Zeitraum</h3>
+                                        <label for="abschreibungZeitraumVon">von</label>
+                                        <input type="date" name="abschreibungZeitraumVon" id="abschreibungZeitraumVonif">
+                                        <label for="abschreibungZeitraumBis">bis</label>
+                                        <input type="date" name="abschreibungZeitraumVon" id="abschreibungZeitraumVonid">
+                                    </div>
+                                    <div class="container-main-button">
+                                        <button id="inventar-speicher">Speicher</button>
+                                    </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                    </div>
+                    <div class="page" data-page="2">
+                        <h1>Table</h1>
+                        <div class="container-table">
+                            <h1>Inventar Tabelle</h1>
+                            <table class="main-table">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>date</th>
+                                </tr>
+                                </thead>
+                                <tbody id="myTable">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="page" data-page="3">
+                        <h2>Page 3</h2>
+                        <p>Welcome to the services page</p>
+                    </div>
+                    <div class="page" data-page="4">
+                        <h2>Page 4</h2>
+                        <input type="color">
+                    </div>
+                </section>
+            </main>
+        </div>
     <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
