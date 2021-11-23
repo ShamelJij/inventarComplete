@@ -5,15 +5,67 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Inventar</title>
 </head>
 <body>
-    <h1>The SaveView Project</h1>
-    <div id="output">
-            <input type="text" id="input">
-            <button onclick= "save();">save</button>
-            <button onclick= "view();">view</button>
-    </div>
-    <script src="./app.js"></script>        
+    <h1>Inventar</h1>
+    <header>
+        <nav>
+            
+            <ul class="tabs">
+                <li class="tab is-active">
+                    <a data-switcher data-tab="1">Eingabe</a>
+                </li>
+                <li class="tab">
+                    <a data-switcher data-tab="2">Tabelle</a>
+                </li>
+                <li class="tab">
+                    <a data-switcher data-tab="3">Seite</a>
+                </li>
+                <li class="tab">
+                    <a data-switcher data-tab="4">Einstellungen</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="pages">
+            <div class="page is-active" data-page="1">
+                <h1>Inventar</h1>
+                <div id="input-container">
+                        <input type="text" id="input">
+                        <button onclick= "save();">save</button>
+                        <button onclick= "view();">view</button>
+                </div>
+            </div>
+            <div class="page" data-page="2">
+                <h2>Page 2</h2>
+                <p>Welcome to the about page</p>
+            </div>
+            <div class="page" data-page="3">
+                <h2>Page 3</h2>
+                <p>Welcome to the services page</p>
+            </div>
+            <div class="page" data-page="4">
+                <h2>Page 4</h2>
+                <p>Welcome to the contact page</p>
+            </div>
+        </section>
+    </main>
+    
+    <h1>Table</h1>
+    <div class="container-table">
+        <h1>Inventar Tabelle</h1>
+        <table class="main-table">
+          <thead>
+              <tr>
+                  <th>testName</th>
+              </tr>
+          </thead>
+          <tbody id="myTable">
+          </tbody>
+        </table>
+      </div>
+    <script type="text/javascript" src="app.js"></script>        
 </body>
 </html>
