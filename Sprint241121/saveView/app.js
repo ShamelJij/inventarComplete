@@ -39,27 +39,60 @@ function save(){
             document.getElementById('output').innerHTML = JSON.parse(localStorage.getItem('data'));
         }
 }
-var myArray = [
-    {'name':'Michael', 'age':'30', 'birthdate':'11/10/1989'},
-    {'name':'Mila', 'age':'32', 'birthdate':'10/1/1989'},
-    {'name':'Paul', 'age':'29', 'birthdate':'10/14/1990'},
-    {'name':'Dennis', 'age':'25', 'birthdate':'11/29/1993'},
-    {'name':'Tim', 'age':'27', 'birthdate':'3/12/1991'},
-    {'name':'Erik', 'age':'24', 'birthdate':'10/31/1995'},
+    function store(){
+    var inputEmail= document.getElementById("email");
+    localStorage.setItem("email", inputEmail.value);
+}
+
+var personArray = [
+    {'firstName':'Michael', 'sureName':'david', 'personalNumber':'223345', 'email':'mike@gmail.com'},
+    {'firstName':'Mila', 'sureName':'Schmidt', 'personalNumber':'443355', 'email':'mila2231@gmail.com'},
+    {'firstName':'Paul', 'sureName':'Salt', 'personalNumber':'998765', 'email':'paul.richard@gmail.com'},
+    {'firstName':'Dennis', 'sureName':'Miller', 'personalNumber':'122345', 'email':'dennis@gmail.com'},
+    {'firstName':'Tim', 'sureName':'Müller', 'personalNumber':'876543', 'email':'timmy@gmail.com'},
+    {'firstName':'Erik', 'sureName':'Schmidt', 'personalNumber':'435532', 'email':'eriksson@gmail.com'},
+]
+var addressArray = [
+    {'name':'Michael', 'street':'Musterstraße', 'houseNumber':'4', 'zipCode':'55130', 'city':'Mainz', 'level':'2', 'roomNumber':'112'},
+    {'name':'Mila', 'street':'Haputstraße', 'houseNumber':'22', 'zipCode':'55120', 'city':'München', 'level':'4', 'roomNumber':'13'},
+    {'name':'Paul', 'street':'Maxstraße', 'houseNumber':'13', 'zipCode':'56110', 'city':'Berlin', 'level':'10', 'roomNumber':'4'},
+    {'name':'Dennis', 'street':'Winterstraße', 'houseNumber':'8', 'zipCode':'66130', 'city':'Koblenz', 'level':'1', 'roomNumber':'43'},
+    {'name':'Tim', 'street':'Suderstraße', 'houseNumber':'34', 'zipCode':'44180', 'city':'Speyer', 'level':'1', 'roomNumber':'15'},
+    {'name':'Erik', 'street':'Am Wald', 'houseNumber':'7', 'zipCode':'92130', 'city':'Frankfurt', 'level':'4', 'roomNumber':'6'},
 ]
 
-buildTable(myArray);
+buildTablePerson(personArray);
+buildTableAddress(addressArray);
 
 
 
-function buildTable(data){
-    var table = document.getElementById('myTable')
+function buildTablePerson(data){
+    var table = document.getElementById('personalTable')
+
+    for (var i = 0; i < data.length; i++){
+        var row = `<tr>
+                        <td>${data[i].firstName}</td>
+                        <td>${data[i].sureName}</td>
+                        <td>${data[i].personalNumber}</td>
+                        <td>${data[i].email}</td>
+                  </tr>`
+        table.innerHTML += row
+
+
+    }
+}
+function buildTableAddress(data){
+    var table = document.getElementById('addressTable')
 
     for (var i = 0; i < data.length; i++){
         var row = `<tr>
                         <td>${data[i].name}</td>
-                        <td>${data[i].age}</td>
-                        <td>${data[i].birthdate}</td>
+                        <td>${data[i].street}</td>
+                        <td>${data[i].houseNumber}</td>
+                        <td>${data[i].zipCode}</td>
+                        <td>${data[i].city}</td>
+                        <td>${data[i].level}</td>
+                        <td>${data[i].roomNumber}</td>
                   </tr>`
         table.innerHTML += row
 

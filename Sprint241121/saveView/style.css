@@ -30,6 +30,9 @@ body {
     background-image: inherit;
 
 }
+.fInput{
+    align-items: center;
+}
 header nav {
     margin: 10px;
     padding: 10px;
