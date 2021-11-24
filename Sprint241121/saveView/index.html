@@ -26,7 +26,7 @@
                                 <a data-switcher data-tab="2">Tabelle</a>
                             </li>
                             <li class="tab">
-                                <a data-switcher data-tab="3">Seite</a>
+                                <a data-switcher data-tab="3">Experiment</a>
                             </li>
                             <li class="tab">
                                 <a data-switcher data-tab="4">Einstellungen</a>
@@ -61,6 +61,7 @@
                                     <br>
                                     <label for="itemType">Typ</label>
                                     <input type="text" name="itemType" id="itemType" class="fInput">
+                                    <br>
                                     <label for="serialNumber" class="fLabel">Seriennummer</label>
                                     <input type="number" name="serialNumber" id="serialNumber" min="100000" class="fInput">
                                     <br>
@@ -121,8 +122,28 @@
                         </div>
                     </div>
                     <div class="page" data-page="3">
-                        <h2>Page 3</h2>
-                        <p>Welcome to the services page</p>
+                        <form id="einputForm" class="estore-form">
+                            <fieldset>
+                                <legend><h2>Inventar</h2></legend>
+                                <div class="form-container">
+                                    <label for="eitemName" class="efLabel">Bezeichnung</label>
+                                    <input type="text" name="eitemName" id="eitemName" class="efInput">
+                                    <br>
+                                    <label for="eitemType">Typ</label>
+                                    <input type="text" name="eitemType" id="eitemType" class="efInput">
+                                    <br>
+                                    <label for="eserialNumber" class="efLabel">Seriennummer</label>
+                                    <input type="number" name="eserialNumber" id="eserialNumber" min="100000" class="efInput">
+                                    <br>
+                                    <label for="enettoPrice" class="efLabel">Preis (netto)</label>
+                                    <input type="number" name="enettoPrice" id="enettoPrice" min="100" placeholder="€" class="efInput">&nbsp;€
+                                </div>
+                                <br>
+                                <div class="container-main-button">
+                                    <button id="eformSave" onclick="" type="submit">Speicher</button>
+                                </div>
+                            </fieldset>
+                        </form>
                     </div>
                     <div class="page" data-page="4">
                         <h2>Page 4</h2>

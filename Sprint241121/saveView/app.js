@@ -48,7 +48,16 @@ function save(){
     function store(){
     var inputItemName= document.getElementById("itemName");
     localStorage.setItem("itemName", inputItemName.value);
-}
+        var new_data = document.getElementById('itemName').value;
+        if(localStorage.getItem('dataNew') == null){
+            localStorage.setItem('dataNew','[]');
+
+        }
+        var old_data = JSON.parse(localStorage.getItem('dataNew'));
+        old_data.push(new_data);
+        localStorage.setItem('dataNew', JSON.stringify(old_data));
+    }
+
 //json array for the table
 var personArray = [
     {'firstName':'Michael', 'sureName':'david', 'personalNumber':'223345', 'email':'mike@gmail.com'},
@@ -160,3 +169,23 @@ function myFunction_set() {
     // Set the value of variable --blue to another value (in this case "lightblue")
     r.style.setProperty('--fontcolor', 'red');
 }
+
+//storing form input as json
+document
+    .getElementById("einputForm")
+    .addEventListener("submit", function (event){
+        event.preventDefault();
+
+        var eitemName = document.getElementById("eitemName").value;
+        var eitemType = document.getElementById("eitemType").value;
+        var eserialNumber = document.getElementById("eserialNumber").value;
+        var enettoPrice = document.getElementById("enettoPrice").value;
+
+        console.log("E-Item Name:", eitemName);
+        console.log("E-Item Type:", eitemType);
+        console.log("E-Serial Number:", eserialNumber);
+        console.log("E-Netto Price:", enettoPrice);
+
+
+    });
+
