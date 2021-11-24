@@ -75,7 +75,7 @@ var addressArray = [
     {'name':'Tim', 'street':'Suderstraße', 'houseNumber':'34', 'zipCode':'44180', 'city':'Speyer', 'level':'1', 'roomNumber':'15'},
     {'name':'Erik', 'street':'Am Wald', 'houseNumber':'7', 'zipCode':'92130', 'city':'Frankfurt', 'level':'4', 'roomNumber':'6'},
 ]
-//building the table
+//building the table functions (call)
 buildTablePerson(personArray);
 buildTableAddress(addressArray);
 
@@ -201,9 +201,27 @@ document
         console.log("E-Netto Price:", enettoPrice);
 
         localStorage.setItem("storeInfo", JSON.stringify(storeInfo));
+        console.log("E-Store Info Object:", storeInfo)
+        //making a table from local storage
+        var estoreFormStoreArray = [storeInfo]
+        buildTableStoreForm(estoreFormStoreArray);
+        function buildTableStoreForm(data){
+            var table = document.getElementById('formStoreTable')
+
+            for (var i = 0; i < data.length; i++){
+                var row = `<tr>
+                        <td>${data[i].eitemName}</td>
+                        <td>${data[i].eitemType}</td>
+                        <td>${data[i].eserialNumber}</td>
+                        <td>${data[i].enettoPrice}</td>
+                        </tr>`
+                table.innerHTML += row
 
 
+            }
+        }
     });
 
-    //making a table from local storage
+
+
 
