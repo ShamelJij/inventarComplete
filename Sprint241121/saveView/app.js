@@ -1,4 +1,10 @@
 
+//showing the options status div
+function showDiv(divId, element)
+{
+    document.getElementById(divId).style.display = element.value == 1 ? 'none' : 'block';
+}
+
 //single page switcher
 window.onload = () => {
     const tab_switchers = document.querySelectorAll('[data-switcher]');
@@ -15,6 +21,7 @@ window.onload = () => {
         });
     }
 }
+//a new change experiment for git**jj
 
 function SwitchPage (page_id) {
     console.log(page_id);
@@ -25,6 +32,7 @@ function SwitchPage (page_id) {
     const next_page = document.querySelector(`.pages .page[data-page="${page_id}"]`);
     next_page.classList.add('is-active');
 }
+/*
 
 //the save/view test
 function save(){
@@ -43,6 +51,7 @@ function save(){
             document.getElementById('output').innerHTML = JSON.parse(localStorage.getItem('data'));
         }
 }
+*/
 
 //store function added to save button
     function store(){

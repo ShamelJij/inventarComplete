@@ -9,11 +9,11 @@
 </head>
 <body>
 <h1>Inventar</h1>
-<div id="input-container">
+<!--<div id="input-container">
     <input type="text" id="input">
     <button onclick="save()" >save</button>
     <button onclick= "view()">view</button>
-</div>
+</div>-->
         <div class="container-main">
             <div class="container-header">
                 <header>
@@ -51,6 +51,18 @@
                                                 <label for="statusBooked">Abgebucht</label>
                                             </form>
                                         </fieldset>
+                                        <select name="selectDuration" id="selectDuration" onchange="showDiv('bookingDuration', this)">
+                                            <option value="selectExtendable" value="0">Abschreibfähig</option>
+                                            <option value="selectNonExtendable" value="1">GwG</option>
+                                        </select>
+                                        <fieldset class="bookingDuration" id="bookingDuration">
+                                            <legend for="bookingDuration">Abschreibung Zeitraum</legend>
+                                            <label for="bookingStart">von</label>
+                                            <input type="month" name="bookingStart" id="bookingStart" value="2019-04">
+                                            <hr>
+                                            <label for="bookingEnd">bis</label>
+                                            <input type="month" name="bookingEnd" id="bookingEnd" value="2019-04">
+                                        </fieldset>
                                     <fieldset class="purchaseDate">
                                         <legend for="purchaseDate">Anschaffungsdatum</legend>
                                         <input type="month" name="purchaseDate" id="purchaseDate" value="2019-04">
@@ -59,7 +71,7 @@
                                     <label for="itemName" class="fLabel">Bezeichnung</label>
                                     <input type="text" name="itemName" id="itemName" class="fInput">
                                     <br>
-                                    <label for="itemType">Typ</label>
+                                    <label for="itemType" class="fLabel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Typ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                     <input type="text" name="itemType" id="itemType" class="fInput">
                                     <br>
                                     <label for="serialNumber" class="fLabel">Seriennummer</label>
@@ -69,17 +81,9 @@
                                     <input type="number" name="nettoPrice" id="nettoPrice" min="100" placeholder="€" class="fInput">&nbsp;€
                                     </div>
                                     <br>
-                                    <fieldset class="bookingDuration">
-                                        <legend for="bookingDuration">Abschreibung Zeitraum</legend>
-                                        <label for="bookingStart">von</label>
-                                        <input type="month" name="bookingStart" id="bookingStart" value="2019-04">
-                                        <hr>
-                                        <label for="bookingEnd">bis</label>
-                                        <input type="month" name="bookingEnd" id="bookingEnd" value="2019-04">
-                                    </fieldset>
-                                    <div class="container-main-button">
-                                        <button id="formSave" onclick="store();" type="button">Speicher</button>
-                                    </div>
+                                        <div class="container-main-button">
+                                            <button id="formSave" onclick="store();" type="button">Speicher</button>
+                                        </div>
                                     </fieldset>
                                 </form>
                             </div>
@@ -129,7 +133,7 @@
                                     <label for="eitemName" class="efLabel">Bezeichnung</label>
                                     <input type="text" name="eitemName" id="eitemName" class="efInput">
                                     <br>
-                                    <label for="eitemType">Typ</label>
+                                    <label for="eitemType">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Typ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                     <input type="text" name="eitemType" id="eitemType" class="efInput">
                                     <br>
                                     <label for="eserialNumber" class="efLabel">Seriennummer</label>

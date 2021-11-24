@@ -3,6 +3,10 @@ h1{
     text-align: center;
     color: var(--fontcolor);
 }
+#bookingDuration {
+    display: none;
+}
+
 .container-main{
 
     display: flex;
@@ -29,9 +33,6 @@ body {
     background-attachment: inherit;
     background-image: inherit;
 
-}
-.fInput{
-    align-items: center;
 }
 header nav {
     margin: 10px;
@@ -150,6 +151,9 @@ input[type=text]{
     display: inline-block;
     border-radius: 4px;
     box-sizing: border-box;
+  }
+  form{
+      display: inline-block;
   }
   input[type=email]{
     font-family: inherit;
