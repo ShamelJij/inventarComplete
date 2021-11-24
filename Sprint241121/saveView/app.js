@@ -1,3 +1,5 @@
+
+//single page switcher
 window.onload = () => {
     const tab_switchers = document.querySelectorAll('[data-switcher]');
 
@@ -23,6 +25,8 @@ function SwitchPage (page_id) {
     const next_page = document.querySelector(`.pages .page[data-page="${page_id}"]`);
     next_page.classList.add('is-active');
 }
+
+//the save/view test
 function save(){
 
     var new_data = document.getElementById('input').value;
@@ -39,11 +43,13 @@ function save(){
             document.getElementById('output').innerHTML = JSON.parse(localStorage.getItem('data'));
         }
 }
-    function store(){
-    var inputEmail= document.getElementById("email");
-    localStorage.setItem("email", inputEmail.value);
-}
 
+//store function added to save button
+    function store(){
+    var inputItemName= document.getElementById("itemName");
+    localStorage.setItem("itemName", inputItemName.value);
+}
+//json array for the table
 var personArray = [
     {'firstName':'Michael', 'sureName':'david', 'personalNumber':'223345', 'email':'mike@gmail.com'},
     {'firstName':'Mila', 'sureName':'Schmidt', 'personalNumber':'443355', 'email':'mila2231@gmail.com'},
@@ -60,11 +66,11 @@ var addressArray = [
     {'name':'Tim', 'street':'Suderstraße', 'houseNumber':'34', 'zipCode':'44180', 'city':'Speyer', 'level':'1', 'roomNumber':'15'},
     {'name':'Erik', 'street':'Am Wald', 'houseNumber':'7', 'zipCode':'92130', 'city':'Frankfurt', 'level':'4', 'roomNumber':'6'},
 ]
-
+//building the table
 buildTablePerson(personArray);
 buildTableAddress(addressArray);
 
-
+//building person table
 
 function buildTablePerson(data){
     var table = document.getElementById('personalTable')
@@ -81,6 +87,7 @@ function buildTablePerson(data){
 
     }
 }
+//building the address table
 function buildTableAddress(data){
     var table = document.getElementById('addressTable')
 
@@ -99,7 +106,8 @@ function buildTableAddress(data){
 
     }
 }
-//the setting page
+
+//the setting page using variables in css (still not fully functional!)
 var fontColor;
 var defaultColor = "white";
 window.addEventListener("load", changeFont, false);
