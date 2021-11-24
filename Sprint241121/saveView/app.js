@@ -176,16 +176,34 @@ document
     .addEventListener("submit", function (event){
         event.preventDefault();
 
-        var eitemName = document.getElementById("eitemName").value;
-        var eitemType = document.getElementById("eitemType").value;
-        var eserialNumber = document.getElementById("eserialNumber").value;
-        var enettoPrice = document.getElementById("enettoPrice").value;
+        var eitemName = document.getElementById("eitemName").value.trim();
+        var eitemType = document.getElementById("eitemType").value.trim();
+        var eserialNumber = document.getElementById("eserialNumber").value.trim();
+        var enettoPrice = document.getElementById("enettoPrice").value.trim();
+
+        //error handling
+        if (!eitemName || !eitemType || !eserialNumber || !enettoPrice){
+            return;
+        }
+
+        //storing as an object
+        var storeInfo = {
+            eitemName: eitemName,
+            eitemType: eitemType,
+            eserialNumber: eserialNumber,
+            enettoPrice: enettoPrice
+
+        };
 
         console.log("E-Item Name:", eitemName);
         console.log("E-Item Type:", eitemType);
         console.log("E-Serial Number:", eserialNumber);
         console.log("E-Netto Price:", enettoPrice);
 
+        localStorage.setItem("storeInfo", JSON.stringify(storeInfo));
+
 
     });
+
+    //making a table from local storage
 
