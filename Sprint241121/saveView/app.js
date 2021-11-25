@@ -21,8 +21,8 @@ window.onload = () => {
         });
     }
 }
-//a new change experiment for git**jj
-
+//git new changes
+// a new branch test
 function SwitchPage (page_id) {
     console.log(page_id);
 
