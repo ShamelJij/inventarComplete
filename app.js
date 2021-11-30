@@ -11,6 +11,7 @@ limitInput.addEventListener('blur', (event) => {
      limit = limitInput.value;
      console.log(limit);
 });
+//bug
 const inputHandler = function(e) {
     const x = document.getElementById("hideDiv");
     const h =  e.target.value;
