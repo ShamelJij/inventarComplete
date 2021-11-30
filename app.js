@@ -1,29 +1,36 @@
-const source = document.getElementById('enettoPrice');
-const result = document.getElementById('result');
-const warning = document.getElementById('warning');
-const limitInput = document.getElementById('limitInput');
+var limitInput = document.getElementById('limitInput');
+var source = document.getElementById('enettoPrice');
+var result = document.getElementById('result');
+var warning = document.getElementById('warning');
 var limit;
-
+limitInput.addEventListener('blur', (event) => {
+    limit = limitInput.value;
+    console.log(limit);
+    console.log(limitInput.value);
+});
 source.addEventListener('focus', (event) => {
     warning.style.display = "block";
 });
-limitInput.addEventListener('blur', (event) => {
-     limit = limitInput.value;
-     console.log(limit);
+source.addEventListener('blur',(event) => {
+    warning.style.display = "none";
 });
+
+
 //bug
-const inputHandler = function(e) {
+var inputHandler = function(e) {
     const x = document.getElementById("hideDiv");
-    const h =  e.target.value;
-    if (h <= limit && h > 0) {
+    var h =  parseInt(e.target.value);
+    if (h <= limit) {
         result.innerHTML = "GwG";
 
             if (x.style.display === "none"){
                 x.style.display = "block";
             }
+
+        console.log("before else:" + limit + "and " + h);
     }
     else {
-        console.log(h);
+        console.log("after else:" + limit + "and " + h);
         if (h <= 0 || h === null) {
             result.innerHTML ="zero";
             x.style.display = "none";
