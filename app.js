@@ -20,7 +20,7 @@ source.addEventListener('blur',(event) => {
 var inputHandler = function(e) {
     const x = document.getElementById("hideDiv");
     var h =  parseInt(e.target.value);
-    if (h <= limit) {
+    if (h <= limit && h > 0) {
         result.innerHTML = "GwG";
 
             if (x.style.display === "none"){
@@ -31,7 +31,7 @@ var inputHandler = function(e) {
     }
     else {
         console.log("after else:" + limit + "and " + h);
-        if (h <= 0 || h === null) {
+        if (h <= 0 || h === isNaN()) {
             result.innerHTML ="zero";
             x.style.display = "none";
         }
