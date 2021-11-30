@@ -3,11 +3,12 @@ const result = document.getElementById('result');
 const warning = document.getElementById('warning');
 const limitInput = document.getElementById('limitInput');
 var limit;
+
 source.addEventListener('focus', (event) => {
     warning.style.display = "block";
 });
 limitInput.addEventListener('blur', (event) => {
-     limit = limitInput.value ;
+     limit = limitInput.value;
      console.log(limit);
 });
 const inputHandler = function(e) {
@@ -21,6 +22,7 @@ const inputHandler = function(e) {
             }
     }
     else {
+        console.log(h);
         if (h <= 0 || h === null) {
             result.innerHTML ="zero";
             x.style.display = "none";
