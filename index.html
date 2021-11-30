@@ -30,10 +30,16 @@
     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><form>
         <div class="form-row">
             <div class="form-group col-md-4">
-                <label for="inputCity">Preis</label>
-                <input type="number" class="form-control" id="enettoPrice">
+                <label for="limitInput">limit</label>
+                <input type="number" class="form-control" id="limitInput" placeholder="set limit for price" data-index="1">
             </div>
-            <div class="form-group col-md-6">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="inputCity">Preis</label>
+                <input type="number" class="form-control" id="enettoPrice" data-index="2">
+            </div>
+            <div class="form-group col-md-6 text-center">
                 <label for="result">The result</label>
                 <div id="result"></div>
             </div>
@@ -53,7 +59,7 @@
                         <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
                         <label class="form-check-label" for="gridRadios2">
                             Second radio
-                        </label>
+                        </label>i
                     </div>
                     <div class="form-check disabled">
                         <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
@@ -64,10 +70,9 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="inputAddress">Address</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        <div class="form-group"><p id="warning">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid debitis dolor fuga repellat veniam! Cupiditate ipsum minima quos ut voluptas!</p>
         </div>
+
         <div class="form-group">
             <label for="inputAddress2">Address 2</label>
             <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">

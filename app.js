@@ -1,18 +1,34 @@
 const source = document.getElementById('enettoPrice');
 const result = document.getElementById('result');
-
+const warning = document.getElementById('warning');
+const limitInput = document.getElementById('limitInput');
+var limit;
+source.addEventListener('focus', (event) => {
+    warning.style.display = "block";
+});
+limitInput.addEventListener('blur', (event) => {
+     limit = limitInput.value ;
+     console.log(limit);
+});
 const inputHandler = function(e) {
-    var x = document.getElementById("hideDiv");
-    if (e.target.value <= 1000) {
+    const x = document.getElementById("hideDiv");
+    const h =  e.target.value;
+    if (h <= limit && h > 0) {
         result.innerHTML = "GwG";
 
-            if (x.style.display = "none"){
+            if (x.style.display === "none"){
                 x.style.display = "block";
             }
     }
     else {
-        x.style.display = "none";
-        result.innerHTML = "Abschreibfähig"
+        if (h <= 0 || h === null) {
+            result.innerHTML ="zero";
+            x.style.display = "none";
+        }
+        else {
+            x.style.display = "none";
+            result.innerHTML = "Abschreibfähig"
+        }
     }
 }
 
