@@ -1,134 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Document</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Inventar</title>
 </head>
 <body>
-  <div class="snow-curve" id="snow">
-    <b class="snowcla snow-flake">❄</b>
-    <b class="glowcla glow">✹</b>
-  </div>
-  <h1>Inventurverwaltung</h1>
-  <div class="container-main">
-    <div class="container-inventar">
-      <h2>Inventar</h2>
-      <form action="" class="inventar-form">
-        <label for="status">Status</label>
-        <select name="selectStatus" id="statusid">
-          <option value="aktiv">Aktiv</option>
-          <option value="abgebucht">Abgebucht</option>
-        </select>
-        <div class="anschaffungsDatumDiv">
-          <h3 for="anschaffungsDatum">Anschaffugs Datum</h3>
-          <label for="anschaffvon">von</label>
-          <input type="date" name="anschaffVon" id="anschaffVonid">
-          <label for="anschaffBis">bis</label>
-          <input type="date" name="anschaffBis" id="anschaffBisid">
-        </div>
-        <label for="inventarBezeichnung">Bezeichnung</label>
-        <input type="text" name="inventarBezeichnung" id="inventarBezeichnungid">
-        <label for="seriennummer">Seriennummer</label>
-        <input type="number" name="seriennummer" id="seriennummerid">
-        <label for="preisnetto">Preis (netto)</label>
-        <input type="number" name="preisnetto" id="preisnettoid">
-        <div class="abschreibungZeitraumDiv">
-          <h3 for="abschreibungZeitraum">Abschreibung Zeitraum</h3>
-          <label for="abschreibungZeitraumVon">von</label>
-          <input type="date" name="abschreibungZeitraumVon" id="abschreibungZeitraumVonif">
-          <label for="abschreibungZeitraumBis">bis</label>
-          <input type="date" name="abschreibungZeitraumVon" id="abschreibungZeitraumVonid">
-        </div>
-        <div class="container-main-button">
-          <button id="inventar-speicher">Speicher</button>
-        </div>
-      </form>
-    </div>
-    <div class="container-person">
-      <h2>Person</h2>
-      <form action="" class="person-form">
-        <label for="PName">Name</label>
-        <input type="text" name="PName" id="PNameid">
-        <label for="PVorname">Vorname</label>
-        <input type="text" name="PVorname" id="Vornameid">
-        <label for="personalnummer">Personalnummer</label>
-        <input type="number" name="personalnummer" id="personalnummerid">
-        <label for="PEmail">E-Mail</label>
-        <input type="email" name="PEmail" id="PEmailid">
-        <div class="container-main-button">
-          <button id="person-speicher">Speicher</button>
-        </div>
-      </form>
-    </div>
-    <div class="container-ort">
-      <h2>Ort</h2>
-      <form action="" class="ort-form">
-        <label for="ortBezeichnung">Bezeichnung</label>
-        <input type="text" name="ortBezeichnung" id="ortBezeichnungid">
-        <div class="strasseHaus">
-          <label for="strasse">Straße</label>
-          <input type="text" name="strasse" id="strasseid">
-          <label for="hausnummer">Hausnummer</label>
-          <input type="number" name="hausnummer" id="hausnummerid">
-        </div>
-        <div class="plzOrt">
-          <label for="plz">PLZ</label>
-          <input type="number" name="plz" id="plzid">
-          <label for="ort">Ort</label>
-          <input type="text" name="ort" id="ortid">
-          <label for="stockwerk">Stockwerk</label>
-          <input type="number">
-          <label for="zimmer">Zimmer</label>
-          <input type="text">
-          <div class="container-main-button">
-            <button class="container-main-button" id="ort-speicher">Speicher</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <hr>
-  <div class="container-table">
-    <h1>Inventar Tabelle</h1>
-    <table class="main-table">
-      <thead>
-          <tr>
-              <th>testName</th>
-              <th>testPoints</th>
-              <th>testnumber</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-              <td>Dominik</td>
-              <td>6000</td>
-              <td>9390239209320399</td>
-          </tr>
-          <tr class="active-row">
-              <td>Melissa</td>
-              <td>5150</td>
-              <td>93920932093</td>
-          </tr>
-          <tr class="active-row">
-            <td>John</td>
-            <td>5150</td>
-          </tr>
-          <tr class="active-row">
-            <td>Sam</td>
-            <td>5150</td>
-          </tr>
-          <tr class="active-row">
-            <td>Alex</td>
-            <td>5150</td>
-          </tr>
-      </tbody>
-    </table>
-  </div>
-  <script src="./app.js">
-  </script>
+<div class="container">
+    <h1>inventar</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores beatae dolorum exercitationem illum magnam modi nam numquam perspiciatis quo, sed?</p>
+</div>
+
+<script src
+                ="./app.js"
+plorem20></script>
 </body>
 </html>
+
