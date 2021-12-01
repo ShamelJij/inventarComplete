@@ -18,14 +18,14 @@ source.addEventListener('blur',(event) => {
 
 //bug
 var inputHandler = function(e) {
-    const x = document.getElementById("hideDiv");
+    const statusDiv = document.getElementById("hideDiv");
+    statusDiv.style.display = "none";
+
     var h =  parseInt(e.target.value);
     if (h <= limit && h > 0) {
         result.innerHTML = "GwG";
+        statusDiv.style.display = "block";
 
-            if (x.style.display === "none"){
-                x.style.display = "block";
-            }
 
         console.log("before else: " + limit + " and " + h);
     }
@@ -33,12 +33,12 @@ var inputHandler = function(e) {
         console.log("after else if: " + limit + " and " + h);
 
             result.innerHTML ="Kein Wert";
-            x.style.display = "none";
+            statusDiv.style.display = "none";
     }
     else {
         console.log("after else: " + limit + " and " + h);
-        x.style.display = "none";
         result.innerHTML = "Abschreibfähig"
+        statusDiv.style.display = "block";
     }
 }
 source.addEventListener('input', inputHandler);
