@@ -2,7 +2,7 @@ var limitInput = document.getElementById('limitInput');
 var source = document.getElementById('enettoPrice');
 var result = document.getElementById('result');
 var warning = document.getElementById('warning');
-var limit;
+var limit = 1000;
 limitInput.addEventListener('blur', (event) => {
     limit = limitInput.value;
     console.log(limit);
@@ -27,20 +27,20 @@ var inputHandler = function(e) {
                 x.style.display = "block";
             }
 
-        console.log("before else:" + limit + "and " + h);
+        console.log("before else: " + limit + " and " + h);
+    }
+    else if (h <= 0 ||  isNaN(h)) {
+        console.log("after else if: " + limit + " and " + h);
+
+            result.innerHTML ="Kein Wert";
+            x.style.display = "none";
     }
     else {
-        console.log("after else:" + limit + "and " + h);
-        if (h <= 0 || h === isNaN()) {
-            result.innerHTML ="zero";
-            x.style.display = "none";
-        }
-        else {
-            x.style.display = "none";
-            result.innerHTML = "Abschreibfähig"
-        }
+        console.log("after else: " + limit + " and " + h);
+        x.style.display = "none";
+        result.innerHTML = "Abschreibfähig"
     }
 }
-
 source.addEventListener('input', inputHandler);
 source.addEventListener('propertychange', inputHandler);
+

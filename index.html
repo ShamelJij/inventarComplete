@@ -16,9 +16,6 @@
     <title>Inventar</title>
 </head>
 <body>
-<div class="alert alert-danger text-center" id="warning" role="alert">
-    Bitte beachten Sie GwG-Grenze in der Einstellung änderen können
-</div>
 <div class="container text-center">
         <h1>inventar</h1>
 </div>
@@ -39,19 +36,29 @@
                 <input type="number" class="form-control" id="enettoPrice">
             </div>
             <div class="form-group col-md-4 text-center">
-                <label for="result">Status</label>
+                <label for="result">Ergebnis</label>
                 <div id="result"></div>
             </div>
-            <div class="form-group col-md-4" id="hideDiv">Abgebucht</div>
+            <div class="form-group col-md-4" id="hideDiv">Status</div>
+            <div id="statusResult"></div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="alert alert-danger text-center" id="warning" role="alert">
+                Bitte beachten Sie GwG-Grenze in der Einstellung änderen können
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-5">
                 <label for="itemLabel">Bezeichnung</label>
                 <input type="text" class="form-control" id="itemLabel">
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-5">
                 <label for="serialNumber">Seriennummer</label>
                 <input type="number" class="form-control" id="serialNumber">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="itemType">Typ</label>
+                <input type="text" class="form-control" id="itemType">
             </div>
         </div>
     </form></div>
@@ -60,8 +67,8 @@
     <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
         <div class="form-row">
             <div class="form-group">
-                <label for="limitInput">GWG-grenze</label>
-                <input type="number" class="form-control" id="limitInput" placeholder="set limit for price">
+                <label for="limitInput">GWG-Grenze</label>
+                <input type="number" class="form-control" id="limitInput" placeholder="Default ist: 1000€">
             </div>
         </div>
     </div>
