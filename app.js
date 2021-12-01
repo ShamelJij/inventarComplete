@@ -21,10 +21,16 @@ var inputHandler = function(e) {
     const statusDiv = document.getElementById("hideDiv");
     statusDiv.style.display = "none";
 
+    const statusResultDiv = document.getElementById("statusResult");
+    statusResultDiv.style.display = "none";
+
     var nPriceValue =  parseInt(e.target.value);
     if (nPriceValue <= limit && nPriceValue > 0) {
         result.innerHTML = "GwG";
         statusDiv.style.display = "block";
+        statusResultDiv.innerHTML = "before else";
+        statusResultDiv.style.display = "block";
+
 
 
         console.log("before else: " + limit + " and " + nPriceValue);

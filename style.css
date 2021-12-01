@@ -52,8 +52,8 @@ input[type="reset"]:active{
 hr{
     width: 50%;
 }
-.nav-link {
-    color: inherit;
+.nav-link, nav {
+    color: inherit!important;
     margin: 10px;
     padding: 10px;
     border-radius: 8px;
