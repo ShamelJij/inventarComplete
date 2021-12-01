@@ -1,5 +1,5 @@
 var limitInput = document.getElementById('limitInput');
-var source = document.getElementById('enettoPrice');
+var source = document.getElementById('nPrice');
 var result = document.getElementById('result');
 var warning = document.getElementById('warning');
 var limit = 1000;
@@ -21,22 +21,22 @@ var inputHandler = function(e) {
     const statusDiv = document.getElementById("hideDiv");
     statusDiv.style.display = "none";
 
-    var h =  parseInt(e.target.value);
-    if (h <= limit && h > 0) {
+    var nPriceValue =  parseInt(e.target.value);
+    if (nPriceValue <= limit && nPriceValue > 0) {
         result.innerHTML = "GwG";
         statusDiv.style.display = "block";
 
 
-        console.log("before else: " + limit + " and " + h);
+        console.log("before else: " + limit + " and " + nPriceValue);
     }
-    else if (h <= 0 ||  isNaN(h)) {
-        console.log("after else if: " + limit + " and " + h);
+    else if (nPriceValue <= 0 ||  isNaN(nPriceValue)) {
+        console.log("after else if: " + limit + " and " + nPriceValue);
 
             result.innerHTML ="Kein Wert";
             statusDiv.style.display = "none";
     }
     else {
-        console.log("after else: " + limit + " and " + h);
+        console.log("after else: " + limit + " and " + nPriceValue);
         result.innerHTML = "Abschreibfähig"
         statusDiv.style.display = "block";
     }
