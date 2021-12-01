@@ -52,12 +52,12 @@ input[type="reset"]:active{
 hr{
     width: 50%;
 }
-.nav-link, nav {
+.nav-link, nav , .navbar-expand-lg {
     color: inherit!important;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: inherit!important;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #4d7a7e!important;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
 }
 .nav-link:hover {
@@ -65,7 +65,7 @@ hr{
     background-color: #79B4B7!important;
 }
 .nav-link.active {
-    background-color: #4d7a7e!important;
+    background-color: #0f2b2e!important;
 }
 #v-pills-home, #v-pills-page2, #v-pills-page1, #v-pills-settings{
     border-radius: 4px;
