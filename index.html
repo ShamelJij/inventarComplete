@@ -17,18 +17,16 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><h1>inventar</h1></a>
+    <a class="navbar-brand" href="#">inventar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <div class="nav flex-row nav-pills float-sm-left text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">prüfen</a>
-                <a class="nav-link" id="v-pills-page1-tab" data-toggle="pill" href="#v-pills-page1" role="tab" aria-controls="v-pills-page1" aria-selected="false">page1</a>
-                <a class="nav-link" id="v-pills-page2-tab" data-toggle="pill" href="#v-pills-page2" role="tab" aria-controls="v-pills-page2" aria-selected="false">page2</a>
-                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">einstellungen</a>
-            </div>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+        <div class="nav flex-row nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">prüfen</a>
+            <a class="nav-link" id="v-pills-page1-tab" data-toggle="pill" href="#v-pills-page1" role="tab" aria-controls="v-pills-page1" aria-selected="false">page1</a>
+            <a class="nav-link" id="v-pills-page2-tab" data-toggle="pill" href="#v-pills-page2" role="tab" aria-controls="v-pills-page2" aria-selected="false">page2</a>
+            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">einstellungen</a>
         </div>
     </div>
 </nav>
@@ -63,7 +61,7 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="serialNumber">Seriennummer</label>
-                <input type="number" class="form-control" id="serialNumber">
+                <div><input type="number" class="form-control" id="serialNumber"></div>
             </div>
             <div class="form-group col-md-4">
                 <label for="itemType">Typ</label>
