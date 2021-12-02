@@ -30,7 +30,7 @@
         </div>
     </div>
 </nav>
-<div class="tab-content col-sm-10 float-sm-left" id="v-pills-tabContent">
+<div class="tab-content row justify-content-center" id="v-pills-tabContent">
     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><form>
         <!--<div class="form-group"><input class="btn btn-primary" type="submit" value="Submit"></div>-->
         <div class="form-group text-center"><p>bitte geben Sie erst den Preis ein</p>
@@ -78,6 +78,34 @@
                 <input type="number" class="form-control" id="limitInput" placeholder="Default ist: 1000€">
             </div>
         </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row justify-content-around">
+        <p>this is the first paragraph</p>
+        <p>this is the first paragraph</p>
+        <p>this is the first paragraph</p>
+        <p>this is the first paragraph</p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col order-7">
+            First, but unordered
+        </div>
+        <div class="col order-12">
+            Second, but last
+        </div>
+        <div class="col order-3">
+            this one should be after the third one
+        </div>
+        <div class="col order-4">this one should be before the third</div>
+        <div class="col order-1">
+            Third, but first
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 offset-md-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolorum, enim inventore libero natus numquam perferendis placeat sint. Nisi, sapiente?</div>
     </div>
 </div>
 <script src ="./app.js"></script>
