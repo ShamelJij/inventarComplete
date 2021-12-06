@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <list default="true" id="e1b4f157-e527-47eb-8005-3590473617a8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
+=======
+    <list default="true" id="e1b4f157-e527-47eb-8005-3590473617a8" name="Changes" comment="" />
+>>>>>>> ed2102b (this commit is from main)
+=======
+    <list default="true" id="e1b4f157-e527-47eb-8005-3590473617a8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+    </list>
+>>>>>>> 3c6b100 (before rebase with sprint5)
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,7 +65,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="" />
+      <changelist id="e1b4f157-e527-47eb-8005-3590473617a8" name="Changes" comment="" />
       <created>1637159592941</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -61,7 +74,6 @@
       <workItem from="1637658195898" duration="46000" />
       <workItem from="1637658259065" duration="28274000" />
       <workItem from="1637742011240" duration="22712000" />
-      <workItem from="1638779689890" duration="39000" />
     </task>
     <servers />
   </component>
