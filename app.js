@@ -1,3 +1,27 @@
+function initPerson(){
+    //localstorage auslesen
+    // wenn:  Personenliste == leer
+    //      note(text):flag.. or tooltip wird and hidden div mit hinweiß
+    // sonst: neue Reihe zufügen für jeden Eintrag
+    // alert: consol.log function-validation.
+    //
+    console.log("function initPerson")
+
+}
+function savePerson(){
+    //eingabe validierung
+    //Localstorage auslesen
+    //push auf die Liste und nicht neu erstellen
+    //die Liste ist am besten sortiert (array) nach name
+    // in localstorage speichern
+    //Tsbelle aktualiesieren
+}
+function deletePerson(/*parameter: ID. wird nach ID gelöcht*/){
+
+}
+
+
+
 var limitInput = document.getElementById('limitInput');
 var source = document.getElementById('nettoPrice');
 var result = document.getElementById('result');
@@ -166,7 +190,7 @@ function insertNewRecord(data){
     var cell4 = newRow.insertCell(3);
     cell4.innerHTML = data.pEmail;
     var cell5 = newRow.insertCell(4);
-    cell5.innerHTML = `<button onClick='onEdit(this)'>bearbeiten</button> <button onClick='onDelete(this)'>löchen</button>`
+    cell5.innerHTML = `<button onClick='onEdit(this)'/*editPerson*/>bearbeiten</button> <button onClick='deletePerson(this.pStoreList)'>löchen</button>`
 }
 
 
@@ -192,6 +216,7 @@ function onDelete(td){
     if(confirm('Wollen Sie wirklich löschen?')){
         row = td.parentElement.parentElement;
         document.getElementById('pStoreList').deleteRow(row.rowIndex);
+        //localstorage aktualiesieren (array - push)
     }
     resetForm();
 }
