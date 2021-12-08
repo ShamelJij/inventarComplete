@@ -69,9 +69,20 @@ document
         if (!itemLabel || !itemType || !serialNumber || !nettoPrice){
             return;
         }
+        //counter for itemID
+        var itemID = localStorage.getItem('counter');
+        if (itemID === null) {
+            itemID = 0;
+        } else {
+            itemID++;
+        }
+        localStorage.setItem("counter", itemID);
+
+        console.log("Storage Key: ", itemID);
 
         //storing as an object
         var storeInfo = {
+            itemID: itemID,
             itemLabel: itemLabel,
             itemType: itemType,
             serialNumber: serialNumber,
@@ -86,17 +97,7 @@ document
         localStorage.setItem("storeInfo", JSON.stringify(storeInfo));
         console.log("Store Info Object:", storeInfo);
 
-        //counter for itemID
-        var itemID = localStorage.getItem('counter');
-        if (itemID === null) {
-            itemID = 0;
-        } else {
-            itemID++;
-        }
-        console.log(itemID);
-        localStorage.setItem("counter", itemID);
 
-        console.log("Storage Key: ", itemID);
         //making a table from local storage
         var storeFormStoreArray = [storeInfo]
         buildTableStoreForm(storeFormStoreArray);
@@ -105,6 +106,7 @@ document
 
             for (var i = 0; i < data.length; i++){
                 var row = `<tr>
+                        <td>${data[i].itemID}</td>
                         <td>${data[i].itemLabel}</td>
                         <td>${data[i].itemType}</td>
                         <td>${data[i].serialNumber}</td>
