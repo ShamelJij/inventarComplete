@@ -15,8 +15,16 @@ source.addEventListener('blur',(event) => {
     warning.style.display = "none";
 });
 
+//The tooltip
 
-//bug
+   /* $('[id = "nettoPrice"]').tooltip({
+        delay: {
+            show: 500,
+            hide: 500
+        }
+    });*/
+
+// Input handler
 var inputHandler = function(e) {
     const statusDiv = document.getElementById("hideDiv");
     statusDiv.style.display = "none";
