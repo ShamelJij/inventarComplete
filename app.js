@@ -36,7 +36,7 @@ var inputHandler = function(e) {
     if (nettoPriceValue <= limit && nettoPriceValue > 0) {
         result.innerHTML = "GwG";
         statusDiv.style.display = "block";
-        statusResultDiv.innerHTML = "before else";
+        statusResultDiv.innerHTML = "Abgebucht";
         statusResultDiv.style.display = "block";
 
 
@@ -51,8 +51,10 @@ var inputHandler = function(e) {
     }
     else {
         console.log("after else: " + limit + " and " + nettoPriceValue);
-        result.innerHTML = "Abschreibfähig"
+        result.innerHTML = "Abschreibfähig";
         statusDiv.style.display = "block";
+        statusResultDiv.innerHTML = "Aktiv";
+        statusResultDiv.style.display = "block";
     }
 }
 source.addEventListener('input', inputHandler);

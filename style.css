@@ -87,7 +87,7 @@ hr{
 .nav-link.active {
     background-color: #1a484d !important;
 }
-#v-pills-home, #v-pills-page2, #v-pills-page1, #v-pills-settings{
+#v-pills-home, #v-pills-page2, #v-pills-person, #v-pills-settings{
     border-radius: 4px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
     font-family: inherit;
