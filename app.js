@@ -1,5 +1,5 @@
 var limitInput = document.getElementById('limitInput');
-var source = document.getElementById('nPrice');
+var source = document.getElementById('nettoPrice');
 var result = document.getElementById('result');
 var warning = document.getElementById('warning');
 var limit = 1000;
@@ -24,8 +24,8 @@ var inputHandler = function(e) {
     const statusResultDiv = document.getElementById("statusResult");
     statusResultDiv.style.display = "none";
 
-    var nPriceValue =  parseInt(e.target.value);
-    if (nPriceValue <= limit && nPriceValue > 0) {
+    var nettoPriceValue =  parseInt(e.target.value);
+    if (nettoPriceValue <= limit && nettoPriceValue > 0) {
         result.innerHTML = "GwG";
         statusDiv.style.display = "block";
         statusResultDiv.innerHTML = "before else";
@@ -33,20 +33,71 @@ var inputHandler = function(e) {
 
 
 
-        console.log("before else: " + limit + " and " + nPriceValue);
+        console.log("before else: " + limit + " and " + nettoPriceValue);
     }
-    else if (nPriceValue <= 0 ||  isNaN(nPriceValue)) {
-        console.log("after else if: " + limit + " and " + nPriceValue);
+    else if (nettoPriceValue <= 0 ||  isNaN(nettoPriceValue)) {
+        console.log("after else if: " + limit + " and " + nettoPriceValue);
 
             result.innerHTML ="Kein Wert";
             statusDiv.style.display = "none";
     }
     else {
-        console.log("after else: " + limit + " and " + nPriceValue);
+        console.log("after else: " + limit + " and " + nettoPriceValue);
         result.innerHTML = "Abschreibfähig"
         statusDiv.style.display = "block";
     }
 }
 source.addEventListener('input', inputHandler);
 source.addEventListener('propertychange', inputHandler);
+//Table saved on localStorage and listed on page
 
+document
+    .getElementById("inputForm")
+    .addEventListener("submit", function (event){
+        event.preventDefault();
+
+        var itemLabel = document.getElementById("itemLabel").value.trim();
+        var itemType = document.getElementById("itemType").value.trim();
+        var serialNumber = document.getElementById("serialNumber").value.trim();
+        var nettoPrice = document.getElementById("nettoPrice").value.trim();
+
+        //error handling
+        if (!itemLabel || !itemType || !serialNumber || !nettoPrice){
+            return;
+        }
+
+        //storing as an object
+        var storeInfo = {
+            itemLabel: itemLabel,
+            itemType: itemType,
+            serialNumber: serialNumber,
+            nettoPrice: nettoPrice
+
+        };
+
+        console.log("Item label:", itemLabel);
+        console.log("Item type:", itemType);
+        console.log("Serial number:", serialNumber);
+        console.log("Netto price:", nettoPrice);
+
+        localStorage.setItem("storeInfo", JSON.stringify(storeInfo));
+        console.log("Store Info Object:", storeInfo)
+        //making a table from local storage
+        var storeFormStoreArray = [storeInfo]
+        buildTableStoreForm(storeFormStoreArray);
+        function buildTableStoreForm(data){
+            var table = document.getElementById('formStoreTable')
+
+            for (var i = 0; i < data.length; i++){
+                var row = `<tr>
+                        <td>${data[i].itemLabel}</td>
+                        <td>${data[i].itemType}</td>
+                        <td>${data[i].serialNumber}</td>
+                        <td>${data[i].nettoPrice}</td>
+                        </tr>`
+                table.innerHTML += row
+
+
+            }
+        }
+    });

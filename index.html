@@ -30,45 +30,51 @@
         </div>
     </div>
 </nav>
+
 <div class="tab-content row justify-content-center" id="v-pills-tabContent">
-    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><form>
-        <!--<div class="form-group"><input class="btn btn-primary" type="submit" value="Submit"></div>-->
-        <div class="form-group text-center"><p>bitte geben Sie erst den Preis ein</p>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="nPrice">Preis</label>
-                <div><input type="number" class="form-control" id="nPrice"></div>
+    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+        <form id="inputForm" class="store-form">
+            <!--<div class="form-group"><input class="btn btn-primary" type="submit" value="Submit"></div>-->
+            <div class="form-group text-center"><p>bitte geben Sie erst den Preis ein</p>
             </div>
-            <div class="form-group col-md-4">
-                <label for="result">Ergebnis</label>
-                <div id="result"></div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="nettoPrice">Preis</label>
+                    <div><input type="number" class="form-control" id="nettoPrice"></div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="result">Ergebnis</label>
+                    <div id="result"></div>
+                </div>
+                <div class="form-group col-md-4" id="hideDiv">
+                    <div>Status</div>
+                    <div id="statusResult"></div>
+                </div>
             </div>
-            <div class="form-group col-md-4" id="hideDiv">
-                <div>Status</div>
-                <div id="statusResult"></div>
+            <div class="form-row">
+                <div class="alert alert-danger text-center" id="warning" role="alert">
+                    Bitte beachten Sie, die GwG-Grenze könnte in der Einstellungen geändert werden.
+                </div>
             </div>
-        </div>
-        <div class="form-row">
-            <div class="alert alert-danger text-center" id="warning" role="alert">
-                Bitte beachten Sie, die GwG-Grenze könnte in der Einstellungen geändert werden.
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="itemLabel">Bezeichnung</label>
+                    <div><input type="text" class="form-control" id="itemLabel"></div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="serialNumber">Seriennummer</label>
+                    <div><input type="number" class="form-control" id="serialNumber"></div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="itemType">Typ</label>
+                    <div><input type="text" class="form-control" id="itemType"></div>
+                </div>
             </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-4">
-                <label for="itemLabel">Bezeichnung</label>
-                <div><input type="text" class="form-control" id="itemLabel"></div>
+            <div class="form-group col-12 text-center">
+                <button id="formSave" onclick="" type="submit">Speicher</button>
             </div>
-            <div class="form-group col-md-4">
-                <label for="serialNumber">Seriennummer</label>
-                <div><input type="number" class="form-control" id="serialNumber"></div>
-            </div>
-            <div class="form-group col-md-4">
-                <label for="itemType">Typ</label>
-                <div><input type="text" class="form-control" id="itemType"></div>
-            </div>
-        </div>
-    </form></div>
+        </form>
+    </div>
     <div class="tab-pane fade" id="v-pills-page1" role="tabpanel" aria-labelledby="v-pills-page1-tab">belongs to page1</div>
     <div class="tab-pane fade" id="v-pills-page2" role="tabpanel" aria-labelledby="v-pills-page2-tab">belongs to page2</div>
     <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
@@ -79,6 +85,41 @@
             </div>
         </div>
     </div>
+</div>
+<hr>
+<div class="container">
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Bezeichnung</th>
+        <th scope="col">Typ</th>
+        <th scope="col">Seriennummer</th>
+        <th scope="col">Preis(netto)</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tbody id="formStoreTable">
+            <!--<tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+            </tr>-->
+    </tbody>
+</table>
 </div>
 <div class="container">
     <div class="row justify-content-around">
@@ -91,17 +132,19 @@
 <div class="container">
     <div class="row">
         <div class="col order-7">
-            First, but unordered
+            order7 First, but unordered
         </div>
         <div class="col order-12">
-            Second, but last
+            order12 Second, but last
         </div>
         <div class="col order-3">
-            this one should be after the third one
+            order3 this one should be after the third one
         </div>
-        <div class="col order-4">this one should be before the third</div>
+        <div class="col order-4">
+            order4 this one should be before the third
+        </div>
         <div class="col order-1">
-            Third, but first
+            order1 Third, but first
         </div>
     </div>
     <div class="row">
@@ -111,7 +154,16 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-3 offset-md-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolorum, enim inventore libero natus numquam perferendis placeat sint. Nisi, sapiente?</div>
+        <div class="col-sm-3 offset-md-6">col-sm-3 offset-md-6 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolorum, enim inventore libero natus numquam perferendis placeat sint. Nisi, sapiente?</div>
+    </div>
+    <div class="row">
+        <div class="col">this is the first one</div>
+        <div class="col"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, ut!</p>
+            <p class="lead">
+            <mark>Vivamus sagittis lacus vel augue laoreet</mark> rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+        </p></div>
+        <div class="col-auto ml-auto">this is the second one</div>
+        <div class="col-auto ">this is the third one is very long</div>
     </div>
 </div>
 <script src ="./app.js"></script>
