@@ -109,7 +109,7 @@ function view(){
     if (localStorage.getItem('data')!=null){
         document.getElementById('output').innerHTML = JSON.parse(localStorage.getItem('data'));
     }
-}*/
+}
 
 
 
