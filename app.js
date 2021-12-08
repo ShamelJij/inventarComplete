@@ -122,7 +122,7 @@ document
 //Table CRUD
 
 var selectedRow = null;
-function onPFormSubmit(e){
+function onFormSubmit(e){
     event.preventDefault();
     var formData = readFormData();
     if(selectedRow === null){
@@ -137,7 +137,7 @@ function onPFormSubmit(e){
 function readFormData(){
     var formData = {};
     formData ["pLastName"] = document.getElementById("pLastName").value;
-    formData ["pFirstName"] = document.getElementById("pLastName").value;
+    formData ["pFirstName"] = document.getElementById("pFirstName").value;
     formData ["pPersonalNumber"] = document.getElementById("pPersonalNumber").value;
     formData ["pEmail"] = document.getElementById("pEmail").value;
     return formData;
@@ -155,8 +155,8 @@ function insertNewRecord(data){
     cell3.innerHTML = data.anschaffBisid;
     var cell4 = newRow.insertCell(3);
     cell4.innerHTML = data.inventarBezeichnungid;
-    var cell9 = newRow.insertCell(4);
-    cell9.innerHTML = `<button onClick='onEdit(this)'>Edit</button> <button onClick='onDelete(this)'>Delete</button>`
+    var cell5 = newRow.insertCell(4);
+    cell5.innerHTML = `<button onClick='onEdit(this)'>bearbeiten</button> <button onClick='onDelete(this)'>löchen</button>`
 }
 
 
