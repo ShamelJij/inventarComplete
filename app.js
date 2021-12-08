@@ -119,7 +119,7 @@ document
         }
     });
 
-//Table CRUD
+//building the  CRUD table
 
 var selectedRow = null;
 function onFormSubmit(e){
@@ -193,3 +193,48 @@ function resetForm(){
     document.getElementById('pPersonalNumber').value;
     document.getElementById('pEmail').value;
 }
+
+//Storing the Crud table in the local storage
+
+document
+    .getElementById("personForm")
+    .addEventListener("submit", function (event){
+
+        event.preventDefault();
+        var pLastName = document.getElementById("pLastName").value.trim();
+        var pFirstName = document.getElementById("pFirstName").value.trim();
+        var pPersonalNumber = document.getElementById("pPersonalNumber").value.trim();
+        var pEmail = document.getElementById("pEmail").value.trim();
+
+        //error handling
+        if ( !pLastName || !pFirstName || !pPersonalNumber || !pEmail ){
+            return;
+        }
+        //counter for itemID
+        var personItemID = localStorage.getItem('counter');
+        if (personItemID === null) {
+            personItemID = 0;
+        } else {
+            personItemID++;
+        }
+        localStorage.setItem("counter", personItemID);
+
+        console.log("Storage Key: ", personItemID);
+
+        //storing as an object
+        var personInfo = {
+            personItemID: personItemID,
+            pLastName: pLastName,
+            pFirstName: pFirstName,
+            pPersonalNumber: pPersonalNumber,
+            pEmail: pEmail
+
+        };
+        console.log("pLastName:", pLastName);
+        console.log("pFirstName:", pFirstName);
+        console.log("pPersonalNumber:", pPersonalNumber);
+        console.log("pEmail:", pEmail);
+
+        localStorage.setItem("personInfo", JSON.stringify(personInfo));
+        console.log("Person Info Object:", personInfo);
+    });
