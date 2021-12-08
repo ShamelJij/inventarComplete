@@ -1,3 +1,6 @@
+/*
+                SNOW!!!!
+
 setInterval(createSnowFlake,50);
 setInterval(createStars,5);
 function createSnowFlake() {
@@ -28,6 +31,7 @@ function createStars(){
         stars.remove();
     }, 4000)
 }
+*/
 
 
 

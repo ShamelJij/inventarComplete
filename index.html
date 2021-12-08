@@ -3,15 +3,11 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--additional CSS File-->
     <link rel="stylesheet" href="style.css">
     <title>Inventar</title>
 </head>
@@ -24,7 +20,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
         <div class="nav flex-row nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">prüfen</a>
-            <a class="nav-link" id="v-pills-page1-tab" data-toggle="pill" href="#v-pills-page1" role="tab" aria-controls="v-pills-page1" aria-selected="false">page1</a>
+            <a class="nav-link" id="v-pills-personPage-tab" data-toggle="pill" href="#v-pills-personPage" role="tab" aria-controls="v-pills-personPage" aria-selected="false">Person</a>
             <a class="nav-link" id="v-pills-page2-tab" data-toggle="pill" href="#v-pills-page2" role="tab" aria-controls="v-pills-page2" aria-selected="false">page2</a>
             <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">einstellungen</a>
         </div>
@@ -74,8 +70,88 @@
                 <button id="formSave" onclick="" type="submit">Speicher</button>
             </div>
         </form>
+        <div class="container">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Bezeichnung</th>
+                    <th scope="col">Typ</th>
+                    <th scope="col">Seriennummer</th>
+                    <th scope="col">Preis(netto)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tbody id="formStoreTable">
+                <!--<tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>-->
+                </tbody>
+            </table>
+        </div>
+        <div class="container">
+            <table class="table table-stripped">
+
+            </table>
+        </div>
     </div>
-    <div class="tab-pane fade" id="v-pills-page1" role="tabpanel" aria-labelledby="v-pills-page1-tab">belongs to page1</div>
+    <div class="tab-pane fade" id="v-pills-personPage" role="tabpanel" aria-labelledby="v-pills-personPage-tab">
+        <div class="container">
+            <form autocomplete="off" class="store-form">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="pName">Name</label>
+                        <input class="form-control" type="text" id="pName">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="pVorName">Vorname</label>
+                        <input class="form-control" type="text" id="pVorName">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="pPersonalNumber">Personalnummer</label>
+                        <input class="form-control" type="number" id="pPersonalNumber">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="pEmail">E-mail</label>
+                        <input class="form-control" type="email" id="pEmail">
+                    </div>
+                    <div class="form-group col-12 text-center">
+                        <form  class="submit-form">
+                            <input type="submit" formaction="onPFormSubmit()" class="container-main-button">
+                            <input type="reset" value="Reset" class="container-main-button">
+                        </form>
+                    </div>
+                </div>
+            </form>
+            <table class="table table-striped" id="pStoreList">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Vorname</th>
+                    <th>Personalnummer</th>
+                    <th>E-Mail</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div class="tab-pane fade" id="v-pills-page2" role="tabpanel" aria-labelledby="v-pills-page2-tab">belongs to page2</div>
     <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
         <div class="form-row">
@@ -87,40 +163,7 @@
     </div>
 </div>
 <hr>
-<div class="container">
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Bezeichnung</th>
-        <th scope="col">Typ</th>
-        <th scope="col">Seriennummer</th>
-        <th scope="col">Preis(netto)</th>
-    </tr>
-    </thead>
-    <tbody>
-        <tbody id="formStoreTable">
-            <!--<tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>-->
-    </tbody>
-</table>
-</div>
+
 <div class="container">
     <div class="row justify-content-around">
         <p>this is the first paragraph</p>
@@ -166,6 +209,9 @@
         <div class="col-auto ">this is the third one is very long</div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src ="./app.js"></script>
 </body>
 </html>
