@@ -49,13 +49,17 @@ var inputHandler = function(e) {
 }
 source.addEventListener('input', inputHandler);
 source.addEventListener('propertychange', inputHandler);
+
+
 //Table saved on localStorage and listed on page
+
+
 
 document
     .getElementById("inputForm")
     .addEventListener("submit", function (event){
-        event.preventDefault();
 
+        event.preventDefault();
         var itemLabel = document.getElementById("itemLabel").value.trim();
         var itemType = document.getElementById("itemType").value.trim();
         var serialNumber = document.getElementById("serialNumber").value.trim();
@@ -74,14 +78,25 @@ document
             nettoPrice: nettoPrice
 
         };
-
         console.log("Item label:", itemLabel);
         console.log("Item type:", itemType);
         console.log("Serial number:", serialNumber);
         console.log("Netto price:", nettoPrice);
 
         localStorage.setItem("storeInfo", JSON.stringify(storeInfo));
-        console.log("Store Info Object:", storeInfo)
+        console.log("Store Info Object:", storeInfo);
+
+        //counter for itemID
+        var itemID = localStorage.getItem('counter');
+        if (itemID === null) {
+            itemID = 0;
+        } else {
+            itemID++;
+        }
+        console.log(itemID);
+        localStorage.setItem("counter", itemID);
+
+        console.log("Storage Key: ", itemID);
         //making a table from local storage
         var storeFormStoreArray = [storeInfo]
         buildTableStoreForm(storeFormStoreArray);
