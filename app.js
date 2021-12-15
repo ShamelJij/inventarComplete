@@ -1,12 +1,13 @@
 
 //check all input validation
 function inputValidation() {
+    //Anschaffungsdatum validieren (muss nicht in zukunft sein)
     //Anschaffungsdatum als wert
     let purchaseDate = document.getElementById("validationPurchaseDate").value;
     //jetztgen Datum
     let nowDate = new Date().toISOString().split('T')[0];
 
-    console.log('purchasedate is: ', purchaseDate);
+    console.log('purchase date is: ', purchaseDate);
     console.log('now is: ',nowDate);
 
     if (purchaseDate > nowDate){
@@ -15,87 +16,6 @@ function inputValidation() {
     else {
         console.log('purchase date is smaller than now');
     }
-
- /*
-//Date + Monat
-    var dt = new Date( "December 25, 1995 23:15:00" );
-    //document.write("getMonth() : " + dt.getMonth() );
-    let currentMonth = d.getMonth();
-    let purchaseDate = document.getElementById("validationPurchaseDate").value;
-    //let getMonth = new Date(purchaseDate);
-
-
-    console.log("purchase date and current month ", currentMonth, purchaseDate);
-//gegebene Anschaffungsdatum von Form als Var speichern
-    // Calculate milliseconds in a year
-    const minute = 1000 * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
-    const month = day * 30;
-    const year = day * 365;
-
-    function monthDiff(d1, d2) {
-        console.log("m1: " + d1.getMonth(),
-            "m2: " + d2.getMonth());
-        var months;
-        months = (d2.getFullYear() - d1.getFullYear()) * 12;
-        months -= d1.getMonth();
-        months += d2.getMonth();
-
-        return months <= 0 ? 0 : months;
-    }
-
-    function monthCalc(d1, d2) {
-        var diff = monthDiff(d1, d2);
-        console.log(
-            d1.toISOString().substring(0, 10),
-            "to",
-            d2.toISOString().substring(0, 10),
-            ":",
-            diff
-        );
-
-    }
-
-    monthCalc(
-        new Date(2020, 10, 16), // November 4th, 2008
-        new Date()  // March 12th, 2010
-    );
-// Result: 16
-
-    monthCalc(
-        new Date(2010, 4, 1),  // January 1st, 2010
-        new Date(2010, 2, 12)  // March 12th, 2010
-    );
-// Result: 2
-
-    monthCalc(
-        new Date(2010, 1, 1),  // February 1st, 2010
-        new Date(2010, 2, 12)  // March 12th, 2010
-    );
-// Result: 1
-
-
-// Divide Time with a year
-
-*/
-
-
-
-
-
-
-//Anschaffungsdatum validieren (muss nicht in zukunft sein)
-    function puchaseDateValidation() {
-        console.log("purchaseDateValidation started");
-
-    }
-    //unter Abschreibkategorie: entweder GWG oder Abschreibfähig
-
-
-
-
-
 }
 
 //macht alle berechnungen auf eine Maske
@@ -115,8 +35,7 @@ function calcForm(){
 
     console.log(resultDate);
     if (pd.getTime() <= d.getTime()){
-        console.log("time");
-        console.log(pd.getTime());
+        console.log("time: ",pd.getTime());
         console.log(currentMonth);
 
 
@@ -126,6 +45,7 @@ function calcForm(){
         return false;
     }
 
+//unter Abschreibkategorie: entweder GWG oder Abschreibfähig
 
 //read date plus month and result is under by abgeschrieben
  /*   //Abschreiben am is the result for abschreibkategorie and abschreibzeitraum
@@ -146,16 +66,16 @@ DIESE Funktion macht nur folgend und sonst nichts!:
 - Ein und Ausblenden von Designelementen. SONST NICHTS!
  */
 function refreshForm(){
-    console.log('works');
+    console.log('refreshForm is on');
 
     //status ausgebucht
     let status = document.getElementById("formStatus").value;
     if (status == "Ausgebucht"){
-        console.log('vis');
+        console.log('Datumabgebucht: ((vis))');
         document.getElementById("formEndDate").className = 'd-block';
     }
     else {
-        console.log('invis');
+        console.log('Datumabgebucht: ((invis))');
         document.getElementById("formEndDate").className = 'd-none';
     }
 
@@ -163,16 +83,16 @@ function refreshForm(){
     //price value to show or hide div (bookingCategory)
     let price = document.getElementById('validationPrice').value;
     //Show booking category
-    let bCatValue = document.getElementById("formBookCategory").value;
-
     if (price <= 2000 && price >= 0){
         console.log('pricevis');
 
         document.getElementById("rowDepreciation").className = 'd-none';
+        document.getElementById("formBookCategory").value = "--GWG--";
     }
     else {
         console.log('priceinvis');
         document.getElementById("rowDepreciation").className = 'd-block';
+        document.getElementById("formBookCategory").value = "--Abschreibfähig--";
     }
 
 
