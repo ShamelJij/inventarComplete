@@ -76,7 +76,7 @@
                 <input type="date" class="form-control" name="purchaseDate" id="idPurchaseDate" min="2018-01-01" required>
 
                 <div class="invalid-feedback" id="idPurchaseDateInvalid">
-                    testText
+                    Bitte ein Datum eingeben.
                 </div>
                 <div class="valid-feedback" id="idPurchaseDateValid">
                     Danke!
@@ -92,7 +92,6 @@
                     <span class="input-group-text" id="inputGroupAppendType">&#128;<!--euro-symbol--></span>
                 </div>
                 <div class="valid-feedback" id="validationPriceValid">
-                    Preis is gültig
                 </div>
                 <div class="invalid-feedback"  id="validationPriceNotValid">
                     negatives Wert ist nicht gültig
@@ -100,7 +99,7 @@
                 </div>
             </div>
             <div class="col-md-3 mt-4 text-center">
-                <button class="btn btn-primary" type="button" onclick="refreshForm(); calcForm(); inputValidation();">Berechnen</button>
+                <button class="btn btn-primary" type="button" onclick="refreshForm(); calcForm(); inputValidation();inputTranslation()">Berechnen</button>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="formBookCategory">Abschreibskategorie</label>

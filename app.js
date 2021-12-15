@@ -1,21 +1,41 @@
-//einfache Validierung ob de Felder ausgefüllt oder nicht
-(function() {
-    window.addEventListener('load', function() {
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.getElementsByClassName('needs-validation');
-        // Loop over them and prevent submission
-        var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    }, false);
-})();
 
+// Konvertieren von Eingaben in das richtige Format
+// Bsp Trim bei Textfeldern
+function inputTranslation() {
+    // "Bezeichnung", "Seriennummer", "Typ" die vorferen und hinteren Leerzeichen entfernen
+    //Bezeichnung
+    let label = document.getElementById('validationLabel').value;
+    console.log('trimmed Bezeichnung: ',label);
+    label = label.replace("  ","");
+    label = label.trim();
+    console.log('result Bezeichnung: ',label);
+
+    //seriennummer
+    let serialNumber = document.getElementById('validationSerialNumber').value;
+    console.log('trimmed serial NUmber: ',serialNumber);
+    serialNumber = serialNumber.replace("  ","");
+    serialNumber = serialNumber.trim();
+    console.log('result Serial Number: ',serialNumber);
+
+    //typ
+    let type = document.getElementById('validationType').value;
+    console.log('trimmed Type: ',type);
+    type = type.replace("  ","");
+    type = type.trim();
+    console.log('result type: ',type);
+
+
+
+
+
+
+
+
+    // Formatieren des Preises im Format: x.xxx,xx
+
+
+
+}
 
 //check all input validation
 function inputValidation() {
