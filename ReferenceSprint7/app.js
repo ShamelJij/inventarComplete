@@ -37,69 +37,69 @@ function inputValidation() {
     else{
         return false;
     }
- /*
-//Date + Monat
-    var dt = new Date( "December 25, 1995 23:15:00" );
-    //document.write("getMonth() : " + dt.getMonth() );
-    let currentMonth = d.getMonth();
-    let purchaseDate = document.getElementById("validationPurchaseDate").value;
-    //let getMonth = new Date(purchaseDate);
+    /*
+   //Date + Monat
+       var dt = new Date( "December 25, 1995 23:15:00" );
+       //document.write("getMonth() : " + dt.getMonth() );
+       let currentMonth = d.getMonth();
+       let purchaseDate = document.getElementById("validationPurchaseDate").value;
+       //let getMonth = new Date(purchaseDate);
 
 
-    console.log("purchase date and current month ", currentMonth, purchaseDate);
-//gegebene Anschaffungsdatum von Form als Var speichern
-    // Calculate milliseconds in a year
-    const minute = 1000 * 60;
-    const hour = minute * 60;
-    const day = hour * 24;
-    const month = day * 30;
-    const year = day * 365;
+       console.log("purchase date and current month ", currentMonth, purchaseDate);
+   //gegebene Anschaffungsdatum von Form als Var speichern
+       // Calculate milliseconds in a year
+       const minute = 1000 * 60;
+       const hour = minute * 60;
+       const day = hour * 24;
+       const month = day * 30;
+       const year = day * 365;
 
-    function monthDiff(d1, d2) {
-        console.log("m1: " + d1.getMonth(),
-            "m2: " + d2.getMonth());
-        var months;
-        months = (d2.getFullYear() - d1.getFullYear()) * 12;
-        months -= d1.getMonth();
-        months += d2.getMonth();
+       function monthDiff(d1, d2) {
+           console.log("m1: " + d1.getMonth(),
+               "m2: " + d2.getMonth());
+           var months;
+           months = (d2.getFullYear() - d1.getFullYear()) * 12;
+           months -= d1.getMonth();
+           months += d2.getMonth();
 
-        return months <= 0 ? 0 : months;
-    }
+           return months <= 0 ? 0 : months;
+       }
 
-    function monthCalc(d1, d2) {
-        var diff = monthDiff(d1, d2);
-        console.log(
-            d1.toISOString().substring(0, 10),
-            "to",
-            d2.toISOString().substring(0, 10),
-            ":",
-            diff
-        );
+       function monthCalc(d1, d2) {
+           var diff = monthDiff(d1, d2);
+           console.log(
+               d1.toISOString().substring(0, 10),
+               "to",
+               d2.toISOString().substring(0, 10),
+               ":",
+               diff
+           );
 
-    }
+       }
 
-    monthCalc(
-        new Date(2020, 10, 16), // November 4th, 2008
-        new Date()  // March 12th, 2010
-    );
-// Result: 16
+       monthCalc(
+           new Date(2020, 10, 16), // November 4th, 2008
+           new Date()  // March 12th, 2010
+       );
+   // Result: 16
 
-    monthCalc(
-        new Date(2010, 4, 1),  // January 1st, 2010
-        new Date(2010, 2, 12)  // March 12th, 2010
-    );
-// Result: 2
+       monthCalc(
+           new Date(2010, 4, 1),  // January 1st, 2010
+           new Date(2010, 2, 12)  // March 12th, 2010
+       );
+   // Result: 2
 
-    monthCalc(
-        new Date(2010, 1, 1),  // February 1st, 2010
-        new Date(2010, 2, 12)  // March 12th, 2010
-    );
-// Result: 1
+       monthCalc(
+           new Date(2010, 1, 1),  // February 1st, 2010
+           new Date(2010, 2, 12)  // March 12th, 2010
+       );
+   // Result: 1
 
 
-// Divide Time with a year
+   // Divide Time with a year
 
-*/
+   */
 
 
 
@@ -124,15 +124,15 @@ function calcForm(){
 
 
 //read date plus month and result is under by abgeschrieben
- /*   //Abschreiben am is the result for abschreibkategorie and abschreibzeitraum
-    let price1 = document.getElementById('validationPrice').value;
+    /*   //Abschreiben am is the result for abschreibkategorie and abschreibzeitraum
+       let price1 = document.getElementById('validationPrice').value;
 
-    if (price1 <= 2000 && price >= 0){
-        document.getElementById("formBookCategory").value = "GWG";
-    }
-    else {
-        document.getElementById("formBookCategory").value = "Abschreibfähig";
-    }*/
+       if (price1 <= 2000 && price >= 0){
+           document.getElementById("formBookCategory").value = "GWG";
+       }
+       else {
+           document.getElementById("formBookCategory").value = "Abschreibfähig";
+       }*/
 
 }
 
