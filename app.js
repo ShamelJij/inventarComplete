@@ -1,6 +1,25 @@
+//einfache Validierung ob de Felder ausgefüllt oder nicht
+(function() {
+    window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
+
 
 //check all input validation
 function inputValidation() {
+
     //Anschaffungsdatum validieren (muss nicht in zukunft sein)
     //Anschaffungsdatum als wert
     let purchaseDate = document.getElementById("idPurchaseDate").value;
@@ -40,7 +59,7 @@ function inputValidation() {
     let price = document.getElementById('validationPrice').value;
     //Show booking category
     if (price < 0){
-        console.log('price is not negative');
+        console.log('price is negative');
         let x = document.getElementById("validationPrice").className;
         x = x.replace('is-invalid','');
         x = x.replace('is-valid','');
@@ -49,7 +68,7 @@ function inputValidation() {
         document.getElementById("validationPriceInvalid").innerText = "Kein negativem Wert bitte!";
     }
     else {
-        console.log('price is negative');
+        console.log('price is not negative');
         let y = document.getElementById("validationPrice").className;
         y = y.replace('is-invalid','');
         y = y.replace('is-valid','');
@@ -72,9 +91,12 @@ function calcForm(){
         d.setMonth(currentMonth + inputMonthValue);
         console.log("d: ", d);
         let pd = new Date(purchaseDate);
-        let resultDate = document.getElementById("validationEndDate").value;
+        console.log('d: ',d.toISOString());
+        document.getElementById("validationEndDate").value = d.toISOString().split('T')[0];
+        let v = document.getElementById("validationEndDate").value;
+        console.log('input Abgeschrieben am: ',v);
 
-        document.getElementById("validationEndDate").value = d.getFullYear() + "-" + parseInt(d.getMonth() + 1) + "-" + d.getDay();
+        //document.getElementById("validationEndDate").value = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDay();
 
 
         console.log(resultDate);
