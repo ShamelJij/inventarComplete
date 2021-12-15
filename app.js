@@ -1,42 +1,21 @@
 
-
-
-
-
 //check all input validation
 function inputValidation() {
-    //all inputs valdiation
-    //funktion um das ergebnis von (Berechnen) Knopf zu zeigen
-    //const d = new Date();
-    //Date + Monat
-    var dt = new Date( "December 25, 1995 23:15:00" );
-    //document.write("getMonth() : " + dt.getMonth() );
-
+    //Anschaffungsdatum als wert
     let purchaseDate = document.getElementById("validationPurchaseDate").value;
-    //let getMonth = new Date(purchaseDate);
-    let inputMonthValue = parseInt(document.getElementById("depreciationInput").value);
-    let d = new Date(purchaseDate);
-    let currentMonth = d.getMonth();
-    d.setMonth(currentMonth + inputMonthValue);
-    console.log("d: ",d);
-    let pd = new Date(purchaseDate);
-    let resultDate = document.getElementById("validationEndDate").value;
+    //jetztgen Datum
+    let nowDate = new Date().toISOString().split('T')[0];
 
-    document.getElementById("validationEndDate").value= d.getFullYear()+"-"+parseInt(d.getMonth()+1)+"-"+d.getDay();
+    console.log('purchasedate is: ', purchaseDate);
+    console.log('now is: ',nowDate);
 
-
-    console.log(resultDate);
-    if (pd.getTime() <= d.getTime()){
-        console.log("time");
-        console.log(pd.getTime());
-        console.log(currentMonth);
-
-
-
+    if (purchaseDate > nowDate){
+        console.log('purchase date is bigger than now');
     }
-    else{
-        return false;
+    else {
+        console.log('purchase date is smaller than now');
     }
+
  /*
 //Date + Monat
     var dt = new Date( "December 25, 1995 23:15:00" );
@@ -121,6 +100,31 @@ function inputValidation() {
 
 //macht alle berechnungen auf eine Maske
 function calcForm(){
+    let purchaseDate = document.getElementById("validationPurchaseDate").value;
+    //let getMonth = new Date(purchaseDate);
+    let inputMonthValue = parseInt(document.getElementById("depreciationInput").value);
+    let d = new Date(purchaseDate);
+    let currentMonth = d.getMonth();
+    d.setMonth(currentMonth + inputMonthValue);
+    console.log("d: ",d);
+    let pd = new Date(purchaseDate);
+    let resultDate = document.getElementById("validationEndDate").value;
+
+    document.getElementById("validationEndDate").value= d.getFullYear()+"-"+parseInt(d.getMonth()+1)+"-"+d.getDay();
+
+
+    console.log(resultDate);
+    if (pd.getTime() <= d.getTime()){
+        console.log("time");
+        console.log(pd.getTime());
+        console.log(currentMonth);
+
+
+
+    }
+    else{
+        return false;
+    }
 
 
 //read date plus month and result is under by abgeschrieben

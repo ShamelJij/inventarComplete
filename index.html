@@ -30,7 +30,6 @@
         </div>
         <div class="form-row" id="formEndDate">
             <div class="col-md-3 mb-3">
-                    <!-- Datum ist immer noch nicht auf deutsch ddd-->
                     <label for="validationEndBook">Datum abgebucht</label>
                     <input type="date" class="form-control" id="validationEndBook" min="2018-01-01" required>
                     <div class="valid-feedback">
@@ -73,7 +72,6 @@
                 </div>
             </div>
             <div class="col-md-3 mb-3">
-                <!-- Datum ist immer noch nicht auf deutsch ddd-->
                 <label for="validationPurchaseDate">Anschaffungsdatum</label>
                 <input type="date" class="form-control" id="validationPurchaseDate" min="2018-01-01" required>
                 <div class="valid-feedback">
@@ -101,7 +99,7 @@
                 </div>
             </div>
             <div class="col-md-3 mt-4 text-center">
-                <button class="btn btn-primary" type="button" onclick="refreshForm(); inputValidation();">Berechnen</button>
+                <button class="btn btn-primary" type="button" onclick="refreshForm(); calcForm(); inputValidation();">Berechnen</button>
             </div>
             <div class="col-md-3 mb-3">
                 <label for="formBookCategory">Abschreibskategorie</label>
@@ -130,7 +128,6 @@
             </div>
         </div>-->
         <div class="form-row" id="rowDepreciation">
-            <!-- Datum ist immer noch nicht auf deutsch ddd-->
             <div class="col-md-6">&nbsp;</div>
             <div class="col-md-3 mb-3">
                 <label for="depreciationInput">Abschreibzeitraum</label>
