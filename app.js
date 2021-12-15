@@ -1,4 +1,27 @@
 
+
+function test(){
+    let x = document.getElementById("idPurchaseDate").className;
+    x = x.replace('is-invalid','');
+    x = x.replace('is-valid','');
+    x = x.trim();
+    document.getElementById("idPurchaseDate").className = x + " is-invalid";
+    alert( document.getElementById("idPurchaseDate").className);
+    document.getElementById("idPurchaseDateInvalid").innerText = "Das Datum legt in Zukunft!";
+
+}
+function testSuccess (){
+    let y = document.getElementById("idPurchaseDate").className;
+    y = y.replace('is-invalid','');
+    y = y.replace('is-valid','');
+    y = y.trim();
+    document.getElementById("idPurchaseDate").className = y + " is-valid";
+    alert( document.getElementById("idPurchaseDate").className);
+    document.getElementById("idPurchaseDateValid").innerText = "Valid is aktiv!";
+
+}
+
+
 //check all input validation
 function inputValidation() {
     //Anschaffungsdatum validieren (muss nicht in zukunft sein)
@@ -20,29 +43,43 @@ function inputValidation() {
 
 //macht alle berechnungen auf eine Maske
 function calcForm(){
-    let purchaseDate = document.getElementById("validationPurchaseDate").value;
-    //let getMonth = new Date(purchaseDate);
-    let inputMonthValue = parseInt(document.getElementById("depreciationInput").value);
-    let d = new Date(purchaseDate);
-    let currentMonth = d.getMonth();
-    d.setMonth(currentMonth + inputMonthValue);
-    console.log("d: ",d);
-    let pd = new Date(purchaseDate);
-    let resultDate = document.getElementById("validationEndDate").value;
-
-    document.getElementById("validationEndDate").value= d.getFullYear()+"-"+parseInt(d.getMonth()+1)+"-"+d.getDay();
+    try {
 
 
-    console.log(resultDate);
-    if (pd.getTime() <= d.getTime()){
-        console.log("time: ",pd.getTime());
-        console.log(currentMonth);
+        let purchaseDate = document.getElementById("validationPurchaseDate").value;
+        //let getMonth = new Date(purchaseDate);
+        let inputMonthValue = parseInt(document.getElementById("depreciationInput").value);
+        let d = new Date(purchaseDate);
+        let currentMonth = d.getMonth();
+        d.setMonth(currentMonth + inputMonthValue);
+        console.log("d: ", d);
+        let pd = new Date(purchaseDate);
+        let resultDate = document.getElementById("validationEndDate").value;
+
+        document.getElementById("validationEndDate").value = d.getFullYear() + "-" + parseInt(d.getMonth() + 1) + "-" + d.getDay();
 
 
+        console.log(resultDate);
+        if (pd.getTime() <= d.getTime()) {
+            console.log("time: ", pd.getTime());
+            console.log(currentMonth);
 
+
+        } else {
+            //return false;
+        }
+    } catch(e) {}
+    //asking for a better solution!!
+    //price value to changes div (bookingCategory)
+    let price = document.getElementById('validationPrice').value;
+    //Show booking category
+    if (price <= 2000 && price >= 0){
+        console.log('category: GWG');
+        document.getElementById('formBookCategory').value = '--GWG--';
     }
-    else{
-        return false;
+    else {
+        console.log('category: Abschribsfähig');
+        document.getElementById('formBookCategory').value = '--Abschreibfähig--';
     }
 
 //unter Abschreibkategorie: entweder GWG oder Abschreibfähig
@@ -80,19 +117,17 @@ function refreshForm(){
     }
 
 
-    //price value to show or hide div (bookingCategory)
+    //price value to changes div (bookingCategory)
     let price = document.getElementById('validationPrice').value;
     //Show booking category
     if (price <= 2000 && price >= 0){
         console.log('pricevis');
 
         document.getElementById("rowDepreciation").className = 'd-none';
-        document.getElementById("formBookCategory").value = "--GWG--";
     }
     else {
         console.log('priceinvis');
         document.getElementById("rowDepreciation").className = 'd-block';
-        document.getElementById("formBookCategory").value = "--Abschreibfähig--";
     }
 
 

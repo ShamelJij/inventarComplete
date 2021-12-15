@@ -13,6 +13,8 @@
 </head>
 <body onload="refreshForm()">
 <div class="containter text-center mb-3"><h1>Inventar</h1></div>
+<button class="btn btn-dark" onclick="test()">test</button>
+<button class="btn btn-dark" onclick="testSuccess()">testSuccess</button>
 <div class="container">
     <form class="needs-validation" novalidate>
         <div class="form-row">
@@ -72,13 +74,14 @@
                 </div>
             </div>
             <div class="col-md-3 mb-3">
-                <label for="validationPurchaseDate">Anschaffungsdatum</label>
-                <input type="date" class="form-control" id="validationPurchaseDate" min="2018-01-01" required>
-                <div class="valid-feedback">
-                    Danke!
+                <label for="idPurchaseDate">Anschaffungsdatum</label>
+                <input type="date" class="form-control" name="purchaseDate" id="idPurchaseDate" min="2018-01-01" required>
+
+                <div class="invalid-feedback" id="idPurchaseDateInvalid">
+                    testText
                 </div>
-                <div class="invalid-feedback">
-                    Bitte Datum eingeben!
+                <div class="valid-feedback" id="idPurchaseDateValid">
+                    Danke!
                 </div>
             </div>
         </div>
