@@ -13,8 +13,6 @@
 </head>
 <body onload="refreshForm()">
 <div class="containter text-center mb-3"><h1>Inventar</h1></div>
-<!--<button class="btn btn-dark" onclick="test()">test</button>
-<button class="btn btn-dark" onclick="testSuccess()">testSuccess</button>-->
 <div class="container">
     <form class="needs-validation" novalidate>
         <div class="form-row">
@@ -107,29 +105,8 @@
             <div class="col-md-3 mb-3">
                 <label for="formBookCategory">Abschreibskategorie</label>
                 <input class="form-control" type="text" readonly name="editedName" id="formBookCategory" value="GWG">
-                <!--<select class="form-control" name="formBookCategoryName" id="formBookCategory">
-                    <option value="formBookCategoryGWG">GWG</option>
-                    <option value="formBookCategoryAF">Abschreibfähig</option>
-                </select>-->
             </div>
         </div>
-        <!--<div class="form-row">
-            <div class="col-md-3 mb-3">
-                <label for="validationPrice">Abschriebzeitraum&nbsp;&nbsp;<span class="badge badge-info">in Monate</span></label>
-                <div class="input-group">
-                    <input type="number" class="form-control" id="validationPrice">
-                    <div class="input-group-append">
-                        <span class="input-group-text" id="inputGroupAppendType">Monate</span>
-                    </div>
-                    <div class="valid-feedback">
-                        this is a valid feedback
-                    </div>
-                    <div class="invalid-feedback">
-                        Please choose a username.
-                    </div>
-                </div>
-            </div>
-        </div>-->
         <div class="form-row" id="rowDepreciation">
             <div class="col-md-6">&nbsp;</div>
             <div class="col-md-3 mb-3">
@@ -183,174 +160,6 @@
 </div>
 <script src="app.js"></script>
 </body>
-
-
-
-<!--<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">inventar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-        <div class="nav flex-row nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Inventar</a>
-            <a class="nav-link" onclick="initPerson()" id="v-pills-person-tab" data-toggle="pill" href="#v-pills-person" role="tab" aria-controls="v-pills-person" aria-selected="false">Person</a>
-            <a class="nav-link"  id="v-pills-location-tab" data-toggle="pill" href="#v-pills-location" role="tab" aria-controls="v-pills-location" aria-selected="false">Standort</a>
-            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Einstellungen</a>
-        </div>
-    </div>
-</nav>
-<div class="tab-content row justify-content-center" id="v-pills-tabContent">
-    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-        <form id="inputForm" class="store-form">
-            &lt;!&ndash;<div class="form-group"><input class="btn btn-primary" type="submit" value="Submit"></div>&ndash;&gt;
-            <div class="form-group text-center"><p>bitte geben Sie erst den Preis ein</p>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="nettoPrice">Preis</label>
-                    <div><input type="number" class="form-control" id="nettoPrice" data-toggle="tooltip" data-placement="left" title="Bitte beachten Sie, die GwG-Grenze könnte in der Einstellungen geändert werden!"></div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="result">Ergebnis</label>
-                    <div id="result"></div>
-                </div>
-                <div class="form-group col-md-4" id="hideDiv">
-                    <label>Status</label>
-                    <div id="statusResult"></div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4" id="purchaseDate">
-                    <label>Anschaffungsdatum</label>
-                    <div><input type="month"  min="2020-03" value="2020-06"></div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="alert alert-danger text-center" id="warning" role="alert">
-                    Bitte beachten Sie, die GwG-Grenze könnte in der Einstellungen geändert werden.
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="itemLabel">Bezeichnung</label>
-                    <div><input type="text" class="form-control" id="itemLabel"></div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="serialNumber">Seriennummer</label>
-                    <div><input type="number" class="form-control" id="serialNumber"></div>
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="itemType">Typ</label>
-                    <div><input type="text" class="form-control" id="itemType"></div>
-                </div>
-            </div>
-            <div class="form-group col-12 text-center">
-                <button id="formSave" onclick="" type="submit">Speichern</button>
-            </div>
-        </form>
-        <div class="container">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Bezeichnung</th>
-                    <th scope="col">Typ</th>
-                    <th scope="col">Seriennummer</th>
-                    <th scope="col">Preis(netto)</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tbody id="formStoreTable">
-                &lt;!&ndash;<tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                </tr>&ndash;&gt;
-                </tbody>
-            </table>
-        </div>
-        <div class="container">
-            <table class="table table-stripped">
-
-            </table>
-        </div>
-    </div>
-    <div class="tab-pane fade" id="v-pills-person" role="tabpanel" aria-labelledby="v-pills-person-tab">
-        <form class="store-form" autocomplete="off" onsubmit="onFormSubmit()" id="personForm">
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="pLastName">Name</label>
-                    <input class="form-control" type="text" id="pLastName">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="pFirstName">Vorname</label>
-                    <input class="form-control" type="text" id="pFirstName">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="pPersonalNumber">Personalnummer</label>
-                    <input class="form-control" type="number" id="pPersonalNumber">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="pEmail">E-mail</label>
-                    <input class="form-control" type="email" id="pEmail">
-                </div>
-                <div class="form-group col-12 alert alert-danger text-center" id="tableIsEmpty" role="alert">
-                    <p>Tabelle ist leider noch leer</p>
-                </div>
-                <div class="form-group col-12 text-center">
-                    <form  class="submit-form">
-                        <input type="button"  value="Speichern" onclick="savePerson()" class="container-main-button">
-                        <input type="reset" value="Zurücksetzen" class="container-main-button">
-                    </form>
-                </div>
-            </div>
-        </form>
-        <div class="container">
-            <table class="table table-striped" id="pStoreList">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Vorname</th>
-                    <th>Personalnummer</th>
-                    <th>E-Mail</th>
-                    <th class="text-center">Ändern</th>
-                </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="tab-pane fade" id="v-pills-location" role="tabpanel" aria-labelledby="v-pills-location-tab">belongs to location</div>
-    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-        <div class="form-row">
-            <div class="form-group">
-                <label for="limitInput">GWG-Grenze</label>
-                <input type="number" class="form-control" id="limitInput" placeholder="Default ist: 1000€">
-            </div>
-        </div>
-    </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src ="./app.js"></script>
-</body>-->
 </html>
 
 
