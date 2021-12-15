@@ -13,8 +13,8 @@
 </head>
 <body onload="refreshForm()">
 <div class="containter text-center mb-3"><h1>Inventar</h1></div>
-<button class="btn btn-dark" onclick="test()">test</button>
-<button class="btn btn-dark" onclick="testSuccess()">testSuccess</button>
+<!--<button class="btn btn-dark" onclick="test()">test</button>
+<button class="btn btn-dark" onclick="testSuccess()">testSuccess</button>-->
 <div class="container">
     <form class="needs-validation" novalidate>
         <div class="form-row">
@@ -93,11 +93,11 @@
                 <div class="input-group-append">
                     <span class="input-group-text" id="inputGroupAppendType">&#128;<!--euro-symbol--></span>
                 </div>
-                <div class="valid-feedback">
-                    this is a valid feedback
+                <div class="valid-feedback" id="validationPriceValid">
+                    Preis is gültig
                 </div>
-                <div class="invalid-feedback">
-                    Please choose a username.
+                <div class="invalid-feedback"  id="validationPriceNotValid">
+                    negatives Wert ist nicht gültig
                 </div>
                 </div>
             </div>
