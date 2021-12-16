@@ -5,41 +5,35 @@ function inputTranslation() {
     // "Bezeichnung", "Seriennummer", "Typ" die vorferen und hinteren Leerzeichen entfernen
     //Bezeichnung
     let label = document.getElementById('validationLabel').value;
-    console.log('trimmed Bezeichnung: ',label);
-    label = label.replace("  ","");
-    label = label.trim();
-    console.log('result Bezeichnung: ',label);
 
+    label = label.replace(/\s+/g," ");
+    label = label.trim();
+    console.log('trimmed Bezeichnung: ',label);
+    document.getElementById('validationLabel').value = label;
     //seriennummer
     let serialNumber = document.getElementById('validationSerialNumber').value;
-    console.log('trimmed serial NUmber: ',serialNumber);
-    serialNumber = serialNumber.replace("  ","");
-    serialNumber = serialNumber.trim();
-    console.log('result Serial Number: ',serialNumber);
 
+    serialNumber = serialNumber.replace(/\s+/g," ");
+    console.log('Serial Number after replace: ',serialNumber);
+    serialNumber = serialNumber.trim();
+    console.log('trimmed serial NUmber: ',serialNumber);
+
+    document.getElementById('validationSerialNumber').value = serialNumber;
     //typ
     let type = document.getElementById('validationType').value;
     console.log('trimmed Type: ',type);
-    type = type.replace("  ","");
+    type = type.replace(/\s+/g," ");
     type = type.trim();
     console.log('result type: ',type);
-
-
-
-
-
-
-
-
+    document.getElementById('validationType').value = type;
     // Formatieren des Preises im Format: x.xxx,xx
-
-
-
 }
 
 //check all input validation
 function inputValidation() {
 
+    //variable for refresh function for the return
+    let ret = true;
     //Anschaffungsdatum validieren (muss nicht in zukunft sein)
     //Anschaffungsdatum als wert
     let purchaseDate = document.getElementById("idPurchaseDate").value;
@@ -57,6 +51,7 @@ function inputValidation() {
         x = x.trim();
         document.getElementById("idPurchaseDate").className = x + " is-invalid";
         document.getElementById("idPurchaseDateInvalid").innerText = "Das Datum legt in Zukunft!";
+        ret = false;
     }
     else if (purchaseDate == ''){
         let t = document.getElementById("idPurchaseDate").className;
@@ -65,6 +60,7 @@ function inputValidation() {
         t = t.trim();
         document.getElementById("idPurchaseDate").className = t + " is-invalid";
         document.getElementById("idPurchaseDateInvalid").innerText = "Das Datum ist leer!";
+        ret = false;
     }
     else {
         console.log('purchase date is smaller than now');
@@ -86,6 +82,7 @@ function inputValidation() {
         x = x.trim();
         document.getElementById("validationPrice").className = x + " is-invalid";
         document.getElementById("validationPriceInvalid").innerText = "Kein negativem Wert bitte!";
+        ret = false;
     }
     else {
         console.log('price is not negative');
@@ -96,6 +93,8 @@ function inputValidation() {
         document.getElementById("validationPrice").className = y + " is-valid";
         document.getElementById("validationPriceValid").innerText = "Der Wert ist gültig!";
     }
+    console.log('ret is: ',ret);
+    return ret;
 }
 
 //macht alle berechnungen auf eine Maske
@@ -183,4 +182,16 @@ function refreshForm(){
 
 
 }
+//this is for the speichern button!
+function refresh(){
+    refreshForm();
+    inputTranslation();
+    if (inputValidation()){
+        calcForm()
+        return true;
+    }
+    else {
+        return false;
+    }
 
+}
