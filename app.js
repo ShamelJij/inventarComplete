@@ -1,3 +1,6 @@
+
+
+
 function dateChangeHandler(){
     let g = document.getElementById("idPurchaseDate").className;
     g = g.replace('is-invalid','');
@@ -82,6 +85,7 @@ function inputValidation() {
     }
     //price validation muss nicht negatives Wert haben
     let price = document.getElementById('idPrice').value;
+    //parsing input to number without zeros on the left
     price = Number(price);
     document.getElementById('idPrice').value = price;
     console.log('the price is: ', price);
@@ -127,6 +131,70 @@ function inputValidation() {
         y = y.trim();
         document.getElementById("idDepreciationInput").className = y + " is-valid";
         document.getElementById("idDepreciationInputIsValid").innerText = "Der Wert ist gültig!";
+
+    }
+    //validating the label input not to be empty
+    let labelInput = document.getElementById('idLabel').value;
+    if(labelInput == ''){
+        let l = document.getElementById("idLabel").className;
+        l = l.replace('is-invalid','');
+        l = l.replace('is-valid','');
+        l = l.trim();
+        document.getElementById("idLabel").className = l + " is-invalid";
+        document.getElementById("idLabelIsInvalid").innerText = "leer!";
+        ret = false;
+    }
+    else {
+        let lv = document.getElementById("idLabel").className;
+        lv = lv.replace('is-invalid','');
+        lv = lv.replace('is-valid','');
+        lv = lv.trim();
+        document.getElementById("idLabel").className = lv + " is-valid";
+        document.getElementById("idLabelIsValid").innerText = "Eingabe ist gültig";
+        console.log('labelInput is not empty');
+        ret = true;
+    }
+    //validating the label input not to be empty
+    let serialNumber = document.getElementById('idSerialNumber').value;
+    if(serialNumber == ''){
+        let sn = document.getElementById("idSerialNumber").className;
+        sn = sn.replace('is-invalid','');
+        sn = sn.replace('is-valid','');
+        sn = sn.trim();
+        document.getElementById("idSerialNumber").className = sn + " is-invalid";
+        document.getElementById("idSerialNumberIsInValid").innerText = "leer!";
+        ret = false;
+    }
+    else {
+        let snv = document.getElementById("idSerialNumber").className;
+        snv = snv.replace('is-invalid','');
+        snv = snv.replace('is-valid','');
+        snv = snv.trim();
+        document.getElementById("idSerialNumber").className = snv + " is-valid";
+        document.getElementById("idSerialNumberIsValid").innerText = "Eingabe ist gültig";
+        console.log('serialnumber is not empty');
+        ret = true;
+    }
+    //validating the label input not to be empty
+    let inventoryType = document.getElementById('idType').value;
+    if( inventoryType == ''){
+        let it = document.getElementById("idType").className;
+        it = it.replace('is-invalid','');
+        it = it.replace('is-valid','');
+        it = it.trim();
+        document.getElementById("idType").className = it + " is-invalid";
+        document.getElementById("idTypeIsInValid").innerText = "leer!";
+        ret = false;
+    }
+    else {
+        let itv = document.getElementById("idType").className;
+        itv = itv.replace('is-invalid','');
+        itv = itv.replace('is-valid','');
+        itv = itv.trim();
+        document.getElementById("idType").className = itv + " is-valid";
+        document.getElementById("idTypeIsValid").innerText = "Eingabe ist gültig";
+        console.log('Type is not empty');
+        ret = true;
     }
     console.log('ret is: ',ret);
     return ret;
@@ -134,9 +202,6 @@ function inputValidation() {
 
 //macht alle berechnungen auf eine Maske
 function calcForm(){
-    try {
-
-
         let purchaseDate = document.getElementById("idPurchaseDate").value;
         //let getMonth = new Date(purchaseDate);
         let inputMonthValue = parseInt(document.getElementById("idDepreciationInput").value);
@@ -152,17 +217,15 @@ function calcForm(){
 
         //document.getElementById("validationEndDate").value = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDay();
 
-
-        console.log(resultDate);
         if (pd.getTime() <= d.getTime()) {
             console.log("time: ", pd.getTime());
             console.log(currentMonth);
 
 
         } else {
+            console.log('resultDate is else!!?');
             //return false;
         }
-    } catch(e) {}
     //asking for a better solution!!
     //price value to changes div (bookingCategory)
     let price = document.getElementById('idPrice').value;
