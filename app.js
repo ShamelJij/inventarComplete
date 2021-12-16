@@ -1,6 +1,15 @@
+function dateChangeHandler(){
+    let g = document.getElementById("idPurchaseDate").className;
+    g = g.replace('is-invalid','');
+    g = g.replace('is-valid','');
+    g = g.trim();
+    document.getElementById("idPurchaseDate").className = g + " is-invalid";
+    document.getElementById("idPurchaseDateInvalid").innerText = "jetzt Brechnen drucken!";
+}
 
 // Konvertieren von Eingaben in das richtige Format
 // Bsp Trim bei Textfeldern
+
 function inputTranslation() {
     // "Bezeichnung", "Seriennummer", "Typ" die vorferen und hinteren Leerzeichen entfernen
     //Bezeichnung
@@ -73,6 +82,9 @@ function inputValidation() {
     }
     //price validation muss nicht negatives Wert haben
     let price = document.getElementById('idPrice').value;
+    price = Number(price);
+    document.getElementById('idPrice').value = price;
+    console.log('the price is: ', price);
     //Show booking category
     if (price < 0){
         console.log('price is negative');

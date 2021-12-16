@@ -73,8 +73,7 @@
             </div>
             <div class="col-md-3 mb-3">
                 <label for="idPurchaseDate">Anschaffungsdatum</label>
-                <input type="date" class="form-control" name="purchaseDate" id="idPurchaseDate" min="2018-01-01" required>
-
+                <input type="date" class="form-control" onchange="dateChangeHandler(event);" name="purchaseDate" id="idPurchaseDate" min="2018-01-01" required>
                 <div class="invalid-feedback" id="idPurchaseDateInvalid">
                     Bitte ein Datum eingeben.
                 </div>
