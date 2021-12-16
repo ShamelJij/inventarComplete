@@ -1,6 +1,4 @@
 
-
-
 function dateChangeHandler(){
     let g = document.getElementById("idPurchaseDate").className;
     g = g.replace('is-invalid','');
@@ -40,7 +38,6 @@ function inputTranslation() {
     document.getElementById('idType').value = type;
     // Formatieren des Preises im Format: x.xxx,xx
 }
-
 //check all input validation
 function inputValidation() {
 
@@ -52,7 +49,7 @@ function inputValidation() {
     //jetztgen Datum
     let nowDate = new Date().toISOString().split('T')[0];
 
-    console.log('purchase date is: ', purchaseDate);
+    console.log('purchase date is: ', Number(purchaseDate));
     console.log('now is: ',nowDate);
 
     if (purchaseDate > nowDate){
@@ -142,7 +139,8 @@ function inputValidation() {
         l = l.trim();
         document.getElementById("idLabel").className = l + " is-invalid";
         document.getElementById("idLabelIsInvalid").innerText = "leer!";
-        ret = false;
+        //optional
+        //ret = false;
     }
     else {
         let lv = document.getElementById("idLabel").className;
@@ -152,7 +150,8 @@ function inputValidation() {
         document.getElementById("idLabel").className = lv + " is-valid";
         document.getElementById("idLabelIsValid").innerText = "Eingabe ist gültig";
         console.log('labelInput is not empty');
-        ret = true;
+        //optional
+        //ret = true;
     }
     //validating the label input not to be empty
     let serialNumber = document.getElementById('idSerialNumber').value;
@@ -163,7 +162,8 @@ function inputValidation() {
         sn = sn.trim();
         document.getElementById("idSerialNumber").className = sn + " is-invalid";
         document.getElementById("idSerialNumberIsInValid").innerText = "leer!";
-        ret = false;
+        //optional
+        //ret = false;
     }
     else {
         let snv = document.getElementById("idSerialNumber").className;
@@ -173,7 +173,8 @@ function inputValidation() {
         document.getElementById("idSerialNumber").className = snv + " is-valid";
         document.getElementById("idSerialNumberIsValid").innerText = "Eingabe ist gültig";
         console.log('serialnumber is not empty');
-        ret = true;
+        //optional
+        //ret = true;
     }
     //validating the label input not to be empty
     let inventoryType = document.getElementById('idType').value;
@@ -184,7 +185,8 @@ function inputValidation() {
         it = it.trim();
         document.getElementById("idType").className = it + " is-invalid";
         document.getElementById("idTypeIsInValid").innerText = "leer!";
-        ret = false;
+        //optional
+        //ret = false;
     }
     else {
         let itv = document.getElementById("idType").className;
@@ -194,7 +196,8 @@ function inputValidation() {
         document.getElementById("idType").className = itv + " is-valid";
         document.getElementById("idTypeIsValid").innerText = "Eingabe ist gültig";
         console.log('Type is not empty');
-        ret = true;
+        //optional
+        //ret = true;
     }
     console.log('ret is: ',ret);
     return ret;
@@ -212,6 +215,8 @@ function calcForm(){
         let pd = new Date(purchaseDate);
         console.log('d: ',d.toISOString());
         document.getElementById("validationEndDate").value = d.toISOString().split('T')[0];
+        let ved = document.getElementById("validationEndDate").value;
+        console.log('validationEndDate is: ',ved);
         let v = document.getElementById("validationEndDate").value;
         console.log('input Abgeschrieben am: ',v);
 
@@ -275,10 +280,6 @@ function refreshForm(){
         console.log('priceinvis');
         document.getElementById("rowDepreciation").className = 'd-block';
     }
-
-
-
-
 }
 //this is for the speichern button!
 function refresh(){
@@ -291,5 +292,4 @@ function refresh(){
     else {
         return false;
     }
-
 }
