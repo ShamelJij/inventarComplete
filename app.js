@@ -4,28 +4,28 @@
 function inputTranslation() {
     // "Bezeichnung", "Seriennummer", "Typ" die vorferen und hinteren Leerzeichen entfernen
     //Bezeichnung
-    let label = document.getElementById('validationLabel').value;
+    let label = document.getElementById('idLabel').value;
 
     label = label.replace(/\s+/g," ");
     label = label.trim();
     console.log('trimmed Bezeichnung: ',label);
-    document.getElementById('validationLabel').value = label;
+    document.getElementById('idLabel').value = label;
     //seriennummer
-    let serialNumber = document.getElementById('validationSerialNumber').value;
+    let serialNumber = document.getElementById('idSerialNumber').value;
 
     serialNumber = serialNumber.replace(/\s+/g," ");
     console.log('Serial Number after replace: ',serialNumber);
     serialNumber = serialNumber.trim();
     console.log('trimmed serial NUmber: ',serialNumber);
 
-    document.getElementById('validationSerialNumber').value = serialNumber;
+    document.getElementById('idSerialNumber').value = serialNumber;
     //typ
-    let type = document.getElementById('validationType').value;
+    let type = document.getElementById('idType').value;
     console.log('trimmed Type: ',type);
     type = type.replace(/\s+/g," ");
     type = type.trim();
     console.log('result type: ',type);
-    document.getElementById('validationType').value = type;
+    document.getElementById('idType').value = type;
     // Formatieren des Preises im Format: x.xxx,xx
 }
 
@@ -72,26 +72,49 @@ function inputValidation() {
         document.getElementById("idPurchaseDateValid").innerText = "Das Datum ist gültig!";
     }
     //price validation muss nicht negatives Wert haben
-    let price = document.getElementById('validationPrice').value;
+    let price = document.getElementById('idPrice').value;
     //Show booking category
     if (price < 0){
         console.log('price is negative');
-        let x = document.getElementById("validationPrice").className;
+        let x = document.getElementById("idPrice").className;
         x = x.replace('is-invalid','');
         x = x.replace('is-valid','');
         x = x.trim();
-        document.getElementById("validationPrice").className = x + " is-invalid";
-        document.getElementById("validationPriceInvalid").innerText = "Kein negativem Wert bitte!";
+        document.getElementById("idPrice").className = x + " is-invalid";
+        document.getElementById("idPriceInvalid").innerText = "Kein negativem Wert bitte!";
         ret = false;
     }
     else {
         console.log('price is not negative');
-        let y = document.getElementById("validationPrice").className;
+        let y = document.getElementById("idPrice").className;
         y = y.replace('is-invalid','');
         y = y.replace('is-valid','');
         y = y.trim();
-        document.getElementById("validationPrice").className = y + " is-valid";
-        document.getElementById("validationPriceValid").innerText = "Der Wert ist gültig!";
+        document.getElementById("idPrice").className = y + " is-valid";
+        document.getElementById("idPriceValid").innerText = "Der Wert ist gültig!";
+    }
+    //deprecation validation idDepreciationInput
+    //deprecation validation muss nicht negatives Wert haben
+    let deprecation = document.getElementById('idDepreciationInput').value;
+    //Show booking category
+    if (deprecation < 0){
+        console.log('deprecation is negative');
+        let x = document.getElementById("idDepreciationInput").className;
+        x = x.replace('is-invalid','');
+        x = x.replace('is-valid','');
+        x = x.trim();
+        document.getElementById("idDepreciationInput").className = x + " is-invalid";
+        document.getElementById("idDepreciationInputIsInValid").innerText = "Kein negativem Wert bitte!";
+        ret = false;
+    }
+    else {
+        console.log('deprecation is not negative');
+        let y = document.getElementById("idDepreciationInput").className;
+        y = y.replace('is-invalid','');
+        y = y.replace('is-valid','');
+        y = y.trim();
+        document.getElementById("idDepreciationInput").className = y + " is-valid";
+        document.getElementById("idDepreciationInputIsValid").innerText = "Der Wert ist gültig!";
     }
     console.log('ret is: ',ret);
     return ret;
@@ -104,7 +127,7 @@ function calcForm(){
 
         let purchaseDate = document.getElementById("idPurchaseDate").value;
         //let getMonth = new Date(purchaseDate);
-        let inputMonthValue = parseInt(document.getElementById("depreciationInput").value);
+        let inputMonthValue = parseInt(document.getElementById("idDepreciationInput").value);
         let d = new Date(purchaseDate);
         let currentMonth = d.getMonth();
         d.setMonth(currentMonth + inputMonthValue);
@@ -130,7 +153,7 @@ function calcForm(){
     } catch(e) {}
     //asking for a better solution!!
     //price value to changes div (bookingCategory)
-    let price = document.getElementById('validationPrice').value;
+    let price = document.getElementById('idPrice').value;
     //Show booking category
     if (price <= 2000 && price >= 0){
         console.log('category: GWG');
@@ -151,7 +174,7 @@ function refreshForm(){
     console.log('refreshForm is on');
 
     //status ausgebucht
-    let status = document.getElementById("formStatus").value;
+    let status = document.getElementById("idFormStatus").value;
     if (status == "Ausgebucht"){
         console.log('Datumabgebucht: ((vis))');
         document.getElementById("formEndDate").className = 'd-block';
@@ -163,7 +186,7 @@ function refreshForm(){
 
 
     //price value to changes div (bookingCategory)
-    let price = document.getElementById('validationPrice').value;
+    let price = document.getElementById('idPrice').value;
     //Show booking category
     if (price <= 2000 && price > 0){
         console.log('pricevis');

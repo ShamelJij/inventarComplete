@@ -17,8 +17,8 @@
     <form class="needs-validation" novalidate>
         <div class="form-row">
             <div class="col-md-6">
-                <label for="formStatus">Status</label>
-                <select class="form-control" name="formStatusName" id="formStatus" onchange="refreshForm()">
+                <label for="idFormStatus">Status</label>
+                <select class="form-control" name="formStatus" id="idFormStatus" onchange="refreshForm()">
                     <option value="Aktiv">Aktiv</option>
                     <option value="Ausgebucht">Ausgebucht</option>
                 </select>
@@ -30,8 +30,8 @@
         </div>
         <div class="form-row" id="formEndDate">
             <div class="col-md-3 mb-3">
-                    <label for="validationEndBook">Datum abgebucht</label>
-                    <input type="date" class="form-control" id="validationEndBook" min="2018-01-01" required>
+                    <label for="idDeprecationDate">Datum abgebucht</label>
+                    <input type="date" class="form-control" id="idDeprecationDate" min="2018-01-01" required>
                     <div class="valid-feedback">
                         Danke!
                     </div>
@@ -42,8 +42,8 @@
             </div>
         <div class="form-row">
             <div class="col-md-3 mb-3">
-                <label for="validationLabel">Bezeichnung</label>
-                <input type="text" class="form-control" id="validationLabel" required>
+                <label for="idLabel">Bezeichnung</label>
+                <input type="text" class="form-control" id="idLabel" required>
                 <div class="valid-feedback">
                     Danke!
                 </div>
@@ -52,8 +52,8 @@
                 </div>
             </div>
             <div class="col-md-3 mb-3">
-                <label for="validationSerialNumber">Seriennummer</label>
-                <input type="text" class="form-control" id="validationSerialNumber" required>
+                <label for="idSerialNumber">Seriennummer</label>
+                <input type="text" class="form-control" name="serialNumber" id="idSerialNumber" required>
                 <div class="valid-feedback">
                     Danke!
                 </div>
@@ -62,8 +62,8 @@
                 </div>
             </div>
             <div class="col-md-3 mb-3">
-                <label for="validationType">Typ</label>
-                <input type="text" class="form-control" id="validationType" required>
+                <label for="idType">Typ</label>
+                <input type="text" class="form-control" id="idType" required>
                 <div class="valid-feedback">
                     Danke!
                 </div>
@@ -85,15 +85,15 @@
         </div>
         <div class="form-row">
             <div class="col-md-3 mb-3">
-                <label for="validationPrice">Preis&nbsp;&nbsp;<span class="badge badge-info">netto</span></label>
+                <label for="idPrice">Preis&nbsp;&nbsp;<span class="badge badge-info">netto</span></label>
                 <div class="input-group">
-                <input type="number" class="form-control" id="validationPrice" value="0">
+                <input type="number" class="form-control" id="idPrice" value="0">
                 <div class="input-group-append">
                     <span class="input-group-text" id="inputGroupAppendType">&#128;<!--euro-symbol--></span>
                 </div>
-                <div class="valid-feedback" id="validationPriceValid">
+                <div class="valid-feedback" id="idPriceValid">
                 </div>
-                <div class="invalid-feedback"  id="validationPriceNotValid">
+                <div class="invalid-feedback"  id="idPriceNotValid">
                     negatives Wert ist nicht gültig
                 </div>
                 </div>
@@ -109,16 +109,16 @@
         <div class="form-row" id="rowDepreciation">
             <div class="col-md-6">&nbsp;</div>
             <div class="col-md-3 mb-3">
-                <label for="depreciationInput">Abschreibzeitraum</label>
+                <label for="idDepreciationInput">Abschreibzeitraum</label>
                 <div class="input-group">
-                    <input type="number" class="form-control" id="depreciationInput" name="start" value="12" required>
+                    <input type="number" class="form-control" name="depreciationInput" id="idDepreciationInput" value="12" required>
                     <div class="input-group-append">
                         <span class="input-group-text">Monate</span>
                     </div>
-                    <div class="valid-feedback">
+                    <div class="valid-feedback" id="idDepreciationInputIsValid">
                         Danke!
                     </div>
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback" id="idDepreciationInputIsInValid">
                         Bitte Datum eingeben!
                     </div>
                 </div>
