@@ -12,6 +12,20 @@
     <title>Inventar</title>
 </head>
 <body onload="refreshForm()">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#v-pills-home">inventar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="nav flex-row nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Inventar</a>
+                <a class="nav-link" onclick="initPerson()" id="v-pills-person-tab" data-toggle="pill" href="#v-pills-person" role="tab" aria-controls="v-pills-person" aria-selected="false">Person</a>
+                <a class="nav-link"  id="v-pills-location-tab" data-toggle="pill" href="#v-pills-location" role="tab" aria-controls="v-pills-location" aria-selected="false">Standort</a>
+                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Einstellungen</a>
+            </div>
+        </div>
+    </nav>
 <div class="containter text-center mb-3"><h1>Inventar</h1></div>
 <div class="container">
     <form class="needs-validation" novalidate>
@@ -106,30 +120,31 @@
             </div>
         </div>
         <div class="form-row" id="rowDepreciation">
-            <div class="col-md-6">&nbsp;</div>
-            <div class="col-md-3 mb-3">
-                <label for="idDepreciationInput">Abschreibzeitraum</label>
-                <div class="input-group">
-                    <input type="number" class="form-control" name="depreciationInput" id="idDepreciationInput" value="12" required>
-                    <div class="input-group-append">
-                        <span class="input-group-text">Monate</span>
+            <div class="col">
+                <div class="col-md-3 mb-3">
+                    <label for="idDepreciationInput">Abschreibzeitraum</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" name="depreciationInput" id="idDepreciationInput" value="12" required>
+                        <div class="input-group-append">
+                            <span class="input-group-text">Monate</span>
+                        </div>
+                        <div class="valid-feedback" id="idDepreciationInputIsValid">
+                            Danke!
+                        </div>
+                        <div class="invalid-feedback" id="idDepreciationInputIsInValid">
+                            Bitte Datum eingeben!
+                        </div>
                     </div>
-                    <div class="valid-feedback" id="idDepreciationInputIsValid">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="validationEndDate">Abgeschrieben am:</label>
+                    <input type="date" class="form-control"  id="validationEndDate" min="2018-01-01" readonly>
+                    <div class="valid-feedback">
                         Danke!
                     </div>
-                    <div class="invalid-feedback" id="idDepreciationInputIsInValid">
+                    <div class="invalid-feedback">
                         Bitte Datum eingeben!
                     </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-3">
-                <label for="validationEndDate">Abgeschrieben am:</label>
-                <input type="date" class="form-control"  id="validationEndDate" min="2018-01-01" readonly>
-                <div class="valid-feedback">
-                    Danke!
-                </div>
-                <div class="invalid-feedback">
-                    Bitte Datum eingeben!
                 </div>
             </div>
         </div>
@@ -156,6 +171,10 @@
         </div>
     </form>
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <script src="app.js"></script>
 </body>
 </html>
