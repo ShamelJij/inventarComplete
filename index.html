@@ -120,8 +120,8 @@
             </div>
         </div>
         <div class="form-row" id="rowDepreciation">
-            <div class="col">
-                <div class="col-md-3 mb-3">
+            <div class="col-md-3 offset-md-6">
+                <div class="col-md-3 mb-3" id="deprecationInputGroup">
                     <label for="idDepreciationInput">Abschreibzeitraum</label>
                     <div class="input-group">
                         <input type="number" class="form-control" name="depreciationInput" id="idDepreciationInput" value="12" required>
@@ -136,7 +136,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+            </div>
+            <div class="col-md-3">
+                <div class="col-md-3 mb-3" id="validationEndDateGroup">
                     <label for="validationEndDate">Abgeschrieben am:</label>
                     <input type="date" class="form-control"  id="validationEndDate" min="2018-01-01" readonly>
                     <div class="valid-feedback">
@@ -146,7 +148,7 @@
                         Bitte Datum eingeben!
                     </div>
                 </div>
-            </div>
+            </div>            
         </div>
             <div class="form-row">
                 <button class="btn btn-primary" type="submit">Submit form</button>

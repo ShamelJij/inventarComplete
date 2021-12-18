@@ -271,14 +271,19 @@ function refreshForm(){
     if (price <= 2000 && price > 0){
         console.log('pricevis');
 
-        document.getElementById("rowDepreciation").className = 'd-none';
+        document.getElementById("deprecationInputGroup").className = 'd-none';
+        document.getElementById("validationEndDateGroup").className = 'd-none';
     }
     else if (price <= 0 ){
-        document.getElementById("rowDepreciation").className = 'd-none';
+        document.getElementById("deprecationInputGroup").className = 'd-none';
+        document.getElementById("validationEndDateGroup").className = 'd-none';
+
     }
     else {
         console.log('priceinvis');
-        document.getElementById("rowDepreciation").className = 'd-block';
+        document.getElementById("deprecationInputGroup").className = 'd-block';
+        document.getElementById("validationEndDateGroup").className = 'd-block';
+
     }
 }
 //this is for the speichern button!
