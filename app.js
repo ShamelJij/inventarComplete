@@ -1,7 +1,25 @@
 //saving in localStorage
 function saveInventory(){
-
+/*
+    function getInputInventoy(){
+        let fromInput = {};
+        fromInput ["FormStatus"] = document.getElementById("idFormStatus").value;
+        fromInput ["label"] = document.getElementById("idLabel").value;
+        fromInput ["serialNumber"] = document.getElementById("idSerialNumber").value;
+        fromInput ["type"] = document.getElementById("idType").value;
+        fromInput ["purchaseDate"] = document.getElementById("idPurchaseDate").value;
+        fromInput ["iprice"] = document.getElementById("idPrice").value;
+        fromInput ["formBookCategory"] = document.getElementById("formBookCategory").value;
+        fromInput ["deprecation"] = document.getElementById("idDepreciationInput").value;
+        fromInput ["validationEndDate"] = document.getElementById("idDepreciationInput").value;
+        return fromInput;
+    }
+    console.log("fromInput: ",fromInput);*/
+    //showing the table incase it's not visible
+    let inventoryTable = document.getElementById('inventoryTable');
+    inventoryTable.className += "d-block";
     //getting input into localStorage
+
     console.log("save button");
     let formStatus = document.getElementById("idFormStatus").value;
     let label = document.getElementById("idLabel").value;
@@ -23,9 +41,10 @@ function saveInventory(){
         formBookCategory: formBookCategory,
         deprecationInput: deprecation,
         validationEndDate: validationEndDate,
-
-
     }
+
+    if (localStorage.getItem(inventory) != 0){
+        console.log("INNNNNventory");
 
     window.localStorage.setItem('Inventory', JSON.stringify(inventory));
     let inventoryList = [inventory];
@@ -48,9 +67,32 @@ function saveInventory(){
     }
     t+= '</tbody>';
     document.getElementById('inventoryTable').innerHTML= t;
-
+    }
 }
 
+function showInventory() {
+    let oldInventory = JSON.parse(localStorage.getItem('Inventory'));
+    let inventoryList = [oldInventory];
+    console.log(oldInventory);
+    console.log("the list",inventoryList);
+    let t = '<tbody>';
+    for(let i = 0; i < inventoryList.length; i++){
+        t+= '<tr>';
+        t+= '<td class="ml-4">' + inventoryList[i].formStatus + '</td>';
+        t+= '<td class="ml-4">' + inventoryList[i].label + '</td>';
+        t+= '<td class="ml-4">' + inventoryList[i].serialNumber + '</td>';
+        t+= '<td class="ml-4">' + inventoryList[i].type + '</td>';
+        t+= '<td class="ml-4">' + inventoryList[i].purchaseDate + '</td>';
+        t+= '<td class="ml-4">' + inventoryList[i].iprice + '</td>';
+        t+= '<td class="ml-4">' + inventoryList[i].formBookCategory + '</td>';
+        t+= '<td class="ml-4">' + inventoryList[i].deprecationInput + '</td>';
+        t+= '<td class="ml-4">' + inventoryList[i].validationEndDate + '</td>';
+        t+='</tr>';
+
+    }
+    t+= '</tbody>';
+    document.getElementById('inventoryTable').innerHTML= t;
+}
 function dateChangeHandler(){
     let g = document.getElementById("idPurchaseDate").className;
     g = g.replace('is-invalid','');
@@ -89,6 +131,29 @@ function inputTranslation() {
     console.log('result type: ',type);
     document.getElementById('idType').value = type;
     // Formatieren des Preises im Format: x.xxx,xx
+}
+
+function initInventory(){
+    let inventoryTable = document.getElementById('inventoryTable');
+    let oldInventory = JSON.parse(localStorage.getItem('Inventory'));
+    if (!oldInventory || oldInventory.length == 0){
+        inventoryTable.className = 'd-block' ;
+        console.log('table is empty');
+    }
+    else {
+        console.log('building a new row');
+        //insertNewRecord(data);
+        showInventory();
+            console.log("show Inventory");
+
+
+    }
+}
+
+function resetInventory() {
+    let inventoryTable = document.getElementById('inventoryTable');
+    localStorage.removeItem('Inventory');
+    inventoryTable.className = 'd-none'
 }
 //check all input validation
 function inputValidation() {
@@ -289,11 +354,11 @@ function calcForm(){
     //Show booking category
     if (price <= 2000 && price >= 0){
         console.log('category: GWG');
-        document.getElementById('formBookCategory').value = '--GWG--';
+        document.getElementById('formBookCategory').value = 'GWG';
     }
     else {
         console.log('category: Abschribsfähig');
-        document.getElementById('formBookCategory').value = '--Abschreibfähig--';
+        document.getElementById('formBookCategory').value = 'Abschreibfähig';
     }
 }
 
@@ -304,6 +369,7 @@ DIESE Funktion macht nur folgend und sonst nichts!:
  */
 function refreshForm(){
     console.log('refreshForm is on');
+    initInventory();
 
     //status ausgebucht
     let status = document.getElementById("idFormStatus").value;
