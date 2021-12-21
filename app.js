@@ -21,17 +21,20 @@ function saveInventory(){
     //getting input into localStorage
 
     console.log("save button");
+    //status
     let formStatus = document.getElementById("idFormStatus").value;
     let label = document.getElementById("idLabel").value;
     let serialNumber = document.getElementById("idSerialNumber").value;
     let type = document.getElementById("idType").value;
     let purchaseDate = document.getElementById("idPurchaseDate").value;
+    //price
     let iprice = document.getElementById("idPrice").value;
+    //bookingCategory
     let formBookCategory = document.getElementById("formBookCategory").value;
     let deprecation = document.getElementById("idDepreciationInput").value;
     let validationEndDate = document.getElementById("idDepreciationInput").value;
 
-    const inventory = {
+    const inventoryList = {
         formStatus: formStatus,
         label: label,
         serialNumber: serialNumber,
@@ -42,26 +45,34 @@ function saveInventory(){
         deprecationInput: deprecation,
         validationEndDate: validationEndDate,
     }
+   /* for (let i = 0; i < inventoryList ; i ++){
 
-    if (localStorage.getItem(inventory) != 0){
+    }*/
+    //not finished
+    if (localStorage.getItem(inventoryList) != 0){
         console.log("INNNNNventory");
 
-    window.localStorage.setItem('Inventory', JSON.stringify(inventory));
-    let inventoryList = [inventory];
-    console.log(inventory);
-    console.log("the list",inventoryList);
+    window.localStorage.setItem('Inventory', JSON.stringify(inventoryList));
+    let itemList = [inventoryList];
+    console.log(inventoryList);
+    console.log("the list",itemList);
+    //let inventoryList = [];
+    let inventoryList = JSON.parse(localStorage.getItem('Inventory'));
+    let size = Object.keys(oldInventory).length;
+    console.log("size is: ", size);
+
     let t = '<tbody>';
-    for(let i = 0; i < inventoryList.length; i++){
+    for(let i = 0; i < itemList.length; i++){
         t+= '<tr>';
-        t+= '<td class="ml-4">' + inventoryList[i].formStatus + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].label + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].serialNumber + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].type + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].purchaseDate + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].iprice + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].formBookCategory + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].deprecationInput + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].validationEndDate + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].formStatus + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].label + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].serialNumber + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].type + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].purchaseDate + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].iprice + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].formBookCategory + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].deprecationInput + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].validationEndDate + '</td>';
         t+='</tr>';
 
     }
@@ -72,21 +83,21 @@ function saveInventory(){
 
 function showInventory() {
     let oldInventory = JSON.parse(localStorage.getItem('Inventory'));
-    let inventoryList = [oldInventory];
+    let itemList = [oldInventory];
     console.log(oldInventory);
-    console.log("the list",inventoryList);
+    console.log("the list",itemList);
     let t = '<tbody>';
-    for(let i = 0; i < inventoryList.length; i++){
+    for(let i = 0; i < itemList.length; i++){
         t+= '<tr>';
-        t+= '<td class="ml-4">' + inventoryList[i].formStatus + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].label + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].serialNumber + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].type + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].purchaseDate + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].iprice + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].formBookCategory + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].deprecationInput + '</td>';
-        t+= '<td class="ml-4">' + inventoryList[i].validationEndDate + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].formStatus + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].label + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].serialNumber + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].type + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].purchaseDate + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].iprice + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].formBookCategory + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].deprecationInput + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].validationEndDate + '</td>';
         t+='</tr>';
 
     }
@@ -135,8 +146,9 @@ function inputTranslation() {
 
 function initInventory(){
     let inventoryTable = document.getElementById('inventoryTable');
-    let oldInventory = JSON.parse(localStorage.getItem('Inventory'));
-    if (!oldInventory || oldInventory.length == 0){
+    //inventoryList
+    let inventoryList = JSON.parse(localStorage.getItem('Inventory'));
+    if (!inventoryList || inventoryList.length == 0){
         inventoryTable.className = 'd-block' ;
         console.log('table is empty');
     }
@@ -415,103 +427,5 @@ function refresh(){
     else {
         return false;
     }
-    //Person
-    const tableIsEmpty = document.getElementById("tableIsEmpty");
-    function readFormPersonData(){
-        console.log("readFormPersonData")
-        var formData = {};
-        formData ["pLastName"] = document.getElementById("pLastName").value;
-        formData ["pFirstName"] = document.getElementById("pFirstName").value;
-        formData ["pPersonalNumber"] = document.getElementById("pPersonalNumber").value;
-        formData ["pEmail"] = document.getElementById("pEmail").value;
-        return formData;
-    }
-    var old_data = JSON.parse(localStorage.getItem('data'));
-    old_data.push(new_data);
-    localStorage.setItem('data', JSON.stringify(old_data));
-//Insert data from Person
-    function insertNewRecord(data){
-        var table = document.getElementById("pStoreList").getElementsByTagName('tbody')[0];
-        var newRow = table.insertRow(table.length);
-        var cell1 = newRow.insertCell(0);
-        cell1.innerHTML = data.pLastName;
-        var cell2 = newRow.insertCell(1);
-        cell2.innerHTML = data.pFirstName;
-        var cell3 = newRow.insertCell(2);
-        cell3.innerHTML = data.pPersonalNumber;
-        var cell4 = newRow.insertCell(3);
-        cell4.innerHTML = data.pEmail;
-        var cell5 = newRow.insertCell(4);
-        cell5.innerHTML = `<button onClick='editPerson(this)'>bearbeiten</button> <button onClick='deletePerson(this.pStoreList)'>löchen</button>`
-    }
-    function initPerson(){
-        //localstorage auslesen
-        let personList = JSON.parse(localStorage.getItem('personList'));
-        console.log(JSON.stringify(personList));
-        // wenn:  Personenliste == leer
-        // note(text):flag.. or tooltip wird and hidden div mit hinweiß
-        //error handling
-        if (!personList || personList.length == 0){
-            tableIsEmpty.style.display = 'block' ;
-            console.log('table is empty');
-        }
-        // sonst: neue Reihe zufügen für jeden Eintrag
-        else {
-            console.log('building a new row');
-            //insertNewRecord(data);
-            for (let i=0;i<personList.length;i++) {
-                insertNewRecord(personList[i]);
-                console.log(personList[i]);
-            }
-        }
-        // alert: consol.log function-validation.
-        //
-        console.log("function initPerson")
-    }
-    function savePerson(){
-        let personList = JSON.parse(localStorage.getItem('personList'));
-        console.log(JSON.stringify(personList));
-        var pLastName = document.getElementById("pLastName").value.trim();
-        var pFirstName = document.getElementById("pFirstName").value.trim();
-        var pPersonalNumber = document.getElementById("pPersonalNumber").value.trim();
-        var pEmail = document.getElementById("pEmail").value.trim();
-        //counter for itemID
-        var personItemID = localStorage.getItem('counter');
-        if (personItemID === null) {
-            personItemID = 0;
-        } else {
-            personItemID++;
-        }
-        localStorage.setItem("counter", personItemID);
-        console.log("Storage Key: ", personItemID);
-        //storing as an object
-        let personItem = {
-            personItemID: personItemID,
-            pLastName: pLastName,
-            pFirstName: pFirstName,
-            pPersonalNumber: pPersonalNumber,
-            pEmail: pEmail
-        };
-        // wenn:  Personenliste == leer
-        // note(text):flag.. or tooltip wird and hidden div mit hinweiß
-        //error handling
-        if (!personList || personList.length == 0){
-            personList = [personItem];
-        }
-        // sonst: neue Reihe zufügen für jeden Eintrag
-        else {
-            console.log('building a new row');
-            //insertNewRecord(data);
-            personList.push(personItem);
-        }
-        localStorage.setItem("personList",JSON.stringify(personList));
-        //eingabe validierung
-        //Localstorage auslesen
-        //push auf die Liste und nicht neu erstellen
-        //die Liste ist am besten sortiert (array) nach name
-        // in localstorage speichern
-        //Tsbelle aktualiesieren
-    }
-    /*function deletePerson(/!*parameter: ID. wird nach ID gelöcht*!/){
-    }*/
+
 }
