@@ -4,7 +4,7 @@ Global Section
  */
 const tableIsEmpty = document.getElementById("tableIsEmpty");
 var old_data = JSON.parse(localStorage.getItem('data'));
-old_data.push(new_data);
+//old_data.push(new_data);
 localStorage.setItem('data', JSON.stringify(old_data));
 
 //--------------------------------------------------------------------------------
@@ -18,8 +18,10 @@ function readFormPersonData(){
     formData ["pFirstName"] = document.getElementById("pFirstName").value;
     formData ["pPersonalNumber"] = document.getElementById("pPersonalNumber").value;
     formData ["pEmail"] = document.getElementById("pEmail").value;
+    console.log("this is formData: ",formData);
     return formData;
 }
+    console.log("form Data: ", readFormPersonData());
 
 //--------------------------------------------------------------------------------
 //Insert data from Person
@@ -109,6 +111,18 @@ function savePerson(){
     //die Liste ist am besten sortiert (array) nach name
     // in localstorage speichern
     //Tsbelle aktualiesieren
+
+    // das ist nur ein test
+    let items = [];
+    let item1 = { i:1 };
+    items.push(item1);
+    localStorage.setItem("items", JSON.stringify(items));
+    let stored = JSON.parse(localStorage.getItem("items"));
+    let item2 = { i:2 };
+    stored.push(item2);
+    localStorage.setItem("items",JSON.stringify(stored));
+    let result = JSON.parse(localStorage.getItem("items"));
+    console.log(result,items,item1,item2);
 }
 /*function deletePerson(/!*parameter: ID. wird nach ID gelöcht*!/){
 }*/

@@ -32,8 +32,8 @@
             <form class="needs-validation" novalidate>
                 <div class="form-row">
                     <div class="col-md-6">
-                        <label for="idFormStatus">Status</label>
-                        <select class="form-control" name="formStatus" id="idFormStatus" onchange="refreshForm()">
+                        <label for="idStatus">Status</label>
+                        <select class="form-control" name="status" id="idStatus" onchange="refreshForm()">
                             <option value="Aktiv">Aktiv</option>
                             <option value="Ausgebucht">Ausgebucht</option>
                         </select>
@@ -116,8 +116,8 @@
                         <button class="btn btn-primary" type="button" onclick="refresh();">Berechnen</button>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="formBookCategory">Abschreibskategorie</label>
-                        <input class="form-control" type="text" readonly name="editedName" id="formBookCategory" value="GWG">
+                        <label for="bookingCategory">Abschreibskategorie</label>
+                        <input class="form-control" type="text" readonly name="editedName" id="bookingCategory" value="GWG">
                     </div>
                 </div>
                 <div class="form-row" id="rowDepreciation">
@@ -182,8 +182,8 @@
     <div class="tab-pane fade" id="v-pills-location" role="tabpanel" aria-labelledby="v-pills-location-tab">
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label for="formLocation">Ort</label>
-                <select class="form-control" id="formLocation">
+                <label for="locationList">Ort</label>
+                <select class="form-control" id="locationList">
                     <option>person 1</option>
                     <option>person 2</option>
                     <option>person 3</option>
@@ -193,7 +193,7 @@
     </div>
     <div class="tab-pane fade" id="v-pills-person" role="tabpanel" aria-labelledby="v-pills-person-tab">
         <div class="container">
-            <form class="store-form" autocomplete="off" onsubmit="onpFormSubmit()" id="personForm">
+            <form class="store-form" autocomplete="off" onsubmit="readFormPersonData()" id="personForm">
                 <div class="form-row justify-content-center">
                     <div class="form-group col-md-3">
                         <label for="formPerson">Person</label>
@@ -254,10 +254,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+
 <script src="app.js"></script>
-    <script src="person.js"></script>
-    <script src="inventory.js"></script>
-    <script src="location.js"></script>
+<script src="person.js"></script>
+<script src="inventory.js"></script>
+<script src="location.js"></script>
 </body>
 </html>
 
