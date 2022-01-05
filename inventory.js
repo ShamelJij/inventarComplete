@@ -1,3 +1,37 @@
+/*
+ - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                        time: 1:04 PM | name: showInventory | path: C:\deltastone\shamel-praktikum\inventory.js
+ - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+function showInventory() {
+    let oldInventory = JSON.parse(localStorage.getItem('inventoryList'));
+    let itemList = [oldInventory];
+    console.log(oldInventory);
+    console.log("the list",itemList);
+    let t = '<tbody>';
+    for(let i = 0; i < itemList.length; i++){
+        t+= '<tr>';
+        t+= '<td class="ml-4">' + itemList[i].status + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].label + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].serialNumber + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].type + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].purchaseDate + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].price + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].bookingCategory + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].deprecationInput + '</td>';
+        t+= '<td class="ml-4">' + itemList[i].validationEndDate + '</td>';
+        t+='</tr>';
+
+    }
+    t+= '</tbody>';
+    document.getElementById('inventoryTable').innerHTML= t;
+}
+
+/*
+ - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                        time: 12:55 PM | name: saveInventory | path: C:\deltastone\shamel-praktikum\inventory.js
+ - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
 //saving in localStorage
 function saveInventory(){
     /*
@@ -30,7 +64,7 @@ function saveInventory(){
     let price = document.getElementById("idPrice").value;
     let bookingCategory = document.getElementById("bookingCategory").value;
     let deprecation = document.getElementById("idDepreciationInput").value;
-    let validationEndDate = document.getElementById("idDepreciationInput").value;
+    let validationEndDate = document.getElementById("validationEndDate").value;
 
     const inventoryList = {
         status: status,
@@ -58,8 +92,8 @@ function saveInventory(){
         console.log(inventoryList);
         console.log("the list",itemList);
         let inventoryListArray = [inventoryList];
-        let inventoryList = JSON.parse(localStorage.getItem('inventoryList'));
-        let size = Object.keys(oldinventoryList).length;
+        let inventory = JSON.parse(localStorage.getItem('inventoryList'));
+        let size = Object.keys(inventoryList).length;
         console.log("size is: ", size);
 
         let t = '<tbody>';
@@ -79,32 +113,12 @@ function saveInventory(){
         }
         t+= '</tbody>';
         document.getElementById('inventoryListTable').innerHTML= t;
+    } else {
+        showInventory();
     }
 }
 
-function showInventory() {
-    let oldInventory = JSON.parse(localStorage.getItem('inventoryList'));
-    let itemList = [oldInventory];
-    console.log(oldInventory);
-    console.log("the list",itemList);
-    let t = '<tbody>';
-    for(let i = 0; i < itemList.length; i++){
-        t+= '<tr>';
-        t+= '<td class="ml-4">' + itemList[i].status + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].label + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].serialNumber + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].type + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].purchaseDate + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].price + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].bookingCategory + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].deprecationInput + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].validationEndDate + '</td>';
-        t+='</tr>';
 
-    }
-    t+= '</tbody>';
-    document.getElementById('inventoryTable').innerHTML= t;
-}
 function dateChangeHandler(){
     let g = document.getElementById("idPurchaseDate").className;
     g = g.replace('is-invalid','');
