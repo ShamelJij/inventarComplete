@@ -9,7 +9,7 @@ localStorage.setItem('data', JSON.stringify(old_data));
 
 /*
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                        time: 10:44 AM | name: readFormPersonData | path: C:\deltastone\shamel-praktikum\person.js
+        date: 1/5/2022 | time: 4:16 PM | name: readFormPersonData | path: C:\deltastone\shamel-praktikum\person.js
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 /*
@@ -29,7 +29,7 @@ function readFormPersonData(){
 
 /*
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                        time: 10:45 AM | name: insertNewRecord | path: C:\deltastone\shamel-praktikum\person.js
+        date: 1/5/2022 | time: 4:16 PM | name: insertNewRecord | path: C:\deltastone\shamel-praktikum\person.js
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 //Insert data from Person
@@ -45,12 +45,12 @@ function insertNewRecord(data){
     let cell4 = newRow.insertCell(3);
     cell4.innerHTML = data.pEmail;
     let cell5 = newRow.insertCell(4);
-    cell5.innerHTML = `<button onClick='editPerson(this)'>bearbeiten</button> <button onClick='deletePerson(this.pStoreList)'>löchen</button>`
+    cell5.innerHTML = `<button onClick='editPerson(this)' class="btn btn-success">bearbeiten</button> <button onClick='deletePerson(this.pStoreList)' class="btn btn-danger">löchen</button>`
 }
 
 /*
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                        time: 10:45 AM | name: initPerson | path: C:\deltastone\shamel-praktikum\person.js
+        date: 1/5/2022 | time: 4:16 PM | name: initPerson | path: C:\deltastone\shamel-praktikum\person.js
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 function initPerson(){
@@ -81,7 +81,7 @@ function initPerson(){
 
 /*
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                        time: 10:45 AM | name: savePerson | path: C:\deltastone\shamel-praktikum\person.js
+        date: 1/5/2022 | time: 4:15 PM | name: savePerson | path: C:\deltastone\shamel-praktikum\person.js
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 function savePerson(){
