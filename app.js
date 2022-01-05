@@ -1,3 +1,6 @@
+
+let j = document.lastModified;
+console.log(j);
 //saving in localStorage
 function saveInventory(){
 /*
@@ -118,7 +121,7 @@ function dateChangeHandler(){
 
 function inputTranslation() {
     // "Bezeichnung", "Seriennummer", "Typ" die vorferen und hinteren Leerzeichen entfernen
-    //Bezeichnung
+    //Bezeichnung gittest
     let label = document.getElementById('idLabel').value;
 
     label = label.replace(/\s+/g," ");
