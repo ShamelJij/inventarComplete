@@ -7,7 +7,11 @@ var old_data = JSON.parse(localStorage.getItem('data'));
 //old_data.push(new_data);
 localStorage.setItem('data', JSON.stringify(old_data));
 
-//--------------------------------------------------------------------------------
+/*
+ - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                        time: 10:44 AM | name: readFormPersonData | path: C:\deltastone\shamel-praktikum\person.js
+ - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
 /*
 Was macht das ...
  */
@@ -23,7 +27,11 @@ function readFormPersonData(){
 }
     console.log("form Data: ", readFormPersonData());
 
-//--------------------------------------------------------------------------------
+/*
+ - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                        time: 10:45 AM | name: insertNewRecord | path: C:\deltastone\shamel-praktikum\person.js
+ - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
 //Insert data from Person
 function insertNewRecord(data){
     let table = document.getElementById("pStoreList").getElementsByTagName('tbody')[0];
@@ -40,7 +48,11 @@ function insertNewRecord(data){
     cell5.innerHTML = `<button onClick='editPerson(this)'>bearbeiten</button> <button onClick='deletePerson(this.pStoreList)'>löchen</button>`
 }
 
-//--------------------------------------------------------------------------------
+/*
+ - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                        time: 10:45 AM | name: initPerson | path: C:\deltastone\shamel-praktikum\person.js
+ - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
 function initPerson(){
     //localstorage auslesen
     let personList = JSON.parse(localStorage.getItem('personList'));
@@ -67,7 +79,11 @@ function initPerson(){
     console.log("function initPerson")
 }
 
-//--------------------------------------------------------------------------------
+/*
+ - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                        time: 10:45 AM | name: savePerson | path: C:\deltastone\shamel-praktikum\person.js
+ - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
 function savePerson(){
     let personList = JSON.parse(localStorage.getItem('personList'));
     console.log(JSON.stringify(personList));
@@ -126,3 +142,4 @@ function savePerson(){
 }
 /*function deletePerson(/!*parameter: ID. wird nach ID gelöcht*!/){
 }*/
+

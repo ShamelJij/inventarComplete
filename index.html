@@ -27,7 +27,7 @@
         </div>
     </nav>
     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-        <div class="containter text-center mb-3"><h1>Inventar</h1></div>
+        <div class="container text-center mb-3"><h1>Inventar</h1></div>
         <div class="container">
             <form class="needs-validation" novalidate>
                 <div class="form-row">
@@ -45,16 +45,16 @@
                 </div>
                 <div class="form-row" id="formEndDate">
                     <div class="col-md-3 mb-3">
-                            <label for="idDeprecationDate">Datum abgebucht</label>
-                            <input type="date" class="form-control" id="idDeprecationDate" min="2018-01-01" required>
-                            <div class="valid-feedback">
-                                Danke!
-                            </div>
-                            <div class="invalid-feedback">
-                                Bitte Datum eingeben!
-                            </div>
+                        <label for="idDeprecationDate">Datum abgebucht</label>
+                        <input type="date" class="form-control" id="idDeprecationDate" min="2018-01-01" required>
+                        <div class="valid-feedback">
+                            Danke!
+                        </div>
+                        <div class="invalid-feedback">
+                            Bitte Datum eingeben!
                         </div>
                     </div>
+                </div>
                 <div class="form-row">
                     <div class="col-md-3 mb-3">
                         <label for="idLabel">Bezeichnung</label>
@@ -177,7 +177,6 @@
                 </tbody>
             </table>
         </div>
-        </div>
     </div>
     <div class="tab-pane fade" id="v-pills-location" role="tabpanel" aria-labelledby="v-pills-location-tab">
         <div class="form-row">
@@ -225,14 +224,14 @@
                         <p>Tabelle ist leider noch leer</p>
                     </div>
                     <div class="form-group col-12 text-center">
-                        <form  class="submit-form">
+                        <form class="submit-form">
                             <input type="button"  value="Speichern" onclick="savePerson()" class="container-main-button">
                             <input type="reset" value="Zurücksetzen" class="container-main-button">
                         </form>
                     </div>
                 </div>
             </form>
-        <div/>
+        </div>
         <div class="container">
             <table class="table table-striped" id="pStoreList">
                 <thead>
@@ -249,11 +248,13 @@
             </table>
         </div>
     </div>
+    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+        <p>under construction</p>
     </div>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
 
 <script src="app.js"></script>
 <script src="person.js"></script>

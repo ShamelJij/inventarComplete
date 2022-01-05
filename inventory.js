@@ -47,7 +47,10 @@ function saveInventory(){
 
      }*/
     //not finished
+
     if (localStorage.getItem(inventoryList) != 0){
+
+
         console.log("INNNNNventory");
 
         window.localStorage.setItem('inventoryList', JSON.stringify(inventoryList));

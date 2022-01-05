@@ -1,7 +1,7 @@
 
 h1{
     text-align: center;
-    color: var(--fontcolor);
+    /*color: var(--fontcolor);*/
 }
 #bookingDuration {
     display: none;
