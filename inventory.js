@@ -395,6 +395,18 @@ DIESE Funktion macht nur folgend und sonst nichts!:
 - Ein und Ausblenden von Designelementen. SONST NICHTS!
  */
 function refreshForm(){
+    //zuletzt bearbeitet Feld
+    let lastModifiedValue = [document.lastModified].toString();
+    let lastModifiedObj = {
+        day: lastModifiedValue.split('/')[1],
+        month: lastModifiedValue.split('/')[0],
+        year: lastModifiedValue.split('/')[2].split(' ')[0],
+        time: lastModifiedValue.split('/')[2].split(' ')[1]
+    };
+    let lastModified = 'Datum: ' + lastModifiedObj.day + '.' + lastModifiedObj.month + '.' + lastModifiedObj.year + ' - Zeit: ' + lastModifiedObj.time;
+    document.getElementById('edited').value = lastModified;
+    console.log('last modi: ', document.lastModified);
+
     console.log('refreshForm is on');
     initInventory();
 
