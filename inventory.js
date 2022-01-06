@@ -33,22 +33,23 @@ function showInventory() {
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 //saving in localStorage
+function getInputInventoy(){
+    let inventoryInput = {};
+
+    inventoryInput ["status"] = document.getElementById("idStatus").value;
+    inventoryInput ["label"] = document.getElementById("idLabel").value;
+    inventoryInput ["serialNumber"] = document.getElementById("idSerialNumber").value;
+    inventoryInput ["type"] = document.getElementById("idType").value;
+    inventoryInput ["purchaseDate"] = document.getElementById("idPurchaseDate").value;
+    inventoryInput ["price"] = document.getElementById("idPrice").value;
+    inventoryInput ["bookingCategory"] = document.getElementById("bookingCategory").value;
+    inventoryInput ["deprecation"] = document.getElementById("idDepreciationInput").value;
+    inventoryInput ["validationEndDate"] = document.getElementById("validationEndDate").value;
+    console.log("inventoryInput: ",inventoryInput);
+}
 function saveInventory(){
-    /*
-        function getInputInventoy(){
-            let fromInput = {};
-            fromInput ["status"] = document.getElementById("idStatus").value;
-            fromInput ["label"] = document.getElementById("idLabel").value;
-            fromInput ["serialNumber"] = document.getElementById("idSerialNumber").value;
-            fromInput ["type"] = document.getElementById("idType").value;
-            fromInput ["purchaseDate"] = document.getElementById("idPurchaseDate").value;
-            fromInput ["price"] = document.getElementById("idPrice").value;
-            fromInput ["bookingCategory"] = document.getElementById("bookingCategory").value;
-            fromInput ["deprecation"] = document.getElementById("idDepreciationInput").value;
-            fromInput ["validationEndDate"] = document.getElementById("idDepreciationInput").value;
-            return fromInput;
-        }
-        console.log("fromInput: ",fromInput);*/
+    getInputInventoy();
+
     //showing the table incase it's not visible
     let inventoryTable = document.getElementById('inventoryTable');
     inventoryTable.className += "d-block";
