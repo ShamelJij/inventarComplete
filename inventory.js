@@ -402,9 +402,9 @@ function refreshForm(){
         day: lastModifiedValue.split('/')[1],
         month: lastModifiedValue.split('/')[0],
         year: lastModifiedValue.split('/')[2].split(' ')[0],
-        time: lastModifiedValue.split('/')[2].split(' ')[1]
+        time: lastModifiedValue.split('/')[2].split(' ')[1].split(':')[0] + ':' + lastModifiedValue.split('/')[2].split(' ')[1].split(':')[1]
     };
-    let lastModified = 'Datum: ' + lastModifiedObj.day + '.' + lastModifiedObj.month + '.' + lastModifiedObj.year + ' - Zeit: ' + lastModifiedObj.time;
+    let lastModified = 'Datum: ' + lastModifiedObj.day + '.' + lastModifiedObj.month + '.' + lastModifiedObj.year + ' - Uhr: ' + lastModifiedObj.time;
     document.getElementById('edited').value = lastModified;
     console.log('last modi: ', document.lastModified);
 

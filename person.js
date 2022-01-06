@@ -49,7 +49,7 @@ function insertNewRecord(personList){
                             <button onClick='editPerson(this)' class="btn btn-secondary">bearbeiten</button> <button onClick='deletePerson(this.idPersonList)' class="btn btn-danger">löchen</button>
                        </div>`;
     let cell6 = newRow.insertCell(5);
-    cell6.innerHTML = `<i>&#x1F517;</i>`;
+    cell6.innerHTML = `<i class="fa fa-clone" style="font-size:24px"></i>`;
 }
 
 /*
