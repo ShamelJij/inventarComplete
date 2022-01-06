@@ -3,9 +3,9 @@
 Global Section
  */
 const tableIsEmpty = document.getElementById("tableIsEmpty");
-var old_data = JSON.parse(localStorage.getItem('data'));
+let saved_person = JSON.parse(localStorage.getItem('personList'));
 //old_data.push(new_data);
-localStorage.setItem('data', JSON.stringify(old_data));
+localStorage.setItem('personList', JSON.stringify(saved_person));
 
 /*
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -33,19 +33,19 @@ function readFormPersonData(){
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 //Insert data from Person
-function insertNewRecord(data){
-    let table = document.getElementById("pStoreList").getElementsByTagName('tbody')[0];
+function insertNewRecord(personList){
+    let table = document.getElementById("idPersonList").getElementsByTagName('tbody')[0];
     let newRow = table.insertRow(table.length);
     let cell1 = newRow.insertCell(0);
-    cell1.innerHTML = data.pLastName;
+    cell1.innerHTML = personList.pLastName;
     let cell2 = newRow.insertCell(1);
-    cell2.innerHTML = data.pFirstName;
+    cell2.innerHTML = personList.pFirstName;
     let cell3 = newRow.insertCell(2);
-    cell3.innerHTML = data.pPersonalNumber;
+    cell3.innerHTML = personList.pPersonalNumber;
     let cell4 = newRow.insertCell(3);
-    cell4.innerHTML = data.pEmail;
+    cell4.innerHTML = personList.pEmail;
     let cell5 = newRow.insertCell(4);
-    cell5.innerHTML = `<button onClick='editPerson(this)' class="btn btn-success">bearbeiten</button> <button onClick='deletePerson(this.pStoreList)' class="btn btn-danger">löchen</button>`
+    cell5.innerHTML = `<button onClick='editPerson(this)' class="btn btn-success">bearbeiten</button> <button onClick='deletePerson(this.idPersonList)' class="btn btn-danger">löchen</button>`
 }
 
 /*
@@ -68,7 +68,7 @@ function initPerson(){
     // sonst: neue Reihe zufügen für jeden Eintrag
     else {
         console.log('building a new row');
-        //insertNewRecord(data);
+        //insertNewRecord(personList);
         for (let i=0;i<personList.length;i++) {
             insertNewRecord(personList[i]);
             console.log(personList[i]);
@@ -117,7 +117,7 @@ function savePerson(){
     // sonst: neue Reihe zufügen für jeden Eintrag
     else {
         console.log('building a new row');
-        //insertNewRecord(data);
+        //insertNewRecord(personList);
         personList.push(personItem);
     }
     localStorage.setItem("personList",JSON.stringify(personList));
