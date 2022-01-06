@@ -46,8 +46,10 @@ function insertNewRecord(personList){
     cell4.innerHTML = personList.pEmail;
     let cell5 = newRow.insertCell(4);
     cell5.innerHTML = `<div class="text-center">
-                            <button onClick='editPerson(this)' class="btn btn-success">bearbeiten</button> <button onClick='deletePerson(this.idPersonList)' class="btn btn-danger">löchen</button>
-                       </div>`
+                            <button onClick='editPerson(this)' class="btn btn-secondary">bearbeiten</button> <button onClick='deletePerson(this.idPersonList)' class="btn btn-danger">löchen</button>
+                       </div>`;
+    let cell6 = newRow.insertCell(5);
+    cell6.innerHTML = `<i>&#x1F517;</i>`;
 }
 
 /*
