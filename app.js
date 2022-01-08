@@ -15,13 +15,28 @@ function setFormLocalStorage(){
     console.log(formList);
 } else {
     let savedData = JSON.parse(localStorage.getItem("FormData"));
+    let savedDataID = savedData.length;
     savedData.push(readFormData());
     localStorage.setItem("FormData",JSON.stringify(savedData));
-    console.log("ID: ",savedData.length);
+    console.log("ID: ",savedDataID);
 }
 
 }
 function saveForm(){
     readFormData();
     setFormLocalStorage();
+}
+function viewID(){
+    let showID = document.getElementById("showID").innerHTML;
+    let savedDataID = JSON.parse(localStorage.getItem("FormData")).length;
+    let savedData = JSON.parse(localStorage.getItem("FormData"));
+    let formID = document.getElementById("idView").value;
+    let showIDvalue = JSON.stringify(savedData[formID - 1]);
+    if(savedDataID == null)
+    { 
+        showID = "not saved!!";
+    } else {
+        document.getElementById("showID").innerHTML = showIDvalue;
+        console.log("ID :",showIDvalue);
+    }
 }
