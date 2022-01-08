@@ -51,6 +51,6 @@ function deleteID(){
         document.getElementById("showID").innerHTML = "Item deleted: " + showIDvalue;
         let resultData = JSON.stringify(savedData.splice(formID - 1,1));
         localStorage.setItem("FormData",JSON.stringify(savedData));
-        console.log("ID :",resultData);
+        console.log("ID :",formID);
     }
 }
