@@ -31,9 +31,9 @@ function viewID(){
     let savedData = JSON.parse(localStorage.getItem("FormData"));
     let formID = document.getElementById("idView").value;
     let showIDvalue = JSON.stringify(savedData[formID - 1]);
-    if(savedDataID == null)
+    if(savedDataID < formID)
     { 
-        showID = "not saved!!";
+        document.getElementById("showID").innerHTML = "not saved!!";
     } else {
         document.getElementById("showID").innerHTML = showIDvalue;
         console.log("ID :",showIDvalue);
@@ -44,13 +44,16 @@ function deleteID(){
     let savedData = JSON.parse(localStorage.getItem("FormData"));
     let formID = document.getElementById("idView").value;
     let showIDvalue = JSON.stringify(savedData[formID - 1]);
-    if(savedDataID == null)
+    if(savedDataID < formID)
     { 
-        showID = "not saved!!";
+        document.getElementById("showID").innerHTML = "not saved!!";
     } else {
         document.getElementById("showID").innerHTML = "Item deleted: " + showIDvalue;
-        let resultData = JSON.stringify(savedData.splice(formID - 1,1));
+        let resultData = savedData.splice(formID - 1,1);
         localStorage.setItem("FormData",JSON.stringify(savedData));
         console.log("ID :",formID);
+        console.log("Deleted :",resultData);
+        console.log(savedDataID);
+        
     }
 }
