@@ -3,7 +3,7 @@ html, body {
   }
 body {
     height: 80%;
-    background: conic-gradient(at 0% 10%, #294e99 15%,#1b315e 30%, #1098ad 40%, #07b39b 50%);
+    background: conic-gradient(at 0% 10%, #153d8d 15%,#1b315e 30%, #0d7585 40%, #088171 50%);
     border: linear-gradient(90deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
 	background-size: 150%;
 	font-family: Arial, Helvetica, sans-serif;
@@ -15,7 +15,8 @@ body {
 	-webkit-animation: animated_text 24s ease-in-out infinite;
   }
   
-  h1, .form-control, label, .btn, .btn:hover, .btn:active, .btn:visited {
+  h1, input[type=text], label, .btn, .btn:hover, .btn:active, .btn:visited {
+      outline: rebeccapurple;
 	background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
     border: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
 	background-size: 300%;
