@@ -6,6 +6,7 @@ const tableIsEmpty = document.getElementById("tableIsEmpty");
 let saved_person = JSON.parse(localStorage.getItem('personList'));
 //old_data.push(new_data);
 localStorage.setItem('personList', JSON.stringify(saved_person));
+console.log('form Data Length: ', saved_person.length);
 
 /*
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -26,6 +27,7 @@ function readFormPersonData(){
     return formData;
 }
     console.log("form Data: ", readFormPersonData());
+
 
 /*
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

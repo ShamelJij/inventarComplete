@@ -45,14 +45,14 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="advanced.settings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\deltastone\shamel-praktikum" />
       <recent name="C:\deltastone\shamel-praktikum\ReferenceSprint7" />
       <recent name="C:\deltastone\shamel-praktikum\old" />
+      <recent name="C:\deltastone\shamel-praktikum" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -69,10 +69,8 @@
       <workItem from="1637742011240" duration="22712000" />
       <workItem from="1638779689890" duration="39000" />
       <workItem from="1638782129303" duration="47598000" />
-      <workItem from="1639643033612" duration="56564000" />
-      <workItem from="1640174565866" duration="8176000" />
-      <workItem from="1641285620069" duration="22067000" />
-      <workItem from="1641455869697" duration="17320000" />
+      <workItem from="1639643033612" duration="258000" />
+      <workItem from="1641888867895" duration="21628000" />
     </task>
     <servers />
   </component>
@@ -95,7 +93,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="sprint8" />
+                        <option value="origin/sprint6" />
                       </list>
                     </value>
                   </entry>
@@ -107,6 +105,18 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/inventory.js</url>
+          <line>64</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
