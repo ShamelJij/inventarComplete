@@ -4,28 +4,101 @@
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 function showInventory() {
-    let oldInventory = JSON.parse(localStorage.getItem('inventoryList'));
-    let itemList = [oldInventory];
-    console.log(oldInventory);
-    console.log("the list",itemList);
+    let inventoryTable = document.getElementById('inventoryTable');
+    let savedInventory = JSON.parse(localStorage.getItem('inventoryList'));
+    let itemList = [savedInventory];
+    console.log("showing table");
     let t = '<tbody>';
     for(let i = 0; i < itemList.length; i++){
-        t+= '<tr>';
-        t+= '<td class="ml-4">' + itemList[i].status + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].label + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].serialNumber + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].type + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].purchaseDate + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].price + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].bookingCategory + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].deprecationInput + '</td>';
-        t+= '<td class="ml-4">' + itemList[i].validationEndDate + '</td>';
+        t+= '<tr class="ml-4">';
+        t+= '<td>' + itemList[i].status + '</td>';
+        t+= '<td>' + itemList[i].label + '</td>';
+        t+= '<td>' + itemList[i].serialNumber + '</td>';
+        t+= '<td>' + itemList[i].type + '</td>';
+        t+= '<td>' + itemList[i].purchaseDate + '</td>';
+        t+= '<td>' + itemList[i].price + '</td>';
+        t+= '<td>' + itemList[i].bookingCategory + '</td>';
+        t+= '<td>' + itemList[i].deprecationInput + '</td>';
+        t+= '<td>' + itemList[i].validationEndDate + '</td>';
         t+='</tr>';
-
-    }
+          }
     t+= '</tbody>';
-    document.getElementById('inventoryTable').innerHTML= t;
+    inventoryTable = t;
+    
 }
+
+function initInventory(){
+    let savedInventory = JSON.parse(localStorage.getItem('inventoryList'));
+    let itemList = [savedInventory];
+    console.log(savedInventory);
+    console.log("the list",itemList);
+    const inventoryTable = document.createElement('table');
+    const inventoryTableHeader = inventoryTable.createTHead();
+    const inventoryHRow = inventoryTableHeader.insertRow(0);
+    
+    const inventoryHCell1 = inventoryHRow.insertCell(0);
+    const inventoryHCell2 = inventoryHRow.insertCell(1);
+    const inventoryHCell3 = inventoryHRow.insertCell(2);
+    const inventoryHCell4 = inventoryHRow.insertCell(3);
+    const inventoryHCell5 = inventoryHRow.insertCell(4);
+    const inventoryHCell6 = inventoryHRow.insertCell(5);
+    const inventoryHCell7 = inventoryHRow.insertCell(6);
+    const inventoryHCell8 = inventoryHRow.insertCell(7);
+    const inventoryHCell9 = inventoryHRow.insertCell(8);
+    
+    const inventoryTableBody = document.createElement('tbody');
+    inventoryTable.appendChild(inventoryTableBody);
+    const inventoryTRow = inventoryTableBody.insertRow(0);
+    
+    const inventoryTCell1 = inventoryTRow.insertCell(0);        
+    const inventoryTCell2 = inventoryTRow.insertCell(1);        
+    const inventoryTCell3 = inventoryTRow.insertCell(2);        
+    const inventoryTCell4 = inventoryTRow.insertCell(3);        
+    const inventoryTCell5 = inventoryTRow.insertCell(4);        
+    const inventoryTCell6 = inventoryTRow.insertCell(5);        
+    const inventoryTCell7 = inventoryTRow.insertCell(6);        
+    const inventoryTCell8 = inventoryTRow.insertCell(7);        
+    const inventoryTCell9 = inventoryTRow.insertCell(8);        
+
+    inventoryHCell1.innerHTML = 'Status'; 
+    inventoryHCell2.innerText = 'label';
+    inventoryHCell3.innerText = 'Serial Number';
+    inventoryHCell4.innerText = 'Type';
+    inventoryHCell5.innerText = 'Purchase Date';
+    inventoryHCell6.innerText = 'Price';
+    inventoryHCell7.innerText = 'Booking Category';
+    inventoryHCell8.innerText = 'Deprecation';
+    inventoryHCell9.innerText = 'Validation Date';
+
+    inventoryTCell1.innerText = 'test1';
+    inventoryTCell2.innerText = 'test2';
+    inventoryTCell3.innerText = 'test3';
+    inventoryTCell4.innerText = 'test4';
+    inventoryTCell5.innerText = 'test5';
+    inventoryTCell6.innerText = 'test6';
+    inventoryTCell7.innerText = 'test7';
+    inventoryTCell8.innerText = 'test8';
+    inventoryTCell9.innerText = 'test9';
+    const mainContainer = document.getElementById('mainContainer');
+    const hrAfterTable = document.getElementById('afterTable');
+   
+    if(!savedInventory || savedInventory.length == 0){
+        console.log("no table");
+        inventoryTable.className = 'd-block';
+        mainContainer.insertBefore(inventoryTable, hrAfterTable);
+        inventoryTable.id = 'inventoryTable';
+        inventoryTable.className = 'table table-striped text-center';        
+        //t+= '<tr><th scope="row">1</th><td class="ml-4">Kein</td><td class="ml-4">gespeicherte</td><td class="ml-4">Data</td><td class="ml-4">auf</td><td class="ml-4">LocalStorage</td></tr>';
+        
+    } else {
+        console.log('building a new row');
+        //insertNewRecord(data);
+        showInventory();
+        console.log("show Inventory");
+    }
+    console.log(inventoryTable);
+}
+
 
 /*
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -160,23 +233,7 @@ function inputTranslation() {
     // Formatieren des Preises im Format: x.xxx,xx
 }
 
-function initInventory(){
-    let inventoryTable = document.getElementById('inventoryTable');
-    //inventoryList
-    let inventoryList = JSON.parse(localStorage.getItem('inventoryList'));
-    if (!inventoryList || inventoryList.length == 0){
-        inventoryTable.className = 'd-block' ;
-        console.log('table is empty');
-    }
-    else {
-        console.log('building a new row');
-        //insertNewRecord(data);
-        showInventory();
-        console.log("show Inventory");
 
-
-    }
-}
 
 function resetInventory() {
     let inventoryTable = document.getElementById('inventoryTable');
@@ -396,6 +453,7 @@ DIESE Funktion macht nur folgend und sonst nichts!:
 - Ein und Ausblenden von Designelementen. SONST NICHTS!
  */
 function refreshForm(){
+
     //zuletzt bearbeitet Feld
     let lastModifiedValue = [document.lastModified].toString();
     let lastModifiedObj = {
