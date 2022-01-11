@@ -28,6 +28,19 @@ function readFormPersonData(){
 }
     console.log("form Data: ", readFormPersonData());
 
+function inputValidationPerson() {
+    let ret = true;
+        let personList = JSON.parse(localStorage.getItem('personList'));
+        let personalNumber = document.getElementById("pPersonalNumber").value;
+        for(let i = 0; i < personList.length; i++){
+            if (personalNumber == personList[i].pPersonalNumber){
+                //hinweis in HTML
+            } else {
+                return false
+            }
+        }
+
+}
 
 /*
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -36,6 +49,7 @@ function readFormPersonData(){
 */
 //Insert data from Person
 function insertNewRecord(personList){
+
     let table = document.getElementById("idPersonList").getElementsByTagName('tbody')[0];
     let newRow = table.insertRow(table.length);
     let cell1 = newRow.insertCell(0);
@@ -48,12 +62,19 @@ function insertNewRecord(personList){
     cell4.innerHTML = personList.pEmail;
     let cell5 = newRow.insertCell(4);
     cell5.innerHTML = `<div class="text-center">
-                            <button onClick='editPerson(this)' class="btn btn-secondary">bearbeiten</button> <button onClick='deletePerson(this.idPersonList)' class="btn btn-danger">löchen</button>
+                            <button onClick="editPerson(' + personList.personItemID + ')" class="btn btn-secondary">bearbeiten</button>
+                            <button onClick="deletePerson(" + personList.personItemID + ")' class='btn btn-danger'>löchen</button>
                        </div>`;
     let cell6 = newRow.insertCell(5);
     cell6.innerHTML = `<i class="fa fa-clone" style="font-size:24px"></i>`;
 }
-
+function clearPersonTable() {
+    const personTable = document.getElementById("personTableBody");
+    personTable.innerHTML = '';
+//    while (personTable.firstChild) {
+  //      personTable.removeChild(personTable.lastChild);
+    //}
+}
 /*
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         date: 1/5/2022 | time: 4:16 PM | name: initPerson | path: C:\deltastone\shamel-praktikum\person.js
@@ -62,22 +83,21 @@ function insertNewRecord(personList){
 function initPerson(){
     //localstorage auslesen
     let personList = JSON.parse(localStorage.getItem('personList'));
-    console.log(JSON.stringify(personList));
 
     // wenn:  Personenliste == leer
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
     //error handling
     if (!personList || personList.length == 0){
-        tableIsEmpty.style.display = 'block' ;
+        tableIsEmpty.style.display = 'd-block' ;
         console.log('table is empty');
     }
     // sonst: neue Reihe zufügen für jeden Eintrag
     else {
         console.log('building a new row');
+        clearPersonTable();
         //insertNewRecord(personList);
         for (let i=0;i<personList.length;i++) {
             insertNewRecord(personList[i]);
-            console.log(personList[i]);
         }
     }
     // alert: consol.log function-validation.
@@ -91,8 +111,8 @@ function initPerson(){
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 function savePerson(){
+    inputValidationPerson();
     let personList = JSON.parse(localStorage.getItem('personList'));
-    console.log(JSON.stringify(personList));
     var pLastName = document.getElementById("pLastName").value.trim();
     var pFirstName = document.getElementById("pFirstName").value.trim();
     var pPersonalNumber = document.getElementById("pPersonalNumber").value.trim();
@@ -133,18 +153,12 @@ function savePerson(){
     //die Liste ist am besten sortiert (array) nach name
     // in localstorage speichern
     //Tsbelle aktualiesieren
+    initPerson();
 
-    // das ist nur ein test
-    let items = [];
-    let item1 = { i:1 };
-    items.push(item1);
-    localStorage.setItem("items", JSON.stringify(items));
-    let stored = JSON.parse(localStorage.getItem("items"));
-    let item2 = { i:2 };
-    stored.push(item2);
-    localStorage.setItem("items",JSON.stringify(stored));
-    let result = JSON.parse(localStorage.getItem("items"));
-    console.log(result,items,item1,item2);
+}
+function deleteRow() {
+    document.getElementById("personTableBody").deleteRow(rowIndex);
+    personTable.innerHTML = ''
 }
 /*function deletePerson(/!*parameter: ID. wird nach ID gelöcht*!/){
 }*/
