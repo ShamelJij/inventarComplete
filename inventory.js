@@ -32,6 +32,7 @@ function initInventory(){
     let itemList = [savedInventory];
     console.log(savedInventory);
     console.log("the list",itemList);
+
     const inventoryTable = document.createElement('table');
     const inventoryTableHeader = inventoryTable.createTHead();
     const inventoryHRow = inventoryTableHeader.insertRow(0);
@@ -84,10 +85,13 @@ function initInventory(){
    
     if(!savedInventory || savedInventory.length == 0){
         console.log("no table");
-        inventoryTable.className = 'd-block';
-        mainContainer.insertBefore(inventoryTable, hrAfterTable);
+        const noTable = document.createElement('div');
+        mainContainer.insertBefore(noTable, hrAfterTable);
+        noTable.className = 'alert alert-danger text-center';
+        noTable.innerHTML = 'Localstorage ist leer!';
+        /* mainContainer.insertBefore(inventoryTable, hrAfterTable);
         inventoryTable.id = 'inventoryTable';
-        inventoryTable.className = 'table table-striped text-center';        
+        inventoryTable.className = 'table thead-light text-center';  */   
         //t+= '<tr><th scope="row">1</th><td class="ml-4">Kein</td><td class="ml-4">gespeicherte</td><td class="ml-4">Data</td><td class="ml-4">auf</td><td class="ml-4">LocalStorage</td></tr>';
         
     } else {
