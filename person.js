@@ -1,4 +1,5 @@
 // Person
+
 /*
 Global Section
  */
@@ -6,7 +7,6 @@ const personTableIsEmpty = document.getElementById("personTableIsEmpty");
 let saved_person = JSON.parse(localStorage.getItem('personList'));
 //old_data.push(new_data);
 localStorage.setItem('personList', JSON.stringify(saved_person));
-console.log('form Data Length: ', saved_person.length);
 
 /*
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -121,27 +121,41 @@ function initPerson(){
     // wenn:  Personenliste == leer
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
     //error handling
-    if (!personList || personList.length == 0){
+    if (!personList || personList.length == 0){;
         let x = personTableIsEmpty.className
+        x = x.replace('d-block','');
+        x = x.replace('d-none','');
         x = x.trim();
-        x = x + 'd-block' ;
+        personTableIsEmpty.className = x + ' d-block' ;
         console.log('table is empty');
 
     }
     // sonst: neue Reihe zufügen für jeden Eintrag
     else {
-        console.log('building a new row');
-        clearPersonTable();
-        //insertNewRecord(personList);
-        for (let i=0;i<personList.length;i++) {
-            insertNewRecord(personList[i]);
-        }
+        fetchPerson();
     }
     // alert: consol.log function-validation.
     //
     console.log("function initPerson")
 }
-
+/*
+ - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        date: 1/12/2022 | time: 1:41 PM | name: fetchPerson | path: C:\deltastone\shamel-praktikum\person.js
+ - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+*/
+function fetchPerson() {
+    let personList = JSON.parse(localStorage.getItem('personList'));
+    let x = personTableIsEmpty.className
+    x = x.replace('d-block','');
+    x = x.replace('d-none','');
+    x = x.trim();
+    personTableIsEmpty.className = x + ' d-none' ;
+    clearPersonTable();
+    //insertNewRecord(personList);
+    for (let i=0;i<personList.length;i++) {
+        insertNewRecord(personList[i]);
+    }
+}
 /*
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         date: 1/5/2022 | time: 4:15 PM | name: savePerson | path: C:\deltastone\shamel-praktikum\person.js
@@ -191,7 +205,7 @@ function savePerson(){
         //die Liste ist am besten sortiert (array) nach name
         // in localstorage speichern
         //Tsbelle aktualiesieren
-        initPerson();
+        fetchPerson();
     }
 
 }
