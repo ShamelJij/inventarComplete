@@ -10,23 +10,23 @@ console.log('form Data Length: ', saved_person.length);
 
 /*
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        date: 1/5/2022 | time: 4:16 PM | name: readFormPersonData | path: C:\deltastone\shamel-praktikum\person.js
+        date: 1/5/2022 | time: 4:16 PM | name: getInputInventory | path: C:\deltastone\shamel-praktikum\person.js
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 /*
 Was macht das ...
  */
-function readFormPersonData(){
-    console.log("readFormPersonData")
-    let formData = {};
-    formData ["pLastName"] = document.getElementById("pLastName").value;
-    formData ["pFirstName"] = document.getElementById("pFirstName").value;
-    formData ["pPersonalNumber"] = document.getElementById("pPersonalNumber").value;
-    formData ["pEmail"] = document.getElementById("pEmail").value;
-    console.log("this is formData: ",formData);
-    return formData;
+function getInputInventory(){
+    console.log("getInputInventory")
+    let personData = {};
+    personData ["pLastName"] = document.getElementById("pLastName").value;
+    personData ["pFirstName"] = document.getElementById("pFirstName").value;
+    personData ["pPersonalNumber"] = document.getElementById("pPersonalNumber").value;
+    personData ["pEmail"] = document.getElementById("pEmail").value;
+    console.log("this is personData: ",personData);
+    return personData;
 }
-    console.log("form Data: ", readFormPersonData());
+    console.log("form Data: ", getInputInventory());
 
 function inputValidationPerson() {
     let ret = true;
@@ -61,10 +61,10 @@ function insertNewRecord(personList){
     let cell4 = newRow.insertCell(3);
     cell4.innerHTML = personList.pEmail;
     let cell5 = newRow.insertCell(4);
-    cell5.innerHTML = `<div class="text-center">
-                            <button onClick="editPerson(' + personList.personItemID + ')" class="btn btn-secondary">bearbeiten</button>
-                            <button onClick="deletePerson(" + personList.personItemID + ")' class='btn btn-danger'>löchen</button>
-                       </div>`;
+    cell5.innerHTML = "<div class=\"text-center\">" +
+                            "<button onClick=\"editPerson(" + personList.personItemID + ")\" class=\"btn btn-secondary\">bearbeiten</button>" +
+                            "<button onClick=\"deletePerson(" + personList.personItemID + ")\" class=\"btn btn-danger\">löchen</button>" +
+"</div>";
     let cell6 = newRow.insertCell(5);
     cell6.innerHTML = `<i class="fa fa-clone" style="font-size:24px"></i>`;
 }
@@ -156,9 +156,16 @@ function savePerson(){
     initPerson();
 
 }
-function deleteRow() {
-    document.getElementById("personTableBody").deleteRow(rowIndex);
-    personTable.innerHTML = ''
+function deletePerson(personID) {
+    let personList = JSON.parse(localStorage.getItem('personList'));
+    for(let i = 0; i < personList.length; i++){
+        if (personID == personList[i].personItemID){
+            personList.splice(i,1);
+            localStorage.setItem('personList', JSON.stringify(personList));
+            break;
+        }
+    }
+    initPerson();
 }
 /*function deletePerson(/!*parameter: ID. wird nach ID gelöcht*!/){
 }*/

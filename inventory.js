@@ -125,29 +125,29 @@ function showInventory() {
 
 
     function getInputInventory() {
-        let inventoryInput = [];
+        let inventoryData = {};
 
-        inventoryInput [0] = document.getElementById("idStatus").value;
-        inventoryInput [1] = document.getElementById("idLabel").value;
-        inventoryInput [2] = document.getElementById("idSerialNumber").value;
-        inventoryInput [3] = document.getElementById("idType").value;
-        inventoryInput [4] = document.getElementById("idPurchaseDate").value;
-        inventoryInput [5] = document.getElementById("idPrice").value;
-        inventoryInput [6] = document.getElementById("bookingCategory").value;
-        inventoryInput [7] = document.getElementById("idDepreciationInput").value;
-        inventoryInput [8] = document.getElementById("validationEndDate").value;
+        /*inventoryData [0] = document.getElementById("idStatus").value;
+        inventoryData [1] = document.getElementById("idLabel").value;
+        inventoryData [2] = document.getElementById("idSerialNumber").value;
+        inventoryData [3] = document.getElementById("idType").value;
+        inventoryData [4] = document.getElementById("idPurchaseDate").value;
+        inventoryData [5] = document.getElementById("idPrice").value;
+        inventoryData [6] = document.getElementById("bookingCategory").value;
+        inventoryData [7] = document.getElementById("idDepreciationInput").value;
+        inventoryData [8] = document.getElementById("validationEndDate").value;*/
 
-        /*inventoryInput ["status"] = document.getElementById("idStatus").value;
-        inventoryInput ["label"] = document.getElementById("idLabel").value;
-        inventoryInput ["serialNumber"] = document.getElementById("idSerialNumber").value;
-        inventoryInput ["type"] = document.getElementById("idType").value;
-        inventoryInput ["purchaseDate"] = document.getElementById("idPurchaseDate").value;
-        inventoryInput ["price"] = document.getElementById("idPrice").value;
-        inventoryInput ["bookingCategory"] = document.getElementById("bookingCategory").value;
-        inventoryInput ["deprecation"] = document.getElementById("idDepreciationInput").value;
-        inventoryInput ["validationEndDate"] = document.getElementById("validationEndDate").value*/;
-        console.log("inventoryInput: ", inventoryInput);
-        return inventoryInput;
+        inventoryData ["status"] = document.getElementById("idStatus").value;
+        inventoryData ["label"] = document.getElementById("idLabel").value;
+        inventoryData ["serialNumber"] = document.getElementById("idSerialNumber").value;
+        inventoryData ["type"] = document.getElementById("idType").value;
+        inventoryData ["purchaseDate"] = document.getElementById("idPurchaseDate").value;
+        inventoryData ["price"] = document.getElementById("idPrice").value;
+        inventoryData ["bookingCategory"] = document.getElementById("bookingCategory").value;
+        inventoryData ["deprecation"] = document.getElementById("idDepreciationInput").value;
+        inventoryData ["validationEndDate"] = document.getElementById("validationEndDate").value;
+        console.log("inventoryData: ", inventoryData);
+        return inventoryData;
     }
 
     /*

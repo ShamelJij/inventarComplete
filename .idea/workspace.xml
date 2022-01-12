@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventory.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/person.js" beforeDir="false" afterPath="$PROJECT_DIR$/person.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +69,7 @@
       <workItem from="1638779689890" duration="39000" />
       <workItem from="1638782129303" duration="47598000" />
       <workItem from="1639643033612" duration="258000" />
-      <workItem from="1641888867895" duration="28695000" />
+      <workItem from="1641888867895" duration="32239000" />
     </task>
     <servers />
   </component>
@@ -104,18 +104,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/inventory.js</url>
-          <line>64</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
