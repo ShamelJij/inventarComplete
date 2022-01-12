@@ -31,8 +31,9 @@ function inputValidationPerson() {
 
     //Personal Nummer Validieren
     let personalNumber = document.getElementById("pPersonalNumber").value;
+    let personID = document.getElementById('saveID');
     for(let i = 0; i < personList.length; i++){
-        if (personalNumber == personList[i].pPersonalNumber){
+        if (personalNumber == personList[i].pPersonalNumber && personList[i].personItemID == personID){
             let x = document.getElementById("pPersonalNumber").className;
             x = x.replace('is-invalid', '');
             x = x.replace('is-valid', '');
@@ -67,7 +68,7 @@ function inputValidationPerson() {
         let email = personList[i].pEmail;
         console.log('pppp',email);
         let personEmail = document.getElementById("pEmail").value;
-        if (personEmail == personList[i].pEmail){
+        if (personEmail == personList[i].pEmail && personList[i].personItemID == personID){
             let m = document.getElementById("pEmail").className;
             m = m.replace('is-invalid', '');
             m = m.replace('is-valid', '');
@@ -206,36 +207,53 @@ function savePerson(){
         let pFirstName = document.getElementById("pFirstName").value.trim();
         let pPersonalNumber = document.getElementById("pPersonalNumber").value.trim();
         let pEmail = document.getElementById("pEmail").value.trim();
-        //counter for itemID
-        let personItemID = localStorage.getItem('counter');
-        if (personItemID === null) {
-            personItemID = 0;
-        } else {
-            personItemID++;
-        }
-        localStorage.setItem("counter", personItemID);
-        console.log("Storage Key: ", personItemID);
+        let personID = document.getElementById("saveID").value;
+
         //storing as an object
         let personItem = {
-            personItemID: personItemID,
             pLastName: pLastName,
             pFirstName: pFirstName,
             pPersonalNumber: pPersonalNumber,
             pEmail: pEmail
         };
-        // wenn:  Personenliste == leer
-        // note(text):flag.. or tooltip wird and hidden div mit hinweiß
-        //error handling
-        if (!personList || personList.length == 0) {
-            personList = []; // [personItem];
-            personList.push(personItem);
-        }
-        // sonst: neue Reihe zufügen für jeden Eintrag
-        else {
-            console.log('building a new row');
-            //insertNewRecord(personList);
-            personList.push(personItem);
-        }
+
+        if (personID == ''){
+
+            console.log('newitem saved');
+            //counter for itemID
+            let personItemID = localStorage.getItem('counter');
+            if (personItemID === null) {
+                personItemID = 0;
+            } else {
+                personItemID++;
+            }
+            localStorage.setItem("counter", personItemID);
+            personItem.personItemID = personItemID;
+            // wenn:  Personenliste == leer
+            // note(text):flag.. or tooltip wird and hidden div mit hinweiß
+            //error handling
+            if (!personList || personList.length == 0) {
+                personList = []; // [personItem];
+                personList.push(personItem);
+            }
+            // sonst: neue Reihe zufügen für jeden Eintrag
+            else {
+                console.log('building a new row');
+                //insertNewRecord(personList);
+                personList.push(personItem);
+            }
+        } else {
+            for (let i = 0; i < personList.length; i++) {
+                if (personList[i].personItemID == personID){
+                    personItem.personItemID = personID;
+                    personList[i] = personItem;
+                    break;
+                    }
+                }
+            }
+
+
+
         localStorage.setItem("personList", JSON.stringify(personList));
         //eingabe validierung
         //Localstorage auslesen
@@ -269,6 +287,7 @@ function editPerson(personID) {
             document.getElementById("pFirstName").value = personList[i].pFirstName;
             document.getElementById("pPersonalNumber").value = personList[i].pPersonalNumber;
             document.getElementById("pEmail").value = personList[i].pEmail;
+            document.getElementById("saveID").value = personList[i].personItemID;
             break;
         }
     }
