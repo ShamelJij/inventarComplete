@@ -30,11 +30,12 @@ function getInputInventory(){
 
 function inputValidationPerson() {
     let ret = true;
-        let personList = JSON.parse(localStorage.getItem('personList'));
+    let personList = JSON.parse(localStorage.getItem('personList'));
+
+        //Personal Nummer Validieren
         let personalNumber = document.getElementById("pPersonalNumber").value;
         for(let i = 0; i < personList.length; i++){
             if (personalNumber == personList[i].pPersonalNumber){
-                console.log('perosn validation');
                 let x = document.getElementById("pPersonalNumber").className;
                 x = x.replace('is-invalid', '');
                 x = x.replace('is-valid', '');
@@ -49,6 +50,26 @@ function inputValidationPerson() {
                 y = y.trim();
                 document.getElementById("pPersonalNumber").className = y + " is-valid";
 
+            }
+            //Personal Nummer Validieren
+            let email = personList[i].pEmail;
+            console.log('pppp',email);
+            let personEmail = document.getElementById("pEmail").value;
+            if (personEmail == personList[i].pEmail){
+                let m = document.getElementById("pEmail").className;
+                m = m.replace('is-invalid', '');
+                m = m.replace('is-valid', '');
+                m = m.trim();
+                document.getElementById("pEmail").className = m + " is-invalid";
+                let y = document.getElementById("pEmail").className;
+                document.getElementById("pEmailIsInValid").innerText = "Email ist schon gespeichert!";
+                ret = false;
+
+            }else {let mf = document.getElementById("pEmail").className;
+                mf = mf.replace('is-invalid', '');
+                mf = mf.replace('is-valid', '');
+                mf = mf.trim();
+                document.getElementById("pEmail").className = mf + " is-valid";
             }
             return ret;
         }
@@ -101,8 +122,11 @@ function initPerson(){
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
     //error handling
     if (!personList || personList.length == 0){
-        personTableIsEmpty.style.display = 'd-block' ;
+        let x = personTableIsEmpty.className
+        x = x.trim();
+        x = x + 'd-block' ;
         console.log('table is empty');
+
     }
     // sonst: neue Reihe zufügen für jeden Eintrag
     else {
@@ -127,12 +151,12 @@ function savePerson(){
     if (inputValidationPerson()) {
 
         let personList = JSON.parse(localStorage.getItem('personList'));
-        var pLastName = document.getElementById("pLastName").value.trim();
-        var pFirstName = document.getElementById("pFirstName").value.trim();
-        var pPersonalNumber = document.getElementById("pPersonalNumber").value.trim();
-        var pEmail = document.getElementById("pEmail").value.trim();
+        let pLastName = document.getElementById("pLastName").value.trim();
+        let pFirstName = document.getElementById("pFirstName").value.trim();
+        let pPersonalNumber = document.getElementById("pPersonalNumber").value.trim();
+        let pEmail = document.getElementById("pEmail").value.trim();
         //counter for itemID
-        var personItemID = localStorage.getItem('counter');
+        let personItemID = localStorage.getItem('counter');
         if (personItemID === null) {
             personItemID = 0;
         } else {
