@@ -13,9 +13,6 @@ localStorage.setItem('personList', JSON.stringify(saved_person));
         date: 1/5/2022 | time: 4:16 PM | name: getInputInventory | path: C:\deltastone\shamel-praktikum\person.js
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-/*
-Was macht das ...
- */
 function getInputInventory(){
     console.log("getInputInventory")
     let personData = {};
@@ -30,50 +27,50 @@ function getInputInventory(){
 
 function inputValidationPerson() {
     let ret = true;
-    let personList = JSON.parse(localStorage.getItem('personList'));
+    let personList = JSON.parse(localStorage.getItem('personList')) || [];
 
+    //Personal Nummer Validieren
+    let personalNumber = document.getElementById("pPersonalNumber").value;
+    for(let i = 0; i < personList.length; i++){
+        if (personalNumber == personList[i].pPersonalNumber){
+            let x = document.getElementById("pPersonalNumber").className;
+            x = x.replace('is-invalid', '');
+            x = x.replace('is-valid', '');
+            x = x.trim();
+            document.getElementById("pPersonalNumber").className = x + " is-invalid";
+            let y = document.getElementById("pPersonalNumber").className;
+            document.getElementById("pPersonalNumberIsInValid").innerText = "die Eingabe soll eindeutig sein!";
+            ret = false;
+        } else {let y = document.getElementById("pPersonalNumber").className;
+            y = y.replace('is-invalid', '');
+            y = y.replace('is-valid', '');
+            y = y.trim();
+            document.getElementById("pPersonalNumber").className = y + " is-valid";
+
+        }
         //Personal Nummer Validieren
-        let personalNumber = document.getElementById("pPersonalNumber").value;
-        for(let i = 0; i < personList.length; i++){
-            if (personalNumber == personList[i].pPersonalNumber){
-                let x = document.getElementById("pPersonalNumber").className;
-                x = x.replace('is-invalid', '');
-                x = x.replace('is-valid', '');
-                x = x.trim();
-                document.getElementById("pPersonalNumber").className = x + " is-invalid";
-                let y = document.getElementById("pPersonalNumber").className;
-                document.getElementById("pPersonalNumberIsInValid").innerText = "die Eingabe soll eindeutig sein!";
-                ret = false;
-            } else {let y = document.getElementById("pPersonalNumber").className;
-                y = y.replace('is-invalid', '');
-                y = y.replace('is-valid', '');
-                y = y.trim();
-                document.getElementById("pPersonalNumber").className = y + " is-valid";
+        let email = personList[i].pEmail;
+        console.log('pppp',email);
+        let personEmail = document.getElementById("pEmail").value;
+        if (personEmail == personList[i].pEmail){
+            let m = document.getElementById("pEmail").className;
+            m = m.replace('is-invalid', '');
+            m = m.replace('is-valid', '');
+            m = m.trim();
+            document.getElementById("pEmail").className = m + " is-invalid";
+            let y = document.getElementById("pEmail").className;
+            document.getElementById("pEmailIsInValid").innerText = "Email ist schon gespeichert!";
+            ret = false;
 
-            }
-            //Personal Nummer Validieren
-            let email = personList[i].pEmail;
-            console.log('pppp',email);
-            let personEmail = document.getElementById("pEmail").value;
-            if (personEmail == personList[i].pEmail){
-                let m = document.getElementById("pEmail").className;
-                m = m.replace('is-invalid', '');
-                m = m.replace('is-valid', '');
-                m = m.trim();
-                document.getElementById("pEmail").className = m + " is-invalid";
-                let y = document.getElementById("pEmail").className;
-                document.getElementById("pEmailIsInValid").innerText = "Email ist schon gespeichert!";
-                ret = false;
-
-            }else {let mf = document.getElementById("pEmail").className;
-                mf = mf.replace('is-invalid', '');
-                mf = mf.replace('is-valid', '');
-                mf = mf.trim();
-                document.getElementById("pEmail").className = mf + " is-valid";
-            }
-            return ret;
+        }else {let mf = document.getElementById("pEmail").className;
+            mf = mf.replace('is-invalid', '');
+            mf = mf.replace('is-valid', '');
+            mf = mf.trim();
+            document.getElementById("pEmail").className = mf + " is-valid";
         }
 
+    }
+    return ret;
 }
 
 /*
@@ -121,6 +118,7 @@ function initPerson(){
     // wenn:  Personenliste == leer
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
     //error handling
+    clearPersonTable();
     if (!personList || personList.length == 0){;
         let x = personTableIsEmpty.className
         x = x.replace('d-block','');
@@ -132,7 +130,17 @@ function initPerson(){
     }
     // sonst: neue Reihe zufügen für jeden Eintrag
     else {
-        fetchPerson();
+        let personList = JSON.parse(localStorage.getItem('personList'));
+        let x = personTableIsEmpty.className
+        x = x.replace('d-block','');
+        x = x.replace('d-none','');
+        x = x.trim();
+        personTableIsEmpty.className = x + ' d-none' ;
+
+        //insertNewRecord(personList);
+        for (let i=0;i<personList.length;i++) {
+            insertNewRecord(personList[i]);
+        }
     }
     // alert: consol.log function-validation.
     //
@@ -143,19 +151,7 @@ function initPerson(){
         date: 1/12/2022 | time: 1:41 PM | name: fetchPerson | path: C:\deltastone\shamel-praktikum\person.js
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-function fetchPerson() {
-    let personList = JSON.parse(localStorage.getItem('personList'));
-    let x = personTableIsEmpty.className
-    x = x.replace('d-block','');
-    x = x.replace('d-none','');
-    x = x.trim();
-    personTableIsEmpty.className = x + ' d-none' ;
-    clearPersonTable();
-    //insertNewRecord(personList);
-    for (let i=0;i<personList.length;i++) {
-        insertNewRecord(personList[i]);
-    }
-}
+
 /*
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         date: 1/5/2022 | time: 4:15 PM | name: savePerson | path: C:\deltastone\shamel-praktikum\person.js
@@ -190,7 +186,8 @@ function savePerson(){
         // note(text):flag.. or tooltip wird and hidden div mit hinweiß
         //error handling
         if (!personList || personList.length == 0) {
-            personList = [personItem];
+            personList = []; // [personItem];
+            personList.push(personItem);
         }
         // sonst: neue Reihe zufügen für jeden Eintrag
         else {
@@ -205,7 +202,7 @@ function savePerson(){
         //die Liste ist am besten sortiert (array) nach name
         // in localstorage speichern
         //Tsbelle aktualiesieren
-        fetchPerson();
+        initPerson();
     }
 
 }
@@ -220,5 +217,20 @@ function deletePerson(personID) {
     }
     initPerson();
 }
-
+function editPerson(personID) {
+    let personList = JSON.parse(localStorage.getItem('personList'));
+    for(let i = 0; i < personList.length; i++){
+        if (personID == personList[i].personItemID){
+            //wenn dateien löchen wollen dann:
+            //personList.splice(i,1);
+            console.log('editPerson', personList[i]);
+            document.getElementById("pLastName").value = personList[i].pLastName;
+            document.getElementById("pFirstName").value = personList[i].pFirstName;
+            document.getElementById("pPersonalNumber").value = personList[i].pPersonalNumber;
+            document.getElementById("pEmail").value = personList[i].pEmail;
+            break;
+        }
+    }
+    //initPerson??
+}
 
