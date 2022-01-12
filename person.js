@@ -2,7 +2,7 @@
 /*
 Global Section
  */
-const tableIsEmpty = document.getElementById("tableIsEmpty");
+const personTableIsEmpty = document.getElementById("personTableIsEmpty");
 let saved_person = JSON.parse(localStorage.getItem('personList'));
 //old_data.push(new_data);
 localStorage.setItem('personList', JSON.stringify(saved_person));
@@ -34,10 +34,23 @@ function inputValidationPerson() {
         let personalNumber = document.getElementById("pPersonalNumber").value;
         for(let i = 0; i < personList.length; i++){
             if (personalNumber == personList[i].pPersonalNumber){
-                //hinweis in HTML
-            } else {
-                return false
+                console.log('perosn validation');
+                let x = document.getElementById("pPersonalNumber").className;
+                x = x.replace('is-invalid', '');
+                x = x.replace('is-valid', '');
+                x = x.trim();
+                document.getElementById("pPersonalNumber").className = x + " is-invalid";
+                let y = document.getElementById("pPersonalNumber").className;
+                document.getElementById("pPersonalNumberIsInValid").innerText = "die Eingabe soll eindeutig sein!";
+                ret = false;
+            } else {let y = document.getElementById("pPersonalNumber").className;
+                y = y.replace('is-invalid', '');
+                y = y.replace('is-valid', '');
+                y = y.trim();
+                document.getElementById("pPersonalNumber").className = y + " is-valid";
+
             }
+            return ret;
         }
 
 }
@@ -88,7 +101,7 @@ function initPerson(){
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
     //error handling
     if (!personList || personList.length == 0){
-        tableIsEmpty.style.display = 'd-block' ;
+        personTableIsEmpty.style.display = 'd-block' ;
         console.log('table is empty');
     }
     // sonst: neue Reihe zufügen für jeden Eintrag
@@ -111,49 +124,51 @@ function initPerson(){
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 function savePerson(){
-    inputValidationPerson();
-    let personList = JSON.parse(localStorage.getItem('personList'));
-    var pLastName = document.getElementById("pLastName").value.trim();
-    var pFirstName = document.getElementById("pFirstName").value.trim();
-    var pPersonalNumber = document.getElementById("pPersonalNumber").value.trim();
-    var pEmail = document.getElementById("pEmail").value.trim();
-    //counter for itemID
-    var personItemID = localStorage.getItem('counter');
-    if (personItemID === null) {
-        personItemID = 0;
-    } else {
-        personItemID++;
+    if (inputValidationPerson()) {
+
+        let personList = JSON.parse(localStorage.getItem('personList'));
+        var pLastName = document.getElementById("pLastName").value.trim();
+        var pFirstName = document.getElementById("pFirstName").value.trim();
+        var pPersonalNumber = document.getElementById("pPersonalNumber").value.trim();
+        var pEmail = document.getElementById("pEmail").value.trim();
+        //counter for itemID
+        var personItemID = localStorage.getItem('counter');
+        if (personItemID === null) {
+            personItemID = 0;
+        } else {
+            personItemID++;
+        }
+        localStorage.setItem("counter", personItemID);
+        console.log("Storage Key: ", personItemID);
+        //storing as an object
+        let personItem = {
+            personItemID: personItemID,
+            pLastName: pLastName,
+            pFirstName: pFirstName,
+            pPersonalNumber: pPersonalNumber,
+            pEmail: pEmail
+        };
+        // wenn:  Personenliste == leer
+        // note(text):flag.. or tooltip wird and hidden div mit hinweiß
+        //error handling
+        if (!personList || personList.length == 0) {
+            personList = [personItem];
+        }
+        // sonst: neue Reihe zufügen für jeden Eintrag
+        else {
+            console.log('building a new row');
+            //insertNewRecord(personList);
+            personList.push(personItem);
+        }
+        localStorage.setItem("personList", JSON.stringify(personList));
+        //eingabe validierung
+        //Localstorage auslesen
+        //push auf die Liste und nicht neu erstellen
+        //die Liste ist am besten sortiert (array) nach name
+        // in localstorage speichern
+        //Tsbelle aktualiesieren
+        initPerson();
     }
-    localStorage.setItem("counter", personItemID);
-    console.log("Storage Key: ", personItemID);
-    //storing as an object
-    let personItem = {
-        personItemID: personItemID,
-        pLastName: pLastName,
-        pFirstName: pFirstName,
-        pPersonalNumber: pPersonalNumber,
-        pEmail: pEmail
-    };
-    // wenn:  Personenliste == leer
-    // note(text):flag.. or tooltip wird and hidden div mit hinweiß
-    //error handling
-    if (!personList || personList.length == 0){
-        personList = [personItem];
-    }
-    // sonst: neue Reihe zufügen für jeden Eintrag
-    else {
-        console.log('building a new row');
-        //insertNewRecord(personList);
-        personList.push(personItem);
-    }
-    localStorage.setItem("personList",JSON.stringify(personList));
-    //eingabe validierung
-    //Localstorage auslesen
-    //push auf die Liste und nicht neu erstellen
-    //die Liste ist am besten sortiert (array) nach name
-    // in localstorage speichern
-    //Tsbelle aktualiesieren
-    initPerson();
 
 }
 function deletePerson(personID) {
@@ -167,6 +182,5 @@ function deletePerson(personID) {
     }
     initPerson();
 }
-/*function deletePerson(/!*parameter: ID. wird nach ID gelöcht*!/){
-}*/
+
 

@@ -72,13 +72,13 @@
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label for="idSerialNumber">Seriennummer</label>
-                        <input type="text" class="form-control" name="serialNumber" id="idSerialNumber" required>
-                        <div class="valid-feedback" id="idSerialNumberIsValid">
-                            Danke!
+                        <label for="idInventorySerialNumber">Seriennummer</label>
+                        <input type="text" class="form-control" name="serialNumber" id="idInventorySerialNumber" required>
+                        <div class="valid-feedback" id="idInventorySerialNumberIsValid">
+                            die Eingabe sind gültig
                         </div>
-                        <div class="invalid-feedback" id="idSerialNumberIsInValid">
-                            Bitte füllen Sie das Feld aus.
+                        <div class="invalid-feedback" id="idInventorySerialNumberIsInValid">
+                            die eingabe muss eindeutig sein!
                         </div>
                     </div>
                     <div class="col-md-3 mb-3">
@@ -185,14 +185,6 @@
             <form class="store-form" autocomplete="off" onsubmit="readFormPersonData()" id="personForm">
                 <div class="form-row justify-content-center">
                     <div class="container text-center mb-3"><h1>&#x1F464;Person</h1></div>
-                    <div class="form-group col-md-3">
-                        <label for="formPerson">Person</label>
-                        <select class="form-control" id="formPerson">
-                            <option>person 1</option>
-                            <option>person 2</option>
-                            <option>person 3</option>
-                        </select>
-                    </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-3">
@@ -206,6 +198,12 @@
                     <div class="form-group col-md-3">
                         <label for="pPersonalNumber">Personalnummer</label>
                         <input class="form-control" type="number" id="pPersonalNumber">
+                        <div class="valid-feedback" id="pPersonalNumberIsValid">
+                            die Eingabe sind gültig
+                        </div>
+                        <div class="invalid-feedback" id="pPersonalNumberIsInValid">
+                            die eingabe muss eindeutig sein!
+                        </div>
                     </div>
                     <div class="form-group col-md-3">
                         <label for="pEmail">E-mail</label>
