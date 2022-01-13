@@ -28,7 +28,6 @@ function showLastModified() {
     };
     let lastModifiedResult = 'Datum: ' + lastModifiedObj.day + '.' + lastModifiedObj.month + '.' + lastModifiedObj.year + ' - Uhr: ' + lastModifiedObj.time;
     document.getElementById('edited').value = lastModifiedResult;
-    console.log('last modi: ', document.lastModified);
 }
 
 /*
@@ -38,14 +37,11 @@ function showLastModified() {
 */
 function showInventory() {
     let savedInventory = JSON.parse(localStorage.getItem('inventoryList'));
-    console.log('Saved Inventory: ', JSON.stringify(savedInventory));
-
     let savedTable = document.getElementById('inventoryTable');
     const mainContainer = document.getElementById('mainContainer');
     const hrAfterTable = document.getElementById('afterTable');
     if (!savedTable) {
         //Table aufbauen
-
         let inventoryTable = document.createElement('table');
         let columnCount = savedInventory[0].length;
         console.log('building a table 1 ',columnCount);
@@ -424,7 +420,6 @@ function showInventory() {
         showLastModified();
         //inventoyList existiert?
         let savedInventory = JSON.parse(localStorage.getItem('inventoryList'));
-        console.log(savedInventory);
         const mainContainer = document.getElementById('mainContainer');
         const hrAfterTable = document.getElementById('afterTable');
         //wenn nein dann noTable dev zeigen
@@ -432,7 +427,6 @@ function showInventory() {
 
             let noTable = document.getElementById('noTable');
             if (!noTable) {
-                console.log("no table");
                 const noTable = document.createElement('div');
                 mainContainer.insertBefore(noTable, hrAfterTable);
                 noTable.className = 'alert alert-danger text-center';
@@ -462,17 +456,13 @@ function showInventory() {
         let price = document.getElementById('idPrice').value;
         //Show booking category
         if (price <= 2000 && price > 0) {
-            console.log('pricevis');
-
             document.getElementById("deprecationInputGroup").className = 'd-none';
             document.getElementById("validationEndDateGroup").className = 'd-none';
         } else if (price <= 0) {
-            console.log('priceinvis');
             document.getElementById("deprecationInputGroup").className = 'd-none';
             document.getElementById("validationEndDateGroup").className = 'd-none';
 
         } else {
-            console.log('priceinvis');
             document.getElementById("deprecationInputGroup").className = 'd-block';
             document.getElementById("validationEndDateGroup").className = 'd-block';
 

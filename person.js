@@ -14,16 +14,13 @@ localStorage.setItem('personList', JSON.stringify(saved_person));
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 function getInputInventory(){
-    console.log("getInputInventory")
     let personData = {};
     personData ["pLastName"] = document.getElementById("pLastName").value;
     personData ["pFirstName"] = document.getElementById("pFirstName").value;
     personData ["pPersonalNumber"] = document.getElementById("pPersonalNumber").value;
     personData ["pEmail"] = document.getElementById("pEmail").value;
-    console.log("this is personData: ",personData);
     return personData;
 }
-    console.log("form Data: ", getInputInventory());
 
 function inputValidationPerson() {
     let ret = true;
@@ -293,4 +290,3 @@ function editPerson(personID) {
     }
     //initPerson??
 }
-
