@@ -20,7 +20,7 @@ function getRanNum1(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     let randomNumber2 = Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
-    document.getElementById('randomNum2').value = randomNumber2;
+    document.getElementById('randomNum2').value = randomNumber2 + '%';
     document.getElementById('num2').innerText = randomNumber2;
     document.getElementById('mnum2').innerText = randomNumber2;
     return randomNumber2; 
