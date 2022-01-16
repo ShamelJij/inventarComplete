@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <!-- CSS file - -->
-    <!-- <link rel="stylesheet" href="style.css">  -->
+    <link rel="stylesheet" href="style.css">
 
     <title>Prozent</title>
   </head>
@@ -19,31 +19,31 @@
     <div class="container">
         <h1 class="linear-wipe text-center my-5">Crazy Prozent</h1>
         <form class="form-row justify-content-center">
-            <div class="col-md col-12 text-center input-group">
-                <h2><label for="randomNum2">Prozent</label></h2>
-                    <input type="text" id="randomNum2" class="form-control" readonly>                
-                    <div class="input-group-append">
-                        <span class="input-group-text">%</span>
-                    </div>                
+            <div class="col-md col-12 text-center">
+                <h2><label for="randomNum2">Prozent %</label></h2>
+                    <input type="text" id="randomNum2" class="form-control text-center" readonly>                               
             </div>
-            <div class="col-md col-12 text-center input-group">
+            <div class="col-md col-12 text-center">
                 <h2><label for="randomNum1">Zahl</label></h2>
-                    <input type="text" id="randomNum1" class="form-control" readonly>
+                    <input type="text" id="randomNum1" class="form-control text-center" readonly>
             </div>
         </form>
             <div class="row mt-3 justify-content-center">
                 <button class="btn btn-primary col-2" onclick="showNum();">Generieren</button>
             </div>
         <form class="form-row mt-3 justify-content-center">
-            <div class="col-2 text-center input-group">
-                <h2><label for="showResult">ID</label></h2>
+            <div class="col-2 text-center">
+                <h2><label for="showResult">Result</label></h2>
                 <input type="text" id="showResult" class="form-control text-center" readonly>
             </div>
         </form>
+        <div class="col text-center mt-5"><h3><span id="num1"></span> ≡ 100</h3></div>
+        <div class="col text-center mt-5"><h3><span id="num3"></span> ≡ <span id="num2"></span></h3></div>
+        <div class="col text-center mt-5"><h3><span id="mnum1"></span> x <span id="mnum2"></span> = 100 x <span id="mnum3"></span></h3></div>
     </div>
     </div>
     <!-- JavaScript files -->
-    <script src="app.js"></script>
+    <script src="./app.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
