@@ -40,6 +40,7 @@ function getRanNum1(min, max) {
         document.getElementById('showResult').value = value;
         document.getElementById('num3').innerText = value;
         document.getElementById('mnum3').innerText = value;
+        document.getElementById('mnum4').innerText = value * 100;
         
 
    }
