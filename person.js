@@ -128,12 +128,10 @@ function insertNewRecord(personList){
     let cell4 = newRow.insertCell(3);
     cell4.innerHTML = personList.pEmail;
     let cell5 = newRow.insertCell(4);
-    cell5.innerHTML = "<div class=\"text-center\">" +
+    cell5.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
                             "<button onClick=\"editPerson(" + personList.personItemID + ")\" class=\"btn btn-secondary\">bearbeiten</button>" +
                             "<button onClick=\"deletePerson(" + personList.personItemID + ")\" class=\"btn btn-danger\">löchen</button>" +
 "</div>";
-    let cell6 = newRow.insertCell(5);
-    cell6.innerHTML = `<i class="fa fa-clone" style="font-size:24px"></i>`;
 }
 function clearPersonTable() {
     const personTable = document.getElementById("personTableBody");
@@ -282,4 +280,24 @@ function editPerson(personID) {
         }
     }
     //initPerson??
+}
+function showPerson() {
+    let sPerson = document.getElementById('sPerson').className; 
+    if (sPerson == 'd-none') {
+        document.getElementById('sPerson').className = 'd-block';
+        document.getElementById('nPersonBtn').className = 'd-none';
+        console.log('dblock');
+    } else {
+        console.log('showPerson is not working!!');
+    }
+     
+}
+function hidePerson(){
+    let hPerson = document.getElementById('sPerson').className;
+    if(hPerson == 'd-block'){
+        document.getElementById('sPerson').className = 'd-none';
+        document.getElementById('nPersonBtn').className = 'form-row justify-content-center';
+    } else {
+        console.log('hidePerson is not working!!');
+    }
 }
