@@ -266,6 +266,8 @@ function savePerson(){
         // in localstorage speichern
         //Tsbelle aktualiesieren
         initPerson();
+    }else {
+        console.log('saveperson in not starting because valid is not valid');
     }
 
 }
@@ -330,7 +332,13 @@ function hidePerson(){
     }
 }
 function updatePerson() {
-    const found_email = personList.find(element => element.pEmail == getInputPerson().pEmail);
+    let personID = document.getElementById("saveID").value;
+    let personList = JSON.parse(localStorage.getItem('personList')) || [];
+    const found_obj = personList.find(element => element.personItemID == personID );
+    const found_obj_index = personList.indexOf(found_obj);
+    console.log('found obj + index: ', found_obj + ' ' + found_obj_index);
+    personList.splice(found_obj_index,1);
+    savePerson();
 }
 function refreshPerson() {
     //aktuelle werte auf eingabefelder löchen
