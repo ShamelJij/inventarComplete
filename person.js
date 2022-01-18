@@ -220,8 +220,10 @@ function savePerson(){
             pPersonalNumber: pPersonalNumber,
             pEmail: pEmail
         };
+        let found_obj = personList.find(element => element.personItemID == personID );
+        let found_obj_index = personList.indexOf(found_obj);
 
-        if (personID == ''){
+        if (personID == '' || !found_obj){
 
             console.log('newitem saved');
             //counter for itemID
@@ -247,13 +249,17 @@ function savePerson(){
                 personList.push(personItem);
             }
         } else {
-            for (let i = 0; i < personList.length; i++) {
+            if(found_obj){
+                personItem.personItemID = personID;
+                personList[found_obj_index] = personItem;
+            }
+            /*for (let i = 0; i < personList.length; i++) {
                 if (personList[i].personItemID == personID){
                     personItem.personItemID = personID;
                     personList[i] = personItem;
                     break;
                     }
-                }
+                }*/
             }
 
 
@@ -332,12 +338,8 @@ function hidePerson(){
     }
 }
 function updatePerson() {
-    let personID = document.getElementById("saveID").value;
-    let personList = JSON.parse(localStorage.getItem('personList')) || [];
-    const found_obj = personList.find(element => element.personItemID == personID );
-    const found_obj_index = personList.indexOf(found_obj);
-    console.log('found obj + index: ', found_obj + ' ' + found_obj_index);
-    personList.splice(found_obj_index,1);
+    let saveID = document.getElementById('saveID').value;
+    deletePerson(saveID);
     savePerson();
 }
 function refreshPerson() {
@@ -347,4 +349,10 @@ function refreshPerson() {
     document.getElementById("pPersonalNumber").value = '';
     document.getElementById("pEmail").value = '';
     document.getElementById('saveID').value = '';
+
+    document.getElementById("pLastName").className = 'form-control';
+    document.getElementById("pFirstName").className = 'form-control';
+    document.getElementById("pPersonalNumber").className = 'form-control';
+    document.getElementById("pEmail").className = 'form-control';
+
 }
