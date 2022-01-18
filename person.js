@@ -287,11 +287,10 @@ function deletePerson(personID) {
                             name: editPerson | purpose: edit person obj from localStorage and table row
  - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 function editPerson(personID) {
+    showPerson();
     let personList = JSON.parse(localStorage.getItem('personList'));
     document.getElementById('pUpdateBtn').className = 'btn btn-success';
-    document.getElementById('pBackBtn').className = 'btn btn-primary';
     document.getElementById('pSaveBtn').className = 'd-none';
-    document.getElementById('pCancelBtn').className = 'd-none';
     for(let i = 0; i < personList.length; i++){
         if (personID == personList[i].personItemID){
             //wenn dateien löchen wollen dann:
@@ -310,7 +309,6 @@ function editPerson(personID) {
 function showPerson() {
     let sPerson = document.getElementById('sPerson').className;
     document.getElementById('pUpdateBtn').className = 'd-none';
-    document.getElementById('pBackBtn').className = 'd-none';
     document.getElementById('pSaveBtn').className = 'btn btn-primary';
     if (sPerson == 'd-none') {
         document.getElementById('sPerson').className = 'd-block';
@@ -322,6 +320,7 @@ function showPerson() {
      
 }
 function hidePerson(){
+    refreshPerson();
     let hPerson = document.getElementById('sPerson').className;
     if(hPerson == 'd-block'){
         document.getElementById('sPerson').className = 'd-none';
@@ -331,7 +330,7 @@ function hidePerson(){
     }
 }
 function updatePerson() {
-    
+    const found_email = personList.find(element => element.pEmail == getInputPerson().pEmail);
 }
 function refreshPerson() {
     //aktuelle werte auf eingabefelder löchen
@@ -340,10 +339,4 @@ function refreshPerson() {
     document.getElementById("pPersonalNumber").value = '';
     document.getElementById("pEmail").value = '';
     document.getElementById('saveID').value = '';
-    //neuPerson!
-    showPerson();
-    //zurückBtn ausblenden
-    document.getElementById('pBackBtn').className = 'd-none';
-    //AbrechenBtn zeigen
-    document.getElementById('pCancelBtn').className = 'btn btn-primary';
 }
