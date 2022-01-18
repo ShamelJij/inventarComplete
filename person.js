@@ -9,9 +9,9 @@ let saved_person = JSON.parse(localStorage.getItem('personList'));
 //old_data.push(new_data);
 localStorage.setItem('personList', JSON.stringify(saved_person));
 /*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-                            name: getInputInventory | purpose: getting form input and assign it to obj
+                            name: getInputPerson | purpose: getting form input and assign it to obj
  - - - - - - - - - - - - - - - - - - - - - - - - - -*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-function getInputInventory(){
+function getInputPerson(){
     let personData = {};
     personData ["pLastName"] = document.getElementById("pLastName").value;
     personData ["pFirstName"] = document.getElementById("pFirstName").value;
@@ -27,88 +27,115 @@ function inputValidationPerson() {
     let personList = JSON.parse(localStorage.getItem('personList')) || [];
 
     //Personal Nummer Validieren
-    let personalNumber = document.getElementById("pPersonalNumber").value;
-    let personID = document.getElementById('saveID');
-    for(let i = 0; i < personList.length; i++){
-        if (personalNumber == personList[i].pPersonalNumber && personList[i].personItemID == personID){
-            let x = document.getElementById("pPersonalNumber").className;
+    let personalNumber = getInputPerson().pPersonalNumber;
+    let email = getInputPerson().pEmail;
+    let l_name = getInputPerson().pLastName;
+    let f_name = getInputPerson().pFirstName;
+    let letters = /^[A-Za-z]+$/;
+    const found_personal_number = personList.find(element => element.pPersonalNumber == getInputPerson().pPersonalNumber);
+    const found_email = personList.find(element => element.pEmail == getInputPerson().pEmail);
+    let is_email = getInputPerson().pEmail.match(/([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/g);
+    if (!/^[a-zA-Z]*$/g.test(l_name)) {
+        console.log('name is not letters')
+    } else {
+        console.log('name is letters');
+    }
+    if(found_personal_number){
+        let x = document.getElementById("pPersonalNumber").className;
             x = x.replace('is-invalid', '');
             x = x.replace('is-valid', '');
             x = x.trim();
             document.getElementById("pPersonalNumber").className = x + " is-invalid";
             document.getElementById("pPersonalNumberIsInValid").innerText = "die Eingabe soll eindeutig sein!";
             ret = false;
-        } else {
-            let y = document.getElementById("pPersonalNumber").className;
-            y = y.replace('is-invalid', '');
-            y = y.replace('is-valid', '');
-            y = y.trim();
-            document.getElementById("pPersonalNumber").className = y + " is-valid";
-
-        }
-        if (personalNumber == '' || personalNumber < 1){
-            let x = document.getElementById("pPersonalNumber").className;
+    }else if (personalNumber == '' || personalNumber < 1){
+        let x = document.getElementById("pPersonalNumber").className;
+        x = x.replace('is-invalid', '');
+        x = x.replace('is-valid', '');
+        x = x.trim();
+        document.getElementById("pPersonalNumber").className = x + " is-invalid";
+        document.getElementById("pPersonalNumberIsInValid").innerText = "es soll eine Eingabe geben!";
+        ret = false;
+    } else {
+        let y = document.getElementById("pPersonalNumber").className;
+        y = y.replace('is-invalid', '');
+        y = y.replace('is-valid', '');
+        y = y.trim();
+        document.getElementById("pPersonalNumber").className = y + " is-valid";
+    }
+    // E-Mail validieren
+    if(is_email){
+        let y = document.getElementById("pEmail").className;
+        y = y.replace('is-invalid', '');
+        y = y.replace('is-valid', '');
+        y = y.trim();
+        document.getElementById("pEmail").className = y + " is-valid";
+        if(found_email){
+            let x = document.getElementById("pEmail").className;
+                x = x.replace('is-invalid', '');
+                x = x.replace('is-valid', '');
+                x = x.trim();
+                document.getElementById("pEmail").className = x + " is-invalid";
+                document.getElementById("pEmailIsInValid").innerText = "die Eingabe soll eindeutig sein!";
+                ret = false;
+        }else if (email == ''){
+            let x = document.getElementById("pEmail").className;
             x = x.replace('is-invalid', '');
             x = x.replace('is-valid', '');
             x = x.trim();
-            document.getElementById("pPersonalNumber").className = x + " is-invalid";
-            document.getElementById("pPersonalNumberIsInValid").innerText = "es soll eine Eingabe geben!";
+            document.getElementById("pEmail").className = x + " is-invalid";
+            document.getElementById("pEmailIsInValid").innerText = "es soll eine Eingabe geben!";
             ret = false;
         } else {
-            let y = document.getElementById("pPersonalNumber").className;
+            let y = document.getElementById("pEmail").className;
             y = y.replace('is-invalid', '');
             y = y.replace('is-valid', '');
             y = y.trim();
-            document.getElementById("pPersonalNumber").className = y + " is-valid";
+            document.getElementById("pEmail").className = y + " is-valid";
         }
-        //Personal Nummer Validieren
-        let email = personList[i].pEmail;
-        console.log('pppp',email);
-        let personEmail = document.getElementById("pEmail").value;
-        if (personEmail == personList[i].pEmail && personList[i].personItemID == personID){
-            let m = document.getElementById("pEmail").className;
-            m = m.replace('is-invalid', '');
-            m = m.replace('is-valid', '');
-            m = m.trim();
-            document.getElementById("pEmail").className = m + " is-invalid";
-            let y = document.getElementById("pEmail").className;
-            document.getElementById("pEmailIsInValid").innerText = "Email ist schon gespeichert!";
+        
+    } else {
+        let x = document.getElementById("pEmail").className;
+            x = x.replace('is-invalid', '');
+            x = x.replace('is-valid', '');
+            x = x.trim();
+            document.getElementById("pEmail").className = x + " is-invalid";
+            document.getElementById("pEmailIsInValid").innerText = "die Eingabe ist kein E-Mail!";
             ret = false;
-
-        }else {let mf = document.getElementById("pEmail").className;
-            mf = mf.replace('is-invalid', '');
-            mf = mf.replace('is-valid', '');
-            mf = mf.trim();
-            document.getElementById("pEmail").className = mf + " is-valid";
-        }
-        if (personEmail == ''){
-            let m = document.getElementById("pEmail").className;
-            m = m.replace('is-invalid', '');
-            m = m.replace('is-valid', '');
-            m = m.trim();
-            document.getElementById("pEmail").className = m + " is-invalid";
-            let y = document.getElementById("pEmail").className;
-            document.getElementById("pEmailIsInValid").innerText = "es soll ein E-Mail geben!";
-            ret = false;
-        }else {
-            let mf = document.getElementById("pEmail").className;
-            mf = mf.replace('is-invalid', '');
-            mf = mf.replace('is-valid', '');
-            mf = mf.trim();
-            document.getElementById("pEmail").className = mf + " is-valid";
-        }
-        /*if (person == ''){
-            let m = document.getElementById("pLastName").className;
-            m = m.replace('is-invalid', '');
-            m = m.replace('is-valid', '');
-            m = m.trim();
-            document.getElementById("pLastName").className = m + " is-invalid";
-            let y = document.getElementById("pLastName").className;
-            document.getElementById("pLastNameIsInValid").innerText = "es soll ein E-Mail geben!";
-            ret = false;
-        }*/
-
     }
+    //Name validieren
+    if (l_name == '' ){
+        let x = document.getElementById("pLastName").className; 
+        x = x.replace('is-invalid', '');
+        x = x.replace('is-valid', '');
+        x = x.trim();
+        document.getElementById("pLastName").className = x + " is-invalid";
+        document.getElementById("pLastNameIsInValid").innerText = "es soll eine Eingabe geben!";
+        ret = false;
+    } else {
+        let y = document.getElementById("pLastName").className;
+        y = y.replace('is-invalid', '');
+        y = y.replace('is-valid', '');
+        y = y.trim();
+        document.getElementById("pLastName").className = y + " is-valid";
+    }
+    //Vorname validieren
+    if (f_name == '' ){
+        let x = document.getElementById("pFirstName").className;  
+        x = x.replace('is-invalid', '');
+        x = x.replace('is-valid', '');
+        x = x.trim();
+        document.getElementById("pFirstName").className = x + " is-invalid";
+        document.getElementById("pFirstNameIsInValid").innerText = "es soll eine Eingabe geben!";
+        ret = false;
+    } else {
+        let y = document.getElementById("pFirstName").className;
+        y = y.replace('is-invalid', '');
+        y = y.replace('is-valid', '');
+        y = y.trim();
+        document.getElementById("pFirstName").className = y + " is-valid";
+    }
+
     return ret;
 }
 /*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 

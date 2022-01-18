@@ -17,7 +17,7 @@
 </head>
 <body onload="refreshForm()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <i class="fa fa-cubes" style="font-size:36px;color: dodgerblue">Inventar</i>
+        <i class="fa fa-cubes mb-3" style="font-size:36px;color: dodgerblue">Inventar</i>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -194,16 +194,28 @@
                         <div class="form-group col-md-3">
                             <label for="pLastName">Name</label>
                             <input class="form-control" type="text" id="pLastName">
+                            <div class="valid-feedback" id="pLastNameIsValid">
+                                die Eingabe ist gültig
+                            </div>
+                            <div class="invalid-feedback" id="pLastNameIsInValid">
+                                die eingabe muss eindeutig sein!
+                            </div>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="pFirstName">Vorname</label>
                             <input class="form-control" type="text" id="pFirstName">
+                            <div class="valid-feedback" id="pFirstNameIsValid">
+                                die Eingabe ist gültig
+                            </div>
+                            <div class="invalid-feedback" id="pFirstNameIsInValid">
+                                die eingabe muss eindeutig sein!
+                            </div>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="pPersonalNumber">Personalnummer</label>
                             <input class="form-control" type="number" id="pPersonalNumber">
                             <div class="valid-feedback" id="pPersonalNumberIsValid">
-                                die Eingabe sind gültig
+                                die Eingabe ist gültig
                             </div>
                             <div class="invalid-feedback" id="pPersonalNumberIsInValid">
                                 die eingabe muss eindeutig sein!
