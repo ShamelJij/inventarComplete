@@ -224,7 +224,6 @@ function savePerson(){
         let found_obj_index = personList.indexOf(found_obj);
 
         if (personID == '' || !found_obj){
-
             console.log('newitem saved');
             //counter for itemID
             let personItemID = localStorage.getItem('counter');
@@ -338,9 +337,30 @@ function hidePerson(){
     }
 }
 function updatePerson() {
+    let personList = JSON.parse(localStorage.getItem('personList'));
+    let pLastName = document.getElementById("pLastName").value.trim();
+    let pFirstName = document.getElementById("pFirstName").value.trim();
+    let pPersonalNumber = document.getElementById("pPersonalNumber").value.trim();
+    let pEmail = document.getElementById("pEmail").value.trim();
+    let personID = document.getElementById("saveID").value;
+    let personItem = {
+        pLastName: pLastName,
+        pFirstName: pFirstName,
+        pPersonalNumber: pPersonalNumber,
+        pEmail: pEmail
+    };
+    let found_obj = personList.find(element => element.personItemID == personID );
+    let found_obj_index = personList.indexOf(found_obj);
+    if(found_obj){
+        personItem.personItemID = personID;
+        personList[found_obj_index] = personItem;
+    }
+    localStorage.setItem("personList", JSON.stringify(personList));
+    initPerson();
+    /*
     let saveID = document.getElementById('saveID').value;
     deletePerson(saveID);
-    savePerson();
+    savePerson(saveID);*/
 }
 function refreshPerson() {
     //aktuelle werte auf eingabefelder löchen
