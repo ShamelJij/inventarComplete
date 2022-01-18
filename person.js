@@ -31,7 +31,6 @@ function inputValidationPerson() {
     let email = getInputPerson().pEmail;
     let l_name = getInputPerson().pLastName;
     let f_name = getInputPerson().pFirstName;
-    let letters = /^[A-Za-z]+$/;
     const found_personal_number = personList.find(element => element.pPersonalNumber == getInputPerson().pPersonalNumber);
     const found_email = personList.find(element => element.pEmail == getInputPerson().pEmail);
     let is_email = getInputPerson().pEmail.match(/([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/g);
