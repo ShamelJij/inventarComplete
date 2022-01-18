@@ -25,6 +25,7 @@ function getInputPerson(){
 function inputValidationPerson() {
     let ret = true;
     let personList = JSON.parse(localStorage.getItem('personList')) || [];
+    let letters = /^[a-zA-Z]*$/;
 
     //Personal Nummer Validieren
     let personalNumber = getInputPerson().pPersonalNumber;
@@ -34,11 +35,6 @@ function inputValidationPerson() {
     const found_personal_number = personList.find(element => element.pPersonalNumber == getInputPerson().pPersonalNumber);
     const found_email = personList.find(element => element.pEmail == getInputPerson().pEmail);
     let is_email = getInputPerson().pEmail.match(/([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/g);
-    if (!/^[a-zA-Z]*$/g.test(l_name)) {
-        console.log('name is not letters')
-    } else {
-        console.log('name is letters');
-    }
     if(found_personal_number){
         let x = document.getElementById("pPersonalNumber").className;
             x = x.replace('is-invalid', '');
@@ -103,7 +99,7 @@ function inputValidationPerson() {
             ret = false;
     }
     //Name validieren
-    if (l_name == '' ){
+    if (l_name == '' || !letters.test(l_name)){
         let x = document.getElementById("pLastName").className; 
         x = x.replace('is-invalid', '');
         x = x.replace('is-valid', '');
@@ -119,13 +115,13 @@ function inputValidationPerson() {
         document.getElementById("pLastName").className = y + " is-valid";
     }
     //Vorname validieren
-    if (f_name == '' ){
-        let x = document.getElementById("pFirstName").className;  
+    if (f_name == '' || !letters.test(f_name)){
+        let x = document.getElementById("pFirstName").className;
         x = x.replace('is-invalid', '');
         x = x.replace('is-valid', '');
         x = x.trim();
         document.getElementById("pFirstName").className = x + " is-invalid";
-        document.getElementById("pFirstNameIsInValid").innerText = "es soll eine Eingabe geben!";
+        document.getElementById("pFirstNameIsInValid").innerText = "Eingabe ist falsch!";
         ret = false;
     } else {
         let y = document.getElementById("pFirstName").className;
@@ -292,6 +288,10 @@ function deletePerson(personID) {
  - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 function editPerson(personID) {
     let personList = JSON.parse(localStorage.getItem('personList'));
+    document.getElementById('pUpdateBtn').className = 'btn btn-success';
+    document.getElementById('pBackBtn').className = 'btn btn-primary';
+    document.getElementById('pSaveBtn').className = 'd-none';
+    document.getElementById('pCancelBtn').className = 'd-none';
     for(let i = 0; i < personList.length; i++){
         if (personID == personList[i].personItemID){
             //wenn dateien löchen wollen dann:
@@ -308,7 +308,10 @@ function editPerson(personID) {
     //initPerson??
 }
 function showPerson() {
-    let sPerson = document.getElementById('sPerson').className; 
+    let sPerson = document.getElementById('sPerson').className;
+    document.getElementById('pUpdateBtn').className = 'd-none';
+    document.getElementById('pBackBtn').className = 'd-none';
+    document.getElementById('pSaveBtn').className = 'btn btn-primary';
     if (sPerson == 'd-none') {
         document.getElementById('sPerson').className = 'd-block';
         document.getElementById('nPersonBtn').className = 'd-none';
@@ -326,4 +329,21 @@ function hidePerson(){
     } else {
         console.log('hidePerson is not working!!');
     }
+}
+function updatePerson() {
+    
+}
+function refreshPerson() {
+    //aktuelle werte auf eingabefelder löchen
+    document.getElementById("pLastName").value = '';
+    document.getElementById("pFirstName").value = '';
+    document.getElementById("pPersonalNumber").value = '';
+    document.getElementById("pEmail").value = '';
+    document.getElementById('saveID').value = '';
+    //neuPerson!
+    showPerson();
+    //zurückBtn ausblenden
+    document.getElementById('pBackBtn').className = 'd-none';
+    //AbrechenBtn zeigen
+    document.getElementById('pCancelBtn').className = 'btn btn-primary';
 }
