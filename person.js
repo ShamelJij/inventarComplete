@@ -152,7 +152,7 @@ function insertNewRecord(personList){
     let cell5 = newRow.insertCell(4);
     cell5.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
                             "<button onClick=\"editPerson(" + personList.personItemID + ")\" class=\"btn btn-secondary\">bearbeiten</button>" +
-                            "<button onClick=\"deletePerson(" + personList.personItemID + ")\" class=\"btn btn-danger\">löchen</button>" +
+                            "<button onClick=\"deletePerson(" + personList.personItemID + "); hidePerson();\" class=\"btn btn-danger\">löchen</button>" +
 "</div>";
 }
 function clearPersonTable() {
@@ -281,6 +281,7 @@ function savePerson(){
  - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 function deletePerson(personID) {
     let personList = JSON.parse(localStorage.getItem('personList'));
+    
     for(let i = 0; i < personList.length; i++){
         if (personID == personList[i].personItemID){
             personList.splice(i,1);
@@ -288,6 +289,7 @@ function deletePerson(personID) {
             break;
         }
     }
+    
     initPerson();
 }
 /*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
