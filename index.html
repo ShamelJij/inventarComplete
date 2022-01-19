@@ -25,7 +25,7 @@
             <div class="nav flex-row nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Inventar</a>
                 <a class="nav-link" onclick="initPerson()" id="v-pills-person-tab" data-toggle="pill" href="#v-pills-person" role="tab" aria-controls="v-pills-person" aria-selected="false">Person</a>
-                <a class="nav-link"  id="v-pills-location-tab" data-toggle="pill" href="#v-pills-location" role="tab" aria-controls="v-pills-location" aria-selected="false">Standort</a>
+                <a class="nav-link" onclick="initLocation()" id="v-pills-location-tab" data-toggle="pill" href="#v-pills-location" role="tab" aria-controls="v-pills-location" aria-selected="false">Standort</a>
                 <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Einstellungen</a>
             </div>
         </div>
@@ -178,7 +178,7 @@
                 <div class="d-none" id="sLocation">
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label for="locationLabel">Bezeichnung</label>
+                            <label for="locationLabel">Ort Bezeichnung</label>
                             <input class="form-control" type="text" id="locationLabel">
                             <div class="valid-feedback" id="locationLabelIsValid">
                                 die Eingabe ist gültig
@@ -209,11 +209,41 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="zipCode">PLZ</label>
-                            <input class="form-control" type="number" id="zipCode">
+                            <input class="form-control" type="text" pattern="[0-9]*" id="zipCode">
                             <div class="valid-feedback" id="zipCodeIsValid">
                                 die Eingabe ist gültig
                             </div>
                             <div class="invalid-feedback" id="zipCodeIsInValid">
+                                die eingabe muss eindeutig sein!
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="locationName">Ort</label>
+                            <input class="form-control" type="text" id="locationName">
+                            <div class="valid-feedback" id="locationNameIsValid">
+                                die Eingabe ist gültig
+                            </div>
+                            <div class="invalid-feedback" id="locationNameIsInValid">
+                                die eingabe muss eindeutig sein!
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="floorNumber">Stockwerk</label>
+                            <input class="form-control" type="number" id="floorNumber">
+                            <div class="valid-feedback" id="floorNumberNameIsValid">
+                                die Eingabe ist gültig
+                            </div>
+                            <div class="invalid-feedback" id="floorNumberIsInValid">
+                                die eingabe muss eindeutig sein!
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="roomNumber">Zimmer</label>
+                            <input class="form-control" type="text" id="roomNumber">
+                            <div class="valid-feedback" id="roomNumberIsValid">
+                                die Eingabe ist gültig
+                            </div>
+                            <div class="invalid-feedback" id="roomNumberIsInValid">
                                 die eingabe muss eindeutig sein!
                             </div>
                         </div>
@@ -235,10 +265,13 @@
             <table class="table table-striped text-center" id="idLocationList">
                 <thead>
                 <tr>
-                    <th>Bezeichnung</th>
+                    <th>Ort Bezeichnung</th>
                     <th>Straße</th>
                     <th>Hausnummer</th>
                     <th>PLZ</th>
+                    <th>Ort</th>
+                    <th>Stockwerk</th>
+                    <th>Zimmer</th>
                     <th>Editieren</th>
                 </tr>
                 </thead>

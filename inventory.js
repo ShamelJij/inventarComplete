@@ -125,7 +125,7 @@ function showInventory() {
 
         /*inventoryData [0] = document.getElementById("idStatus").value;
         inventoryData [1] = document.getElementById("idLabel").value;
-        inventoryData [2] = document.getElementById("idSerialNumber").value;
+        inventoryData [2] = document.getElementById("idInventorySerialNumber").value;
         inventoryData [3] = document.getElementById("idType").value;
         inventoryData [4] = document.getElementById("idPurchaseDate").value;
         inventoryData [5] = document.getElementById("idPrice").value;
@@ -135,7 +135,7 @@ function showInventory() {
 
         inventoryData ["status"] = document.getElementById("idStatus").value;
         inventoryData ["label"] = document.getElementById("idLabel").value;
-        inventoryData ["serialNumber"] = document.getElementById("idSerialNumber").value;
+        inventoryData ["serialNumber"] = document.getElementById("idInventorySerialNumber").value;
         inventoryData ["type"] = document.getElementById("idType").value;
         inventoryData ["purchaseDate"] = document.getElementById("idPurchaseDate").value;
         inventoryData ["price"] = document.getElementById("idPrice").value;
@@ -186,14 +186,14 @@ function showInventory() {
         console.log('trimmed Bezeichnung: ', label);
         document.getElementById('idLabel').value = label;
         //seriennummer
-        let serialNumber = document.getElementById('idSerialNumber').value;
+        let serialNumber = document.getElementById('idInventorySerialNumber').value;
 
         serialNumber = serialNumber.replace(/\s+/g, " ");
         console.log('Serial Number after replace: ', serialNumber);
         serialNumber = serialNumber.trim();
         console.log('trimmed serial NUmber: ', serialNumber);
 
-        document.getElementById('idSerialNumber').value = serialNumber;
+        document.getElementById('idInventorySerialNumber').value = serialNumber;
         //typ
         let type = document.getElementById('idType').value;
         console.log('trimmed Type: ', type);
@@ -322,23 +322,23 @@ function showInventory() {
             //ret = true;
         }
         //validating the label input not to be empty
-        let serialNumber = document.getElementById('idSerialNumber').value;
+        let serialNumber = document.getElementById('idInventorySerialNumber').value;
         if (serialNumber == '') {
-            let sn = document.getElementById("idSerialNumber").className;
+            let sn = document.getElementById("idInventorySerialNumber").className;
             sn = sn.replace('is-invalid', '');
             sn = sn.replace('is-valid', '');
             sn = sn.trim();
-            document.getElementById("idSerialNumber").className = sn + " is-invalid";
-            document.getElementById("idSerialNumberIsInValid").innerText = "leer!";
+            document.getElementById("idInventorySerialNumber").className = sn + " is-invalid";
+            document.getElementById("idInventorySerialNumberIsInValid").innerText = "leer!";
             //optional
             //ret = false;
         } else {
-            let snv = document.getElementById("idSerialNumber").className;
+            let snv = document.getElementById("idInventorySerialNumber").className;
             snv = snv.replace('is-invalid', '');
             snv = snv.replace('is-valid', '');
             snv = snv.trim();
-            document.getElementById("idSerialNumber").className = snv + " is-valid";
-            document.getElementById("idSerialNumberIsValid").innerText = "Eingabe ist gültig";
+            document.getElementById("idInventorySerialNumber").className = snv + " is-valid";
+            document.getElementById("idInventorySerialNumberIsValid").innerText = "Eingabe ist gültig";
             console.log('serialnumber is not empty');
             //optional
             //ret = true;

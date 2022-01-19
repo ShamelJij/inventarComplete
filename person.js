@@ -6,7 +6,6 @@ Global Section..
  */
 const personTableIsEmpty = document.getElementById("personTableIsEmpty");
 let saved_person = JSON.parse(localStorage.getItem('personList'));
-//old_data.push(new_data);
 localStorage.setItem('personList', JSON.stringify(saved_person));
 /*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
                             name: getInputPerson | purpose: getting form input and assign it to obj
@@ -158,9 +157,6 @@ function insertNewRecord(personList){
 function clearPersonTable() {
     const personTable = document.getElementById("personTableBody");
     personTable.innerHTML = '';
-//    while (personTable.firstChild) {
-  //      personTable.removeChild(personTable.lastChild);
-    //}
 }
 /*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                         name: initPerson | purpose: parse from localstorage then insert a new person to personList
@@ -226,13 +222,13 @@ function savePerson(){
         if (personID == '' || !found_obj){
             console.log('newitem saved');
             //counter for itemID
-            let personItemID = localStorage.getItem('counter');
+            let personItemID = localStorage.getItem('personCounter');
             if (personItemID === null) {
                 personItemID = 0;
             } else {
                 personItemID++;
             }
-            localStorage.setItem("counter", personItemID);
+            localStorage.setItem("personCounter", personItemID);
             personItem.personItemID = personItemID;
             // wenn:  Personenliste == leer
             // note(text):flag.. or tooltip wird and hidden div mit hinweiß
