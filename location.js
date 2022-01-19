@@ -109,7 +109,7 @@ function insertNewRecordLocation(locationList){
     let cell8 = newRow.insertCell(7);
     cell8.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
         "<button onClick=\"editLocation(" + locationList.locationItemID + ")\" class=\"btn btn-secondary\">bearbeiten</button>" +
-        "<button onClick=\"deleteLocation(" + locationList.locationItemID + "); hideLocation();\" class=\"btn btn-danger\">löchen</button>" +
+        "<button onClick=\"deleteLocation(" + locationList.locationItemID + "); hideLocation();\" class=\"btn btn-danger\">löschen</button>" +
         "</div>";
 }
 function clearLocationTable() {
@@ -122,7 +122,7 @@ function clearLocationTable() {
 function initLocation(){
     //localstorage auslesen
     let locationList = JSON.parse(localStorage.getItem('locationList'));
-
+    hideLocation();
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
     //error handling
     clearLocationTable();
@@ -212,13 +212,6 @@ function saveLocation(){
                 locationItem.locationItemID = locationID;
                 locationList[found_obj_index] = locationItem;
             }
-            /*for (let i = 0; i < locationList.length; i++) {
-                if (locationList[i].locationItemID == locationID){
-                    locationItem.locationItemID = locationID;
-                    locationList[i] = locationItem;
-                    break;
-                    }
-                }*/
         }
 
 
@@ -231,6 +224,7 @@ function saveLocation(){
         // in localstorage speichern
         //Tsbelle aktualiesieren
         initLocation();
+        hidePerson();
     }else {
         console.log('saveLocation in not starting because valid is not valid');
     }

@@ -3,6 +3,11 @@
         date: 1/11/2022 | time: 11:28 AM | name: getInventoryID | path: C:\deltastone\shamel-praktikum\inventory.js
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
+const inventoryTableIsEmpty = document.getElementById("inventoryTableIsEmpty");
+let saved_inventory = JSON.parse(localStorage.getItem('inventoryList'));
+localStorage.setItem('inventoryList', JSON.stringify(saved_inventory));
+
+
 function getInventoryID() {
     let savedInventory = JSON.parse(localStorage.getItem('inventoryList'));
     let inventoryID;
@@ -35,7 +40,27 @@ function showLastModified() {
                         time: 1:04 PM | name: showInventory | path: C:\deltastone\shamel-praktikum\inventory.js
  - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
+
+
+/*
+old
+
 function showInventory() {
+   /!* let table = document.getElementById("idPersonList").getElementsByTagName('tbody')[0];
+    let newRow = table.insertRow(table.length);
+    let cell1 = newRow.insertCell(0);
+    cell1.innerHTML = personList.pLastName;
+    let cell2 = newRow.insertCell(1);
+    cell2.innerHTML = personList.pFirstName;
+    let cell3 = newRow.insertCell(2);
+    cell3.innerHTML = personList.pPersonalNumber;
+    let cell4 = newRow.insertCell(3);
+    cell4.innerHTML = personList.pEmail;
+    let cell5 = newRow.insertCell(4);
+    cell5.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
+        "<button onClick=\"editPerson(" + personList.personItemID + ")\" class=\"btn btn-secondary\">bearbeiten</button>" +
+        "<button onClick=\"deletePerson(" + personList.personItemID + "); hidePerson();\" class=\"btn btn-danger\">löchen</button>" +
+        "</div>";*!/
     let savedInventory = JSON.parse(localStorage.getItem('inventoryList'));
     let savedTable = document.getElementById('inventoryTable');
     const mainContainer = document.getElementById('mainContainer');
@@ -92,17 +117,31 @@ function showInventory() {
         cell10.innerHTML = `<div class="text-center">
                             <button onClick='editInventory(this)' class="btn btn-secondary">bearbeiten</button> <button onClick='deleteInventory(this.idPersonList)' class="btn btn-danger">löchen</button>
                        </div>`;
-        let cell11 = newRow.insertCell(10);
-        cell11.innerHTML = `<i class="fa fa-clone" style="font-size:24px"></i>`;
+        cell10.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
+            "<button onClick=\"editInventory(" + inventoryList.inventoryItemID + ")\" class=\"btn btn-secondary\">bearbeiten</button>" +
+            "<button onClick=\"deleteInventory(" + inventoryListList.inventoryItemID + "); hideInventory();\" class=\"btn btn-danger\">löchen</button>" +
+            "</div>";
     }
-}
+}*/
+function showInventory() {
+    let sInventory = document.getElementById('sInventory').className;
+    //document.getElementById('iUpdateBtn').className = 'd-none';
+    //document.getElementById('iSaveBtn').className = 'btn btn-primary';
+    if (sInventory == 'd-none') {
+        document.getElementById('sInventory').className = 'd-block';
+        document.getElementById('nInventoryBtn').className = 'd-none';
+        console.log('dblock');
+    } else {
+        console.log('showPerson is not working!!');
+    }
 
+}
     /*
      - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             date: 1/11/2022 | time: 9:43 AM | name: initInventory | path: C:\deltastone\shamel-praktikum\inventory.js
      - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     */
-    function initInventory() {
+   // function initInventory() {
 
         /*} else {
             console.log('building a new row');
@@ -117,22 +156,48 @@ function showInventory() {
 
         }*/
         //console.log(inventoryTable);
-    }
+   // }
+function clearInventoryTable() {
+    const personTable = document.getElementById("personTableBody");
+    personTable.innerHTML = '';
+}
 
+function initInventory(){
+    //localstorage auslesen
+    let inventoryList = JSON.parse(localStorage.getItem('inventoryList'));
+
+    // wenn:  Personenliste == leer
+    // note(text):flag.. or tooltip wird and hidden div mit hinweiß
+    //error handling
+    clearInventoryTable();
+    if (!inventoryList || inventoryList.length == 0){;
+        let x = inventoryTableIsEmpty.className
+        x = x.replace('d-block','');
+        x = x.replace('d-none','');
+        x = x.trim();
+        inventoryTableIsEmpty.className = x + ' d-block' ;
+        console.log('table is empty');
+
+    }
+    // sonst: neue Reihe zufügen für jeden Eintrag
+    else {
+        let inventoryList = JSON.parse(localStorage.getItem('inventoryList'));
+        let x = inventoryTableIsEmpty.className
+        x = x.replace('d-block','');
+        x = x.replace('d-none','');
+        x = x.trim();
+        inventoryTableIsEmpty.className = x + ' d-none' ;
+
+        //insertNewRecord(personList);
+        for (let i=0;i<inventoryList.length;i++) {
+            insertNewRecordInventory(inventoryList[i]);
+        }
+    }
+    console.log("function initInventory");
+}
 
     function getInputInventory() {
         let inventoryData = {};
-
-        /*inventoryData [0] = document.getElementById("idStatus").value;
-        inventoryData [1] = document.getElementById("idLabel").value;
-        inventoryData [2] = document.getElementById("idInventorySerialNumber").value;
-        inventoryData [3] = document.getElementById("idType").value;
-        inventoryData [4] = document.getElementById("idPurchaseDate").value;
-        inventoryData [5] = document.getElementById("idPrice").value;
-        inventoryData [6] = document.getElementById("bookingCategory").value;
-        inventoryData [7] = document.getElementById("idDepreciationInput").value;
-        inventoryData [8] = document.getElementById("validationEndDate").value;*/
-
         inventoryData ["status"] = document.getElementById("idStatus").value;
         inventoryData ["label"] = document.getElementById("idLabel").value;
         inventoryData ["serialNumber"] = document.getElementById("idInventorySerialNumber").value;
@@ -142,7 +207,6 @@ function showInventory() {
         inventoryData ["bookingCategory"] = document.getElementById("bookingCategory").value;
         inventoryData ["deprecation"] = document.getElementById("idDepreciationInput").value;
         inventoryData ["validationEndDate"] = document.getElementById("validationEndDate").value;
-        console.log("inventoryData: ", inventoryData);
         return inventoryData;
     }
 
@@ -415,9 +479,39 @@ function showInventory() {
     DIESE Funktion macht nur folgend und sonst nichts!:
     - Ein und Ausblenden von Designelementen. SONST NICHTS!
      */
-    function refreshForm() {
-        //zuletzt bearbeitet Feld
+    function refreshInventory() {
+
         showLastModified();
+
+        //status ausgebucht?
+        let status = document.getElementById("idStatus").value;
+        if (status == "Ausgebucht") {
+            console.log('Datumabgebucht: ((vis))');
+            document.getElementById("formEndDate").className = 'd-block';
+        } else {
+            console.log('Datumabgebucht: ((invis))');
+            document.getElementById("formEndDate").className = 'd-none';
+        }
+
+
+        //price value to changes div (bookingCategory)
+        let price = document.getElementById('idPrice').value;
+        //Show booking category
+        if (price <= 2000 && price > 0) {
+            document.getElementById("deprecationInputGroup").className = 'd-none';
+            document.getElementById("validationEndDateGroup").className = 'd-none';
+        } else if (price <= 0) {
+            document.getElementById("deprecationInputGroup").className = 'd-none';
+            document.getElementById("validationEndDateGroup").className = 'd-none';
+
+        } else {
+            document.getElementById("deprecationInputGroup").className = 'd-block';
+            document.getElementById("validationEndDateGroup").className = 'd-block';
+
+        }
+
+        /*
+        //old refreshForm
         //inventoyList existiert?
         let savedInventory = JSON.parse(localStorage.getItem('inventoryList'));
         const mainContainer = document.getElementById('mainContainer');
@@ -467,11 +561,12 @@ function showInventory() {
             document.getElementById("validationEndDateGroup").className = 'd-block';
 
         }
+        initInventory();*/
     }
 
 //this is for the speichern button!
     function refresh() {
-        refreshForm();
+        refreshInventory();
         inputTranslation();
         if (inputValidation()) {
             calcForm()

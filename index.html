@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body onload="refreshForm()">
+<body onload="refreshInventory()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <i class="fa fa-cubes mb-3" style="font-size:36px;color: dodgerblue">Inventar</i>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +23,7 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="nav flex-row nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Inventar</a>
+                <a class="nav-link active" onclick="initInventory()" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Inventar</a>
                 <a class="nav-link" onclick="initPerson()" id="v-pills-person-tab" data-toggle="pill" href="#v-pills-person" role="tab" aria-controls="v-pills-person" aria-selected="false">Person</a>
                 <a class="nav-link" onclick="initLocation()" id="v-pills-location-tab" data-toggle="pill" href="#v-pills-location" role="tab" aria-controls="v-pills-location" aria-selected="false">Standort</a>
                 <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Einstellungen</a>
@@ -32,121 +32,30 @@
     </nav>
     <div class="tab-content" id="v-pills-tabContent">
     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-        <div class="container text-center mb-3"><h1>&#x1F4CB;Inventar</h1></div>
-        <div class="container" id="mainContainer">
-            <form class="needs-validation" novalidate>
-                <div class="form-row">
-                    <div class="col-md-6">
-                        <label for="idStatus">Status</label>
-                        <select class="form-control" name="status" id="idStatus" onchange="refreshForm()">
-                            <option value="Aktiv">Aktiv</option>
-                            <option value="Ausgebucht">Ausgebucht</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="edited">zuletzt bearbeitet</label>
-                        <input class="form-control" type="text" readonly name="editedName" id="edited" value="10.01.2021">
-                    </div>
-                </div>
-                <div class="form-row" id="formEndDate">
-                    <div class="col-md-3 mb-3">
-                        <label for="idDeprecationDate">Datum abgebucht</label>
-                        <input type="date" class="form-control" id="idDeprecationDate" min="2018-01-01" required>
-                        <div class="valid-feedback">
-                            Danke!
+        <div class="container">
+            <div class="container text-center mb-3"><h1>&#x1F4CB;Inventar</h1></div>
+            <div class="form-row justify-content-center" id="nInventoryBtn">
+                <button class="btn btn-primary mb-4" type="button" onclick="showInventory()">Neu Inventar</button>
+            </div>
+            <div class="d-none" id="sInventory">
+                <form class="needs-validation" novalidate>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <label for="idStatus">Status</label>
+                            <select class="form-control" name="status" id="idStatus" onchange="refreshInventory()">
+                                <option value="Aktiv">Aktiv</option>
+                                <option value="Ausgebucht">Ausgebucht</option>
+                            </select>
                         </div>
-                        <div class="invalid-feedback">
-                            Bitte Datum eingeben!
+                        <div class="col-md-6 mb-3">
+                            <label for="edited">zuletzt bearbeitet</label>
+                            <input class="form-control" type="text" readonly name="editedName" id="edited" value="10.01.2021">
                         </div>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-3 mb-3">
-                        <label for="idLabel">Bezeichnung</label>
-                        <input type="text" class="form-control" id="idLabel" required>
-                        <div class="valid-feedback" id="idLabelIsValid">
-                            Danke!
-                        </div>
-                        <div class="invalid-feedback" id="idLabelIsInvalid">
-                            Bitte füllen Sie das Feld aus.
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="idInventorySerialNumber">Seriennummer</label>
-                        <input type="text" class="form-control" name="serialNumber" id="idInventorySerialNumber" required>
-                        <div class="valid-feedback" id="idInventorySerialNumberIsValid">
-                            die Eingabe sind gültig
-                        </div>
-                        <div class="invalid-feedback" id="idInventorySerialNumberIsInValid">
-                            die eingabe muss eindeutig sein!
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="idType">Typ</label>
-                        <input type="text" class="form-control" id="idType" required>
-                        <div class="valid-feedback" id="idTypeIsValid">
-                            Danke!
-                        </div>
-                        <div class="invalid-feedback" id="idTypeIsInValid">
-                            Bitte füllen Sie das Feld aus.
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="idPurchaseDate">Anschaffungsdatum</label>
-                        <input type="date" class="form-control" onchange="dateChangeHandler(event);" name="purchaseDate" id="idPurchaseDate" min="2018-01-01" required>
-                        <div class="invalid-feedback" id="idPurchaseDateInvalid">
-                            Bitte ein Datum eingeben.
-                        </div>
-                        <div class="valid-feedback" id="idPurchaseDateValid">
-                            Danke!
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-3 mb-3">
-                        <label for="idPrice">Preis&nbsp;&nbsp;<span class="badge badge-info">netto</span></label>
-                        <div class="input-group">
-                            <input type="number" class="form-control" id="idPrice" value="0">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="inputGroupAppendType">&#128;<!--euro-symbol--></span>
-                            </div>
-                            <div class="valid-feedback" id="idPriceValid">
-                            </div>
-                            <div class="invalid-feedback"  id="idPriceNotValid">
-                                negatives Wert ist nicht gültig
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mt-4 text-center">
-                        <button class="btn btn-primary" type="button" onclick="refresh();"><i class="fa fa-calculator" style="font-size:24px"></i>&nbsp;berechnen</button>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="bookingCategory">Abschreibskategorie</label>
-                        <input class="form-control" type="text" readonly name="editedName" id="bookingCategory" value="GWG">
-                    </div>
-                </div>
-                <div class="form-row" id="rowDepreciation">
-                    <div class="col-md-3 offset-md-6">
-                        <div class="col-md-3 mb-3" id="deprecationInputGroup">
-                            <label for="idDepreciationInput">Abschreibzeitraum</label>
-                            <div class="input-group">
-                                <input type="number" class="form-control" name="depreciationInput" id="idDepreciationInput" value="12" required>
-                                <div class="input-group-append">
-                                    <span class="input-group-text">Monate</span>
-                                </div>
-                                <div class="valid-feedback" id="idDepreciationInputIsValid">
-                                    Danke!
-                                </div>
-                                <div class="invalid-feedback" id="idDepreciationInputIsInValid">
-                                    Bitte Datum eingeben!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="col-md-3 mb-3" id="validationEndDateGroup">
-                            <label for="validationEndDate">Abgeschrieben am:</label>
-                            <input type="date" class="form-control"  id="validationEndDate" min="2018-01-01" readonly>
+                    <div class="form-row" id="formEndDate">
+                        <div class="col-md-3 mb-3">
+                            <label for="idDeprecationDate">Datum abgebucht</label>
+                            <input type="date" class="form-control" id="idDeprecationDate" min="2018-01-01" required>
                             <div class="valid-feedback">
                                 Danke!
                             </div>
@@ -155,20 +64,122 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                    <div class="form-row mt-3">
-                        <div class="col-md-3 text-center">
-                            <button class="btn btn-primary" type="button" onclick="saveInventory();"><i class="fa fa-cloud-upload" style="font-size:24px"></i>&nbsp;Speichern</button>
+                    <div class="form-row">
+                        <div class="col-md-3 mb-3">
+                            <label for="idLabel">Bezeichnung</label>
+                            <input type="text" class="form-control" id="idLabel" required>
+                            <div class="valid-feedback" id="idLabelIsValid">
+                                Danke!
+                            </div>
+                            <div class="invalid-feedback" id="idLabelIsInvalid">
+                                Bitte füllen Sie das Feld aus.
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="idInventorySerialNumber">Seriennummer</label>
+                            <input type="text" class="form-control" name="serialNumber" id="idInventorySerialNumber" required>
+                            <div class="valid-feedback" id="idInventorySerialNumberIsValid">
+                                die Eingabe sind gültig
+                            </div>
+                            <div class="invalid-feedback" id="idInventorySerialNumberIsInValid">
+                                die eingabe muss eindeutig sein!
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="idType">Typ</label>
+                            <input type="text" class="form-control" id="idType" required>
+                            <div class="valid-feedback" id="idTypeIsValid">
+                                Danke!
+                            </div>
+                            <div class="invalid-feedback" id="idTypeIsInValid">
+                                Bitte füllen Sie das Feld aus.
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="idPurchaseDate">Anschaffungsdatum</label>
+                            <input type="date" class="form-control" onchange="dateChangeHandler(event);" name="purchaseDate" id="idPurchaseDate" min="2018-01-01" required>
+                            <div class="invalid-feedback" id="idPurchaseDateInvalid">
+                                Bitte ein Datum eingeben.
+                            </div>
+                            <div class="valid-feedback" id="idPurchaseDateValid">
+                                Danke!
+                            </div>
                         </div>
                     </div>
-            </form>
+                    <div class="form-row">
+                        <div class="col-md-3 mb-3">
+                            <label for="idPrice">Preis&nbsp;&nbsp;<span class="badge badge-info">netto</span></label>
+                            <div class="input-group">
+                                <input type="number" class="form-control" id="idPrice" value="0">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="inputGroupAppendType">&#128;<!--euro-symbol--></span>
+                                </div>
+                                <div class="valid-feedback" id="idPriceValid">
+                                </div>
+                                <div class="invalid-feedback"  id="idPriceNotValid">
+                                    negatives Wert ist nicht gültig
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-4 text-center">
+                            <button class="btn btn-primary" type="button" onclick="refresh();"><i class="fa fa-calculator" style="font-size:24px"></i>&nbsp;berechnen</button>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="bookingCategory">Abschreibskategorie</label>
+                            <input class="form-control" type="text" readonly name="editedName" id="bookingCategory" value="GWG">
+                        </div>
+                    </div>
+                    <div class="form-row" id="rowDepreciation">
+                        <div class="col-md-3 offset-md-6">
+                            <div class="col-md-3 mb-3" id="deprecationInputGroup">
+                                <label for="idDepreciationInput">Abschreibzeitraum</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" name="depreciationInput" id="idDepreciationInput" value="12" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Monate</span>
+                                    </div>
+                                    <div class="valid-feedback" id="idDepreciationInputIsValid">
+                                        Danke!
+                                    </div>
+                                    <div class="invalid-feedback" id="idDepreciationInputIsInValid">
+                                        Bitte Datum eingeben!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="col-md-3 mb-3" id="validationEndDateGroup">
+                                <label for="validationEndDate">Abgeschrieben am:</label>
+                                <input type="date" class="form-control"  id="validationEndDate" min="2018-01-01" readonly>
+                                <div class="valid-feedback">
+                                    Danke!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Bitte Datum eingeben!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="form-row mt-3">
+                            <div class="col-md-3 text-center">
+                                <button class="btn btn-primary" type="button" onclick="saveInventory();"><i class="fa fa-cloud-upload" style="font-size:24px"></i>&nbsp;Speichern</button>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+        <div class="container">
             <hr class="mx-2">
+
+                <div class="form-group col-12 alert alert-danger text-center" id="inventoryTableIsEmpty" role="alert">
+                <p>Table ist noch leer</p>
+                </div>
             <hr id="afterTable">
         </div>
     </div>
     <div class="tab-pane fade" id="v-pills-location" role="tabpanel" aria-labelledby="v-pills-location-tab">
         <div class="container">
-            <form class="store-form" autocomplete="off" onsubmit="readFormlocationData()" id="locationForm">
+            <form class="store-form" autocomplete="off" id="locationForm">
                 <div class="form-row justify-content-center">
                     <div class="container text-center mb-3"><h1>&#x1F4EC;Ort</h1></div>
                 </div>
@@ -272,7 +283,7 @@
                     <th>Ort</th>
                     <th>Stockwerk</th>
                     <th>Zimmer</th>
-                    <th>Editieren</th>
+                    <th> - </th>
                 </tr>
                 </thead>
                 <tbody id="locationTableBody">
@@ -285,12 +296,12 @@
     </div>
     <div class="tab-pane fade" id="v-pills-person" role="tabpanel" aria-labelledby="v-pills-person-tab">
         <div class="container">
-            <form class="store-form" autocomplete="off" onsubmit="readFormPersonData()" id="personForm">
+            <form class="store-form" autocomplete="off" id="personForm">
                 <div class="form-row justify-content-center">
                     <div class="container text-center mb-3"><h1>&#x1F464;Person</h1></div>
                 </div>
                 <div class="form-row justify-content-center" id="nPersonBtn">
-                    <button class="btn btn-primary mb-4" type="button" onclick="showPerson()">Neue Person</button>
+                    <button class="btn btn-primary mb-4" type="button" onclick="showPerson()">Neu Person</button>
                 </div>
                 <div class="d-none" id="sPerson">
                     <div class="form-row">
@@ -356,7 +367,7 @@
                     <th>Vorname</th>
                     <th>Personalnummer</th>
                     <th>E-Mail</th>
-                    <th>Editieren</th>
+                    <th> - </th>
                 </tr>
                 </thead>
                 <tbody id="personTableBody">

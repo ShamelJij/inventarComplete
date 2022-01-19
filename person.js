@@ -151,7 +151,7 @@ function insertNewRecord(personList){
     let cell5 = newRow.insertCell(4);
     cell5.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
                             "<button onClick=\"editPerson(" + personList.personItemID + ")\" class=\"btn btn-secondary\">bearbeiten</button>" +
-                            "<button onClick=\"deletePerson(" + personList.personItemID + "); hidePerson();\" class=\"btn btn-danger\">löchen</button>" +
+                            "<button onClick=\"deletePerson(" + personList.personItemID + "); hidePerson();\" class=\"btn btn-danger\">löschen</button>" +
 "</div>";
 }
 function clearPersonTable() {
@@ -164,7 +164,7 @@ function clearPersonTable() {
 function initPerson(){
     //localstorage auslesen
     let personList = JSON.parse(localStorage.getItem('personList'));
-
+    hidePerson();
     // wenn:  Personenliste == leer
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
     //error handling
@@ -194,7 +194,7 @@ function initPerson(){
     }
     // alert: consol.log function-validation.
     //
-    console.log("function initPerson")
+    console.log("function initPerson");
 }
 /*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                             name: savePerson | purpose: storing in localStorage and build a new row
@@ -247,14 +247,7 @@ function savePerson(){
             if(found_obj){
                 personItem.personItemID = personID;
                 personList[found_obj_index] = personItem;
-            }
-            /*for (let i = 0; i < personList.length; i++) {
-                if (personList[i].personItemID == personID){
-                    personItem.personItemID = personID;
-                    personList[i] = personItem;
-                    break;
-                    }
-                }*/
+                }
             }
 
 
@@ -267,6 +260,7 @@ function savePerson(){
         // in localstorage speichern
         //Tsbelle aktualiesieren
         initPerson();
+        hidePerson();
     }else {
         console.log('saveperson in not starting because valid is not valid');
     }
