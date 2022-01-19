@@ -2,7 +2,7 @@
         date: 1/13/2022 | time: 5:52 PM | name: Person | path: C:\deltastone\shamel-praktikum\person.js
   - - - - - - - - - - - - - - - - - - - - - - - - - -*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 /*
-Global Section
+Global Section..
  */
 const personTableIsEmpty = document.getElementById("personTableIsEmpty");
 let saved_person = JSON.parse(localStorage.getItem('personList'));
