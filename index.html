@@ -37,6 +37,10 @@
             <div class="form-row justify-content-center" id="nInventoryBtn">
                 <button class="btn btn-primary mb-4" type="button" onclick="showInventory()">Neu Inventar</button>
             </div>
+            <div id="inventoryIsSaved" class="d-none">
+                <div class="col text-center justify-content-center alert-info" id="inventoryIsSavedText">
+                </div>
+            </div>
             <div class="d-none" id="sInventory">
                 <form class="needs-validation" novalidate>
                     <div class="form-row">
@@ -166,7 +170,7 @@
                     <div class="form-group col-12 text-center my-3">
                         <form class="submit-form">
                             <button class="btn btn-success" type="button" onclick="updateInventory()" id="iUpdateBtn">Aktualisieren</button>
-                            <button class="btn btn-primary" type="button" onclick="saveInventory()" id="iSaveBtn">Speichern</button>
+                            <button class="btn btn-primary" type="button" onclick="saveInventory();" id="iSaveBtn">Speichern</button>
                             <button class="btn btn-primary" type="button" onclick="hideInventory()" id="iCancelBtn">Abrechen</button>
                         </form>
                     </div>
@@ -209,7 +213,7 @@
                 <div class="d-none" id="sLocation">
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label for="locationLabel">Ort Bezeichnung</label>
+                            <label for="locationLabel">Firma</label>
                             <input class="form-control" type="text" id="locationLabel">
                             <div class="valid-feedback" id="locationLabelIsValid">
                                 die Eingabe ist gültig
@@ -218,7 +222,8 @@
                                 die eingabe muss eindeutig sein!
                             </div>
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="w-100"></div>
+                        <div class="form-group col-10 col-md-3">
                             <label for="locationStreet">Straße</label>
                             <input class="form-control" type="text" id="locationStreet">
                             <div class="valid-feedback" id="locationStreetIsValid">
@@ -228,7 +233,7 @@
                                 die eingabe muss eindeutig sein!
                             </div>
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-2 text-center">
                             <label for="houseNumber">Hausnummer</label>
                             <input class="form-control" type="number" id="houseNumber">
                             <div class="valid-feedback" id="houseNumberIsValid">
@@ -238,7 +243,7 @@
                                 die eingabe muss eindeutig sein!
                             </div>
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-2">
                             <label for="zipCode">PLZ</label>
                             <input class="form-control" type="text" pattern="[0-9]*" id="zipCode">
                             <div class="valid-feedback" id="zipCodeIsValid">
@@ -248,6 +253,7 @@
                                 die eingabe muss eindeutig sein!
                             </div>
                         </div>
+                        <div class="w-100"></div>
                         <div class="form-group col-md-3">
                             <label for="locationName">Ort</label>
                             <input class="form-control" type="text" id="locationName">
@@ -258,7 +264,8 @@
                                 die eingabe muss eindeutig sein!
                             </div>
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="w-100"></div>
+                        <div class="form-group col-2">
                             <label for="floorNumber">Stockwerk</label>
                             <input class="form-control" type="number" id="floorNumber">
                             <div class="valid-feedback" id="floorNumberNameIsValid">
@@ -268,7 +275,7 @@
                                 die eingabe muss eindeutig sein!
                             </div>
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-2">
                             <label for="roomNumber">Zimmer</label>
                             <input class="form-control" type="text" id="roomNumber">
                             <div class="valid-feedback" id="roomNumberIsValid">
@@ -296,7 +303,7 @@
             <table class="table table-striped text-center" id="idLocationList">
                 <thead>
                 <tr>
-                    <th>Ort Bezeichnung</th>
+                    <th>Firma</th>
                     <th>Straße</th>
                     <th>Hausnummer</th>
                     <th>PLZ</th>
@@ -408,6 +415,63 @@
         </div>
         </div>
     </div>
+    </div>
+    <div class="modal fade" id="deleteInventoryModel" tabindex="-1" role="dialog" aria-labelledby="deleteInventoryModelCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteInventoryModelLongTitle">Inventory Löschen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    möchten Sie wirklich löschen?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">nein</button>
+                    <button type="button" class="btn btn-danger" onClick="deleteInventory(getRowID()); hideInventory();" data-dismiss="modal">löschen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deletePersonModel" tabindex="-1" role="dialog" aria-labelledby="deletePersonModelCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletePersonModelLongTitle">Person Löschen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    möchten Sie wirklich löschen?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">nein</button>
+                    <button type="button" class="btn btn-danger" onClick="deletePerson(getRowID()); hidePerson();" data-dismiss="modal">löschen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deleteLocationModel" tabindex="-1" role="dialog" aria-labelledby="deleteLocationModelCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteLocationModelLongTitle">Person Löschen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    möchten Sie wirklich löschen?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">nein</button>
+                    <button type="button" class="btn btn-danger" onClick="deleteLocation(getRowID()); hideLocation();" data-dismiss="modal">löschen</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -108,9 +108,18 @@ function insertNewRecordLocation(locationList){
     cell7.innerHTML = locationList.roomNumber;
     let cell8 = newRow.insertCell(7);
     cell8.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
-        "<button onClick=\"editLocation(" + locationList.locationItemID + ")\" class=\"btn btn-secondary\">bearbeiten</button>" +
-        "<button onClick=\"deleteLocation(" + locationList.locationItemID + "); hideLocation();\" class=\"btn btn-danger\">löschen</button>" +
+        "<button onClick=\"editLocation(" + locationList.locationItemID + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
+        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deleteLocationModel\" onClick=\"setRowID(" + locationList.locationItemID + ")\"></button></div>" +
         "</div>";
+}
+//get row id
+let globalLocationId = 0;
+function setRowID(ID){
+    globalLocationId = ID
+}
+function getRowID(){
+    let gid = globalLocationId;
+    return gid
 }
 function clearLocationTable() {
     const locationTable = document.getElementById("locationTableBody");

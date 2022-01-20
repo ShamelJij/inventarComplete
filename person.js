@@ -150,10 +150,19 @@ function insertNewRecord(personList){
     cell4.innerHTML = personList.pEmail;
     let cell5 = newRow.insertCell(4);
     cell5.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
-                            "<button onClick=\"editPerson(" + personList.personItemID + ")\" class=\"btn btn-secondary\">bearbeiten</button>" +
-                            "<button onClick=\"deletePerson(" + personList.personItemID + "); hidePerson();\" class=\"btn btn-danger\">löschen</button>" +
-"</div>";
+                            "<button onClick=\"editPerson(" + personList.personItemID + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
+        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deletePersonModel\" onClick=\"setRowID(" + personList.personItemID + ")\"></button></div>" +
+        "</div>";
 }
+ //get row id
+ let globalPersonId = 0;
+ function setRowID(ID){
+     globalPersonId = ID
+ }
+ function getRowID(){
+     let gid = globalPersonId;
+     return gid
+ }
 function clearPersonTable() {
     const personTable = document.getElementById("personTableBody");
     personTable.innerHTML = '';
@@ -186,10 +195,15 @@ function initPerson(){
         x = x.replace('d-none','');
         x = x.trim();
         personTableIsEmpty.className = x + ' d-none' ;
-
+        let sortedPersonList = personList.sort(function(a,b){
+            if (a.pLastName < b.pLastName) {return -1;}
+            if (a.pLastName > b.pLastName) {return  1;}
+            return 0;
+        });
+        console.log(sortedPersonList);
         //insertNewRecord(personList);
-        for (let i=0;i<personList.length;i++) {
-            insertNewRecord(personList[i]);
+        for (let i=0;i<sortedPersonList.length;i++) {
+            insertNewRecord(sortedPersonList[i]);
         }
     }
     // alert: consol.log function-validation.

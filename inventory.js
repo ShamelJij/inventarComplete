@@ -64,10 +64,24 @@ function insertNewRecordInventory(inventoryList){
     cell9.innerHTML = inventoryList.validationEndDate;
     let cell10 = newRow.insertCell(9);
     cell10.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
-        "<button onClick=\"editInventory(" + inventoryList.inventoryItemID + ")\" class=\"btn btn-secondary\">bearbeiten</button>" +
-        "<button onClick=\"deleteInventory(" + inventoryList.inventoryItemID + "); hideInventory();\" class=\"btn btn-danger\">löschen</button>" +
+        "<button onClick=\"editInventory(" + inventoryList.inventoryItemID + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
+        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deleteInventoryModel\" onClick=\"setRowID(" + inventoryList.inventoryItemID + ")\"></button></div>" +
         "</div>";
 }
+
+//get row id
+let globalInventoryId = 0;
+function setRowID(ID){
+     globalInventoryId = ID
+}
+function getRowID(){
+    let gid = globalInventoryId;
+    return gid
+}
+
+
+
+
 /*
 old
 
@@ -172,36 +186,14 @@ function hideInventory(){
         console.log('hidePerson is not working!!');
     }
 }
-    /*
-     - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-            date: 1/11/2022 | time: 9:43 AM | name: initInventory | path: C:\deltastone\shamel-praktikum\inventory.js
-     - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    */
-   // function initInventory() {
-
-        /*} else {
-            console.log('building a new row');
-            //insertNewRecord(data);
-            //showInventory();
-            console.log("show Inventory");
-
-            let savedInventoryID = savedInventory.length;
-            //checking on saveInventory
-
-
-
-        }*/
-        //console.log(inventoryTable);
-   // }
 function clearInventoryTable() {
     const inventoryTable = document.getElementById("inventoryTableBody");
     inventoryTable.innerHTML = '';
 }
 
-function initInventory(){
+function initInventoryTable(){
     //localstorage auslesen
     let inventoryList = JSON.parse(localStorage.getItem('inventoryList'));
-
     // wenn:  Personenliste == leer
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
     //error handling
@@ -229,7 +221,6 @@ function initInventory(){
             insertNewRecordInventory(inventoryList[i]);
         }
     }
-    console.log("function initInventory");
 }
 
 function getInputInventory() {
@@ -254,6 +245,7 @@ function getInputInventory() {
 
 //saving in localStorage
 function saveInventory() {
+    if (refresh()){
         if (inputValidationInventory()) {
 
         let inventoryList = JSON.parse(localStorage.getItem('inventoryList'));
@@ -323,11 +315,16 @@ function saveInventory() {
             //die Liste ist am besten sortiert (array) nach name
             // in localstorage speichern
             //Tsbelle aktualiesieren
-            initInventory();
+            initInventoryTable();
             hideInventory();
+            document.getElementById("inventoryIsSaved").className = 'd-block';
+            document.getElementById("inventoryIsSavedText").innerText = 'Item' + JSON.stringify(inventoryList[inventoryList.length-1].label) + 'ist gespeichert';
         }else {
             console.log('saveperson in not starting because valid is not valid');
         }
+    } else {
+
+    }
 
 }
 
@@ -559,6 +556,7 @@ function inputValidationInventory() {
         if (price <= 2000 && price > 0) {
             document.getElementById("deprecationInputGroup").className = 'd-none';
             document.getElementById("validationEndDateGroup").className = 'd-none';
+            document.getElementById('idDepreciationInput').value = 0;
         } else if (price <= 0) {
             document.getElementById("deprecationInputGroup").className = 'd-none';
             document.getElementById("validationEndDateGroup").className = 'd-none';
@@ -619,7 +617,7 @@ function inputValidationInventory() {
     function refreshInventory() {
 
         showLastModified();
-        initInventory();
+        initInventoryTable();
 
         //status ausgebucht?
         let status = document.getElementById("idStatus").value;
@@ -699,8 +697,36 @@ function inputValidationInventory() {
             document.getElementById("validationEndDateGroup").className = 'd-block';
 
         }
-        initInventory();*/
+        initInventoryTable();*/
     }
+//all Werte in Form zurückschalten
+function resetFormInventory() {
+    //reset value
+    document.getElementById("idStatus").value = '';
+    document.getElementById("idLabel").value = '';
+    document.getElementById("idInventorySerialNumber").value = '';
+    document.getElementById("idType").value = '';
+    document.getElementById("idPurchaseDate").value = '';
+    document.getElementById("idPrice").value = '';
+    document.getElementById("bookingCategory").value = '';
+    document.getElementById("idDepreciationInput").value = '';
+    document.getElementById("validationEndDate").value = '';
+
+    document.getElementById("saveIDInventory").value = '';
+
+    //reset classname
+    document.getElementById("idStatus").className = "form-control";
+    document.getElementById("idLabel").className = "form-control";
+    document.getElementById("idInventorySerialNumber").className = "form-control";
+    document.getElementById("idType").className = "form-control";
+    document.getElementById("idPurchaseDate").className = "form-control";
+    document.getElementById("idPrice").className = "form-control";
+    document.getElementById("bookingCategory").className = "form-control";
+    document.getElementById("idDepreciationInput").className = "form-control";
+    document.getElementById("validationEndDate").className = "form-control";
+
+
+}
 function editInventory(inventoryID) {
     showInventory();
     let inventoryList = JSON.parse(localStorage.getItem('inventoryList'));
@@ -738,7 +764,7 @@ function deleteInventory(inventoryID) {
         }
     }
 
-    initInventory();
+    initInventoryTable();
 }
 function updateInventory() {
     let inventoryList = JSON.parse(localStorage.getItem('inventoryList'));
@@ -772,7 +798,7 @@ function updateInventory() {
         inventoryList[found_obj_index] = inventoryItem;
     }
     localStorage.setItem("inventoryList", JSON.stringify(inventoryList));
-    initInventory();
+    initInventoryTable();
 }
 //this is for the speichern button!
     function refresh() {
