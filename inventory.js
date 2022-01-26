@@ -817,8 +817,15 @@ function updateInventory() {
             let deprecation = document.getElementById("idDepreciationInput").value.trim();
             let validationEndDate = document.getElementById("validationEndDate").value.trim();
 
-            let inventoryID = document.getElementByI
-            d("saveIDInventory").value;
+            let inventoryID = document.getElementById("saveIDInventory").value;
+
+            let oldStatus = document.getElementById('hiddenStatus').value;
+
+            if(oldStatus == status){
+                console.log('status not changed');
+            }else {
+                console.log('status changed!!');
+            }
             let inventoryItem = {
                 status: status,
                 label: label,

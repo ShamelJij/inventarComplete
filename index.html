@@ -167,6 +167,9 @@
                     <div class="d-block">
                         <input type="number" id="saveIDInventory">
                     </div>
+                    <div class="d-block">
+                        <input type="number" id="hiddenStatus">
+                    </div>
                     <div class="form-group col-12 text-center my-3">
                         <form class="submit-form">
                             <button class="btn btn-success" type="button" onclick="updateInventory()" id="iUpdateBtn">Aktualisieren</button>
@@ -243,6 +246,7 @@
                                 die eingabe muss eindeutig sein!
                             </div>
                         </div>
+                        <div class="w-100"></div>
                         <div class="form-group col-2">
                             <label for="zipCode">PLZ</label>
                             <input class="form-control" type="text" pattern="[0-9]*" id="zipCode">
@@ -253,7 +257,6 @@
                                 die eingabe muss eindeutig sein!
                             </div>
                         </div>
-                        <div class="w-100"></div>
                         <div class="form-group col-md-3">
                             <label for="locationName">Ort</label>
                             <input class="form-control" type="text" id="locationName">
