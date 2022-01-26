@@ -1,5 +1,9 @@
-//String2 als Array und Object(um besser zu sehen)
-let string2 = 'Das Wetter wird super';
-array2 = string2.split(' ');
-let object2 = Object.assign({}, array2);
-console.log(object2);
+let text = 'thoMAs müLLer'
+
+function capitalizeFirstLetter(string) {
+    let words = string.split(' ');
+    for (let i = 0; i < words.length; i++) {
+        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+    }
+    return string = words.join(' ')
+}

@@ -630,11 +630,31 @@ function calcForm() {
 //price value to changes div (bookingCategory)
     //Show booking category
     if (price <= 2000 && price >= 0) {
-        console.log('category: GWG');
         document.getElementById('bookingCategory').value = 'GWG';
+        let oldStatus = document.getElementById('hiddenStatus').value;
+        let newStatus = document.getElementById('bookingCategory').value;
+        if ( oldStatus != newStatus ){
+            //bookingCategoryChanged Modal
+            document.getElementById('newStatusModal').innerText = newStatus;
+            $('#bookingCategoryChanged').modal('show');
+            console.log('bookingCategory is changed!! Alert!!');
+            document.getElementById('hiddenStatus').value = newStatus;
+        }else{
+            console.log('bookingCategory is not changed!! ALERT!');
+        }
     } else {
         console.log('category: Abschribsfähig');
         document.getElementById('bookingCategory').value = 'Abschreibfähig';
+        let oldStatus = document.getElementById('hiddenStatus').value;
+        let newStatus = document.getElementById('bookingCategory').value;
+        if ( oldStatus != newStatus ){
+            document.getElementById('newStatusModal').innerText = newStatus;
+            $('#bookingCategoryChanged').modal('show');
+            console.log('bookingCategory is changed!! Alert!!');
+            document.getElementById('hiddenStatus').value = newStatus;
+        }else{
+            console.log('bookingCategory is not changed!! ALERT!');
+        }
     }
 }
 
@@ -781,6 +801,8 @@ function editInventory(inventoryID) {
             document.getElementById("idDepreciationInput").value = inventoryList[i].deprecation;
             document.getElementById("validationEndDate").value = inventoryList[i].validationEndDate;
 
+            document.getElementById("hiddenStatus").value = inventoryList[i].bookingCategory;
+
             document.getElementById("saveIDInventory").value = inventoryList[i].inventoryItemID;
             break;
         }
@@ -821,7 +843,7 @@ function updateInventory() {
 
             let oldStatus = document.getElementById('hiddenStatus').value;
 
-            if(oldStatus == status){
+            if(oldStatus == bookingCategory){
                 console.log('status not changed');
             }else {
                 console.log('status changed!!');
