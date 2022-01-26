@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/reference/database.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reference/database.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/person.js" beforeDir="false" afterPath="$PROJECT_DIR$/person.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reference/array.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/array.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,9 +17,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML5BootStrap4" />
-        <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -50,17 +51,22 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\deltastone\shamel-praktikum\reference" />
       <recent name="C:\deltastone\shamel-praktikum\ReferenceSprint7" />
       <recent name="C:\deltastone\shamel-praktikum\old" />
       <recent name="C:\deltastone\shamel-praktikum" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.database.js">
     <configuration name="array.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/reference/array.js" working-dir="$PROJECT_DIR$/reference">
+      <method v="2" />
+    </configuration>
+    <configuration name="database.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/reference/database.js" working-dir="$PROJECT_DIR$/reference">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.database.js" />
         <item itemvalue="Node.js.array.js" />
       </list>
     </recent_temporary>

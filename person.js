@@ -28,12 +28,12 @@ function inputValidationPerson() {
 
     //Personal Nummer Validieren
     let personalNumber = getInputPerson().pPersonalNumber;
-    let email = getInputPerson().pEmail;
-    let l_name = getInputPerson().pLastName;
-    let f_name = getInputPerson().pFirstName;
+    let email = (getInputPerson().pEmail).replace(/ +/g, "");
+    let l_name = (getInputPerson().pLastName).replace(/ +/g, "");
+    let f_name = (getInputPerson().pFirstName).replace(/ +/g, "");
     const found_personal_number = personList.find(element => element.pPersonalNumber == getInputPerson().pPersonalNumber);
     const found_email = personList.find(element => element.pEmail == getInputPerson().pEmail);
-    let is_email = getInputPerson().pEmail.match(/([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/g);
+    let is_email = email.match(/([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/g);
     if(found_personal_number){
         let x = document.getElementById("pPersonalNumber").className;
             x = x.replace('is-invalid', '');
@@ -223,6 +223,10 @@ function savePerson(){
         let pEmail = document.getElementById("pEmail").value.trim();
         let personID = document.getElementById("saveID").value;
 
+        //capitalize names
+        pLastName = capitalizeFirstLetter(pLastName.replace(/ +/g, ""));
+        pFirstName = capitalizeFirstLetter(pFirstName.replace(/ +/g, ""));
+
         //storing as an object
         let personItem = {
             pLastName: pLastName,
@@ -381,4 +385,14 @@ function refreshPerson() {
     document.getElementById("pPersonalNumber").className = 'form-control';
     document.getElementById("pEmail").className = 'form-control';
 
+}
+function personInputTranslation(input) {
+
+}
+function capitalizeFirstLetter(string) {
+     let words = string.split(' ');
+     for (let i = 0; i < words.length; i++) {
+         words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+     }
+     return string = words.join(' ')
 }
