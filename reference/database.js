@@ -38,14 +38,20 @@ class Database {
     }
 
     get(id) {
-        // todo: item mit id(in body ist) von localstorage
+        let items = JSON.parse(localStorage.getItem(this.#_db)).body;
+        let item = items.find(element => element._id == id);
+        if (!item){
+            //item nicht gefunden
+            throw (30000,'item not found. ID : ' + id );
+        }
+        return item;
     }
 
     #getNewId() {
-        let item = JSON.parse(localStorage.getItem(this.#_db));
-        let id = item.counter;
-        (item.counter)++;
-        localStorage.setItem(this.#_db, JSON.stringify(item));
+        let db = JSON.parse(localStorage.getItem(this.#_db));
+        let id = db.counter;
+        (db.counter)++;
+        localStorage.setItem(this.#_db, JSON.stringify(db));
         return id;
     }
 
@@ -57,78 +63,82 @@ class Database {
             id = this.#getNewId();
             isNew = true;
         } else {
-
             //sonst wenn id nicht existiert return false
+            //throw('cannot be saved. no ID found!');
+            try{
+                this.get(id);
+            } catch (err) {
+                throw err;
+            }
         }
         //datenBank auslesen
-        let item = JSON.parse(localStorage.getItem(this.#_db));
+        let db = JSON.parse(localStorage.getItem(this.#_db));
+        let items = db.body;
         //body_id ist gleich id
         body._id = id;
+
         if (isNew) {
-            item.body.push(body);
-        } else {
+            items.push(body);
+        }
+        else {
             //wenn existiert. item mit dem id ermittelen dann überschreiben
             // todo: id ermittelen und überschreiben
+            let found = items.find(element => element._id == id );
+            let found_index = items.indexOf(found);
+            items[found_index]= body;
         }
-        localStorage.setItem(this.#_db, JSON.stringify(item));
-        //das ganze speichern in localstorage
-
-        //
-
-        /*      let items = localStorage.getItem(this.#_db);
-              let found_obj = items.find(element => element.id == id);
-              let found_obj_index = items.indexOf(found_obj);
-              if (id == '' || !found_obj){
-                  //counter for itemID
-                  let personItemID = localStorage.getItem('personCounter');
-                  if (personItemID === null) {
-                      personItemID = 0;
-                  } else {
-                      personItemID++;
-                  }
-                  localStorage.setItem("personCounter", personItemID);
-                  personItem.personItemID = personItemID;
-                  // wenn:  Personenliste == leer
-                  // note(text):flag.. or tooltip wird and hidden div mit hinweiß
-                  //error handling
-                  if (!personList || personList.length == 0) {
-                      personList = []; // [personItem];
-                      personList.push(personItem);
-                  }
-                  // sonst: neue Reihe zufügen für jeden Eintrag
-                  else {
-                      console.log('building a new row');
-                      //insertNewRecord(personList);
-                      personList.push(personItem);
-                  }
-              } else {
-                  if(found_obj){
-                      personItem.personItemID = personID;
-                      personList[found_obj_index] = personItem;
-                  }
-              }
-
-
-
-              localStorage.setItem("personList", JSON.stringify(personList));
-              //eingabe validierung
-              //Localstorage auslesen
-              //push auf die Liste und nicht neu erstellen
-              //die Liste ist am besten sortiert (array) nach name
-              // in localstorage speichern
-              //Tsbelle aktualiesieren
-              initPerson();
-              hidePerson();
-          }else {
-          console.log('saveperson in not starting because valid is not valid');
-      }*/
+        db.body = items;
+        localStorage.setItem(this.#_db, JSON.stringify(db));
     }
 
     delete(id) {
+        try{
+            this.get(id);
+        } catch (err) {
+            throw err;
+        }
         //todo: element mit id löchen
+        let db = JSON.parse(localStorage.getItem(this.#_db));
+        let items = db.body;
+
+        let item = items.find(element => element._id == id);
+        console.log('delete: ',item);
+        items.splice( items.indexOf(item),1);
+        db.body = items;
+        localStorage.setItem(this.#_db, JSON.stringify(db));
     }
 }
 let d = new Database("montag");
-d.save(null,{ "name": "tim", "time": Date.now()});
+console.log('Erstelle neuen Datensatz ');
+d.save(null,{ "name": "simon", "time": Date.now()});
+console.log('Ändere vorhandenen Datensatz ');
+d.save(1,{ "name": "Max", "time": Date.now()});
+console.log('Ändere Datensatz mit nicht gegebene ID');
+try{
+    d.save(75,{ "name": "seven", "time": Date.now()});
+} catch (err) {
+    console.error(err);
+}
+console.log('Get Funktion mit nicht existierten ID : ');
+try{
+    d.get(70);
+} catch (err) {
+    console.error(err);
+}
+console.log('Get Funktion mit existierten ID : ');
+console.log(d.get(0));
+console.log('Delete Funktion mit nicht existierten ID : ');
+console.log(d.delete(0));
+
+
+/*
+console.log('Alle Datenbank: ');
 let arr = d.getAll();
 console.log(arr);
+console.log('Get Funktion: ');
+console.log(d.get(4));
+console.log('Deleted Item: ');
+d.delete(9);*/
+
+
+//todo: try - catch
