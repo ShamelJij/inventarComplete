@@ -456,6 +456,7 @@ function inputValidationInventory() {
     price = Number(price);
     document.getElementById('idPrice').value = price;
     console.log('the price is: ', price);
+
     //Show booking category
     if (price < 0) {
         console.log('price is negative');
@@ -489,13 +490,55 @@ function inputValidationInventory() {
         document.getElementById("idDepreciationInputIsInValid").innerText = "Kein negativem Wert bitte!";
         ret = false;
     } else {
-        console.log('deprecation is not negative');
-        let y = document.getElementById("idDepreciationInput").className;
-        y = y.replace('is-invalid', '');
-        y = y.replace('is-valid', '');
-        y = y.trim();
-        document.getElementById("idDepreciationInput").className = y + " is-valid";
-        document.getElementById("idDepreciationInputIsValid").innerText = "Der Wert ist gültig!";
+        //--------------------------------------------------------------------
+        //if new booking category is Abschreibfähig
+        if (price <= 2000 && price >= 0) {
+            document.getElementById('bookingCategory').value = 'GWG';
+            let oldStatus = document.getElementById('hiddenStatus').value;
+            let newStatus = document.getElementById('bookingCategory').value;
+            if ( oldStatus != newStatus ){
+                //bookingCategoryChanged Modal
+                document.getElementById('newStatusModal').innerText = newStatus;
+                $('#bookingCategoryChanged').modal('show');
+                console.log('bookingCategory is changed!! Alert!!');
+                document.getElementById('hiddenStatus').value = newStatus;
+            }else{
+                console.log('deprecation is not negative');
+                let y = document.getElementById("idDepreciationInput").className;
+                y = y.replace('is-invalid', '');
+                y = y.replace('is-valid', '');
+                y = y.trim();
+                document.getElementById("idDepreciationInput").className = y + " is-valid";
+                document.getElementById("idDepreciationInputIsValid").innerText = "Der Wert ist gültig!";
+            }
+        } else {
+            let oldStatus = document.getElementById('hiddenStatus').value;
+            let newStatus = document.getElementById('bookingCategory').value;
+            if ( oldStatus != newStatus ){
+                document.getElementById('newStatusModal').innerText = newStatus;
+                if(newStatus == 'Abschreibfähig'){
+                    document.getElementById("deprecationInputGroup").className = 'd-block';
+                    document.getElementById("validationEndDateGroup").className = 'd-block';
+                    console.warn('success!!!');
+                    let x = document.getElementById("idDepreciationInput").className;
+                    x = x.replace('is-invalid', '');
+                    x = x.replace('is-valid', '');
+                    x = x.trim();
+                    document.getElementById("idDepreciationInput").className = x + " is-invalid";
+                    document.getElementById("idDepreciationInputIsInValid").innerText = "bitte anpassen!";
+                    ret = false;
+                }
+                $('#bookingCategoryChanged').modal('show');
+                console.log('bookingCategory is changed!! Alert!!');
+                document.getElementById('hiddenStatus').value = newStatus;
+            }else{
+                console.log('bookingCategory is not changed!! ALERT!');
+                document.getElementById("deprecationInputGroup").className = 'd-none';
+                document.getElementById("validationEndDateGroup").className = 'd-none';
+            }
+        }
+        //--------------------------------------------------------------------
+
 
     }
     //validating the label input not to be empty
@@ -657,7 +700,6 @@ function calcForm() {
                 x = x.trim();
                 document.getElementById("idDepreciationInput").className = x + " is-invalid";
                 document.getElementById("idDepreciationInputIsInValid").innerText = "bitte anpassen!";
-                ret = false;
             }
             $('#bookingCategoryChanged').modal('show');
             console.log('bookingCategory is changed!! Alert!!');
