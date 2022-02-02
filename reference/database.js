@@ -100,7 +100,6 @@ class Database {
         //todo: element mit id löchen
         let db = JSON.parse(localStorage.getItem(this.#_db));
         let items = db.body;
-
         let item = items.find(element => element._id == id);
         console.log('delete: ',item);
         items.splice( items.indexOf(item),1);
@@ -126,9 +125,11 @@ try{
     console.error(err);
 }
 console.log('Get Funktion mit existierten ID : ');
-console.log(d.get(0));
+//uncaught error Problem
+//console.log(d.get(0));
 console.log('Delete Funktion mit nicht existierten ID : ');
-console.log(d.delete(0));
+//uncaught error Problem
+//console.log(d.delete(0));
 
 
 /*
@@ -142,3 +143,12 @@ d.delete(9);*/
 
 
 //todo: try - catch
+//todo: lastOf = .length-1
+
+class Persons {
+    static getAll(dataName) {
+        let items = JSON.parse(localStorage.getItem(dataName));
+        return items.body;
+    }
+}
+console.log('persons: ',Persons.getAll('montag').map(a => a.name));

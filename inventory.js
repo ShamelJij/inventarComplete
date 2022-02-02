@@ -649,6 +649,16 @@ function calcForm() {
         let newStatus = document.getElementById('bookingCategory').value;
         if ( oldStatus != newStatus ){
             document.getElementById('newStatusModal').innerText = newStatus;
+            if(newStatus == 'Abschreibfähig'){
+                console.warn('success!!!');
+                let x = document.getElementById("idDepreciationInput").className;
+                x = x.replace('is-invalid', '');
+                x = x.replace('is-valid', '');
+                x = x.trim();
+                document.getElementById("idDepreciationInput").className = x + " is-invalid";
+                document.getElementById("idDepreciationInputIsInValid").innerText = "bitte anpassen!";
+                ret = false;
+            }
             $('#bookingCategoryChanged').modal('show');
             console.log('bookingCategory is changed!! Alert!!');
             document.getElementById('hiddenStatus').value = newStatus;
