@@ -106,6 +106,7 @@ class Database {
         db.body = items;
         localStorage.setItem(this.#_db, JSON.stringify(db));
     }
+
 }
 let d = new Database("montag");
 console.log('Erstelle neuen Datensatz ');
@@ -145,10 +146,27 @@ d.delete(9);*/
 //todo: try - catch
 //todo: lastOf = .length-1
 
-class Persons {
-    static getAll(dataName) {
-        let items = JSON.parse(localStorage.getItem(dataName));
-        return items.body;
+class Person {
+    #_db = 'Person';
+    #_id;
+    #_body;
+
+    constructor(id) {
+        this.#_id = id;
+    }
+
+    save(body) {
+
+    }
+
+    #validate() {
+    }
+
+    #translate() {
+    }
+
+    document(){
+
     }
 }
-console.log('persons: ',Persons.getAll('montag').map(a => a.name));
+export {Database};

@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/reference/array.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reference/persons.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference/array.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference/database.html" beforeDir="false" afterPath="$PROJECT_DIR$/reference/database.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/database.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,8 +64,8 @@
       <command value="array.js" />
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.array.js">
-    <configuration name="array.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/reference/array.js" working-dir="$PROJECT_DIR$/reference">
+  <component name="RunManager" selected="Node.js.array.yaml">
+    <configuration name="array.yaml" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/reference/array.yaml" working-dir="$PROJECT_DIR$/reference">
       <method v="2" />
     </configuration>
     <configuration name="database.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/reference/database.js" working-dir="$PROJECT_DIR$/reference">
@@ -69,7 +73,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.array.js" />
+        <item itemvalue="Node.js.array.yaml" />
         <item itemvalue="Node.js.database.js" />
       </list>
     </recent_temporary>
@@ -95,7 +99,7 @@
       <workItem from="1642510252786" duration="15007000" />
       <workItem from="1643647490432" duration="33000" />
       <workItem from="1643647557819" duration="138000" />
-      <workItem from="1643719246600" duration="33933000" />
+      <workItem from="1643719246600" duration="44954000" />
     </task>
     <servers />
   </component>
