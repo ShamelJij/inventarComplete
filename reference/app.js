@@ -1,0 +1,10 @@
+import {Person} from './persons.js';
+import {Persons} from './persons.js';
+let p = new Person(1);
+console.log(p.document());
+let change = p.document();
+change.name= 'Karl';
+change.email= 'ca@ca.com';
+p.save(change);
+console.log(p.document());
+console.log(Persons.getAll());

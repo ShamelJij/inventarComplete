@@ -1,27 +1,40 @@
-import Database from './database.js';
+import {Database} from './database.js';
 
-class Person {
-    #_db = 'Person';
+export class Person {
+    #_dbName = 'Person';
     #_id;
     #_body;
+    #_db;
 
     constructor(id) {
         this.#_id = id;
+        this.#_db = new Database(this.#_dbName);
+        this.#_body = this.#_db.get(id);
     }
     save(body) {
-
+        this.#_db.save(this.#_id,body);
     }
 
     #validate() {
     }
 
     #translate() {
+
     }
 
     document(){
 
+        return this.#_body;
     }
 }
+export class Persons {
+
+    static getAll() {
+        let p = new Database("Person");
+        return p.getAll();
+    }
+}
+
 /*
 class CustomLogging {
     log(

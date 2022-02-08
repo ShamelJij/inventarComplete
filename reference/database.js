@@ -13,11 +13,12 @@
  * @class
  */
 export class Database {
+
     #_db = '';
 
     /**
      * @constructor
-     * @param dbname
+     * @param {string} dbname
      */
     constructor(dbname) {
         this.#_db = dbname;
@@ -45,9 +46,9 @@ export class Database {
     }
 
     /**
-     *@function get
-     * @param id
-     * @return {item}
+     *@function get - get Database record of given ID
+     * @param {string} id - UNID of Database record
+     * @return {Object} item - Database record
      */
     get(id) {
         let items = JSON.parse(localStorage.getItem(this.#_db)).body;
