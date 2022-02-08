@@ -1,6 +1,6 @@
-import {Localdata} from './database.js';
+import Database from './database.js';
 
-/*class Person {
+class Person {
     #_db = 'Person';
     #_id;
     #_body;
@@ -8,7 +8,6 @@ import {Localdata} from './database.js';
     constructor(id) {
         this.#_id = id;
     }
-
     save(body) {
 
     }
@@ -22,7 +21,7 @@ import {Localdata} from './database.js';
     document(){
 
     }
-}*/
+}
 /*
 class CustomLogging {
     log(
