@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script id="data" type="application/json">{"userId":1234,"userName":"John Doe","memberSince":"2000-01-01T00:00:00.000Z"}</script>
+
+<!-- Static -->
+<script>
+  const userInfo = JSON.parse(document.getElementById("data").text);
+  console.log("User information:", userInfo);
+</script>
+
+</body>
+</html>

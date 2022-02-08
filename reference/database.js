@@ -37,6 +37,11 @@ class Database {
         return items.body;
     }
 
+    /**
+     *
+     * @param id
+     * @return {T}
+     */
     get(id) {
         let items = JSON.parse(localStorage.getItem(this.#_db)).body;
         let item = items.find(element => element._id == id);
@@ -108,9 +113,45 @@ class Database {
     }
 
 }
+class Person extends Database {
+    #_db = 'Personfive';
+    #_id;
+    #_body;
+
+    constructor(id, db) {
+
+        super(db);
+        this.#_db = db;
+        this.#_id = id;
+
+
+
+    }
+
+    loggID() {
+        console.log(this.#_id,this.#_body);
+    }
+
+
+    save(body) {
+
+    }
+
+    #validate() {
+    }
+
+    #translate() {
+    }
+
+    document() {
+        return this.#_body;
+    }
+}
+let p = new Person(280,'persontestseven');
+p.loggID();
 let d = new Database("montag");
 console.log('Erstelle neuen Datensatz ');
-d.save(null,{ "name": "simon", "time": Date.now()});
+d.save(null,{ "name": "Andreas", "time": Date.now()});
 console.log('Ändere vorhandenen Datensatz ');
 d.save(1,{ "name": "Max", "time": Date.now()});
 console.log('Ändere Datensatz mit nicht gegebene ID');
@@ -141,32 +182,7 @@ console.log('Get Funktion: ');
 console.log(d.get(4));
 console.log('Deleted Item: ');
 d.delete(9);*/
-
-
 //todo: try - catch
 //todo: lastOf = .length-1
 
-class Person {
-    #_db = 'Person';
-    #_id;
-    #_body;
-
-    constructor(id) {
-        this.#_id = id;
-    }
-
-    save(body) {
-
-    }
-
-    #validate() {
-    }
-
-    #translate() {
-    }
-
-    document(){
-
-    }
-}
-export {Database};
+export {Database as Localdata};

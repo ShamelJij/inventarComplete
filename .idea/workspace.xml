@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/reference/array.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reference/persons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reference/Sprint241121/test..html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reference/array.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reference/database.html" beforeDir="false" afterPath="$PROJECT_DIR$/reference/database.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/reference/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference/persons.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/persons.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +46,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../full-stack" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.gutterIcons" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -99,7 +97,7 @@
       <workItem from="1642510252786" duration="15007000" />
       <workItem from="1643647490432" duration="33000" />
       <workItem from="1643647557819" duration="138000" />
-      <workItem from="1643719246600" duration="44954000" />
+      <workItem from="1643719246600" duration="69941000" />
     </task>
     <servers />
   </component>
