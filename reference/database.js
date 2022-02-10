@@ -111,6 +111,8 @@ export class Database {
         }
         db.body = items;
         localStorage.setItem(this.#_db, JSON.stringify(db));
+        return body;
+
     }
 
     /**

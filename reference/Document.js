@@ -8,8 +8,10 @@ export class Document {
 
     constructor(id) {
         this.#_id = id;
-        this.#_db = new Database(this.#_dbName);
-        this.#_body = this.#_db.get(id);
+        if (id) {
+            this.#_db = new Database(this.#_dbName);
+            this.#_body = this.#_db.get(id);
+        }
     }
     save(body) {
         this.#_db.save(this.#_id,body);

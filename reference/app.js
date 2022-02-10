@@ -33,8 +33,49 @@ lChange.locationName= 'Bingen';
 lChange.zipCode= 77777;
 location.save(lChange);
 console.log(location.document());*/
-let p = new Person();
-p.lastName = "maxmann";
-p.firstName = "max";
-p.mail = "someMail";
+
+
+console.log( '*** CRUD TEST OF PERSON ***' );
+
+//--------------------------------------------------------------------------------
+console.group( '--- Create Person---' );
+console.log( 'create object' );
+let p   = new Person();
+console.log( 'content of person' );
+let doc = p.document();
+console.log( doc );
+
+console.log( 'set person values' );
+doc.lastName  = "maxmann";
+doc.firstName = "max";
+doc.mail      = "someMail";
+
+console.log( 'save person' );
+p.save(doc);
+
+console.log( 'content of saveed person' );
 console.log(p.document());
+console.groupEnd();
+//--------------------------------------------------------------------------------
+
+console.group( '--- Read Person---' );
+// ToDo: add read
+console.groupEnd();
+
+//--------------------------------------------------------------------------------
+console.group( '--- Update Person---' );
+// ToDo: add update
+console.groupEnd();
+
+//--------------------------------------------------------------------------------
+console.group( '--- Delete Person---' );
+// ToDo: add delete
+console.groupEnd();
+
+
+console.log( '*** LOGIC TEST OF PERSON ***' );
+// ToDo: Was passiert bei "doc.age = 33"
+// ToDo: Was passiert wenn bei einem Update lastname nicht mitgelifert wird ?
+// ToDo: Was passiert wenn eine Person mit einer nicht existierender ID erstellt wird
+// ToDo: Was passiert wenn ein pflichtfeld z.B. email nicht geliefert wird
+// ToDo: Was passiert wenn lastname führende und nachfolgende leerzeichen enthält

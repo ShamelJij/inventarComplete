@@ -1,36 +1,56 @@
-//import {Database} from './database.js';
-import {Document} from "./Document.js";
+import {Database} from './database.js';
+// import {Document} from "./Document.js";
 
-export class Person extends Document{
-    #_dbName = 'Person';
-    #_id = null;
-    #_body;
-    #_db;
+export class Person {
 
+#_dbName;
+#_id;
+#_body;
+#_db;
+
+// ToDo: append JSDoc for alle functions
+    /**
+     *
+     * @param id
+     */
     constructor(id) {
+        this.#_dbName = 'Person';
+        this.#_db   = new Database(this.#_dbName);
+
         if (id) {
-            super(id);
+            this.#_id = id;
+            this.#_body = this.#_db.get(id);
         } else {
             let schema = {
-                "id": null,
+                "_id": null,
                 "lastName": '',
                 "firstName": '',
                 "mail": '',
                 "personalID": ''
-            }
-            super(null);
+            };
             this.#_body = schema;
+            this.#_id = null
         }
+
     }
 
+    /**
+     *
+     * @param body
+     */
     save(body) {
-        let newBody = this.#schema();
+        let newBody = this.#schema(body);
         if(this.#_id){
-            newBody.id = this.#_id;
+            newBody._id = this.#_id;
         }
-        super.save(newBody);
+        this.#_body = this.#_db.save(this.#_id, newBody);
     }
+
+    /**
+     *
+     */
     #schema(body){
+        // ToDo: Complete code for alle attributes
         let newBody = {};
         if(body.lastName){
             newBody.lastName = body.lastName;
@@ -45,17 +65,42 @@ export class Person extends Document{
         }
         return newBody;
     }
+
+    /**
+     *
+     */
     #validate() {
+        // ToDo: Validfate mandantory fields
     }
+
+    /**
+     *
+     */
     #translate() {
+        // ToDo: trim all values
     }
+
+    /**
+     *
+     * @param id
+     */
     delete(id){
-        super.delete(id);
+        this.#_db.delete(id);
     }
+
+    /**
+     *
+     * @returns {*}
+     */
     document(){
-        return super.document();
+        return this.#_body;
     }
 }
+
+
+/**
+ *
+ */
 export class Persons {
 
     static getAll() {
