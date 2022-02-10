@@ -1,30 +1,59 @@
-import {Database} from './database.js';
+//import {Database} from './database.js';
+import {Document} from "./Document.js";
 
-export class Person {
+export class Person extends Document{
     #_dbName = 'Person';
-    #_id;
+    #_id = null;
     #_body;
     #_db;
 
     constructor(id) {
-        this.#_id = id;
-        this.#_db = new Database(this.#_dbName);
-        this.#_body = this.#_db.get(id);
-    }
-    save(body) {
-        this.#_db.save(this.#_id,body);
+        if (id) {
+            super(id);
+        } else {
+            let schema = {
+                "id": null,
+                "lastName": '',
+                "firstName": '',
+                "mail": '',
+                "personalID": ''
+            }
+            super(null);
+            this.#_body = schema;
+        }
     }
 
+    save(body) {
+        let newBody = this.#schema();
+        if(this.#_id){
+            newBody.id = this.#_id;
+        }
+        super.save(newBody);
+    }
+    #schema(body){
+        let newBody = {};
+        if(body.lastName){
+            newBody.lastName = body.lastName;
+        } else {
+            newBody.lastName = this.#_body.lastName;
+        }
+        if(body.firstName){
+            newBody.firstName = body.firstName;
+
+        } else {
+            newBody.firstName = this.#_body.firstName;
+        }
+        return newBody;
+    }
     #validate() {
     }
-
     #translate() {
-
     }
-
+    delete(id){
+        super.delete(id);
+    }
     document(){
-
-        return this.#_body;
+        return super.document();
     }
 }
 export class Persons {
@@ -34,7 +63,6 @@ export class Persons {
         return p.getAll();
     }
 }
-
 /*
 class CustomLogging {
     log(
