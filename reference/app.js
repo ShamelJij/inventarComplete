@@ -19,6 +19,7 @@ doc.firstName = "maxi";
 doc.email      = "testMail";
 doc.age = 33;
 
+
 console.log( 'save person' );
 //p.save(doc);
 
@@ -35,6 +36,12 @@ console.groupEnd();
 //--------------------------------------------------------------------------------
 console.group( '--- Update Person---' );
 // ToDo: add update
+let toUpdateObj = {};
+toUpdateObj.lastName = "updatedLastName";
+toUpdateObj.firstName = "updatedName";
+toUpdateObj.email = "updatedEmail";
+
+p.update(5,toUpdateObj);
 console.groupEnd();
 
 //--------------------------------------------------------------------------------
