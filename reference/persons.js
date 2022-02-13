@@ -25,7 +25,7 @@ export class Person {
                 "_id": null,
                 "lastName": '',
                 "firstName": '',
-                "mail": '',
+                "email": '',
                 "personalID": ''
             };
             this.#_body = schema;
@@ -46,8 +46,13 @@ export class Person {
         this.#_body = this.#_db.save(this.#_id, newBody);
     }
 
+    get(id){
+        return this.#_db.get(id);
+    }
+
     /**
-     *
+     *@param body
+     *@returns {Object} 
      */
     #schema(body){
         // ToDo: Complete code for alle attributes
@@ -63,6 +68,16 @@ export class Person {
         } else {
             newBody.firstName = this.#_body.firstName;
         }
+        if(body.email){
+            newBody.email = body.email;
+        } else {
+            newBody.email = this.#_body.email;
+        }
+        if(body.personalID){
+            newBody.personalID = body.personalID;
+        } else {
+            newBody.personalID = this.#_body.personalID;
+        }
         return newBody;
     }
 
@@ -70,7 +85,7 @@ export class Person {
      *
      */
     #validate() {
-        // ToDo: Validfate mandantory fields
+        // ToDo: Validate mandantory fields
     }
 
     /**
