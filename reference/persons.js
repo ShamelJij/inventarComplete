@@ -46,10 +46,16 @@ export class Person {
         this.#_body = this.#_db.save(this.#_id, newBody);
     }
 
-    update(oldBodyId, newBody){
-        this.get(oldBodyId) = newBody;
+    /**
+     *
+     * @param oldBodyId
+     * @type {number}
+     * @param newBody
+     */
+    update(id, newBody){
+        this.#_id = id;
         this.save(newBody);
-        console.log(oldBodyId, newBody);
+        console.log(id, newBody);
     }
 
     get(id){

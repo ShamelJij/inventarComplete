@@ -14,14 +14,14 @@ let doc = p.document();
 console.log( doc );
 
 console.log( 'set person values' );
-doc.lastName  = "testmann";
-doc.firstName = "maxi";
-doc.email      = "testMail";
+doc.lastName  = "Drittermann";
+doc.firstName = "maxmillian";
+doc.email      = "anyMail";
 doc.age = 33;
 
 
 console.log( 'save person' );
-//p.save(doc);
+p.save(doc);
 
 console.log( 'content of saveed person' );
 console.log(p.document());
@@ -30,7 +30,7 @@ console.groupEnd();
 
 console.group( '--- Read Person---' );
 // ToDo: add read
-console.log(p.get(4));
+console.log(p.get(2));
 console.groupEnd();
 
 //--------------------------------------------------------------------------------
@@ -41,13 +41,13 @@ toUpdateObj.lastName = "updatedLastName";
 toUpdateObj.firstName = "updatedName";
 toUpdateObj.email = "updatedEmail";
 
-p.update(5,toUpdateObj);
+p.update(2,toUpdateObj);
 console.groupEnd();
 
 //--------------------------------------------------------------------------------
 console.group( '--- Delete Person---' );
 // ToDo: add delete
-p.delete(4);
+//p.delete(4);
 console.groupEnd();
 
 
