@@ -30,24 +30,25 @@ console.groupEnd();
 
 console.group( '--- Read Person---' );
 // ToDo: add read
-console.log(p.get(2));
+console.log(p.get(3));
 console.groupEnd();
 
 //--------------------------------------------------------------------------------
 console.group( '--- Update Person---' );
 // ToDo: add update
 let toUpdateObj = {};
-toUpdateObj.lastName = "updatedLastName";
-toUpdateObj.firstName = "updatedName";
-toUpdateObj.email = "updatedEmail";
+toUpdateObj.lastName = "fad";
+toUpdateObj.firstName = "fad";
+toUpdateObj.email = "upda   @bbbbtedEmbb   .il";
+toUpdateObj.personalID = 5234;
 
-p.update(2,toUpdateObj);
+p.update(3,toUpdateObj);
 console.groupEnd();
 
 //--------------------------------------------------------------------------------
 console.group( '--- Delete Person---' );
 // ToDo: add delete
-p.delete(2);
+//p.delete(2);
 console.groupEnd();
 
 
@@ -56,6 +57,7 @@ console.log('the id is: ', doc._id);
 // ToDo: Was passiert bei "doc.age = 33"
 //wird nicht genommen weil es ist kein Teil von NewBody in #schema
 // ToDo: Was passiert wenn bei einem Update lastname nicht mitgelifert wird ?
+
 // ToDo: Was passiert wenn eine Person mit einer nicht existierender ID erstellt wird
 // ToDo: Was passiert wenn ein pflichtfeld z.B. email nicht geliefert wird
 // ToDo: Was passiert wenn lastname führende und nachfolgende leerzeichen enthält
