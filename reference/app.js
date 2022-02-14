@@ -47,7 +47,7 @@ console.groupEnd();
 //--------------------------------------------------------------------------------
 console.group( '--- Delete Person---' );
 // ToDo: add delete
-//p.delete(4);
+p.delete(2);
 console.groupEnd();
 
 
