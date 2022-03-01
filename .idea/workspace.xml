@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/inventar_idq/public/languages/de.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar_idq/router_controllers/locationsController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar_idq/router_controllers/personsController.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reference/VANJS/settings.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VANJS/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/VANJS/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VANJS/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/reference/VANJS/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VANJS/inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/VANJS/inventory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VANJS/location.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/VANJS/location.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VANJS/person.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/VANJS/person.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VANJS/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/router_controllers/inventoriesController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,10 +57,10 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\deltastone\shamel-praktikum\reference" />
       <recent name="C:\deltastone\shamel-praktikum\inventar_idq" />
       <recent name="C:\deltastone\shamel-praktikum\VANJS" />
       <recent name="C:\deltastone\shamel-praktikum\reference\JSOOP" />
-      <recent name="C:\deltastone\shamel-praktikum\reference" />
       <recent name="C:\deltastone\shamel-praktikum\ReferenceSprint7" />
     </key>
   </component>
@@ -98,7 +106,7 @@
       <workItem from="1643647557819" duration="138000" />
       <workItem from="1643719246600" duration="101681000" />
       <workItem from="1644912460689" duration="8880000" />
-      <workItem from="1646146125841" duration="3332000" />
+      <workItem from="1646146125841" duration="4309000" />
     </task>
     <servers />
   </component>
