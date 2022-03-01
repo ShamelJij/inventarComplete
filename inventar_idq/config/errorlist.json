@@ -1,0 +1,315 @@
+{
+  "10000": {
+    "internalStatusCode": "10000",
+    "httpStatusCode": 401,
+    "error": "Unauthorized",
+    "details": "Unauthorized, username can not be empty"
+  },
+  "10001": {
+    "internalStatusCode": "10001",
+    "httpStatusCode": 401,
+    "error": "Unauthorized",
+    "details": "Unauthorized, password can not be empty"
+  },
+  "10002": {
+    "internalStatusCode": "10002",
+    "httpStatusCode": 401,
+    "error": "Unauthorized",
+    "details": "Unauthorized, you have to login"
+  },
+  "10010": {
+    "internalStatusCode": "10010",
+    "httpStatusCode": 401,
+    "error": "invalid credentials error",
+    "details": "invalid credentials error, check username and password"
+  },
+  "10011": {
+    "internalStatusCode": "10011",
+    "httpStatusCode": 401,
+    "error": "invalid credentials error",
+    "details": "invalid credentials error, check new password"
+  },
+  "10015": {
+    "internalStatusCode": "10015",
+    "httpStatusCode": 500,
+    "error": "internal error",
+    "details": "unknown error validating LDAP login, contact the service desk please."
+  },
+  "10020": {
+    "internalStatusCode": "10020",
+    "httpStatusCode": 500,
+    "error": "internal error",
+    "details": "Error on LDAP search, contact the service desk please."
+  },
+  "10030": {
+    "internalStatusCode": "10030",
+    "httpStatusCode": 403,
+    "error": "you are not authorized to access the application (ACL)",
+    "details": "conntact the application owner to request acl access"
+  },
+  "10040": {
+    "internalStatusCode": "10040",
+    "httpStatusCode": 401,
+    "error": "token authentication failed",
+    "details": "token is not valid, please log out and try a new login"
+  },
+  "10050": {
+    "internalStatusCode": "10050",
+    "httpStatusCode": 404,
+    "error": "current user not found",
+    "details": "check x-access-token and try again"
+  },
+  "10100": {
+    "internalStatusCode": "10100",
+    "httpStatusCode": 400,
+    "error": "validation error",
+    "details": ""
+  },
+  "10500": {
+    "internalStatusCode": "10500",
+    "httpStatusCode": 500,
+    "error": "unknown error",
+    "details": "details logged on backend"
+  },
+  "VALIDATIONERROR": {"REM": "--- V A L I D A T I O N   E R R O R --------------------------------------------------"},
+  "10409": {
+    "internalStatusCode": "10409",
+    "httpStatusCode": 409,
+    "error": "conflict",
+    "details": "the update can not proceded because the data on backend changed. Please reload and send again."
+  },
+  "10600":
+  {
+    "internalStatusCode": "10600",
+    "httpStatusCode": 400,
+    "error": "date not valid",
+    "details": "the date is not valid, format should be YYYY-MM_DD"
+  },
+  "10601":
+  {
+    "internalStatusCode": "10601",
+    "httpStatusCode": 400,
+    "error": "validation error",
+    "details": "submitted data is not valid"
+  },
+  "10605":
+  {
+    "internalStatusCode": "10605",
+    "httpStatusCode": 400,
+    "error": "validation error",
+    "details": "submitted data is not valid"
+  },
+  "STORE": {"REM": "--- S T O R E ----------------------------------------------------------------------------------"},
+  "11404": {
+    "internalStatusCode": "11404",
+    "httpStatusCode": 404,
+    "error": "store not found",
+    "details": "the requested store does not exists"
+  },
+  "11500": {
+    "internalStatusCode": "11500",
+    "httpStatusCode": 500,
+    "error": "unknown error with store  stores",
+    "details": "details logged on backend"
+  },
+  "DATABASE": {"REM": "--- D A T A B A S E -------------------------------------------------------------------------"},
+  "15000":
+  {
+    "internalStatusCode": "15000",
+    "httpStatusCode": 500,
+    "error": "database read error",
+    "details": "database error details logged on backend"
+  },
+  "15001":
+  {
+    "internalStatusCode": "15001",
+    "httpStatusCode": 500,
+    "error": "database write error",
+    "details": "database error details logged on backend"
+  },
+  "15002":
+  {
+    "internalStatusCode": "15002",
+    "httpStatusCode": 500,
+    "error": "database update error",
+    "details": "database error details logged on backend"
+  },
+  "PRODUCTS": {"REM": "--- P R O D U C T S -------------------------------------------------------------------------"},
+  "20000":
+  {
+    "internalStatusCode": "20000",
+    "httpStatusCode": 500,
+    "error": "error reading product by unid",
+    "details": "database error details logged on backend"
+  },
+  "20001":
+  {
+    "internalStatusCode": "20001",
+    "httpStatusCode": 500,
+    "error": "error reading list of products",
+    "details": "database error details logged on backend"
+  },
+  "20403":
+  {
+    "internalStatusCode": "20403",
+    "httpStatusCode": 403,
+    "error": "Writeaccess forbidden",
+    "details": "To create or update a product the acl-role 'product' is required"
+  },
+  "20404":
+  {
+    "internalStatusCode": "20404",
+    "httpStatusCode": 404,
+    "error": "product not found",
+    "details": "product with requested id not found"
+  },
+  "20400":
+  {
+    "internalStatusCode": "20400",
+    "httpStatusCode": 400,
+    "error": "bad request",
+    "details": "provided request has malformed syntax"
+  },
+  "IDQS": {"REM": "--- I D Q S -------------------------------------------------------------------------------------"},
+  "21000":
+  {
+    "internalStatusCode": "21000",
+    "httpStatusCode": 500,
+    "error": "error reading idq by Unid",
+    "details": "database error details logged on backend"
+  },
+  "21001":
+  {
+    "internalStatusCode": "21001",
+    "httpStatusCode": 500,
+    "error": "error reading list of idqs",
+    "details": "database error details logged on backend"
+  },
+  "21002":
+  {
+    "internalStatusCode": "21002",
+    "httpStatusCode": 500,
+    "error": "error creating new idq",
+    "details": "database error details logged on backend"
+  },
+  "21003":
+  {
+    "internalStatusCode": "21003",
+    "httpStatusCode": 500,
+    "error": "error updateing idq by id",
+    "details": "unexpected error updateing idq by id. Details logged on backend"
+  },
+  "21010":
+  {
+    "internalStatusCode": "21010",
+    "httpStatusCode": 400,
+    "error": "storelist is empty",
+    "details": "a new record must contain at least one store"
+  },
+  "21011":
+  {
+    "internalStatusCode": "21011",
+    "httpStatusCode": 400,
+    "error": "productlist is empty",
+    "details": "a new record must contain at least one product"
+  },
+  "21103":
+  {
+    "internalStatusCode": "21103",
+    "httpStatusCode": 400,
+    "error": "error changing status of idq",
+    "details": "new status must be the next upper status. Status 4 can not increased, for example (1) draft to (2) Query active"
+  },
+  "21401":
+  {
+    "internalStatusCode": "21104",
+    "httpStatusCode": 403,
+    "error": "Creating Excelreport forbidden",
+    "details": "To create an excelreport the acl-role 'ek' is required"
+  },
+  "21403":
+  {
+    "internalStatusCode": "21403",
+    "httpStatusCode": 403,
+    "error": "Writeaccess forbidden",
+    "details": "To create or update an idq the acl-role 'ek' is required"
+  },
+  "21404":
+  {
+    "internalStatusCode": "21404",
+    "httpStatusCode": 404,
+    "error": "idq not found",
+    "details": "idq with requested id not found"
+  },
+  "21409":
+  {
+    "internalStatusCode": "21409",
+    "httpStatusCode": 409,
+    "error": "idq update in progress",
+    "details": "IDQ update is currently in progress. Please wait."
+  },
+  "FEEDBACKS": {"REM": "--- F E E D B A C K S-----------------------------------------------------------------------"},
+  "22000":
+  {
+    "internalStatusCode": "22000",
+    "httpStatusCode": 500,
+    "error": "error reading feedback by unid",
+    "details": "database error details logged on backend"
+  },
+  "22001":
+  {
+    "internalStatusCode": "22001",
+    "httpStatusCode": 500,
+    "error": "error reading list of feedbacks",
+    "details": "database error details logged on backend"
+  },
+  "22002":
+  {
+    "internalStatusCode": "22002",
+    "httpStatusCode": 500,
+    "error": "error creating new feedback",
+    "details": "database error details logged on backend"
+  },
+  "22003":
+  {
+    "internalStatusCode": "22003",
+    "httpStatusCode": 500,
+    "error": "error updateing feedback by id",
+    "details": "unexpected error updateing feedback by id. Details logged on backend"
+  },
+  "22005":
+  {
+    "internalStatusCode": "22005",
+    "httpStatusCode": 400,
+    "error": "status update error",
+    "details": "the status can only changed from 3 to 1 or from 3 to 2 or form 2 to 1"
+  },
+  "22006":
+  {
+    "internalStatusCode": "22006",
+    "httpStatusCode": 400,
+    "error": "value update error",
+    "details": "the GLvalue can only updated in status 1 and the GFvalue can only updated in status 2"
+  },
+  "22007":
+  {
+    "internalStatusCode": "22007",
+    "httpStatusCode": 400,
+    "error": "invalid value",
+    "details": "the GLvalue and or GFvalue was invalid. 0 < value < 100000"
+  },
+  "22008":
+  {
+    "internalStatusCode": "22008",
+    "httpStatusCode": 403,
+    "error": "update is not allowed anymore",
+    "details": "query is already finalized"
+  },
+  "22404":
+  {
+    "internalStatusCode": "22404",
+    "httpStatusCode": 404,
+    "error": "feedback not found",
+    "details": "feedback with requested id not found"
+  }
+}
