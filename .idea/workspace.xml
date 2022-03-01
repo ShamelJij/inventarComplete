@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/inventar_idq/couchdb_design/app.js" afterDir="false" />
-    </list>
+    <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,7 +95,7 @@
       <workItem from="1643647557819" duration="138000" />
       <workItem from="1643719246600" duration="101681000" />
       <workItem from="1644912460689" duration="8880000" />
-      <workItem from="1646146125841" duration="2265000" />
+      <workItem from="1646146125841" duration="2610000" />
     </task>
     <servers />
   </component>
