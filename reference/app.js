@@ -9,14 +9,16 @@ console.log( '*** CRUD TEST OF PERSON ***' );
 console.group( '--- Create Person---' );
 console.log( 'create object' );
 let p   = new Person();
-console.log( 'content of person' );
+console.log( 'content of person.' );
 let doc = p.document();
 console.log( doc );
 
+
+
 console.log( 'set person values' );
-doc.lastName  = "Drittermann";
+doc.lastName  = "Dritt2312ermann";
 doc.firstName = "maxmillian";
-doc.email      = "anyMail";
+doc.email      = "anyMail@mail.cl";
 doc.age = 33;
 
 
@@ -37,10 +39,11 @@ console.groupEnd();
 console.group( '--- Update Person---' );
 // ToDo: add update
 let toUpdateObj = {};
-toUpdateObj.lastName = "fad";
-toUpdateObj.firstName = "fad";
-toUpdateObj.email = "upda   @nentedEmbb   .il";
-toUpdateObj.personalID = 6534;
+toUpdateObj.lastName = "dasd";
+toUpdateObj.firstName = "dddd";
+toUpdateObj.email = "upda   @ffzzzgggf   .il";
+toUpdateObj.personalID = 65444774;
+toUpdateObj.xyz = 1;
 
 p.update(70,toUpdateObj);
 console.groupEnd();

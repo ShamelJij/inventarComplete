@@ -59,7 +59,7 @@ export class Person {
         if (this.#validate(newBody)){
             this.#_id = id;
             this.save(newBody);
-            console.log('item: ',id, newBody,'ist geupdated!');
+            console.log('item: ', id,'ist geupdated!');
         } else {
 
         }
