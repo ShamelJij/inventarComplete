@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="" />
+    <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/inventar_idq/bin/www" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/.eslintrc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/VANJS/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/VANJS/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/VANJS/inventory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/location.js" beforeDir="false" afterPath="$PROJECT_DIR$/VANJS/location.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/person.js" beforeDir="false" afterPath="$PROJECT_DIR$/VANJS/person.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference/Document.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/JSOOP/Document.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/JSOOP/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference/array.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reference/JSOOP/array.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference/database.html" beforeDir="false" afterPath="$PROJECT_DIR$/reference/JSOOP/database.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/JSOOP/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference/inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/JSOOP/inventory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference/junk.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/JSOOP/junk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference/location.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/JSOOP/location.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reference/persons.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/JSOOP/persons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/VANJS/settings.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,10 +67,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\deltastone\shamel-praktikum\inventar_idq" />
+      <recent name="C:\deltastone\shamel-praktikum\VANJS" />
+      <recent name="C:\deltastone\shamel-praktikum\reference\JSOOP" />
       <recent name="C:\deltastone\shamel-praktikum\reference" />
       <recent name="C:\deltastone\shamel-praktikum\ReferenceSprint7" />
-      <recent name="C:\deltastone\shamel-praktikum\old" />
-      <recent name="C:\deltastone\shamel-praktikum" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -58,10 +80,10 @@
     </option>
   </component>
   <component name="RunManager" selected="Node.js.array.yaml">
-    <configuration name="array.yaml" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/reference/array.yaml" working-dir="$PROJECT_DIR$/reference">
+    <configuration name="array.yaml" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/reference/JSOOP/array.yaml" working-dir="$PROJECT_DIR$/reference">
       <method v="2" />
     </configuration>
-    <configuration name="database.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/reference/database.js" working-dir="$PROJECT_DIR$/reference">
+    <configuration name="database.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/reference/JSOOP/database.js" working-dir="$PROJECT_DIR$/reference">
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -94,6 +116,7 @@
       <workItem from="1643647557819" duration="138000" />
       <workItem from="1643719246600" duration="101681000" />
       <workItem from="1644912460689" duration="8880000" />
+      <workItem from="1646146125841" duration="855000" />
     </task>
     <servers />
   </component>

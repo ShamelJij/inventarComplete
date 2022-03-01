@@ -3,7 +3,7 @@
 
 *.iml
 # IDE files
-.idea/*
+../.idea/.name
 .vscode/*
 !.vscode/launch.json
 !.vscode/settings.json
