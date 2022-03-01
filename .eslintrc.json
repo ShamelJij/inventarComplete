@@ -1,0 +1,49 @@
+{
+	"extends": [
+		"google"
+	],
+	"rules": {
+		"indent": [
+			"error",
+			"tab"
+		],
+		"no-tabs": [
+			"error",
+			{
+				"allowIndentationTabs": true
+			}
+		],
+		"max-len": [
+			"error",
+			{
+				"code": 120,
+				"tabWidth": 2,
+				"ignoreComments": true,
+				"ignoreTrailingComments": true,
+				"ignoreStrings": true,
+				"ignoreTemplateLiterals": true,
+				"ignoreRegExpLiterals": true
+			}
+		],
+		"object-curly-spacing": [
+			"error",
+			"always"
+		],
+		"require-jsdoc": [
+			"warn",
+			{
+				"require": {
+					"FunctionDeclaration": true,
+					"MethodDefinition": true,
+					"ClassDeclaration": false,
+					"ArrowFunctionExpression": false,
+					"FunctionExpression": false
+				}
+			}
+		],
+		"semi": [
+			"error",
+			"always"
+		]
+	}
+}
