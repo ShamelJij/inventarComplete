@@ -1,4 +1,3 @@
-/*
 {
   "database": {
     "host": "192.168.100.10:5984",
@@ -30,4 +29,4 @@
     "apiurl": "http://de0001slda10020.de.bauhaus.intra/mail/mailin/IDQ_E-Mail_Vorlagen.nsf/api/data/collections/name/reststationery?count=1000&start=0",
     "newqueryurl": "http://de0001slda10020.de.bauhaus.intra/mail/mailin/IDQ_E-Mail_Vorlagen.nsf/createIDQEmail?openagent"
   }
-}*/
+}

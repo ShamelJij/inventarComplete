@@ -1,0 +1,445 @@
+swagger: "2.0"
+info:
+  description: "Die Schnittstelle zur Inventarverwaltung"
+  version: "1.0.0"
+  title: "INVENTORY"
+  termsOfService: "http://deltastone.com"
+  contact:
+    email: "info@deltastone.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost"
+basePath: "/v1"
+tags:
+  - name: "persons"
+    description: "Alle Personen"
+  - name: "inventories"
+    description: "Alle Inventar"
+  - name: "locations"
+    description: "Alle Orte"
+schemes:
+  - "https"
+paths:
+  /person:
+    get:
+      tags:
+        - "persons"
+      summary: "Get all items in Person"
+      description: "this will get all body in database(Person)...."
+      operationId: "getAllPerson"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "successfully fetched Person Record from database"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Person"
+    post:
+      tags:
+        - "persons"
+      summary: "Create Person"
+      description: "This will create a new item in database(Person)"
+      operationId: "createPerson"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Created Person object"
+          required: true
+          schema:
+            $ref: "#/definitions/PersonWithoutID"
+      responses:
+        201:
+          description: "new Person is been created"  #als Array nicht Objekt
+          schema:
+            $ref: "#/definitions/Person"
+        400:
+          description: "Invalid Person supplied or given"
+          schema:
+            $ref: "#/definitions/Errors"
+        409:
+          description: "The request could not be completed due to a conflict"
+  /persons/{id}:
+    get:
+      tags:
+        - "persons"
+      summary: "Get Person by UNID"
+      description: ""
+      operationId: "getPersonByUNID"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "The Person that needs to be fetched. Use person1 for testing. "
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Person successfully fetched "
+          schema:
+            $ref: "#/definitions/Person"
+        "404":
+          description: "Person not found in the database"
+    put:
+      tags:
+        - "persons"
+      summary: "Updated Person"
+      description: "This will update Person body with UNID"
+      operationId: "updatePerson"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Person that needs to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated Person object"
+          required: true
+          schema:
+            $ref: "#/definitions/Person"
+      responses:
+        "200":
+          description: "The resource describing the result of the action is transmitted in the message body"
+          schema:
+            $ref: "#/definitions/Person"
+        "400":
+          description: "Invalid Person supplied or given"
+          schema:
+            $ref: "#/definitions/Errors"
+        "404":
+          description: "Person not found"
+    delete:
+      tags:
+        - "persons"
+      summary: "Delete Person"
+      description: "this will delete Person with UNID"
+      operationId: "deletePerson"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "The Person that needs to be deleted"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "The request succeeded"
+        "404":
+          description: "Person not found"
+  /inventory:
+    post:
+      tags:
+        - "inventories"
+      summary: "Create inventory"
+      description: "This will create a new Inventory record"
+      operationId: "createInventory"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Created inventory record"
+          required: true
+          schema:
+            $ref: "#/definitions/InventoryWithoutID"
+      responses:
+        200:
+          description: "Inventory record successfully saved"
+        201:
+          description: "a resource has been created"
+  /Inventory/{id}:
+    get:
+      tags:
+        - "inventories"
+      summary: "Get inventory by UNID"
+      description: ""
+      operationId: "getInventoryByUNID"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "The Inventory record that needs to be fetched. Use inventory1 for testing. "
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Inventory record successfully fetched "
+          schema:
+            $ref: "#/definitions/Inventory"
+        "404":
+          description: "Inventroy record not found"
+    put:
+      tags:
+        - "inventories"
+      summary: "Updated Inventory record"
+      description: "This will update Inventory record"
+      operationId: "updateInventory"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Inventory record that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated Inventory record"
+          required: true
+          schema:
+            $ref: "#/definitions/Inventory"
+      responses:
+        "400":
+          description: "Invalid Inventory record supplied or given"
+        "404":
+          description: "Inventory record not found"
+    delete:
+      tags:
+        - "inventories"
+      summary: "Delete Inventory record"
+      description: "This will delete Inventory record"
+      operationId: "deleteInventory"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "The Inventory record that needs to be deleted"
+          required: true
+          type: "string"
+      responses:
+        "400":
+          description: "Invalid Inventory record supplied or given"
+        "404":
+          description: "Inventory record not found"
+  /location:
+    post:
+      tags:
+        - "locations"
+      summary: "Create location"
+      description: "This will create a new location record"
+      operationId: "createLocation"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Created a new location record"
+          required: true
+          schema:
+            $ref: "#/definitions/LocationWithoutID"
+      responses:
+        200:
+          description: "new location record successfully created "
+  /location/{id}:
+    get:
+      tags:
+        - "locations"
+      summary: "Get location by UNId"
+      description: ""
+      operationId: "getLocationByUNId"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "The location record that needs to be fetched. Use location1 for testing. "
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "location record successfully fetched from database"
+          schema:
+            $ref: "#/definitions/Location"
+        "404":
+          description: "location record found"
+    put:
+      tags:
+        - "locations"
+      summary: "Updated location"
+      description: "this will update location record"
+      operationId: "updateLocation"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "location record that need to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated location record"
+          required: true
+          schema:
+            $ref: "#/definitions/Location"
+      responses:
+        "400":
+          description: "Invalid location record supplied or given"
+        "404":
+          description: "location record not found"
+    delete:
+      tags:
+        - "locations"
+      summary: "Delete location record"
+      description: "This will delete location record from database"
+      operationId: "deleteLocation"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "The location record that needs to be deleted"
+          required: true
+          type: "string"
+      responses:
+        "400":
+          description: "Invalid location record supplied or given"
+        "404":
+          description: "Location record not found"
+definitions:
+  Person:
+    description: "Person"
+    type: "object"
+    allOf:
+      - $ref: "#/definitions/PersonWithoutID"
+    properties:
+      id:
+        type: "string"
+        example: "406"
+        readOnly: true
+  PersonWithoutID: #ändern
+    type: "object"
+    properties:
+      lastname:
+        type: "string"
+        example: "Müller"
+      firstname:
+        type: "string"
+        example: "Max"
+      personalno:
+        type: "string"
+        example: "LS-11324"
+      email:
+        type: "string"
+        example: "example@example.com"
+        description: "Die person muss eindeutig in der Datenbank sein"
+  Persons:
+    type: "array"
+    items:
+      $ref: "#/definitions/Person"
+  Inventory:
+    description: "Inventory"
+    type: "object"
+    allOf:
+      - $ref: "#/definitions/InventoryWithoutID"
+    properties:
+      id:
+        type: "string"
+        example: "406"
+        readOnly: true
+  InventoryWithoutID:
+    type: "object"
+    required:
+      - label
+    properties:
+      status:
+        type: "string"
+        description: "ein festgelegte status Aktiv oder Ausgebugt"
+        enum:               #stimmt?
+          - "Aktiv"
+          - "Ausgebucht"
+        example:
+          "Aktiv"
+      label:
+        type: "string"
+        example:
+          "Dell"
+      serialNumber:
+        type: "string"
+        example: "XNN-40069"
+      inventoryType:
+        type: "string"
+        example:
+          "Monitor"
+      purchaseDate:
+        type: "string"
+        format: "date"
+        example: "2016-08-04"
+      price:
+        type: "number" #soll ich type: number, format: float oder doulbe?
+        example:
+          "2500.25"
+      bookingCategory:
+        type: "string"
+        enum:
+          - "GWG"
+          - "Abschreibfähig"
+        example:
+          "Abschreibfähig"
+      deprecationDate:
+        type: "number"
+        example:
+          "1"
+      validationEndDate:
+        type: "string"
+        format: "date"
+        example: "2016-08-04"
+  Location:
+    description: "Location"
+    type: "object"
+    allOf:
+      - $ref: "#/definitions/LocationWithoutID"
+    properties:
+      id:
+        type: "string"
+        example: "4067"
+        readOnly: true
+  LocationWithoutID:
+    type: "object"
+    properties:
+      company:
+        type: "string"
+        example: "deltastone"
+      street:
+        type: "string"
+        example: "Süderstraße"
+      houseNumber:
+        type: "string"
+        example: "14B"
+      zipCode:
+        type: "string"
+        example: "24135"
+      city:
+        type: "string"
+        example: "Hamburg"
+      floor:
+        type: "string"
+        example: "EG"
+      roomNumber:
+        type: "string"
+        example: "13C"
+        description: "Die location muss nicht eindeutig in der Datenbank sein"
+  Error:
+    type: "object"
+    properties:
+      err:
+        type: "number"
+        example: "240001"
+      error:
+        type: "string"
+        example: "Name darf nicht leer sein" #array erstellen mit mehrere fehler
+  Errors:
+    type: "array"
+    items:
+      $ref: "#/definitions/Error"
