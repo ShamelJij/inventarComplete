@@ -6,7 +6,7 @@
 /**
  * require section
  */
-let dbPersons = require('./PersonsDb');
+let dbPersons = require('./PersonsDB');
 let Document   = require('../superclass/Document');
 const ld       = require('lodash');
 

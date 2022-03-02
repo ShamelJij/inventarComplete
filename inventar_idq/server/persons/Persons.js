@@ -1,7 +1,7 @@
 /**
  * Created on 02.03.2017.
  */
-const dbPersons = require('./PersonsDb');
+const dbPersons = require('./PersonsDB');
 const Person = require('./Person');
 const lodash = require('lodash');
 const moment = require('moment');

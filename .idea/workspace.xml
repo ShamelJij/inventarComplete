@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/inventar_idq/server/PersonsDB.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar_idq/server/locations/location.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar_idq/server/locations/locations.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/server/Person.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/server/persons/Person.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/server/Persons.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/server/persons/Persons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/server/PersonsDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/server/persons/PersonsDB.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,11 +53,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\deltastone\shamel-praktikum\inventar_idq\server\products" />
       <recent name="C:\deltastone\shamel-praktikum\reference" />
       <recent name="C:\deltastone\shamel-praktikum\inventar_idq" />
       <recent name="C:\deltastone\shamel-praktikum\VANJS" />
       <recent name="C:\deltastone\shamel-praktikum\reference\JSOOP" />
-      <recent name="C:\deltastone\shamel-praktikum\ReferenceSprint7" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -99,7 +103,8 @@
       <workItem from="1643719246600" duration="101681000" />
       <workItem from="1644912460689" duration="8880000" />
       <workItem from="1646146125841" duration="9327000" />
-      <workItem from="1646220036262" duration="4115000" />
+      <workItem from="1646220036262" duration="5339000" />
+      <workItem from="1646240550585" duration="222000" />
     </task>
     <servers />
   </component>
