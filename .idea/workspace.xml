@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/inventar_idq/server/locations/LocationsDB.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventar_idq/_design_persons.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar_idq/server/inventory/Inventory.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/config/production.json" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/config/person.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +102,7 @@
       <workItem from="1644912460689" duration="8880000" />
       <workItem from="1646146125841" duration="9327000" />
       <workItem from="1646220036262" duration="5339000" />
-      <workItem from="1646240550585" duration="647000" />
+      <workItem from="1646240550585" duration="4444000" />
     </task>
     <servers />
   </component>

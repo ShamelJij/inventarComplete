@@ -1,0 +1,25 @@
+{
+  "_id": "_design/persons",
+  "_rev": "7-4e007f8d8fadd2a8039fe063652853b9",
+  "views": {
+    "id": {
+      "map": "function (doc) {\r\n  if (doc.form === \"person\" && !doc.deleted) {\r\n    emit(doc._id, null);  \r\n  }\r\n}"
+    },
+    "lastName": {
+      "map": "function (doc) {\r\n  if (doc.form === 'person' && !doc.deleted) {\r\n    emit(doc.lastName, 1);\r\n  }\r\n}"
+    },
+    "firstName": {
+      "map": "function (doc) {\r\n  if (doc.form==='person' && !doc.deleted) {\r\n    emit(doc.firstName, 1);  \r\n  }\r\n}"
+    },
+    "personalNumber": {
+      "map": "function (doc) {\r\n  if (doc.form==='person' && !doc.deleted) {\r\n    emit(doc.personalNumber, 1);  \r\n  }\r\n}"
+    },
+    "email": {
+      "map": "function (doc) {\r\n  if (doc.form==='person' && !doc.deleted) {\r\n    emit(doc.email, 1);  \r\n  }\r\n}"
+    },
+    "deleted": {
+      "map": "function (doc) {\r\n  if (doc.form === \"persons\" && doc.deleted) {\r\n    emit(doc._id, null);  \r\n  }\r\n}"
+    }
+  },
+  "language": "javascript"
+}
