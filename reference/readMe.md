@@ -37,6 +37,7 @@ term
 - [ ] Update the website
 - [ ] Contact the media
 
-H~2~O
-
-some testX^2^
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
