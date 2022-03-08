@@ -52,6 +52,6 @@ alert(s);
 
 https://www.youtube.com/watch?v=kPRA0W1kECg&t=263s
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=kPRA0W1kECg&t=263s
-" target="_blank"><img src="http://img.youtube.com/vi/kPRA0W1kECg&t=263s/0.jpg"
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=fWubJgIWyxQ
+" target="_blank"><img src="http://img.youtube.com/vi/fWubJgIWyxQ/0.jpg"
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
