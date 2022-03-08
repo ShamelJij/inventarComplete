@@ -37,6 +37,7 @@ app.get('/', function (req, res){
             res.send(err);
         });
 });
+//Problem
 app.post('/location/add',function (req,res){
    const locationname = req.body.locationname;
    const locationlabel = req.body.locationlabel;

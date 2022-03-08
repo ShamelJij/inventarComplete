@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Async/asyncTest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Async/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/couch_crud/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/couch_crud/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/couch_crud/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/couch_crud/views/index.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +99,7 @@
       <workItem from="1644912460689" duration="8880000" />
       <workItem from="1646146125841" duration="9327000" />
       <workItem from="1646220036262" duration="5339000" />
-      <workItem from="1646240550585" duration="22323000" />
+      <workItem from="1646240550585" duration="23420000" />
     </task>
     <servers />
   </component>
