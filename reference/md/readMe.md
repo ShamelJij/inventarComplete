@@ -58,4 +58,4 @@ alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 [![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/fWubJgIWyxQ/0.jpg)](http://www.youtube.com/watch?v=fWubJgIWyxQ)
 
-[a relative link](reference/VANJS/inventory.js )
+[a relative link](/reference/VANJS/inventory.js )
