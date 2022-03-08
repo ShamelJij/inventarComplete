@@ -42,6 +42,9 @@ var s = "JavaScript syntax highlighting";
 alert(s);
 ```
 
+<span style="color:orange;">Word up in orange!!</span>
+
+
 <dl>
   <dt>Definition list</dt>
   <dd>Is something people use sometimes.</dd>
