@@ -8,6 +8,10 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 - first item
 - second item
 - third item
+  - otheri items
+  - some other items
+    - also some other items
+    - another item
 
 `app.post('/location/delete/:id', function (req,res){
 const id = req.params.id;
@@ -20,3 +24,16 @@ const rev = req.body.rev;
             res.send(err);
         });
 });`
+
+| Syntax | Description | someheader |
+| --------- | --------- | --------- |
+| Header | Title |
+| Paragraph | Text |
+
+term
+: definition and some text 
+
+- [x] Write the press release
+- [ ] Update the website
+- [ ] Contact the media
+
