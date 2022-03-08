@@ -60,7 +60,8 @@ app.post('/location/add',function (req,res){
            housenumber: housenumber,
            zipcode: zipcode,
            floornumber: floornumber,
-           roomnumber: roomnumber
+           roomnumber: roomnumber,
+           form: form
        }).then(
            function (data, headers, status){
                 res.redirect('/');
