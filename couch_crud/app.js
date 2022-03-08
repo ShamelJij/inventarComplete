@@ -52,7 +52,7 @@ app.post('/location/add',function (req,res){
    couch.uniqid().then(function (ids){
        const id = ids[0];
 
-       couch.insert('mytest', {
+       couch.insert(dbName, {
            _id: id,
            locationname: locationname,
            locationlabel: locationlabel,
@@ -71,8 +71,20 @@ app.post('/location/add',function (req,res){
            });
    });
 });
+app.post('/location/delete/:id', function (req,res){
+    const id = req.params.id;
+    const rev = req.body.rev;
+
+    couch.del(dbName, id, rev).then(
+        function (data, headers, status){
+            res.redirect('/');
+        },
+        function (err){
+            res.send(err);
+        });
+});
 app.listen(3000, function (){
-    console.log('server started on Port 3000');
+    console.log('server started on port 3000');
 
 });
 
