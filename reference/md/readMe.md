@@ -42,7 +42,7 @@ var s = "JavaScript syntax highlighting";
 alert(s);
 ```
 
-<div style="color:orange;">Word up in orange!!</div>
+<a><img src="https://dump.cy.md/6c736bfd11ded8cdc5e2bda009a6694a/colortext.svg"/></a>
 
 
 <dl>
