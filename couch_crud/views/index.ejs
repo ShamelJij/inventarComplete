@@ -23,8 +23,8 @@
             <li><%= location.key.floornumber %></li>
             <li><%= location.key.roomnumber %></li>
         </ul>
-            <form method="post" action="/location/delete/<%= location.id %>">
-            <input type="hidden" value="<%= location.rev %>" name="rev">
+            <form method="post" action="/location/delete/<%= location.key._id %>">
+            <input type="hidden" value="<%= location.key._rev %>" name="rev">
             <input type="submit" value="löschen">
         </form>
     </li>
