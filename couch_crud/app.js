@@ -46,6 +46,8 @@ app.post('/location/add',function (req,res){
    const zipcode = req.body.zipcode;
    const floornumber = req.body.floornumber;
    const roomnumber = req.body.roomnumber;
+   const form = 'location';
+   req.body.form = form;
 
    couch.uniqid().then(function (ids){
        const id = ids[0];
