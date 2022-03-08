@@ -34,8 +34,8 @@ term
 : definition and some text 
 
 - [x] Write the press release
-- ![ ] Update the website `#f03c15`
-- ![ ] Contact the media `#1589F0`
+- [ ] Update the website `#f03c15`
+- [ ] Contact the media `#1589F0`
 
 ```javascript
 var s = "JavaScript syntax highlighting";
