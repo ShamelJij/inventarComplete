@@ -52,6 +52,7 @@ alert(s);
 - text in red
 + text in green
 ! text in orange
+- another text in red
 # text in gray
 @@ text in purple (and bold)@@
 ```
