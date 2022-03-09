@@ -1,12 +1,9 @@
 {
   "_id": "_design/inventory",
-  "_rev": "2-cefce1adb7a696539e3b7c1dd9a0621a",
+  "_rev": "2-b906b0547318a5c15c21c0bdc7d3d812",
   "views": {
     "inventory-view": {
       "map": "function (doc) {\n  if (doc.form === \"inventory\") {\n  emit(doc);\n  }\n}"
-    },
-    "price-view": {
-      "map": "function (doc) {\n  if (doc.preis > 2000) {\n  emit(doc);\n  }\n}"
     }
   },
   "language": "javascript"

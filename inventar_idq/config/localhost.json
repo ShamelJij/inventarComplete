@@ -1,29 +1,7 @@
 {
   "database": {
     "host": "localhost:5984",
-    "login": "couchAdmin",
-    "password": "couchAdmin232"
-  },
-  "jsonWebToken" :{
-    "secret": "1qsuWs7xKJLHkgWLkZzQCg&q=super+secret",
-    "expiresInMinutes": 30240
-  },
-  "ldap" :{
-    "host": "ldaps://de0001sadc10002.de.bauhaus.intra:3269",
-    "domain": "DE.BAUHAUS.INTRA",
-    "suffix": "dc=bauhaus,dc=intra"
-  },
-  "notesdomino" : {
-    "username": "Admin Design",
-    "password": "DAdmin232"
-  },
-  "nldirectory" : {
-    "url": "https://de0001slda10020.de.bauhaus.intra/BH_xapps/nldirectory.nsf/api/data/collections/name/restapiNL?count=1000&start=0&systemcolumns=0"
-  },
-  "idqmailbox": {
-    "server": "notes://de0001slda10020.de.bauhaus.intra/mail/mailin/IDQ_E-Mail_Vorlagen.nsf",
-    "draftfolder": "notes://de0001slda10020.de.bauhaus.intra/mail/mailin/IDQ_E-Mail_Vorlagen.nsf/5B17A2ED16DCC911482572F4002B4B60",
-    "apiurl": "https://de0001slda10020.de.bauhaus.intra/mail/mailin/IDQ_E-Mail_Vorlagen.nsf/api/data/collections/name/reststationery?count=1000&start=0",
-    "newqueryurl": "https://de0001slda10020.de.bauhaus.intra/mail/mailin/IDQ_E-Mail_Vorlagen.nsf/createIDQEmail?openagent"
+    "login": "admin",
+    "password": "123456"
   }
 }

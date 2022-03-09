@@ -1,0 +1,10 @@
+{
+  "_id": "_design/location",
+  "_rev": "1-55f5613d7e30b898d452a7345a2f84de",
+  "views": {
+    "location-view": {
+      "map": "function (doc) {\n  if (doc.form === \"location\") {\n  emit(doc);\n  }\n}"
+    }
+  },
+  "language": "javascript"
+}

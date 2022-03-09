@@ -2,12 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventory/_design_inventory.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventar_idq/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventory/_design_person.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar_idq/server/bhUtils/ApplicationError.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar_idq/server/superclass/Database.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar_idq/server/superclass/Document.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inventar_idq/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/bin/www" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventar_idq/_design_persons.json" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventory/_design_persons.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventar_idq/_design_settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventory/_design_settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/config/localhost.json" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/config/localhost.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventory/_design_inventory.json" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventory/_design_inventory.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventory/_design_persons.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventory/_design_settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventory/_design_location.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/public/Swagger/swaggerDesign.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/public/Swagger/docs/swagger.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/server/inventory/Inventories.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/server/inventory/Inventories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/server/inventory/InventoriesDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/server/inventory/InventoriesDB.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/server/locations/Locations.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/server/locations/Locations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/server/locations/LocationsDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/server/locations/LocationsDB.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/server/persons/Person.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/server/persons/Person.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/server/persons/PersonsDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/server/persons/PersonsDB.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +31,8 @@
       <list>
         <option value="HTML5BootStrap4" />
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -45,19 +57,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../full-stack" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/inventar_idq/bin/www" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\deltastone\shamel-praktikum\inventar_idq\public\Swagger\docs" />
       <recent name="C:\deltastone\shamel-praktikum\reference" />
       <recent name="C:\deltastone\shamel-praktikum\reference\Couch" />
       <recent name="C:\deltastone\shamel-praktikum\reference\md" />
       <recent name="C:\deltastone\shamel-praktikum\inventar_idq" />
-      <recent name="C:\deltastone\shamel-praktikum\inventar_idq\server\products" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -65,16 +77,20 @@
       <command value="array.js" />
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.array.yaml">
-    <configuration name="array.yaml" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/reference/JSOOP/array.yaml" working-dir="$PROJECT_DIR$/reference">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Node.js.www">
     <configuration name="database.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/reference/JSOOP/database.js" working-dir="$PROJECT_DIR$/reference">
       <method v="2" />
     </configuration>
+    <configuration name="www" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$/inventar_idq">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Node.js.www" />
+      <item itemvalue="Node.js.database.js" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.array.yaml" />
+        <item itemvalue="Node.js.www" />
         <item itemvalue="Node.js.database.js" />
       </list>
     </recent_temporary>
@@ -104,7 +120,7 @@
       <workItem from="1644912460689" duration="8880000" />
       <workItem from="1646146125841" duration="9327000" />
       <workItem from="1646220036262" duration="5339000" />
-      <workItem from="1646240550585" duration="48900000" />
+      <workItem from="1646240550585" duration="60069000" />
     </task>
     <servers />
   </component>

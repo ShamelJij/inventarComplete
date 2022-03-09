@@ -52,7 +52,7 @@ class Inventories {
 
                 return objInventory;
             } else {
-                console.warn('requested id is not form=product');
+                console.warn('requested id is not form=inventory');
                 // not found
                 throw {'appError': 20404};
             }
@@ -108,7 +108,7 @@ class Inventories {
      * @param {boolean} uniques Unique groups, creators and suppliers
      * @param {string} view name of the view
      * @param {boolean} desc sorting descenting
-     * @return {Promise<{products: Array, distinctGroups: Array, distinctCreators: Array, distinctSuppliers: Array}>}
+     * @return {Promise<{inventories: Array, distinctGroups: Array, distinctCreators: Array, distinctSuppliers: Array}>}
      */
     static async getAll(complete, uniques, view, desc) {
         try {

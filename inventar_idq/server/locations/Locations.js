@@ -25,7 +25,7 @@ class Locations {
      * get locations by id
      *
      * @method
-     * @param {String} strUnid products UNID
+     * @param {String} strUnid locations UNID
      * @return Location
      */
     static async getByUnid(strUnid) {
@@ -52,7 +52,7 @@ class Locations {
 
                 return objLocation;
             } else {
-                console.warn('requested id is not form=product');
+                console.warn('requested id is not form=location');
                 // not found
                 throw {'appError': 20404};
             }
@@ -88,7 +88,7 @@ class Locations {
                         if (doc.hasOwnProperty('retailPrice') && doc.retailPrice === '') {
                             doc.retailPrice = 0;
                         }
-                        objProduct.setDbBody(doc);
+                        objLocation.setDbBody(doc);
                         locations.push(objLocation);
                     }
                 }
@@ -108,7 +108,7 @@ class Locations {
      * @param {boolean} uniques Unique groups, creators and suppliers
      * @param {string} view name of the view
      * @param {boolean} desc sorting descenting
-     * @return {Promise<{products: Array, distinctGroups: Array, distinctCreators: Array, distinctSuppliers: Array}>}
+     * @return {Promise<{locations: Array, distinctGroups: Array, distinctCreators: Array, distinctSuppliers: Array}>}
      */
     static async getAll(complete, uniques, view, desc) {
         try {

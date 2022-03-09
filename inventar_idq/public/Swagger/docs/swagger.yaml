@@ -438,8 +438,8 @@ definitions:
         example: "240001"
       error:
         type: "string"
-        example: "Name darf nicht leer sein" #array erstellen mit mehrere fehler
+        example: "Name darf nicht leer sein"
   Errors:
     type: "array"
     items:
-      $ref: "#/definitions/Error
+      $ref: "#/definitions/Error"

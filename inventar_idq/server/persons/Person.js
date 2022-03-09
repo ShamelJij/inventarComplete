@@ -41,9 +41,9 @@ function inputTranslation( body ) {
 
 //################################################################################
 /**
- * product object
+ * person object
  *
- * @class Product
+ * @class Person
  * @constructor
  */
 class Person extends Document {
@@ -52,9 +52,9 @@ class Person extends Document {
     constructor(arg1) {
         super();
 
-        this._ressourcePath = '/v1/products/'; // + {id}
-        this._form          = 'product';
-        this._schema        = 'swagger.json#/definitions/Product';
+        this._ressourcePath = '/v1/persons/'; // + {id}
+        this._form          = 'person';
+        this._schema        = 'swagger.json#/definitions/Person';
 
         if (ld.isObject(arg1)) {
             this._dbBody = arg1;
@@ -74,13 +74,13 @@ class Person extends Document {
 
     //--------------------------------------------------------------------------------
     /**
-     * validate write access. 'products' must be member of userroles
+     * validate write access. 'persons' must be member of userroles
      *
      * @param roles
      * @return {boolean}
      */
     hasWriteAccess( roles ) {
-        // Write Access only with role products
+        // Write Access only with role persons
         if ( roles ) {
             if ( Array.isArray( roles ) ) {
                 if (roles.length === 0) {
@@ -207,4 +207,4 @@ class Person extends Document {
     }
 }
 
-module.exports = Product;
+module.exports = Person;
