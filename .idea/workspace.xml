@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/reference/md/readMe.md" beforeDir="false" afterPath="$PROJECT_DIR$/reference/md/readMe.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reference/Async/asyncTest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Async/asyncTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/public/Swagger/swaggerDesign.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Async/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/reference/Async/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/couch_crd/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/Couch/couch_crd/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/couch_crd/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/reference/Couch/couch_crd/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/couch_crd/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/reference/Couch/couch_crd/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/couch_crd/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/reference/Couch/couch_crd/views/index.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,11 +55,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\deltastone\shamel-praktikum\reference" />
+      <recent name="C:\deltastone\shamel-praktikum\reference\Couch" />
       <recent name="C:\deltastone\shamel-praktikum\reference\md" />
       <recent name="C:\deltastone\shamel-praktikum\inventar_idq" />
       <recent name="C:\deltastone\shamel-praktikum\inventar_idq\server\products" />
-      <recent name="C:\deltastone\shamel-praktikum\reference" />
-      <recent name="C:\deltastone\shamel-praktikum\VANJS" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -99,7 +106,7 @@
       <workItem from="1644912460689" duration="8880000" />
       <workItem from="1646146125841" duration="9327000" />
       <workItem from="1646220036262" duration="5339000" />
-      <workItem from="1646240550585" duration="40042000" />
+      <workItem from="1646240550585" duration="42052000" />
     </task>
     <servers />
   </component>
