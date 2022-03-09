@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/reference/Async/asyncTest.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventory/_design_inventory.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar_idq/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Async/asyncTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/public/Swagger/swaggerDesign.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Async/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/reference/Async/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/couch_crd/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/reference/Couch/couch_crd/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/couch_crd/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/reference/Couch/couch_crd/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/couch_crd/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/reference/Couch/couch_crd/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/couch_crd/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/reference/Couch/couch_crd/views/index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/bin/www" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventar_idq/_design_persons.json" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventory/_design_persons.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventar_idq/_design_settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/couchdb_design/inventory/_design_settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +104,7 @@
       <workItem from="1644912460689" duration="8880000" />
       <workItem from="1646146125841" duration="9327000" />
       <workItem from="1646220036262" duration="5339000" />
-      <workItem from="1646240550585" duration="42052000" />
+      <workItem from="1646240550585" duration="48900000" />
     </task>
     <servers />
   </component>
