@@ -31,20 +31,8 @@ module.exports.addPerson = async function addPerson (req, res) {
     console.log('(POST) body: ' + JSON.stringify(req.body));
 
     try {
-        // person already exists? - skip no unique key defined
-        // create new
-        const objPerson  = new Person('');
+           let ret = { "response": "Person created! (function addPerson) };
 
-        if (objPerson.hasWriteAccess( req.objUser.getRoles() )) {
-            let strUsername = req.objUser.username();
-            // save new item
-            await objPerson.createnew(req.body, strUsername);
-            // ressource path
-            let ret = objPerson.getRessource();
-            ret.doc = objPerson.document;
-            if (ret.doc && !ret.doc._id && objPerson._id) {
-                ret.doc._id = objPerson._id;
-            }
             res.statusCode    = 201;
             res.setHeader('Content-Type', 'application/json');
             res.send( ret );
