@@ -97,9 +97,9 @@ public/app/protected/generated.js
 
 # Couchtato files
 # default file and renamed file for windows 10
-public/dist/views/offer/offer.html
-public/dist/
-public/dist/*
+#public/dist/views/offer/offer.html
+#public/dist/
+#public/dist/*
 pdf/*
 package-lock.json
 public/src/service-worker\.js
