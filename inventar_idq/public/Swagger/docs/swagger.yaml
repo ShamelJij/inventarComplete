@@ -27,7 +27,7 @@ paths:
         - "persons"
       summary: "Get all items in Person"
       description: "this will get all body in database(Person)...."
-      operationId: "getAllPerson"
+      operationId: "getPersons"
       produces:
         - "application/json"
       responses:
@@ -37,12 +37,15 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Person"
+        404:
+          description: "not found!"
+      x-swagger-router-controller: "personsController"
     post:
       tags:
         - "persons"
       summary: "Create Person"
       description: "This will create a new item in database(Person)"
-      operationId: "createPerson"
+      operationId: "addPerson"
       produces:
         - "application/json"
       parameters:
@@ -63,13 +66,14 @@ paths:
             $ref: "#/definitions/Errors"
         409:
           description: "The request could not be completed due to a conflict"
+      x-swagger-router-controller: "personsController"
   /persons/{id}:
     get:
       tags:
         - "persons"
       summary: "Get Person by UNID"
       description: ""
-      operationId: "getPersonByUNID"
+      operationId: "getPersonById"
       produces:
         - "application/json"
       parameters:
@@ -85,6 +89,7 @@ paths:
             $ref: "#/definitions/Person"
         "404":
           description: "Person not found in the database"
+      x-swagger-router-controller: "personsController"
     put:
       tags:
         - "persons"
@@ -116,6 +121,7 @@ paths:
             $ref: "#/definitions/Errors"
         "404":
           description: "Person not found"
+      x-swagger-router-controller: "personsController"
     delete:
       tags:
         - "persons"
@@ -135,6 +141,7 @@ paths:
           description: "The request succeeded"
         "404":
           description: "Person not found"
+      x-swagger-router-controller: "personsController"
   /inventory:
     post:
       tags:
@@ -156,6 +163,7 @@ paths:
           description: "Inventory record successfully saved"
         201:
           description: "a resource has been created"
+      x-swagger-router-controller: "personsController"
   /Inventory/{id}:
     get:
       tags:
@@ -178,6 +186,7 @@ paths:
             $ref: "#/definitions/Inventory"
         "404":
           description: "Inventroy record not found"
+      x-swagger-router-controller: "inventoriesController"
     put:
       tags:
         - "inventories"
@@ -203,6 +212,7 @@ paths:
           description: "Invalid Inventory record supplied or given"
         "404":
           description: "Inventory record not found"
+      x-swagger-router-controller: "inventoriesController"
     delete:
       tags:
         - "inventories"
@@ -222,6 +232,7 @@ paths:
           description: "Invalid Inventory record supplied or given"
         "404":
           description: "Inventory record not found"
+      x-swagger-router-controller: "inventoriesController"
   /location:
     post:
       tags:
@@ -241,6 +252,7 @@ paths:
       responses:
         200:
           description: "new location record successfully created "
+      x-swagger-router-controller: "locationsController"
   /location/{id}:
     get:
       tags:
@@ -263,6 +275,7 @@ paths:
             $ref: "#/definitions/Location"
         "404":
           description: "location record found"
+      x-swagger-router-controller: "locationsController"
     put:
       tags:
         - "locations"
@@ -288,6 +301,7 @@ paths:
           description: "Invalid location record supplied or given"
         "404":
           description: "location record not found"
+      x-swagger-router-controller: "locationsController"
     delete:
       tags:
         - "locations"
@@ -307,6 +321,7 @@ paths:
           description: "Invalid location record supplied or given"
         "404":
           description: "Location record not found"
+      x-swagger-router-controller: "locationsController"
 definitions:
   Person:
     description: "Person"
