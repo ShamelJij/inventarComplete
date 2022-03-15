@@ -33,10 +33,11 @@ module.exports.addPerson = async function addPerson (req, res) {
     console.log('(POST) body: ' + JSON.stringify(req.body));
 
     try {
-           // let person = new Person("");
-            //await person.createnew(req.body,"anonym");
-           let ret = { "response": "Person created! (function addPerson)" };
-
+            let person = new Person("");
+            await person.createnew(req.body,"anonym");
+           //let ret = { "response": "Person created! (function addPerson)" };
+        let ret = { "url": person.getRessource(),
+                    "data": person.document};
             res.statusCode    = 201;
             res.setHeader('Content-Type', 'application/json');
             res.send( ret );
