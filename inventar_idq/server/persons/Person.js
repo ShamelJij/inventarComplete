@@ -22,7 +22,7 @@ const ld       = require('lodash');
 /**
  * convert data
  */
-function inputTranslation( body ) {
+/*function inputTranslation( body ) {
 
     // if flyer
     if (body.flyer == true) {
@@ -36,7 +36,7 @@ function inputTranslation( body ) {
     body.preSupplier.tealgoal = true;
 
     return body;
-}
+}*/
 
 
 //################################################################################
@@ -72,29 +72,6 @@ class Person extends Document {
 
     }
 
-    //--------------------------------------------------------------------------------
-    /**
-     * validate write access. 'persons' must be member of userroles
-     *
-     * @param roles
-     * @return {boolean}
-     */
-    hasWriteAccess( roles ) {
-        // Write Access only with role persons
-        if ( roles ) {
-            if ( Array.isArray( roles ) ) {
-                if (roles.length === 0) {
-                    return false;
-                } else {
-                    return roles.includes('ek');
-                }
-            } else {
-                return roles === 'ek';
-            }
-        } else {
-            return false;
-        }
-    }
 
     //--------------------------------------------------------------------------------
     /**
@@ -129,7 +106,7 @@ class Person extends Document {
         try {
             if (!deleteIt) {
                 // don't validate if should be deleted
-                newBody = inputTranslation(newBody);
+               // newBody = inputTranslation(newBody);
                 this.validateSchema( newBody );
             } else {
                 newBody.deleted = true;
@@ -171,19 +148,18 @@ class Person extends Document {
      */
     async createnew(newBody, strUsername) {
         try {
-            newBody = inputTranslation(newBody);
-            this.validateSchema( newBody );
+          //  newBody = inputTranslation(newBody);
+            //this.validateSchema( newBody );
             this._dbBody        = {};
             this._dbBody        = newBody;
             this._dbBody.status = 1;
             this._dbBody.form   = this._form;
             this.setHistory(strUsername, "Neu erstellt / created");
-            this.setDefaultAccess();
 
             let ret = await dbPersons.createDocument(this._dbBody);
             this._id          = ret.id;
             this._dbBody._rev = ret.rev;
-            await this.reloadFromDb();
+           // await this.reloadFromDb();
             return true;
         } catch(err) {
             console.error('[Person.createnew] error:' + JSON.stringify(err));

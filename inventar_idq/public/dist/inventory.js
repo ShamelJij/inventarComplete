@@ -1,7 +1,7 @@
 import {Database} from "./database.js";
 
 export class Inventory {
-    #_dbName = 'InventoryO';
+    #_dbName = 'inventory';
     #_id;
     #_body;
     #_db;

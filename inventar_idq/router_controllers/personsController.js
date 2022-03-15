@@ -15,6 +15,8 @@ let Persons  = require('../server/persons/Persons');
 let AppError  = require('../server/bhUtils/ApplicationError');
 let lodash    = require('lodash');
 
+
+
 //################################################################################
 /**
  * routes section
@@ -31,15 +33,13 @@ module.exports.addPerson = async function addPerson (req, res) {
     console.log('(POST) body: ' + JSON.stringify(req.body));
 
     try {
-           let ret = { "response": "Person created! (function addPerson) };
+           // let person = new Person("");
+            //await person.createnew(req.body,"anonym");
+           let ret = { "response": "Person created! (function addPerson)" };
 
             res.statusCode    = 201;
             res.setHeader('Content-Type', 'application/json');
             res.send( ret );
-        } else {
-            // no access
-            throw {'appError': 20403};
-        }
     } catch (err) {
         console.log('error: ' + JSON.stringify( err ));
         let appErr = new AppError(err.appError || '10500', err, req);
@@ -57,25 +57,15 @@ module.exports.addPerson = async function addPerson (req, res) {
  * @return {Promise<void>}
  */
 module.exports.updatePerson = async function updatePerson (req, res) {
-    console.log(' (PUT) id: ' +  req.swagger.params.personId.value);
+    console.log(' (PUT) id: ' +  req.swagger.params.id.value);
 
     try {
-        let objPerson = await Persons.getByUnid( req.swagger.params.personId.value );
-
-        if (objPerson.hasWriteAccess( req.objUser.getRoles() )) {
-            let strUsername = req.objUser.username();
-            await objPerson.update(req.body, strUsername);
-
-            let ret = objPerson.getRessource();
-            ret.doc = objPerson.document;
-
+        let ret = { "response": "Person updated!" + req.swagger.params.id.value + " (function addPerson)" };
+        console.log(JSON.stringify(req.body));
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
             res.send(ret);
-        } else {
-            // no access
-            throw {'appError': 20403};
-        }
+
     } catch (err) {
         console.log('error: ' + JSON.stringify( err ));
         let appErr = new AppError(err.appError || '10500', err, req);
