@@ -1,5 +1,5 @@
   <div>
-    <img src="https://picsum.photos/id/1048/1200/200" alt="Snow" title="modernization!">
+    <img src="https://picsum.photos/id/17/1200/200" alt="Snow" title="modernization!">
   </div>
 
 # Inventar
