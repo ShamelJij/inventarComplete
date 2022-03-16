@@ -1,5 +1,5 @@
 <div>
-    <img src="/inventar/public/src/dslcen.jpg" alt="deltastone" title="deltastone">
+    <img src="/inventar/public/src/dlscencrp.png" alt="deltastone" title="deltastone">
 </div>
 
 # Inventar
