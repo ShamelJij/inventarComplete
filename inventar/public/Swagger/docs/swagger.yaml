@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
   description: "Die Schnittstelle zur Inventarverwaltung"
   version: "1.0.0"
-  title: "INVENTORY"
+  title: "INVENTAR"
   termsOfService: "http://deltastone.com"
   contact:
     email: "info@deltastone.com"
