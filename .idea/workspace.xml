@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/router_controllers/inventoriesController.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/router_controllers/inventoriesController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/router_controllers/locationsController.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/router_controllers/locationsController.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inventar_idq/router_controllers/personsController.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/router_controllers/personsController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/server/bhUtils/ApplicationError.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/server/inventarUtils/ApplicationError.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +110,7 @@
       <workItem from="1646220036262" duration="5339000" />
       <workItem from="1646240550585" duration="78007000" />
       <workItem from="1647337362778" duration="8798000" />
-      <workItem from="1647415572653" duration="4579000" />
+      <workItem from="1647415572653" duration="5261000" />
     </task>
     <servers />
   </component>

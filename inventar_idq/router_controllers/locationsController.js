@@ -12,7 +12,7 @@
  */
 let Location   = require('../server/locations/Location');
 let Locations  = require('../server/locations/Locations');
-let AppError  = require('../server/inventoryUtils/ApplicationError');
+let AppError  = require('../server/inventarUtils/ApplicationError');
 let lodash    = require('lodash');
 
 

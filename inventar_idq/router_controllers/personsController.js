@@ -12,7 +12,7 @@
  */
 let Person   = require('../server/persons/Person');
 let Persons  = require('../server/persons/Persons');
-let AppError  = require('../server/inventoryUtils/ApplicationError');
+let AppError  = require('../server/inventarUtils/ApplicationError');
 let lodash    = require('lodash');
 
 

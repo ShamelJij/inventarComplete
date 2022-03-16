@@ -12,7 +12,7 @@
  */
 let Inventory   = require('../server/inventories/Inventory');
 let Inventories  = require('../server/inventories/Inventories');
-let AppError  = require('../server/inventoryUtils/ApplicationError');
+let AppError  = require('../server/inventarUtils/ApplicationError');
 let lodash    = require('lodash');
 
 

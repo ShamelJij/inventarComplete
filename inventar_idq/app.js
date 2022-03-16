@@ -63,7 +63,7 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
 })
 
-let AppError = require('./server/bhUtils/ApplicationError');
+let AppError = require('./server/inventarUtils/ApplicationError');
 
 //--- express ---------------------------------------------------------------------
 let app = express();                         // using express
