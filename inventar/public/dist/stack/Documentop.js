@@ -1,6 +1,6 @@
-import {Database} from "./database.js";
+import {Databaseop} from "./database.js";
 
-export class Document {
+export class Documentop {
     #_dbName = '';
     #_id;
     #_body;
@@ -9,7 +9,7 @@ export class Document {
     constructor(id) {
         this.#_id = id;
         if (id) {
-            this.#_db = new Database(this.#_dbName);
+            this.#_db = new Databaseop(this.#_dbName);
             this.#_body = this.#_db.get(id);
         }
     }

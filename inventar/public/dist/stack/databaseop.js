@@ -12,7 +12,7 @@
  * Datenbank aufbau: im LocalStorage: key: 'Name', Value: {"counter": Zahl, "body":[{..},{..},{..}]}
  * @class
  */
-export class Database {
+export class Databaseop {
 
     #_db = '';
 

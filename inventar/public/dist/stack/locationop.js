@@ -1,6 +1,6 @@
-import {Database} from "./database.js";
+import {Databaseop} from "./database.js";
 
-export class Location {
+export class Locationop {
     #_dbName = 'LocationO';
     #_id;
     #_body;
@@ -8,7 +8,7 @@ export class Location {
 
     constructor(id) {
         this.#_id = id;
-        this.#_db = new Database(this.#_dbName);
+        this.#_db = new Databaseop(this.#_dbName);
         if (id) {
             this.#_id = id;
             this.#_body = this.#_db.get(id);

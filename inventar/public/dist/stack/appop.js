@@ -1,7 +1,7 @@
-import {Person, Persons} from './persons.js';
-import {Inventory} from './inventory.js';
-import {Location} from './location.js';
-import {Database} from "./database.js";
+import {Person, Personsop} from './persons.js';
+import {Inventoryop} from '../inventory.js';
+import {Locationop} from '../location.js';
+import {Databaseop} from "./database.js";
 
 console.log( '*** CRUD TEST OF PERSON ***' );
 

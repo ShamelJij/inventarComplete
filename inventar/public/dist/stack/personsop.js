@@ -1,4 +1,4 @@
-import {Database} from './database.js';
+import {Databaseop} from './database.js';
 // import {Document} from "./Document.js";
 
 export class Person {
@@ -15,7 +15,7 @@ export class Person {
      */
     constructor(id) {
         this.#_dbName = 'Person';
-        this.#_db   = new Database(this.#_dbName);
+        this.#_db   = new Databaseop(this.#_dbName);
 
         if (id) {
             this.#_id = id;
@@ -106,7 +106,7 @@ export class Person {
      */
     #validate(body) {
         // ToDo: Validate mandantory fields
-        let persons = Persons.getAll();
+        let persons = Personsop.getAll();
 
         let ret = true;
         let msg = '';
@@ -198,10 +198,10 @@ export class Person {
 /**
  *
  */
-export class Persons {
+export class Personsop {
 
     static getAll() {
-        let p = new Database("Person");
+        let p = new Databaseop("Person");
         return p.getAll();
     }
 }
