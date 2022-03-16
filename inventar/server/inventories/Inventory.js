@@ -1,12 +1,12 @@
 /**
- * Created by Carsten Pogede on 18.07.2017.
+ * Created on 16.03.2017.
  */
 
 //################################################################################
 /**
  * require section
  */
-let dbInventories = require('./InventoriesDb');
+let dbInventories = require('./InventoriesDB');
 let Document   = require('../superclass/Document');
 const ld       = require('lodash');
 
@@ -22,7 +22,7 @@ const ld       = require('lodash');
 /**
  * convert data
  */
-function inputTranslation( body ) {
+/*function inputTranslation( body ) {
 
     // if flyer
     if (body.flyer == true) {
@@ -36,7 +36,7 @@ function inputTranslation( body ) {
     body.preSupplier.tealgoal = true;
 
     return body;
-}
+}*/
 
 
 //################################################################################
@@ -54,7 +54,7 @@ class Inventory extends Document {
 
         this._ressourcePath = '/v1/inventories/'; // + {id}
         this._form          = 'inventory';
-        this._schema        = 'swagger.json#/definitions/Inventories';
+        this._schema        = 'swagger.json#/definitions/Inventory';
 
         if (ld.isObject(arg1)) {
             this._dbBody = arg1;
@@ -70,30 +70,6 @@ class Inventory extends Document {
     //--------------------------------------------------------------------------------
     schema() {
 
-    }
-
-    //--------------------------------------------------------------------------------
-    /**
-     * validate write access. 'inventories' must be member of userroles
-     *
-     * @param roles
-     * @return {boolean}
-     */
-    hasWriteAccess( roles ) {
-        // Write Access only with role inventories
-        if ( roles ) {
-            if ( Array.isArray( roles ) ) {
-                if (roles.length === 0) {
-                    return false;
-                } else {
-                    return roles.includes('ek');
-                }
-            } else {
-                return roles === 'ek';
-            }
-        } else {
-            return false;
-        }
     }
 
     //--------------------------------------------------------------------------------
@@ -129,7 +105,7 @@ class Inventory extends Document {
         try {
             if (!deleteIt) {
                 // don't validate if should be deleted
-                newBody = inputTranslation(newBody);
+                //newBody = inputTranslation(newBody);
                 this.validateSchema( newBody );
             } else {
                 newBody.deleted = true;
@@ -171,8 +147,8 @@ class Inventory extends Document {
      */
     async createnew(newBody, strUsername) {
         try {
-            newBody = inputTranslation(newBody);
-            this.validateSchema( newBody );
+            //newBody = inputTranslation(newBody);
+            //this.validateSchema( newBody );
             this._dbBody        = {};
             this._dbBody        = newBody;
             this._dbBody.status = 1;
