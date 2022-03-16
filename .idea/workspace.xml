@@ -2,7 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/inventar/public/dist/stack/appop.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar/public/dist/stack/indexop.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar/public/dist/stack/inventoryop.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventar/public/dist/stack/locationop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/Swagger/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/Swagger/docs/swagger.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/Document.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/stack/Documentop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/stack/databaseop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inventar/public/dist/inventory.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/inventory.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/location.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/location.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/persons.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/stack/personsop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/stack/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/stack/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/stack/inventory.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/stack/location.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/stack/person.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/person.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/stack/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/settings.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,6 +29,12 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\deltastone\shamel-praktikum\inventar\public\dist" />
+      <recent name="C:\deltastone\shamel-praktikum\inventar\public\dist\stack" />
+    </key>
   </component>
   <component name="TaskManager">
     <servers />
