@@ -1,4 +1,7 @@
 <div>
+    <img src="/inventar/public/src/70330272.png" alt="deltastone" title="deltastone">
+</div>
+<div>
     <img src="https://picsum.photos/id/238/1200/300" alt="Snow" title="modernization!">
 </div>
 
