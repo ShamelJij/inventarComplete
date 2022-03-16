@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar_idq/public/Swagger/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/inventar_idq/public/Swagger/docs/swagger.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +105,8 @@
       <workItem from="1646146125841" duration="9327000" />
       <workItem from="1646220036262" duration="5339000" />
       <workItem from="1646240550585" duration="78007000" />
-      <workItem from="1647337362778" duration="8684000" />
+      <workItem from="1647337362778" duration="8798000" />
+      <workItem from="1647415572653" duration="3020000" />
     </task>
     <servers />
   </component>
@@ -139,18 +141,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/inventar_idq/server/persons/Person.js</url>
-          <line>58</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

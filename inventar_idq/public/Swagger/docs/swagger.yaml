@@ -67,7 +67,7 @@ paths:
         409:
           description: "The request could not be completed due to a conflict"
       x-swagger-router-controller: "personsController"
-  /persons/{id}:
+  /person/{id}:
     get:
       tags:
         - "persons"
@@ -143,12 +143,28 @@ paths:
           description: "Person not found"
       x-swagger-router-controller: "personsController"
   /inventory:
+    get:
+      tags:
+        - "inventories"
+      summary: "Get all items in Inventory"
+      description: "this will get all body in database(Inventory)...."
+      operationId: "getInventories"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "successfully fetched Inventory Record from database"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Inventory"
+      x-swagger-router-controller: "inventoriesController"
     post:
       tags:
         - "inventories"
       summary: "Create inventory"
       description: "This will create a new Inventory record"
-      operationId: "createInventory"
+      operationId: "addInventory"
       produces:
         - "application/json"
       parameters:
@@ -163,14 +179,14 @@ paths:
           description: "Inventory record successfully saved"
         201:
           description: "a resource has been created"
-      x-swagger-router-controller: "personsController"
+      x-swagger-router-controller: "inventoriesController"
   /Inventory/{id}:
     get:
       tags:
         - "inventories"
       summary: "Get inventory by UNID"
       description: ""
-      operationId: "getInventoryByUNID"
+      operationId: "getInventoryById"
       produces:
         - "application/json"
       parameters:
@@ -234,12 +250,28 @@ paths:
           description: "Inventory record not found"
       x-swagger-router-controller: "inventoriesController"
   /location:
+    get:
+      tags:
+        - "locations"
+      summary: "Get all items in Location"
+      description: "this will get all body in database(Location)...."
+      operationId: "getLocations"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "successfully fetched Location Record from database"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Location"
+      x-swagger-router-controller: "locationsController"
     post:
       tags:
         - "locations"
       summary: "Create location"
       description: "This will create a new location record"
-      operationId: "createLocation"
+      operationId: "addLocation"
       produces:
         - "application/json"
       parameters:
@@ -259,7 +291,7 @@ paths:
         - "locations"
       summary: "Get location by UNId"
       description: ""
-      operationId: "getLocationByUNId"
+      operationId: "getLocationById"
       produces:
         - "application/json"
       parameters:
@@ -349,10 +381,6 @@ definitions:
         type: "string"
         example: "example@example.com"
         description: "Die person muss eindeutig in der Datenbank sein"
-  Persons:
-    type: "array"
-    items:
-      $ref: "#/definitions/Person"
   Inventory:
     description: "Inventory"
     type: "object"
@@ -392,7 +420,7 @@ definitions:
         format: "date"
         example: "2016-08-04"
       price:
-        type: "number" #soll ich type: number, format: float oder doulbe?
+        type: "number"
         example:
           "2500.25"
       bookingCategory:
@@ -453,8 +481,9 @@ definitions:
         example: "240001"
       error:
         type: "string"
-        example: "Name darf nicht leer sein"
+        example: "Name darf nicht leer sein" #array erstellen mit mehrere fehler
   Errors:
     type: "array"
     items:
       $ref: "#/definitions/Error"
+//----------------------------------------------------------------------------------------------------------------------
