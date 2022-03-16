@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventar/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,13 +40,16 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/inventar_idq/bin/www" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\deltastone\shamel-praktikum" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\deltastone\shamel-praktikum\inventar\public\dist" />
       <recent name="C:\deltastone\shamel-praktikum\inventar_idq\public\Swagger\docs" />
@@ -106,7 +108,7 @@
       <workItem from="1646220036262" duration="5339000" />
       <workItem from="1646240550585" duration="78007000" />
       <workItem from="1647337362778" duration="8798000" />
-      <workItem from="1647415572653" duration="10559000" />
+      <workItem from="1647415572653" duration="10704000" />
     </task>
     <servers />
   </component>
