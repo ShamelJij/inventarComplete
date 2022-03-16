@@ -1,3 +1,7 @@
+<div>
+    <img src="https://picsum.photos/id/238/1200/300" alt="Snow" title="modernization!">
+</div>
+
 # Inventar
 > a fullstack application for an inventory 
 
@@ -11,3 +15,7 @@ BootStrap + JS
 1. person
 2. location
 3. inventory
+
+<div>
+    <img src="https://picsum.photos/id/17/1200/300" alt="Snow" title="modernization!">
+</div>
