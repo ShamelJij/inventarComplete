@@ -1,9 +1,6 @@
 <div>
     <img src="/inventar/public/src/dslcen.jpg" alt="deltastone" title="deltastone">
 </div>
-<div>
-    <img src="https://picsum.photos/id/238/1200/300" alt="Snow" title="modernization!">
-</div>
 
 # Inventar
 > a fullstack application for an inventory 
@@ -13,6 +10,10 @@ CouchDB
 
 ### Frontend:
 BootStrap + JS
+
+<div>
+    <img src="https://picsum.photos/id/238/1200/300" alt="Snow" title="modernization!">
+</div>
 
 ## Pages:
 1. person
