@@ -69,7 +69,7 @@
     <configuration name="database.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/reference/JSOOP/database.js" working-dir="$PROJECT_DIR$/reference">
       <method v="2" />
     </configuration>
-    <configuration name="www" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$/inventar_idq">
+    <configuration name="www" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/inventar/bin/www" working-dir="$PROJECT_DIR$/inventar">
       <method v="2" />
     </configuration>
     <list>

@@ -10,7 +10,7 @@ let CouchValidator = require('../couchdb_design/validateCouchDb');
 
 // -------------- validate couch db design ------------------
 console.log('validate couchdb design ...');
-CouchValidator.validateDesign('inventory')
+CouchValidator.validateDesign('inventar')
 .then( function() {
     console.log('...validate couchdb design succeeded');
 
