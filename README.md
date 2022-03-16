@@ -10,8 +10,6 @@
   </div>
 </div>
 
-<p><img src="https://picsum.photos/id/1/200/200" alt="image not showing" title="inventory" /></p>
-
 # Inventar
 > a fullstack application for an inventory 
 
