@@ -7,7 +7,7 @@ CouchDB
 ### Frontend:
 BootStrap + JS
 
-**Pages:
+## Pages:
 1. person
 2. location
 3. inventory
