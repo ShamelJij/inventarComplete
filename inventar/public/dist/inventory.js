@@ -14,6 +14,7 @@ export class Inventory {
         this.#_db.save(this.#_id,body);
     }
     #validate() {
+
     }
     #translate() {
     }
