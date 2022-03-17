@@ -3,6 +3,8 @@
  */
 
 //################################################################################
+ //---date: 3/17/2022 | time: 9:00 AM | name: Inventory | path: C:\deltastone\shamel-praktikum\inventar\server\inventories\Inventory.js
+
 /**
  * require section
  */

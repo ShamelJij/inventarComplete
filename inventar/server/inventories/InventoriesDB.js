@@ -15,7 +15,7 @@ class InventoriesDb extends Database {
     constructor() {
         super();
 
-        this._dbName  = "inventory";
+        this._dbName  = "inventar";
         this._db      = this.couchDb.use(this._dbName);
 
         this.promisify();
