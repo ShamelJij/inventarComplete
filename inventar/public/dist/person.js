@@ -210,11 +210,45 @@ function initPerson(){
     //
     console.log("function initPerson");
 }
+//----------------------------------------------
+let xhr = new XMLHttpRequest();
+
+function postData(postObj,url) {
+    let personData = JSON.stringify(postObj)
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+    xhr.send(personData);
+
+    xhr.onload = function () {
+        if(xhr.status === 201) {
+            console.log("Post successfully created!")
+        }
+    }
+
+}
+/* function postData(personData,url) {
+     fetch(url, {
+         method: 'POST', // or 'PUT'
+         headers: {
+             'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(personData),
+     })
+         .then(response => response.json())
+         .then(data => {
+             console.log('Success:', data);
+         })
+         .catch((error) => {
+             console.error('Error:', error);
+         });
+ }*/
 /*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                             name: savePerson | purpose: storing in localStorage and build a new row
  - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 function savePerson(){
     if (inputValidationPerson()) {
+        postData(getInputPerson(),'http://localhost:8080/v1/person');
+        return;
 
         let personList = JSON.parse(localStorage.getItem('personList'));
         let pLastName = document.getElementById("pLastName").value.trim();
