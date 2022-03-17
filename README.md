@@ -21,7 +21,7 @@ BootStrap + JS
 3. inventory
 
 <div>
-    <img src="https://picsum.photos/id/17/1200/300" alt="Snow" title="modernization!">
+    <img src="https://picsum.photos/1200/300" alt="Snow" title="modernization!">
 </div>
 
 ## Project Tree:
