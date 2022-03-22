@@ -21,10 +21,6 @@ BootStrap + JS
 3. inventory
 
 <div>
-    <img src="/inventar/public/src/teammee.png" alt="invention" title="modern">
-</div>
-
-<div>
     <img src="https://picsum.photos/1200/300" alt="Snow" title="modernization!">
 </div>
 
@@ -111,3 +107,6 @@ BootStrap + JS
                 Database.js
                 Document.js
 ```
+<div>
+    <img src="/inventar/public/src/teammee.png" alt="invention" title="modern">
+</div>
