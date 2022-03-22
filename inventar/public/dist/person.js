@@ -1,4 +1,4 @@
-export class Person {
+/*export class Person {
 
     #_dbName;
     #_id;
@@ -6,10 +6,10 @@ export class Person {
     #_db;
 
 // ToDo: append JSDoc for alle functions
-    /**
+    /!**
      *
      * @param id
-     */
+     *!/
     constructor(id) {
         this.#_dbName = 'Person';
         this.#_db   = new Database(this.#_dbName);
@@ -31,10 +31,10 @@ export class Person {
 
     }
 
-    /**
+    /!**
      *
      * @param body
-     */
+     *!/
     save(body) {
         let newBody = this.#schema(body);
         if(this.#_id){
@@ -43,12 +43,12 @@ export class Person {
         this.#_body = this.#_db.save(this.#_id, newBody);
     }
 
-    /**
+    /!**
      *
      * @param oldBodyId
      * @type {number}
      * @param newBody
-     */
+     *!/
     update(id, newBody){
         //erst alle eingaben trimmen
         this.#translate(newBody);
@@ -67,10 +67,10 @@ export class Person {
         return this.#_db.get(id);
     }
 
-    /**
+    /!**
      *@param body
      *@returns {Object}
-     */
+     *!/
     #schema(body){
         // ToDo: Complete code for alle attributes
         let newBody = {};
@@ -98,9 +98,9 @@ export class Person {
         return newBody;
     }
 
-    /**
+    /!**
      *
-     */
+     *!/
     #validate(body) {
         // ToDo: Validate mandantory fields
         let persons = Personsop.getAll();
@@ -163,9 +163,9 @@ export class Person {
 
     }
 
-    /**
+    /!**
      *
-     */
+     *!/
     #translate(body) {
         // ToDo: trim all values
         body.email = body.email.replace(/ +/g, "");
@@ -174,28 +174,52 @@ export class Person {
         return body;
     }
 
-    /**
+    /!**
      *
      * @param id
-     */
+     *!/
     delete(id){
         this.#_db.delete(id);
     }
 
-    /**
+    /!**
      *
      * @returns {*}
-     */
+     *!/
     document(){
         return this.#_body;
     }
-}
+}*/
 //----------------------------------------------------------------------------------------------------------------------
-function getPersons(){
+
+function postData(postObj,url) {
+    let personData = JSON.stringify(postObj)
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+    xhr.send(personData);
+
+    xhr.onload = function () {
+        if(xhr.status === 201) {
+            console.log("Post successfully created!")
+        }
+    }
 
 }
+function getPersons(getList, url){
+    let personList = JSON.stringify(getList);
+    xhr.open('GET', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+    xhr.send();
+    
+    xhr.onload = function () {
+        if(xhr.status === 201) {
+            console.log('GetAll successfully created!');
+        }
+    }
+    return personList;
+}
 
-/*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+/* - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         date: 1/13/2022 | time: 5:52 PM | name: Person | path: C:\deltastone\shamel-praktikum\person.js
   - - - - - - - - - - - - - - - - - - - - - - - - - -*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
 /*
@@ -368,7 +392,8 @@ function clearPersonTable() {
  - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 function initPerson(){
     //localstorage auslesen
-    let personList = JSON.parse(localStorage.getItem('personList'));
+    //mark 2
+    let personList = JSON.parse(getPersons('http://localhost:8080/v1/person'));
     hidePerson();
     // wenn:  Personenliste == leer
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
@@ -385,22 +410,26 @@ function initPerson(){
     }
     // sonst: neue Reihe zufügen für jeden Eintrag
     else {
-        let personList = JSON.parse(localStorage.getItem('personList'));
+
+        //mark 1
+        //let personList = JSON.parse(localStorage.getItem('personList'));
+        let perosonList = JSON.parse(getPersons('http://localhost:8080/v1/person'));
         let x = personTableIsEmpty.className
         x = x.replace('d-block','');
         x = x.replace('d-none','');
         x = x.trim();
         personTableIsEmpty.className = x + ' d-none' ;
-        let sortedPersonList = personList.sort(function(a,b){
+        /*let sortedPersonList = personList.sort(function(a,b){
             if (a.pLastName < b.pLastName) {return -1;}
             if (a.pLastName > b.pLastName) {return  1;}
             return 0;
         });
-        console.log(sortedPersonList);
+        console.log(sortedPersonList);*/
+        console.log('getReq: ', personList);
         //insertNewRecord(personList);
-        for (let i=0;i<sortedPersonList.length;i++) {
+        /*for (let i=0;i<sortedPersonList.length;i++) {
             insertNewRecord(sortedPersonList[i]);
-        }
+        }*/
     }
     // alert: consol.log function-validation.
     //
@@ -443,6 +472,7 @@ function postData(postObj,url) {
  - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 function savePerson(){
     if (inputValidationPerson()) {
+        //mark 3
         postData(getInputPerson(),'http://localhost:8080/v1/person');
         return;
         //localStorage ist nicht mehr gebraucht
