@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/inventar/public/src/Teammee.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/person.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/person.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +55,7 @@
       <workItem from="1647527508270" duration="32000" />
       <workItem from="1647527548796" duration="1985000" />
       <workItem from="1647936805704" duration="24761000" />
-      <workItem from="1647964653318" duration="637000" />
+      <workItem from="1647964653318" duration="841000" />
     </task>
     <servers />
   </component>

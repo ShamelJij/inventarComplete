@@ -378,7 +378,7 @@ function clearPersonTable() {
  - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 function initPerson(){
     //localstorage auslesen
-    //mark 2 wokring..
+    //mark 2 wokring...
     let personList = JSON.parse(getPersons('http://localhost:8080/v1/person'));
     hidePerson();
     // wenn:  Personenliste == leer
