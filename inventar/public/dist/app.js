@@ -1,8 +1,5 @@
-/*
-function start() {
-    console.log('Hallo Entwicklerwelt'); // Ausgabe einer normalen Meldung
-    console.debug('Hallo Entwicklerwelt'); // Ausgabe einer Debug-Meldung
-    console.error('Hallo Entwicklerwelt'); // Ausgabe einer Fehlermeldung
-    console.info('Hallo Entwicklerwelt'); // Ausgabe einer Infomeldung
-    console.warn('Hallo '); // Ausgabe einer Warnung
-}*/
+import {Person} from './person.js';
+import {Inventory} from '../inventory.js';
+import {Location} from '../location.js';
+
+
