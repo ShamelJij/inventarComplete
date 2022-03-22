@@ -191,20 +191,6 @@
     }
 }*/
 //----------------------------------------------------------------------------------------------------------------------
-
-function postData(postObj,url) {
-    let personData = JSON.stringify(postObj)
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
-    xhr.send(personData);
-
-    xhr.onload = function () {
-        if(xhr.status === 201) {
-            console.log("Post successfully created!")
-        }
-    }
-
-}
 function getPersons(getList, url){
     let personList = JSON.stringify(getList);
     xhr.open('GET', url, true);
@@ -212,8 +198,8 @@ function getPersons(getList, url){
     xhr.send();
     
     xhr.onload = function () {
-        if(xhr.status === 201) {
-            console.log('GetAll successfully created!');
+        if(xhr.status === 200) {
+            console.log('GetAll successful');
         }
     }
     return personList;
@@ -474,7 +460,7 @@ function savePerson(){
     if (inputValidationPerson()) {
         //mark 3
         postData(getInputPerson(),'http://localhost:8080/v1/person');
-        return;
+        //return;
         //localStorage ist nicht mehr gebraucht
         //let personList = JSON.parse(localStorage.getItem('personList'));
 

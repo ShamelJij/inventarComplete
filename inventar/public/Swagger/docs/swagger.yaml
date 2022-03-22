@@ -31,7 +31,7 @@ paths:
       produces:
         - "application/json"
       responses:
-        "200":
+        200:
           description: "successfully fetched Person Record from database"
           schema:
             type: "array"
