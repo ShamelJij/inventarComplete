@@ -116,48 +116,8 @@ class Persons {
             desc     = desc || false;
             let body = await dbPersons.getAllDocumentsByKey(null, view, desc);
 
-            let result = {
-                persons: [],
-                distinctGroups: [],
-                distinctCreators: [],
-                distinctSuppliers: []
-            };
 
-            body.forEach(function(v) {
-                if (v.doc['history']) {
-                    if (v.doc['history'].createdBy) {
-                        let i = v.doc['history'].createdBy.indexOf('/');
-                        if (i !== -1) {
-                            v.doc['history'].createdBy = v.doc['history'].createdBy.substr(0, i);
-                        }
-                    }
-                    if (v.doc['history'].createdOn) {
-                        v.doc['history'].createdOn = moment(v.doc['history'].createdOn).format('YYYY-MM-DD');
-                    }
-                }
-                if (v.doc.hasOwnProperty('alt_group') && v.doc.alt_group) {
-                    v.doc.group = v.doc.alt_group;
-                }
-                if (v.doc.hasOwnProperty('retailPrice') && v.doc.retailPrice === '') {
-                    v.doc.retailPrice = 0;
-                }
-                result.persons.push(v.doc);
-
-                if (uniques) {
-                    result.distinctGroups.push(v.doc.group);
-                    result.distinctCreators.push(v.doc.history.createdBy);
-                    if (v.doc.supplier) {
-                        result.distinctSuppliers.push(v.doc.supplier.no);
-                    }
-                }
-            });
-
-            if (uniques) {
-                result.distinctGroups    = lodash.uniq(result.distinctGroups).sort();
-                result.distinctCreators  = lodash.uniq(result.distinctCreators).sort();
-                result.distinctSuppliers = lodash.uniq(result.distinctSuppliers).sort();
-            }
-            return result;
+            return body;
         } catch (err) {
             console.log('[Persons.getAllDocumentsByKey] error: ' + JSON.stringify(err));
             throw {'appError': 20001};

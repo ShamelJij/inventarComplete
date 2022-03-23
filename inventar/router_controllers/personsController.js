@@ -121,37 +121,10 @@ module.exports.getPersons = async function getPersons(req, res) {
     try {
         // ids parameter available?
         let ret;
-        if (req.swagger.params.ids && req.swagger.params.ids.value) {
-            // select only requested persons
-            ret = await Persons.getByUnids( req.swagger.params.ids.value );
-        } else {
+
             // get all persons
             ret = await Persons.getAll(false, true);
-        }
 
-        if (ret.persons) {
-            let fields;
-            if (req.swagger.params.fields && req.swagger.params.fields.value) {
-                fields = req.swagger.params.fields.value;
-                fields.push('_id');
-                fields = lodash.uniq(fields);
-            }
-
-            ret.persons = ret.persons.map( function( person ) {
-                // if fields available shrink content
-                if (fields) {
-                    return lodash.pick(person, fields);
-                } else {
-                    return person;
-                }
-            });
-
-            if (req.swagger.params.sortby && req.swagger.params.sortby.value) {
-                let sortby = req.swagger.params.sortby.value;
-                let desc   = (req.swagger.params.desc.value && req.swagger.params.desc.value !== 'false') ? 'desc' : 'asc';
-                ret.persons = lodash.orderBy( ret.persons, [sortby], [desc]);
-            }
-        }
 
         res.statusCode    = 200;
         res.setHeader('Content-Type', 'application/json');

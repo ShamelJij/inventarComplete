@@ -21,7 +21,7 @@ tags:
 schemes:
   - "https"
 paths:
-  /person:
+  /persons:
     get:
       tags:
         - "persons"
@@ -67,7 +67,7 @@ paths:
         409:
           description: "The request could not be completed due to a conflict"
       x-swagger-router-controller: "personsController"
-  /person/{id}:
+  /persons/{id}:
     get:
       tags:
         - "persons"

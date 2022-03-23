@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/inventar/public/dist/person.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/person.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/Swagger/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/Swagger/docs/swagger.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/router_controllers/personsController.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/router_controllers/personsController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/server/persons/Persons.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/server/persons/Persons.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +34,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/inventar/public/dist" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Colors" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -56,6 +59,7 @@
       <workItem from="1647527548796" duration="1985000" />
       <workItem from="1647936805704" duration="24761000" />
       <workItem from="1647964653318" duration="841000" />
+      <workItem from="1648028720012" duration="4662000" />
     </task>
     <servers />
   </component>
