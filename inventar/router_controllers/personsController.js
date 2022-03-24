@@ -88,23 +88,20 @@ module.exports.updatePerson = async function updatePerson (req, res) {
  * @return {Promise<void>}
  */
 module.exports.deletePerson = async function deletePerson(req, res) {
-    console.log(' (DELETE) id: ' +  req.swagger.params.personId.value);
+    console.log(' (DELETE) id: ' +  req.swagger.params.id.value);
 
     try {
-        let objPerson = await Persons.getByUnid( req.swagger.params.personId.value );
+        let objPerson = await Persons.getByUnid( req.swagger.params.id.value );
 
-        if (objPerson.hasWriteAccess( req.objUser.getRoles() )) {
-            let userName = req.objUser.username();
+        /*if (objPerson.hasWriteAccess( req.objUser.getRoles() )) {
+            let userName = req.objUser.username();*/
 
-            await objPerson.update(objPerson.document, userName, true);
+            await objPerson.update(objPerson.document, "testNamez", true);
 
-            res.statusCode = 204;
+            //let ret = { "deleted" };
             res.setHeader('Content-Type', 'application/json');
-            res.send({});
-        } else {
-            // no access
-            throw {'appError': 20403};
-        }
+            res.sendStatus(200);
+
     } catch (err) {
         console.log('error: ' + JSON.stringify( err ));
         let appErr = new AppError(err.appError || '10500', err, req);

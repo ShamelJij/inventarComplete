@@ -102,8 +102,15 @@ class Person extends Document {
      * @param {string} userName
      * @param {boolean} [deleteIt]
      */
-    async update(newBody, userName) {
+    async update(newBody, userName, deleteIt) {
         try {
+            if (!deleteIt) {
+                // don't validate if should be deleted
+               // newBody = inputTranslation(newBody);
+                this.validateSchema( newBody );
+            } else {
+                newBody.deleted = true;
+            }
 
             // merge the new object and the object from database
             this._dbBody      = this._dbBody || {};
