@@ -61,7 +61,12 @@ module.exports.updatePerson = async function updatePerson (req, res) {
     console.log(' (PUT) id: ' +  req.swagger.params.id.value);
 
     try {
-        let ret = { "response": "Person updated!" + req.swagger.params.id.value + " (function addPerson)" };
+
+        let person = new Person(req.swagger.params.id.value);
+
+        await person.update(req.body, "anonym");
+        let ret = { "data": person.document };
+
         console.log(JSON.stringify(req.body));
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
