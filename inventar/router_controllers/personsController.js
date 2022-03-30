@@ -150,31 +150,13 @@ module.exports.getPersonById = async function getPersonById (req, res) {
     // console.log(' (GET) path: ' + req.swagger.params.personId.value);
 
     try {
-        let ret = await Persons.getByUnid(req.swagger.params.personId.value);
+        let ret = await Persons.getByUnid(req.swagger.params.id.value);
         // console.log(JSON.stringify(ret.document));
-        if ( req.objUser.isEK() === false && req.objUser.isGF() === false ) {
             // this user should not have access to
             let newret = lodash.omit( ret.document, ['supplier.buyPrice', 'supplier.buyPriceCurr', 'preSupplier.buyPrice', 'preSupplier.buyPriceCurr'] );
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
             res.send(newret);
-        } else {
-            // sometimes supplier.buyPrice is saved as string in german format
-            // this causes failure of the formatted number display in frontend
-            if (ret.document && ret.document.supplier && ret.document.supplier.buyPrice) {
-                if (typeof ret.document.supplier.buyPrice === 'string') {
-                    ret.document.supplier.buyPrice = ret.document.supplier.buyPrice.replace(',', '.');
-                }
-            }
-            if (ret.document && ret.document.preSupplier && ret.document.preSupplier.buyPrice) {
-                if (typeof ret.document.preSupplier.buyPrice === 'string') {
-                    ret.document.preSupplier.buyPrice = ret.document.preSupplier.buyPrice.replace(',', '.');
-                }
-            }
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.send(ret.document);
-        }
     } catch(err) {
         console.error(err);
         let appErr = new AppError(err.appError || '10500', err, req);
