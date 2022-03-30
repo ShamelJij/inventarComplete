@@ -108,6 +108,6 @@ BootStrap + JS
                 Document.js
 ```
 
-<center>
+<p align="center">
     <img src="/inventar/public/src/Teammee.png" alt="invention" title="modern">
-</center>
+</p>
