@@ -107,6 +107,7 @@ BootStrap + JS
                 Database.js
                 Document.js
 ```
+
 <div>
-    <img src="/inventar/public/src/teammee.png" alt="invention" title="modern">
+    <img src="/inventar/public/src/Teammee.png" alt="invention" title="modern">
 </div>
