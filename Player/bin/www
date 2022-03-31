@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+
+let http          = require('http');
+let app           = require('../app.js');
+let serverPort    = process.env.PORT || 8080;
+
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; //verhindert die ssl certificate prüfung (https)
+
+let CouchValidator = require('../couchdb_design/validateCouchDb');
+
+// -------------- validate couch db design ------------------
+console.log('validate couchdb design ...');
+CouchValidator.validateDesign('inventar')
+.then( function() {
+    console.log('...validate couchdb design succeeded');
+
+    // start server
+    http.createServer(app).listen(serverPort, function () {
+        console.log('Server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
+        console.log('Swagger-ui is available on http://localhost:%d/swagger/docs', serverPort);
+        console.log('Environment: ' + (process.env.NODE_ENV  || 'localhost') );
+        console.log('Nodejs Version: ' + process.version);
+        console.log('Database: ' + require('../config/' + (process.env.NODE_ENV  || 'localhost') + '.json').database.host );
+        console.log(`Project version: ${global.projectVersion} (${new Date(global.projectReleaseDate).toDateString()})`);
+        console.log(`License: ${global.projectLicense}`);
+        console.log('INVENTAR wenn\'s gut werden muss!');
+    });
+})
+.catch( function(err) {
+    console.error(JSON.stringify(err));
+    console.error('validate couchdb design failed, exit program');
+    process.exit();
+});
+
+// -------------- validate uncaught exceptions ------------------
+process.on('uncaughtException', function (err) {
+    if (err.message === "read ECONNRESET") {
+        // skip error silent
+    } else {
+        console.error('Error >uncaughtException< Reason: ' + JSON.stringify(err));
+    }
+});
+// add unhandled rejection handler
+process.on('read ECONNRESET', (reason, promise) => {
+    console.error('Error >read ECONNRESET< Reason: ' + JSON.stringify(reason));
+});
