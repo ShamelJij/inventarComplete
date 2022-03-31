@@ -330,6 +330,13 @@
                 <div class="form-row justify-content-center">
                     <div class="container text-center mb-3"><h1>&#x1F464;Person</h1></div>
                 </div>
+					<div class="form-row justify-content-center" id="getData">
+						<button class="btn btn-primary mb-4" type="button" onclick="getData('http://localhost:8080/v1/person','66529dc09f8c8e97309d6780270526af')">get Person</button>
+					</div>
+					<div>
+						<label for="getPerson">ID</label>
+						<input class="form-control col-md-3" type="text" id="getPerson">
+					</div>
                 <div class="form-row justify-content-center" id="nPersonBtn">
                     <button class="btn btn-primary mb-4" type="button" onclick="showPerson()">Neu Person</button>
                 </div>

@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventar/router_controllers/personsController.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/router_controllers/personsController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/person.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/person.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +59,9 @@
       <workItem from="1647936805704" duration="24761000" />
       <workItem from="1647964653318" duration="841000" />
       <workItem from="1648028720012" duration="26932000" />
-      <workItem from="1648631367667" duration="1446000" />
+      <workItem from="1648631367667" duration="11991000" />
+      <workItem from="1648713718780" duration="609000" />
+      <workItem from="1648716013109" duration="311000" />
     </task>
     <servers />
   </component>
@@ -75,7 +78,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

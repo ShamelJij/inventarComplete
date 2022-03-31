@@ -191,6 +191,7 @@
     }
 }*/
 //----------------------------------------------------------------------------------------------------------------------
+/*
 function getPersons(getList, url){
     let personList = JSON.stringify(getList);
     xhr.open('GET', url, true);
@@ -204,6 +205,7 @@ function getPersons(getList, url){
     }
     return personList;
 }
+*/
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         date: 1/13/2022 | time: 5:52 PM | name: Person | path: C:\deltastone\shamel-praktikum\person.js
@@ -379,7 +381,7 @@ function clearPersonTable() {
 function initPerson(){
     //localstorage auslesen
     //mark 2 wokring...
-    let personList = JSON.parse(getPersons('http://localhost:8080/v1/person'));
+    let personList = /*JSON.parse(getPersons('http://localhost:8080/v1/person'));*/ {};
     hidePerson();
     // wenn:  Personenliste == leer
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
@@ -399,7 +401,7 @@ function initPerson(){
 
         //mark 1
         //let personList = JSON.parse(localStorage.getItem('personList'));
-        let perosonList = JSON.parse(getPersons('http://localhost:8080/v1/person'));
+        /*let perosonList = JSON.parse(getPersons('http://localhost:8080/v1/person'));*/
         let x = personTableIsEmpty.className
         x = x.replace('d-block','');
         x = x.replace('d-none','');
@@ -432,10 +434,23 @@ function postData(postObj,url) {
 
     xhr.onload = function () {
         if(xhr.status === 201) {
-            console.log("Post successfully created!")
+            console.log("Post successfully created!");
         }
     }
+}
+//----------------------------------------------
+function getData(getObj,id) {
+    let person = JSON.stringify(getObj)
+    xhr.open('GET', true);
+    xhr.getResponseHeader('Content-type', 'application/json; charset=UTF-8');
+    xhr.send(person);
 
+    xhr.onload = function () {
+        if(xhr.status === 201) {
+            console.log("GET person");
+            console.log('GET request persons is: :', person);
+        }
+    }
 }
 /* function postData(personData,url) {
      fetch(url, {
