@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Player/config/localhost.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Player/couchdb_design/player/_design_player.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Player/couchdb_design/validateCouchDb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Player/public/Swagger/docs/swagger.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventar/public/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventar/public/dist/person.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/person.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player/bin/www.js" beforeDir="false" afterPath="$PROJECT_DIR$/Player/config/errorlist.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +25,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="26W7Tfw47WA2XZFw1XfnPIn7djU" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -31,6 +37,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="yaml" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/inventar/public/dist" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />

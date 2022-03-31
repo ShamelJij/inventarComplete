@@ -1,0 +1,170 @@
+swagger: "2.0"
+info:
+  description: "Die Schnittstelle zur Inventarverwaltung"
+  version: "1.0.0"
+  title: "PLAYER"
+  termsOfService: "http://deltastone.com"
+  contact:
+    email: "info@deltastone.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost"
+basePath: "/v1"
+tags:
+  - name: "players"
+    description: "Alle Players"
+schemes:
+  - "https"
+paths:
+  /players:
+    get:
+      tags:
+        - "players"
+      summary: "Get all items in Player"
+      description: "this will get all body in database(Player)...."
+      operationId: "getPlayers"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successfully fetched Player Record from database"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Player"
+        404:
+          description: "not found!"
+      x-swagger-router-controller: "playersController"
+    post:
+      tags:
+        - "players"
+      summary: "Create Player"
+      description: "This will create a new item in database(Player)"
+      operationId: "addPlayer"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Created Player object"
+          required: true
+          schema:
+            $ref: "#/definitions/PlayerWithoutID"
+      responses:
+        201:
+          description: "new Player is been created"  #als Array nicht Objekt
+          schema:
+            $ref: "#/definitions/Player"
+        400:
+          description: "Invalid Player supplied or given"
+          schema:
+            $ref: "#/definitions/Errors"
+        409:
+          description: "The request could not be completed due to a conflict"
+      x-swagger-router-controller: "playersController"
+  /persons/{id}:
+    get:
+      tags:
+        - "players"
+      summary: "Get Player by ID"
+      description: ""
+      operationId: "getPlayerById"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "The Player that needs to be fetched. Use player1 for testing. "
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Player successfully fetched "
+          schema:
+            $ref: "#/definitions/Player"
+        "404":
+          description: "Player not found in the database"
+      x-swagger-router-controller: "playersController"
+    put:
+      tags:
+        - "players"
+      summary: "Updated Player"
+      description: "This will update Player body with ID"
+      operationId: "updatePlayer"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "Player that needs to be updated"
+          required: true
+          type: "string"
+        - in: "body"
+          name: "body"
+          description: "Updated Player object"
+          required: true
+          schema:
+            $ref: "#/definitions/Player"
+      responses:
+        "200":
+          description: "The resource describing the result of the action is transmitted in the message body"
+          schema:
+            $ref: "#/definitions/Player"
+        "400":
+          description: "Invalid Player supplied or given"
+          schema:
+            $ref: "#/definitions/Errors"
+        "404":
+          description: "Player not found"
+      x-swagger-router-controller: "playersController"
+    delete:
+      tags:
+        - "players"
+      summary: "Delete Player"
+      description: "this will delete Player with ID"
+      operationId: "deletePlayer"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "The Player that needs to be deleted"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "The request succeeded"
+        "404":
+          description: "Player not found"
+      x-swagger-router-controller: "playersController"
+definitions:
+  Person:
+    description: "Player"
+    type: "object"
+    allOf:
+      - $ref: "#/definitions/PlayerWithoutID"
+    properties:
+      id:
+        type: "string"
+        example: "406"
+        readOnly: true
+  PersonWithoutID: #ändern
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        example: "matrixNumberOne"
+  Error:
+    type: "object"
+    properties:
+      err:
+        type: "number"
+        example: "240001"
+      error:
+        type: "string"
+        example: "Name darf nicht leer sein" #array erstellen mit mehrere fehler
+  Errors:
+    type: "array"
+    items:
+      $ref: "#/definitions/Error"
