@@ -101,7 +101,7 @@ class Database {
                 descending:   descending || false,
                 skip:         offset || 0,
                 reduce:       false,
-                include_docs: true
+                include_docs: false
             };
 
             if (limit) {
