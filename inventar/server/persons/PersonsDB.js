@@ -43,11 +43,11 @@ class PersonsDb extends Database {
      * @param {String} key searchkey
      * @return promise
      */
-    getAllDocumentsByKey( key, view ,desc ) {
+    getAllDocumentsByKey( key, view ,desc, limit, offset ) {
         if (!view) {
             view = 'id';
         }
-        return super.getDocumentsByKeyFromView('persons', view, key, 0 , 0, desc);
+        return super.getDocumentsByKeyFromView('persons', view, key, offset , limit, desc);
     }
 
     // --------------------------------------------------------------------------------

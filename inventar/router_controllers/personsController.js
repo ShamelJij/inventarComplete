@@ -34,6 +34,7 @@ module.exports.addPerson = async function addPerson (req, res) {
 
     try {
             let person = new Person("");
+
             await person.createnew(req.body,"anonym");
            //let ret = { "response": "Person created! (function addPerson)" };
         let ret = { "url": person.getRessource(),
@@ -118,14 +119,17 @@ module.exports.deletePerson = async function deletePerson(req, res) {
  * @return {Promise<void>}
  */
 module.exports.getPersons = async function getPersons(req, res) {
+
     console.log('(GET) ');
 
     try {
+        let limit = req.query.limit;
+        let offset = req.query.offset;
+        let desc = req.query.desc;
         // ids parameter available?
         let ret;
-
-            // get all persons
-            ret = await Persons.getAll(false, true);
+        // get all persons
+        ret = await Persons.getAll(limit,offset,desc);
 
 
         res.statusCode    = 200;

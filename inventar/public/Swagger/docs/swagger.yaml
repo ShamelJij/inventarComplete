@@ -367,6 +367,11 @@ definitions:
         readOnly: true
   PersonWithoutID: #ändern
     type: "object"
+    required:
+      - lastname
+      - firstname
+      - personalno
+      - email
     properties:
       lastname:
         type: "string"

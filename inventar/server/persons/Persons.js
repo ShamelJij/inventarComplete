@@ -110,11 +110,16 @@ class Persons {
      * @param {boolean} desc sorting descenting
      * @return {Promise<{persons: Array, distinctGroups: Array, distinctCreators: Array, distinctSuppliers: Array}>}
      */
-    static async getAll(complete, uniques, view, desc) {
+    //TODO: kommentare einpassen
+    static async getAll( limit, offset,  desc,query) {
         try {
             console.log('[Persons.getAll]');
             desc     = desc || false;
-            let body = await dbPersons.getAllDocumentsByKey(null, view, desc);
+            limit = limit || 5;
+            offset = offset || 0;
+            let view = 'id';
+
+            let body = await dbPersons.getAllDocumentsByKey(null, view, desc, limit, offset);
 
 
             return body;
