@@ -115,7 +115,7 @@ class Persons {
         try {
             console.log('[Persons.getAll]');
             desc     = desc || false;
-            limit = limit || 5;
+            limit = limit || 100;
             offset = offset || 0;
             let view = 'id';
 

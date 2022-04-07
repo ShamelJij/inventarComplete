@@ -54,7 +54,7 @@ class Person extends Document {
 
         this._ressourcePath = '/v1/persons/'; // + {id}
         this._form          = 'person';
-        this._schema        = 'swagger.json#/definitions/Person';
+        this._schema        = 'swagger.json#/definitions/PersonWithoutID';
 
         if (ld.isObject(arg1)) {
             this._dbBody = arg1;
@@ -116,11 +116,6 @@ class Person extends Document {
             this._dbBody      = this._dbBody || {};
             this._dbBody = ld.merge( this._dbBody, newBody );
 
-            // if new .img or .docs are empty arrays, they will be not updated
-            // have to do it explicitly
-            this._dbBody.docs = newBody.docs;
-            this._dbBody.img = newBody.img;
-
             this._dbBody.form   = this._form;
             this._dbBody._id    = this._id;
             if (this._dbBody.deleted) {
@@ -148,8 +143,8 @@ class Person extends Document {
      */
     async createnew(newBody, strUsername) {
         try {
-          //  newBody = inputTranslation(newBody);
-            //this.validateSchema( newBody );
+            //newBody = inputTranslation(newBody);
+            this.validateSchema( newBody );// validation in yaml!
             this._dbBody        = {};
             this._dbBody        = newBody;
             this._dbBody.status = 1;

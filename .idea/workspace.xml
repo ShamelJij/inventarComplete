@@ -3,6 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/Swagger/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/Swagger/docs/swagger.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/router_controllers/personsController.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/router_controllers/personsController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/server/persons/Person.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/server/persons/Person.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/server/persons/Persons.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/server/persons/Persons.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,21 +32,24 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/inventar/couchdb_design/inventar/_design_inventory.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/inventar/couchdb_design/inventar/_design_person.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/inventar/router_controllers/personsController.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/inventar/public/Swagger/docs/swagger.yaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/inventar/public/dist/index.html" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/inventar/package.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/inventar/server/persons/PersonsDB.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/inventar/couchdb_design/validateCouchDb.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/inventar/app.js" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/inventar/router_controllers/personsController.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/inventar/package.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/inventar/server/persons/Persons.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/inventar/server/persons/PersonsDB.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/inventar/couchdb_design/inventar/_design_inventory.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/inventar/couchdb_design/inventar/_design_person.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/inventar/couchdb_design/validateCouchDb.js" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="26W7Tfw47WA2XZFw1XfnPIn7djU" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -114,6 +121,42 @@
           <url>file://$PROJECT_DIR$/inventar/server/persons/Persons.js</url>
           <line>119</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/inventar/server/persons/PersonsDB.js</url>
+          <line>49</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/inventar/server/persons/PersonsDB.js</url>
+          <line>46</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/inventar/router_controllers/inventoriesController.js</url>
+          <line>128</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/inventar/server/inventories/Inventories.js</url>
+          <line>125</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/inventar/server/persons/Person.js</url>
+          <line>106</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/inventar/server/persons/Person.js</url>
+          <line>126</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

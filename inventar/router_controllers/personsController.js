@@ -63,7 +63,8 @@ module.exports.updatePerson = async function updatePerson (req, res) {
 
     try {
 
-        let person = new Person(req.swagger.params.id.value);
+        //let person = new Person(req.swagger.params.id.value);
+        let person = await Persons.getByUnid( req.swagger.params.id.value );
 
         await person.update(req.body, "anonym");
         let ret = { "data": person.document };
