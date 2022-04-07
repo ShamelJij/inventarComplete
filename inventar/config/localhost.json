@@ -1,7 +1,0 @@
-{
-  "database": {
-    "host": "localhost:5984",
-    "login": "admin",
-    "password": "123456"
-  }
-}
