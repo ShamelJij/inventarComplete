@@ -162,7 +162,7 @@
     "internalStatusCode": "20404",
     "httpStatusCode": 404,
     "error": "product not found",
-    "details": "product with requested id not found"
+    "details": "query with requested id not found"
   },
   "20400":
   {
