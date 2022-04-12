@@ -157,16 +157,14 @@ module.exports.getPersonById = async function getPersonById (req, res) {
 
     try {
         let ret = await Persons.getById(req.swagger.params.id.value);
-        // console.log(JSON.stringify(ret.document));
+            console.log(JSON.stringify(ret.document));
             // this user should not have access to
-            let newret = lodash.omit( ret.document, ['supplier.buyPrice', 'supplier.buyPriceCurr', 'preSupplier.buyPrice', 'preSupplier.buyPriceCurr'] );
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
-            res.send(newret);
+            res.send(ret.document);
     } catch(err) {
         console.error(err);
         let appErr = new AppError(err.appError || '10500', err, req);
         res.status(appErr.getHttpStatusCode()).json(appErr.toJSON()).end();
     }
-
 };
