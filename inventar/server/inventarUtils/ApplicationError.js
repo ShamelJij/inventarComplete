@@ -1,5 +1,5 @@
 /**
- * Created by Carsten Pogede on 01.12.2017.
+ * Created on 02.03.2022.
  */
 let errorlist = require('../../config/errorlist.json');
 

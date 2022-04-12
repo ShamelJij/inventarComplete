@@ -71,7 +71,7 @@ paths:
     get:
       tags:
         - "persons"
-      summary: "Get Person by UNID"
+      summary: "Get Person by Id"
       description: ""
       operationId: "getPersonById"
       produces:

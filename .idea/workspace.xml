@@ -4,9 +4,8 @@
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inventar/public/Swagger/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/Swagger/docs/swagger.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventar/router_controllers/personsController.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/router_controllers/personsController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/server/inventarUtils/ApplicationError.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/server/inventarUtils/ApplicationError.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inventar/server/persons/Person.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/server/persons/Person.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventar/server/persons/Persons.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/server/persons/Persons.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +61,9 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Colors" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="ReaderModeSettings">
+    <option name="showRenderedDocs" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -151,12 +153,6 @@
           <line>106</line>
           <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/inventar/server/persons/Person.js</url>
-          <line>126</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
