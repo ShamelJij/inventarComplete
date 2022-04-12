@@ -1,5 +1,5 @@
 {
-  "_todo_notes": "I only see errors for (PRODUCTS) but I don't know how or where to add errors for (PERSON)",
+  "_todo_notes": "I only see errors for (PERSONS) but I don't know how or where to add errors for (PERSON)",
   "10000": {
     "internalStatusCode": "10000",
     "httpStatusCode": 401,
@@ -135,19 +135,19 @@
     "error": "database update error",
     "details": "database error details logged on backend"
   },
-  "PRODUCTS": {"REM": "--- P R O D U C T S -------------------------------------------------------------------------"},
+  "PERSONS": {"REM": "--- P R O D U C T S -------------------------------------------------------------------------"},
   "20000":
   {
     "internalStatusCode": "20000",
     "httpStatusCode": 500,
-    "error": "error reading product by unid",
+    "error": "error reading person by unid",
     "details": "database error details logged on backend"
   },
   "20001":
   {
     "internalStatusCode": "20001",
     "httpStatusCode": 500,
-    "error": "error reading list of products",
+    "error": "error reading list of persons",
     "details": "database error details logged on backend"
   },
   "20403":
@@ -155,13 +155,13 @@
     "internalStatusCode": "20403",
     "httpStatusCode": 403,
     "error": "Writeaccess forbidden",
-    "details": "To create or update a product the acl-role 'product' is required"
+    "details": "To create or update a person the acl-role 'person' is required"
   },
   "20404":
   {
     "internalStatusCode": "20404",
     "httpStatusCode": 404,
-    "error": "product not found",
+    "error": "person not found",
     "details": "query with requested id not found"
   },
   "20400":
