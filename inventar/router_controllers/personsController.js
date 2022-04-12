@@ -92,23 +92,25 @@ module.exports.updatePerson = async function updatePerson (req, res) {
 module.exports.deletePerson = async function deletePerson(req, res) {
     console.log(' (DELETE) id: ' +  req.swagger.params.id.value);
 
-    try {
-        let objPerson = await Persons.getById( req.swagger.params.id.value );
+        try {
+            let objPerson = await Persons.getById( req.swagger.params.id.value );
 
-        /*if (objPerson.hasWriteAccess( req.objUser.getRoles() )) {
-            let userName = req.objUser.username();*/
+            /*if (objPerson.hasWriteAccess( req.objUser.getRoles() )) {
+                let userName = req.objUser.username();*/
+            //404 error wenn .deleted = true außer superuser
+                await objPerson.update(objPerson.document, "testNamez", true);
 
-            await objPerson.update(objPerson.document, "testNamez", true);
 
-            //let ret = { "deleted" };
-            res.setHeader('Content-Type', 'application/json');
-            res.sendStatus(200);
+                //let ret = { "deleted" };
+                res.setHeader('Content-Type', 'application/json');
+                res.sendStatus(200);
 
-    } catch (err) {
-        console.log('error: ' + JSON.stringify( err ));
-        let appErr = new AppError(err.appError || '10500', err, req);
-        res.status(appErr.getHttpStatusCode()).json(appErr.toJSON()).end();
-    }
+        } catch (err) {
+            console.log('error: ' + JSON.stringify( err ));
+            let appErr = new AppError(err.appError || '10500', err, req);
+            res.status(appErr.getHttpStatusCode()).json(appErr.toJSON()).end();
+        }
+
 };
 
 //--------------------------------------------------------------------------------

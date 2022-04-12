@@ -58,7 +58,7 @@
     "internalStatusCode": "10050",
     "httpStatusCode": 404,
     "error": "current user not found",
-    "details": "check x-access-token and try again"
+    "details": "check try again"
   },
   "10100": {
     "internalStatusCode": "10100",
