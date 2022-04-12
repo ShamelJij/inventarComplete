@@ -64,7 +64,7 @@ module.exports.updatePerson = async function updatePerson (req, res) {
     try {
 
         //let person = new Person(req.swagger.params.id.value);
-        let person = await Persons.getByUnid( req.swagger.params.id.value );
+        let person = await Persons.getById( req.swagger.params.id.value );
 
         await person.update(req.body, "anonym");
         let ret = { "data": person.document };
@@ -93,7 +93,7 @@ module.exports.deletePerson = async function deletePerson(req, res) {
     console.log(' (DELETE) id: ' +  req.swagger.params.id.value);
 
     try {
-        let objPerson = await Persons.getByUnid( req.swagger.params.id.value );
+        let objPerson = await Persons.getById( req.swagger.params.id.value );
 
         /*if (objPerson.hasWriteAccess( req.objUser.getRoles() )) {
             let userName = req.objUser.username();*/
@@ -154,8 +154,9 @@ module.exports.getPersons = async function getPersons(req, res) {
 module.exports.getPersonById = async function getPersonById (req, res) {
     // console.log(' (GET) path: ' + req.swagger.params.personId.value);
 
+
     try {
-        let ret = await Persons.getByUnid(req.swagger.params.id.value);
+        let ret = await Persons.getById(req.swagger.params.id.value);
         // console.log(JSON.stringify(ret.document));
             // this user should not have access to
             let newret = lodash.omit( ret.document, ['supplier.buyPrice', 'supplier.buyPriceCurr', 'preSupplier.buyPrice', 'preSupplier.buyPriceCurr'] );

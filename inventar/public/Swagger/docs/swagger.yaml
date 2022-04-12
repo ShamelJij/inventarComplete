@@ -184,7 +184,7 @@ paths:
     get:
       tags:
         - "inventories"
-      summary: "Get inventory by UNID"
+      summary: "Get inventory by Id"
       description: ""
       operationId: "getInventoryById"
       produces:

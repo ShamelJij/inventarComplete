@@ -28,7 +28,7 @@ class Persons {
      * @param {String} strUnid persons UNID
      * @return Person
      */
-    static async getByUnid(strUnid) {
+    static async getById(strUnid) {
         try {
             let body = await dbPersons.getDocumentByKey(strUnid);
 
@@ -58,7 +58,7 @@ class Persons {
             }
 
         } catch (err) {
-            console.log('[Persons.getByUnid] error: ' + JSON.stringify(err));
+            console.log('[Persons.getById] error: ' + JSON.stringify(err));
             throw err;
         }
     }
@@ -67,7 +67,7 @@ class Persons {
     /**
      * get multiple persons by ids
      */
-    static async getByUnids(ids) {
+    static async getByIds(ids) {
         try {
             let documents = await dbPersons.getDocumentsByIds(ids);
             if (!documents.length) {
@@ -95,7 +95,7 @@ class Persons {
                 return persons;
             }
         } catch (err) {
-            console.log('[persons.getByUnids] error: ' + JSON.stringify(err));
+            console.log('[persons.getByIds] error: ' + JSON.stringify(err));
             throw {'appError': 20000};
         }
     }
