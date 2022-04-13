@@ -330,22 +330,22 @@ function inputValidationPerson() {
                                 name: insertNewRecord | purpose: building a new row for every new query
  - - - - - - - - - - - - - - - - - - - - - - - - - -*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 //Insert data from Person
-function insertNewRecord(personList){
+function insertNewRecord(persons){
 
-    let table = document.getElementById("idPersonList").getElementsByTagName('tbody')[0];
+    let table = document.getElementById("persons").getElementsByTagName('tbody')[0];
     let newRow = table.insertRow(table.length);
     let cell1 = newRow.insertCell(0);
-    cell1.innerHTML = personList.lastname;
+    cell1.innerHTML = persons.lastname;
     let cell2 = newRow.insertCell(1);
-    cell2.innerHTML = personList.firstname;
+    cell2.innerHTML = persons.firstname;
     let cell3 = newRow.insertCell(2);
-    cell3.innerHTML = personList.personalno;
+    cell3.innerHTML = persons.personalno;
     let cell4 = newRow.insertCell(3);
-    cell4.innerHTML = personList.email;
+    cell4.innerHTML = persons.email;
     let cell5 = newRow.insertCell(4);
     cell5.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
-                            "<button onClick=\"editPerson(" + personList.personItemID + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
-        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deletePersonModel\" onClick=\"setRowID(" + personList.personItemID + ")\"></button></div>" +
+                            "<button onClick=\"editPerson(" + persons._id + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
+        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deletePersonModel\" onClick=\"setRowID(" + persons._id + ")\"></button></div>" +
         "</div>";
 }
  //get row id
@@ -367,13 +367,13 @@ function clearPersonTable() {
 function initPerson(){
     //localstorage auslesen
     //mark 2 wokring...
-    let personList = getPersons('http://localhost:8080/v1/persons');
+    let persons = getPersons();
     hidePerson();
     // wenn:  Personenliste == leer
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
     //error handling
     clearPersonTable();
-    /*if (!personList || personList.length == 0){;
+    if (!persons || persons.length == 0){;
         let x = personTableIsEmpty.className
         x = x.replace('d-block','');
         x = x.replace('d-none','');
@@ -381,26 +381,21 @@ function initPerson(){
         personTableIsEmpty.className = x + ' d-block' ;
         console.log('table is empty');
 
-    }*/
+    }
     // sonst: neue Reihe zufügen für jeden Eintrag
-    //else {
-
-        //mark 1
-        //let personList = JSON.parse(localStorage.getItem('personList'));
-        //let perosonList = JSON.parse(getPersons('http://localhost:8080/v1/person'));
+    else {
         let x = personTableIsEmpty.className
         x = x.replace('d-block','');
         x = x.replace('d-none','');
         x = x.trim();
         personTableIsEmpty.className = x + ' d-none' ;
-        /*let sortedPersonList = personList.sort(function(a,b){
+        let sortedPersonList = persons.sort(function(a,b){
             if (a.lastname < b.lastname) {return -1;}
             if (a.lastname > b.lastname) {return  1;}
             return 0;
         });
-        console.log(sortedPersonList);*/
-        //console.log('getReq: ', personList);
-        //insertNewRecord(personList);
+        console.log(sortedPersonList);
+        insertNewRecord(persons);
         /*for (let i=0;i<sortedPersonList.length;i++) {
             insertNewRecord(sortedPersonList[i]);
         }*/
@@ -436,10 +431,10 @@ function getPersons() {
             alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
         } else { // show the result
             alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
-            let testList = xhr.response;
-            console.log(testList);
+            let persons = xhr.response;
         }
     };
+    return persons;
 }
 /*function getPersons(getList, url){
     let personList = JSON.stringify(getList);
