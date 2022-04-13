@@ -191,19 +191,7 @@
     }
 }*/
 //----------------------------------------------------------------------------------------------------------------------
-/*function getPersons(getList, url){
-    let personList = JSON.stringify(getList);
-    xhr.open('GET', url, true);
-    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
-    xhr.send();
-    
-    xhr.onload = function () {
-        if(xhr.status === 200) {
-            console.log('GetAll successful');
-        }
-    }
-    return personList;
-}*/
+
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         date: 1/13/2022 | time: 5:52 PM | name: Person | path: C:\deltastone\shamel-praktikum\person.js
@@ -379,7 +367,7 @@ function clearPersonTable() {
 function initPerson(){
     //localstorage auslesen
     //mark 2 wokring...
-    //let personList = JSON.parse(getPersons('http://localhost:8080/v1/persons'));
+    let personList = getPersons('http://localhost:8080/v1/persons');
     hidePerson();
     // wenn:  Personenliste == leer
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
@@ -439,6 +427,33 @@ function postData(postObj,url) {
     }
 
 }
+
+function getPersons() {
+    xhr.open('GET', 'http://localhost:8080/v1/persons');
+    xhr.send();
+    xhr.onload = function() {
+        if (xhr.status != 200) { // analyze HTTP status of the response
+            alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
+        } else { // show the result
+            alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
+            let testList = xhr.response;
+            console.log(testList);
+        }
+    };
+}
+/*function getPersons(getList, url){
+    let personList = JSON.stringify(getList);
+    xhr.open('GET', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+    xhr.send();
+
+    xhr.onload = function () {
+        if(xhr.status === 200) {
+            console.log('GetAll successful' + personList);
+        }
+    }
+    return personList;
+}*/
 /* function postData(personData,url) {
      fetch(url, {
          method: 'POST', // or 'PUT'
@@ -627,7 +642,7 @@ function refreshPerson() {
     //aktuelle werte auf eingabefelder löchen
     document.getElementById("lastname").value = '';
     document.getElementById("firstname").value = '';
-    document.getElementById("personalNo").value = '';
+    document.getElementById("personalno").value = '';
     document.getElementById("email").value = '';
     document.getElementById('saveID').value = '';
 

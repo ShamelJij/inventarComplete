@@ -47,7 +47,8 @@ class PersonsDb extends Database {
         if (!view) {
             view = 'id';
         }
-        return super.getDocumentsByKeyFromView('persons', view, key, offset , limit, desc);
+        let body = super.getDocumentsByKeyFromView('persons', view, key, offset , limit, desc);
+        return body;
     }
 
     // --------------------------------------------------------------------------------

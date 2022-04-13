@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f23eeeb7-f0f4-4db8-996d-0baa02041ded" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inventar/router_controllers/personsController.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/router_controllers/personsController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/public/dist/person.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/public/dist/person.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/server/persons/Persons.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/server/persons/Persons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventar/server/persons/PersonsDB.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventar/server/persons/PersonsDB.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +98,7 @@
       <workItem from="1648728405903" duration="358000" />
       <workItem from="1648728778115" duration="243000" />
       <workItem from="1649172639195" duration="258000" />
-      <workItem from="1649849436616" duration="668000" />
+      <workItem from="1649849436616" duration="13043000" />
     </task>
     <servers />
   </component>
@@ -117,21 +120,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/inventar/server/persons/Persons.js</url>
-          <line>119</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/inventar/server/persons/PersonsDB.js</url>
-          <line>49</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/inventar/server/persons/PersonsDB.js</url>
-          <line>46</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/inventar/router_controllers/inventoriesController.js</url>
           <line>128</line>
           <option name="timeStamp" value="14" />
@@ -145,6 +133,18 @@
           <url>file://$PROJECT_DIR$/inventar/server/persons/Person.js</url>
           <line>106</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/inventar/server/persons/PersonsDB.js</url>
+          <line>49</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/inventar/server/persons/PersonsDB.js</url>
+          <line>50</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
