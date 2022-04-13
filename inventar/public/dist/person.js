@@ -406,9 +406,10 @@ function initPerson(){
     console.log("function initPerson");
 }
 //----------------------------------------------
-let xhr = new XMLHttpRequest();
+
 
 function postData(postObj,url) {
+    let xhr = new XMLHttpRequest();
     let personData = JSON.stringify(postObj)
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
@@ -425,6 +426,7 @@ function postData(postObj,url) {
 }
 
 function getPersons() {
+    let xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost:8080/v1/persons');
     xhr.send();
     xhr.onload = function() {
@@ -432,11 +434,9 @@ function getPersons() {
             alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
         } else { // show the result
             alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
-            let persons = xhr.response;
+            return xhr.response;
         }
     };
-    console.log('persons; ', persons);
-    return persons;
 }
 /*function getPersons(getList, url){
     let personList = JSON.stringify(getList);
