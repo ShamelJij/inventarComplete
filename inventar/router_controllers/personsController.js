@@ -123,7 +123,7 @@ module.exports.deletePerson = async function deletePerson(req, res) {
  */
 module.exports.getPersons = async function getPersons(req, res) {
 
-    console.log('(GET) ');
+    console.log('(GET) all Persons:  ');
 
     try {
         let limit = req.query.limit;
@@ -138,6 +138,11 @@ module.exports.getPersons = async function getPersons(req, res) {
         res.statusCode    = 200;
         res.setHeader('Content-Type', 'application/json');
         res.send(ret);
+
+
+        //console.log('§§§§§§§',ret.filter(a => a.value.lastname).map(a => a.value._id));
+        console.log('§§§§§§§§', ret.map(a => a.value.lastname));
+
     } catch (err) {
         let appErr = new AppError(err.appError || '10500', err, req);
         res.status(appErr.getHttpStatusCode()).json(appErr.toJSON()).end();
