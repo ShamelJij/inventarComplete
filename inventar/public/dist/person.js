@@ -201,6 +201,23 @@ Global Section..
  */
 const personTableIsEmpty = document.getElementById("personTableIsEmpty");
 
+function sendHTTPRequest (method, url) {
+    let promise = new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open(method,url);
+        xhr.responseType = 'json';
+        xhr.onload = function() {
+            if (xhr.status != 200) { // analyze HTTP status of the response
+                alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
+            } else { // show the result
+                alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
+                resolve(xhr.response);
+            }
+        };
+        xhr.send();
+    });
+    return promise;
+}
 /*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
                             name: getInputPerson | purpose: getting form input and assign it to obj
  - - - - - - - - - - - - - - - - - - - - - - - - - -*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
@@ -358,7 +375,7 @@ function insertNewRecord(persons){
  }
 function clearPersonTable() {
     const personTable = document.getElementById("personTableBody");
- i   personTable.innerHTML = '';
+    personTable.innerHTML = '';
 }
 
 //---name: initPerson | purpose: parse from localstorage then insert a new person to personList          ***
@@ -368,19 +385,19 @@ function initPerson(){
     //mark 2 wokring...
     //promise that awaits for getPersons()
     let persons = getPersons();
+    console.log('GET: person: ', perosns);
     hidePerson();
     // wenn:  Personenliste == leer
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
     //error handling
     clearPersonTable();
-    if (!persons || persons.length == 0){;
+    if (!persons || persons.length == 0){
         let x = personTableIsEmpty.className
         x = x.replace('d-block','');
         x = x.replace('d-none','');
         x = x.trim();
         personTableIsEmpty.className = x + ' d-block' ;
         console.log('table is empty');
-
     }
     // sonst: neue Reihe zufügen für jeden Eintrag
     else {
@@ -422,26 +439,14 @@ function postData(postObj,url) {
     }
 
 }
-function sendHTTPRequest (method, url) {
-    let promise = new Promise((resolve, reject) => {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', 'http://localhost:8080/v1/persons');
-        xhr.send();
-        xhr.onload = function() {
-            if (xhr.status != 200) { // analyze HTTP status of the response
-                alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
-            } else { // show the result
-                alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
-                let persons = JSON.parse(xhr.response);
-                return persons;
-            }
-        };
-    });
-}
+
 function getPersons() {
+     let persons = [];
      sendHTTPRequest('GET', 'http://localhost:8080/v1/persons').then(responseData => {
-         console.log('GET: person: ', responseData);
-     })
+         persons = responseData;
+     });
+     return persons;
+
 }
 /*function getPersons(getList, url){
     let personList = JSON.stringify(getList);
