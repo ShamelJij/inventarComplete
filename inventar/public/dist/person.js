@@ -555,12 +555,12 @@ function savePerson(){
 /*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                                 name: deletePerson | purpose: delete person obj from localStorage and table
  - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-function deletePerson(personID) {
-    let personList = JSON.parse(localStorage.getItem('personList'));
+async function deletePerson(personID) {
+    let persons = await getPersons();
     
-    for(let i = 0; i < personList.length; i++){
-        if (personID == personList[i].personItemID){
-            personList.splice(i,1);
+    for(let i = 0; i < persons.length; i++){
+        if (personId == persons[i].personItemID){
+            persons.splice(i,1);
             localStorage.setItem('personList', JSON.stringify(personList));
             break;
         }
