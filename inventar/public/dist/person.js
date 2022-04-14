@@ -326,9 +326,8 @@ function inputValidationPerson() {
 
     return ret;
 }
-/*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-                                name: insertNewRecord | purpose: building a new row for every new query
- - - - - - - - - - - - - - - - - - - - - - - - - - -*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+//---name: insertNewRecord | purpose: building a new row for every new query - insert dat from Person          ***
+
 //Insert data from Person
 function insertNewRecord(persons){
 
@@ -359,14 +358,15 @@ function insertNewRecord(persons){
  }
 function clearPersonTable() {
     const personTable = document.getElementById("personTableBody");
-    personTable.innerHTML = '';
+ i   personTable.innerHTML = '';
 }
-/*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                        name: initPerson | purpose: parse from localstorage then insert a new person to personList
- - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+//---name: initPerson | purpose: parse from localstorage then insert a new person to personList          ***
+
 function initPerson(){
     //localstorage auslesen
     //mark 2 wokring...
+    //promise that awaits for getPersons()
     let persons = getPersons();
     hidePerson();
     // wenn:  Personenliste == leer
@@ -405,9 +405,7 @@ function initPerson(){
     //
     console.log("function initPerson");
 }
-//----------------------------------------------
-
-
+//---name: postData | purpose: sending Person form to backend
 function postData(postObj,url) {
     let xhr = new XMLHttpRequest();
     let personData = JSON.stringify(postObj)
@@ -417,26 +415,33 @@ function postData(postObj,url) {
 
     xhr.onload = function () {
         if(xhr.status === 201) {
-            console.log("Post successfully created!")
+            console.log("Post successfully created!");
         } else if (xhr.status === 400){
             console.log('400 (Bad Request)');
         }
     }
 
 }
-
+function sendHTTPRequest (method, url) {
+    let promise = new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://localhost:8080/v1/persons');
+        xhr.send();
+        xhr.onload = function() {
+            if (xhr.status != 200) { // analyze HTTP status of the response
+                alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
+            } else { // show the result
+                alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
+                let persons = JSON.parse(xhr.response);
+                return persons;
+            }
+        };
+    });
+}
 function getPersons() {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:8080/v1/persons');
-    xhr.send();
-    xhr.onload = function() {
-        if (xhr.status != 200) { // analyze HTTP status of the response
-            alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
-        } else { // show the result
-            alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
-            return xhr.response;
-        }
-    };
+     sendHTTPRequest('GET', 'http://localhost:8080/v1/persons').then(responseData => {
+         console.log('GET: person: ', responseData);
+     })
 }
 /*function getPersons(getList, url){
     let personList = JSON.stringify(getList);
