@@ -346,6 +346,7 @@ function inputValidationPerson() {
 //---name: insertNewRecord | purpose: building a new row for every new query - insert dat from Person          ***
 
 //Insert data from Person
+//table not showing yet!
 function insertNewRecord(persons){
 
     let table = document.getElementById("persons").getElementsByTagName('tbody')[0];
