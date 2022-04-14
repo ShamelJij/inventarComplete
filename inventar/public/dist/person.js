@@ -385,7 +385,7 @@ function initPerson(){
     //mark 2 wokring...
     //promise that awaits for getPersons()
     let persons = getPersons();
-    console.log('GET: person: ', perosns);
+    console.log('GET: person: ', persons);
     hidePerson();
     // wenn:  Personenliste == leer
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
@@ -441,12 +441,9 @@ function postData(postObj,url) {
 }
 
 function getPersons() {
-     let persons = [];
      sendHTTPRequest('GET', 'http://localhost:8080/v1/persons').then(responseData => {
-         persons = responseData;
+         console.log('-:::- ', responseData);
      });
-     return persons;
-
 }
 /*function getPersons(getList, url){
     let personList = JSON.stringify(getList);
