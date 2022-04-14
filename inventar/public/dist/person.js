@@ -407,16 +407,16 @@ async function initPerson(){
         x = x.replace('d-none','');
         x = x.trim();
         personTableIsEmpty.className = x + ' d-none' ;
-        /*let sortedPersonList = persons.sort(function(a,b){
+        let sortedPersonList = persons.sort(function(a,b){
             if (a.lastname < b.lastname) {return -1;}
             if (a.lastname > b.lastname) {return  1;}
             return 0;
         });
-        console.log(sortedPersonList);*/
-        insertNewRecord(persons);
-        /*for (let i=0;i<sortedPersonList.length;i++) {
+        console.log(sortedPersonList);
+        //insertNewRecord(persons);
+        for (let i=0;i<sortedPersonList.length;i++) {
             insertNewRecord(sortedPersonList[i]);
-        }*/
+        }
     }
     // alert: consol.log function-validation.
     //
