@@ -380,11 +380,11 @@ function clearPersonTable() {
 
 //---name: initPerson | purpose: parse from localstorage then insert a new person to personList          ***
 
-function initPerson(){
+async function initPerson(){
     //localstorage auslesen
     //mark 2 wokring...
     //promise that awaits for getPersons()
-    let persons = getPersons();
+    let persons = await getPersons();
     console.log('GET: person: ', persons);
     hidePerson();
     // wenn:  Personenliste == leer
@@ -413,7 +413,6 @@ function initPerson(){
         });
         console.log(sortedPersonList);*/
         insertNewRecord(persons);
-        console.log('bug: ', persons);
         /*for (let i=0;i<sortedPersonList.length;i++) {
             insertNewRecord(sortedPersonList[i]);
         }*/
@@ -439,11 +438,9 @@ function postData(postObj,url) {
     }
 
 }
-
-function getPersons() {
-     sendHTTPRequest('GET', 'http://localhost:8080/v1/persons').then(responseData => {
-         console.log('-:::- ', responseData);
-     });
+// must build a try catch (throw) here
+async function getPersons() {
+     return sendHTTPRequest('GET', 'http://localhost:8080/v1/persons');
 }
 /*function getPersons(getList, url){
     let personList = JSON.stringify(getList);
