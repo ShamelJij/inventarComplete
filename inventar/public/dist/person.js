@@ -364,16 +364,17 @@ function insertNewRecord(person){
     let cell6 = newRow.insertCell(5);
     cell6.innerHTML = "<div class=\"text-center d-flex justify-content-between\">" +
                             "<button onClick=\"editPerson(" + person._id + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
-        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deletePersonModel\" onClick=\"setRowID(" + persons._id + ")\"></button></div>" +
+        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deletePersonModel\" onClick=\"setRowId(" + person._id + ")\"></button></div>" +
         "</div>";
 }
  //get row id
- let globalPersonId = 0;
- function setRowID(ID){
-     globalPersonId = ID
+ let globalPersonId = '';
+ function setRowId(Id){
+     globalPersonId = Id;
  }
- function getRowID(){
+ function getRowId(){
      let gid = globalPersonId;
+     console.log('person id bug: ', globalPersonId);
      return gid
  }
 function clearPersonTable() {
@@ -441,12 +442,11 @@ function postData(postObj,url) {
     }
 
 }
-function delData(delObj,url) {
+function delData(url) {
     let xhr = new XMLHttpRequest();
-    let personData = JSON.stringify(delObj)
     xhr.open('DELETE', url, true);
     xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
-    xhr.send(personData);
+    xhr.send();
 
     xhr.onload = function () {
         if(xhr.status === 201) {
@@ -574,12 +574,16 @@ function savePerson(){
                                 name: deletePerson | purpose: delete person obj from localStorage and table
  - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 async function deletePerson(personId) {
+    console.log('id is: 1 ', JSON.parse(personId));
     let persons = await getPersons();
     
     for(let i = 0; i < persons.length; i++){
         if (personId == persons[i]._id){
-            delData(persons[i], 'http://localhost:8080/v1/persons/' + _id);
+            console.log('id is: ', _id);
+            delData('http://localhost:8080/v1/persons/' + _id);
             break;
+        }else{
+            console.log('bug');
         }
     }
     
@@ -628,7 +632,7 @@ function hidePerson(){
         document.getElementById('sPerson').className = 'd-none';
         document.getElementById('nPersonBtn').className = 'form-row justify-content-center';
     } else {
-        console.log('hidePerson is not working!!');
+        console.log('hidePerson is not activated!!');
     }
 }
 function updatePerson() {
