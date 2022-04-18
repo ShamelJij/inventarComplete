@@ -439,6 +439,22 @@ function postData(postObj,url) {
     }
 
 }
+function delData(delObj,url) {
+    let xhr = new XMLHttpRequest();
+    let personData = JSON.stringify(delObj)
+    xhr.open('DELETE', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+    xhr.send(personData);
+
+    xhr.onload = function () {
+        if(xhr.status === 201) {
+            console.log("Delete successfully created!");
+        } else if (xhr.status === 400){
+            console.log('400 (Bad Request)');
+        }
+    }
+
+}
 // must build a try catch (throw) here
 async function getPersons() {
      return sendHTTPRequest('GET', 'http://localhost:8080/v1/persons');
@@ -560,8 +576,7 @@ async function deletePerson(personID) {
     
     for(let i = 0; i < persons.length; i++){
         if (personId == persons[i].personItemID){
-            persons.splice(i,1);
-            localStorage.setItem('personList', JSON.stringify(personList));
+            delData(persons[i], 'http://localhost:8080/v1/persons/');
             break;
         }
     }
@@ -589,7 +604,7 @@ function editPerson(personID) {
             break;
         }
     }
-    //initPerson??
+        //initPerson??
 }
 function showPerson() {
     let sPerson = document.getElementById('sPerson').className;
