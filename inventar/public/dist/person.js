@@ -577,8 +577,8 @@ async function deletePerson(personId) {
     let persons = await getPersons();
     
     for(let i = 0; i < persons.length; i++){
-        if (personId == persons[i].personItemID){
-            delData(persons[i], 'http://localhost:8080/v1/persons/');
+        if (personId == persons[i]._id){
+            delData(persons[i], 'http://localhost:8080/v1/persons/' + _id);
             break;
         }
     }

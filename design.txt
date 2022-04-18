@@ -1,0 +1,16 @@
+{
+  "_id": "_design/persons",
+  "_rev": "37-d0211e9d9a6d37b5628efab7c609dc21",
+  "views": {
+    "id": {
+      "map": "function (doc) {\n  if (doc.form === \"person\" && !doc.deleted) {\n  emit(doc._id, doc);\n  }\n}"
+    },
+    "get-all": {
+      "map": "function (doc) {\n  if (doc.form === \"person\"){\n  emit(doc._id, doc.value);\n  }\n}"
+    },
+    "test-view": {
+      "map": "function (doc) {\n  if (doc.form === \"person\" && !doc.deleted) {\n  emit(doc._id, doc.lastname + ', ' + doc.firstname + ', ' + doc.personalno + ', ' + doc.email);\n  }\n}"
+    }
+  },
+  "language": "javascript"
+}
