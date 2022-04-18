@@ -347,21 +347,23 @@ function inputValidationPerson() {
 
 //Insert data from Person
 //table not showing yet!
-function insertNewRecord(persons){
+function insertNewRecord(person){
 
     let table = document.getElementById("persons").getElementsByTagName('tbody')[0];
     let newRow = table.insertRow(table.length);
     let cell1 = newRow.insertCell(0);
-    cell1.innerHTML = persons.lastname;
+    cell1.innerHTML = person.lastname;
     let cell2 = newRow.insertCell(1);
-    cell2.innerHTML = persons.firstname;
+    cell2.innerHTML = person.firstname;
     let cell3 = newRow.insertCell(2);
-    cell3.innerHTML = persons.personalno;
+    cell3.innerHTML = person.personalno;
     let cell4 = newRow.insertCell(3);
-    cell4.innerHTML = persons.email;
+    cell4.innerHTML = person.email;
     let cell5 = newRow.insertCell(4);
-    cell5.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
-                            "<button onClick=\"editPerson(" + persons._id + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
+    cell5.innerHTML = person._id;
+    let cell6 = newRow.insertCell(5);
+    cell6.innerHTML = "<div class=\"text-center d-flex justify-content-between\">" +
+                            "<button onClick=\"editPerson(" + person._id + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
         "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deletePersonModel\" onClick=\"setRowID(" + persons._id + ")\"></button></div>" +
         "</div>";
 }
@@ -571,7 +573,7 @@ function savePerson(){
 /*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                                 name: deletePerson | purpose: delete person obj from localStorage and table
  - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-async function deletePerson(personID) {
+async function deletePerson(personId) {
     let persons = await getPersons();
     
     for(let i = 0; i < persons.length; i++){
@@ -586,13 +588,13 @@ async function deletePerson(personID) {
 /*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                             name: editPerson | purpose: edit person obj from localStorage and table row
  - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-function editPerson(personID) {
+async function editPerson(personId) {
     showPerson();
-    let personList = JSON.parse(localStorage.getItem('personList'));
+    let persons = await getPersons();
     document.getElementById('pUpdateBtn').className = 'btn btn-success';
     document.getElementById('pSaveBtn').className = 'd-none';
     for(let i = 0; i < personList.length; i++){
-        if (personID == personList[i].personItemID){
+        if (personId == personList[i]._id){
             //wenn dateien löchen wollen dann:
             //personList.splice(i,1);
             console.log('editPerson', personList[i]);
@@ -600,7 +602,7 @@ function editPerson(personID) {
             document.getElementById("firstname").value = personList[i].firstname;
             document.getElementById("personalno").value = personList[i].personalno;
             document.getElementById("email").value = personList[i].email;
-            document.getElementById("saveID").value = personList[i].personItemID;
+            document.getElementById("saveID").value = personList[i]._id;
             break;
         }
     }
