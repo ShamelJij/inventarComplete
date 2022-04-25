@@ -1,206 +1,17 @@
-/*export class Person {
-
-    #_dbName;
-    #_id;
-    #_body;
-    #_db;
-
-// ToDo: append JSDoc for alle functions
-    /!**
-     *
-     * @param id
-     *!/
-    constructor(id) {
-        this.#_dbName = 'Person';
-        this.#_db   = new Database(this.#_dbName);
-
-        if (id) {
-            this.#_id = id;
-            this.#_body = this.#_db.get(id);
-        } else {
-            let schema = {
-                "_id": null,
-                "lastname": '',
-                "firstname": '',
-                "email": '',
-                "personalId": ''
-            };
-            this.#_body = schema;
-            this.#_id = null
-        }
-
-    }
-
-    /!**
-     *
-     * @param body
-     *!/
-    save(body) {
-        let newBody = this.#schema(body);
-        if(this.#_id){
-            newBody._id = this.#_id;
-        }
-        this.#_body = this.#_db.save(this.#_id, newBody);
-    }
-
-    /!**
-     *
-     * @param oldBodyId
-     * @type {number}
-     * @param newBody
-     *!/
-    update(id, newBody){
-        //erst alle eingaben trimmen
-        this.#translate(newBody);
-        //dann eingaben validieren
-        if (this.#validate(newBody)){
-            this.#_id = id;
-            this.save(newBody);
-            console.log('item: ', id,'ist geupdated!');
-        } else {
-
-        }
-
-    }
-
-    get(id){
-        return this.#_db.get(id);
-    }
-
-    /!**
-     *@param body
-     *@returns {Object}
-     *!/
-    #schema(body){
-        // ToDo: Complete code for alle attributes
-        let newBody = {};
-        if(body.lastname){
-            newBody.lastname = body.lastname;
-        } else {
-            newBody.lastname = this.#_body.lastname;
-        }
-        if(body.firstname){
-            newBody.firstname = body.firstname;
-
-        } else {
-            newBody.firstname = this.#_body.firstname;
-        }
-        if(body.email){
-            newBody.email = body.email;
-        } else {
-            newBody.email = this.#_body.email;
-        }
-        if(body.personalID){
-            newBody.personalID = body.personalID;
-        } else {
-            newBody.personalID = this.#_body.personalID;
-        }
-        return newBody;
-    }
-
-    /!**
-     *
-     *!/
-    #validate(body) {
-        // ToDo: Validate mandantory fields
-        let persons = Personsop.getAll();
-
-        let ret = true;
-        let msg = '';
-        let letters = /^[a-zA-Z]*$/;
-        let is_email = body.email.match(/([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/g);
-        const found_personal_number = (persons.find(element => element.personalID == body.personalID));
-        const found_email = (persons.find(element => element.email == body.email));
-
-        if(found_personal_number){
-            console.log('test: ',found_personal_number);
-            msg = (`personalNumber: ${body.personalID} ist gefunden und könnte nicht dupliziert!`);
-            ret = false;
-        }else if (body.personalID == '' || body.personalID < 1){
-            msg = ('personalNumber ist leer oder kleiner als 1');
-            ret = false;
-        } else {
-            console.log('body ',this.#_body);
-            //alles gut und ret ist true
-        }
-
-        if(is_email){
-
-            if (found_email){
-                msg = (`email: ${body.email}  ist gefunden und könnte nicht dupliziert`);
-                ret = false;
-            } else if (body.email == ''){
-                msg = ('email ist leer!');
-                ret = false;
-            } else {
-                //alles gut ret ist true
-            }
-
-        } else {
-            //Eingabe ist nicht email ret ist falsch
-            msg =('E-Mail ist nicht valid!');
-            ret = false;
-        }
-
-        if(body.lastname == '' || !letters.test(body.lastname)){
-            msg = ('lastname ist nicht valid!');
-            ret = false;
-        } else {
-            //alles gut ret ist true
-        }
-
-        if (body.firstname == '' || !letters.test(body.firstname)) {
-            msg = ('firstname ist nicht valid!');
-            ret = false;
-        } else {
-            //alles gut ret ist true
-        }
-        if(ret == false){
-            console.warn('Eingabe ist nicht valid weil:', msg);
-        }
-
-        return ret;
-
-    }
-
-    /!**
-     *
-     *!/
-    #translate(body) {
-        // ToDo: trim all values
-        body.email = body.email.replace(/ +/g, "");
-        body.lastname = body.lastname.replace(/ +/g, "");
-        body.firstname = body.firstname.replace(/ +/g, "");
-        return body;
-    }
-
-    /!**
-     *
-     * @param id
-     *!/
-    delete(id){
-        this.#_db.delete(id);
-    }
-
-    /!**
-     *
-     * @returns {*}
-     *!/
-    document(){
-        return this.#_body;
-    }
-}*/
-//----------------------------------------------------------------------------------------------------------------------
-
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-        date: 1/13/2022 | time: 5:52 PM | name: Person | path: C:\deltastone\shamel-praktikum\person.js
-  - - - - - - - - - - - - - - - - - - - - - - - - - -*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-/*
-Global Section..
+/**
+ * person FRONTEND
+ */
+//################################################################################
+/**
+ * Global section
  */
 const personTableIsEmpty = document.getElementById("personTableIsEmpty");
 
+//################################################################################
+/**
+ * @param {string} method
+ * @param {string} url
+ */
 function sendHTTPRequest (method, url) {
     let promise = new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
@@ -218,9 +29,77 @@ function sendHTTPRequest (method, url) {
     });
     return promise;
 }
-/*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-                            name: getInputPerson | purpose: getting form input and assign it to obj
- - - - - - - - - - - - - - - - - - - - - - - - - - -*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+//################################################################################
+/**
+ * routes section
+ */
+
+//--------------------------------------------------------------------------------
+/**
+ * POST /persons
+ *
+ * @param {Object} postObj
+ * @param {string} url
+ */
+ function postData(postObj,url) {
+    let xhr = new XMLHttpRequest();
+    let personData = JSON.stringify(postObj)
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+    xhr.send(personData);
+
+    xhr.onload = function () {
+        if(xhr.status === 201) {
+            console.log("Post successfully created!");
+        } else if (xhr.status === 400){
+            console.log('400 (Bad Request)');
+        }
+    }
+
+}
+
+//--------------------------------------------------------------------------------
+/**
+ * DELETE /persons/{id}
+ *
+ * @param url
+ */
+function delData(url) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('DELETE', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+    xhr.send();
+
+    xhr.onload = function () {
+        if(xhr.status === 201) {
+            console.log("Delete successfully created!");
+        } else if (xhr.status === 400){
+            console.log('400 (Bad Request)');
+        }
+    }
+
+}
+
+//--------------------------------------------------------------------------------
+/**
+ * GET /persons
+ *
+ * @return {Array.<Objects>} persons
+ */
+async function getPersons() {
+    return sendHTTPRequest('GET', 'http://localhost:8080/v1/persons');
+}
+
+//################################################################################
+/**
+ * form section
+ */
+/**
+ * get input form as an object
+ *
+ * @return {personData}
+ */
 function getInputPerson(){
     let personData = {};
     personData ["lastname"] = document.getElementById("lastname").value;
@@ -229,9 +108,14 @@ function getInputPerson(){
     personData ["email"] = document.getElementById("email").value;
     return personData;
 }
-/*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-                        name: inputValidationPerson | purpose: input form validation
- - - - - - - - - - - - - - - - - - - - - - - - - - -*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+//################################################################################
+/**
+ * input validation
+ * 
+ * @return {boolean} ret
+ */
+
 function inputValidationPerson() {
     let ret = true;
     let personList = JSON.parse(localStorage.getItem('personList')) || [];
@@ -343,10 +227,13 @@ function inputValidationPerson() {
 
     return ret;
 }
-//---name: insertNewRecord | purpose: building a new row for every new query - insert dat from Person          ***
 
-//Insert data from Person
-//table not showing yet!
+//--------------------------------------------------------------------------------
+/**
+ * insert new record into table below form
+ *
+ * @param {Object} person
+ */
 function insertNewRecord(person){
 
     let table = document.getElementById("persons").getElementsByTagName('tbody')[0];
@@ -362,30 +249,61 @@ function insertNewRecord(person){
     let cell5 = newRow.insertCell(4);
     cell5.innerHTML = person._id;
     let cell6 = newRow.insertCell(5);
-    console.log('type of: ', typeof person._id);
     cell6.innerHTML = "<div class=\"text-center d-flex justify-content-between\">" +
                             "<button onClick=\"editPerson(" + person._id + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
-        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deletePersonModel\" onClick=\"setRowId(" + person._id + ")\"></button></div>" +
+        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deletePersonModel\" onClick=\"setRowId(" + "\'"  + person._id + "\'" + ")\"></button></div>" +
         "</div>";
 }
- //get row id
- let globalPersonId = f231kg3342;
+
+//################################################################################
+/**
+ * bug
+ */
+let globalPersonId = 0;
  function setRowId(Id){
     
-     globalPersonId = Id;
+    this.globalPersonId = Id;
  }
- //async
+ //async?
  function getRowId(){
      let gid = globalPersonId;
-     console.log('person id bug: ', globalPersonId);
+     console.log('person id bug: ', gid);
      return gid
  }
+
 function clearPersonTable() {
     const personTable = document.getElementById("personTableBody");
     personTable.innerHTML = '';
 }
 
-//---name: initPerson | purpose: parse from localstorage then insert a new person to personList          ***
+//--------------------------------------------------------------------------------
+/**
+ * delete Person from form and from database
+ *
+ * @param {srting} personId
+ */
+ async function deletePerson(personId) {
+    console.log('id is: 1 ', JSON.parse(personId));
+    let persons = await getPersons();
+    
+    for(let i = 0; i < persons.length; i++){
+        if (personId == persons[i]._id){
+            console.log('id is: ', _id);
+            //delData(`http://localhost:8080/v1/persons/${_id}`);
+            delData('http://localhost:8080/v1/persons/' + _id);
+            break;
+        }else{
+            console.log('personId: ', personId);
+        }
+    }
+    
+    initPerson();
+}
+//################################################################################
+/**
+ * 
+ * initiate Person page
+ */
 
 async function initPerson(){
     //localstorage auslesen
@@ -427,79 +345,18 @@ async function initPerson(){
     // alert: consol.log function-validation.
     console.log("function initPerson");
 }
-//---name: postData | purpose: sending Person form to backend
-function postData(postObj,url) {
-    let xhr = new XMLHttpRequest();
-    let personData = JSON.stringify(postObj)
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
-    xhr.send(personData);
 
-    xhr.onload = function () {
-        if(xhr.status === 201) {
-            console.log("Post successfully created!");
-        } else if (xhr.status === 400){
-            console.log('400 (Bad Request)');
-        }
-    }
-
-}
-function delData(url) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('DELETE', url, true);
-    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
-    xhr.send();
-
-    xhr.onload = function () {
-        if(xhr.status === 201) {
-            console.log("Delete successfully created!");
-        } else if (xhr.status === 400){
-            console.log('400 (Bad Request)');
-        }
-    }
-
-}
-// must build a try catch (throw) here
-async function getPersons() {
-     return sendHTTPRequest('GET', 'http://localhost:8080/v1/persons');
-}
-/*function getPersons(getList, url){
-    let personList = JSON.stringify(getList);
-    xhr.open('GET', url, true);
-    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
-    xhr.send();
-
-    xhr.onload = function () {
-        if(xhr.status === 200) {
-            console.log('GetAll successful' + personList);
-        }
-    }
-    return personList;
-}*/
-/* function postData(personData,url) {
-     fetch(url, {
-         method: 'POST', // or 'PUT'
-         headers: {
-             'Content-Type': 'application/json',
-         },
-         body: JSON.stringify(personData),
-     })
-         .then(response => response.json())
-         .then(data => {
-             console.log('Success:', data);
-         })
-         .catch((error) => {
-             console.error('Error:', error);
-         });
- }*/
-/*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                            name: savePerson | purpose: storing in localStorage and build a new row
- - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+//################################################################################
+/**
+ * saving Person Object from form
+ * 
+ * 
+ */
 function savePerson(){
     if (inputValidationPerson()) {
         //mark 3
         postData(getInputPerson(),'http://localhost:8080/v1/persons/');
-        return;
+        //return;
         //localStorage ist nicht mehr gebraucht
         //let personList = JSON.parse(localStorage.getItem('personList'));
 
@@ -520,81 +377,17 @@ function savePerson(){
             personalno: personalno,
             email: email
         };
-
-        /*let found_obj = personList.find(element => element.personItemID == personID );
-        let found_obj_index = personList.indexOf(found_obj);
-
-        if (personID == '' || !found_obj){
-            console.log('newitem saved');
-            //counter for itemID
-            let personItemID = localStorage.getItem('personCounter');
-            if (personItemID === null) {
-                personItemID = 0;
-            } else {
-                personItemID++;
-            }
-            localStorage.setItem("personCounter", personItemID);
-            personItem.personItemID = personItemID;
-            // wenn:  Personenliste == leer
-            // note(text):flag.. or tooltip wird and hidden div mit hinweiß
-            //error handling
-            if (!personList || personList.length == 0) {
-                personList = []; // [personItem];
-                personList.push(personItem);
-            }
-            // sonst: neue Reihe zufügen für jeden Eintrag
-            else {
-                console.log('building a new row');
-                //insertNewRecord(personList);
-                personList.push(personItem);
-            }
-        } else {
-            if(found_obj){
-                personItem.personItemID = personID;
-                personList[found_obj_index] = personItem;
-                }
-            }
-
-
-
-        localStorage.setItem("personList", JSON.stringify(personList));
-        //eingabe validierung
-        //Localstorage auslesen
-        //push auf die Liste und nicht neu erstellen
-        //die Liste ist am besten sortiert (array) nach name
-        // in localstorage speichern
-        //Tsbelle aktualiesieren
-        initPerson();
-        hidePerson();
-    }else {
-        console.log('saveperson in not starting because it is not valid');
-    }*/
-
-}
-}
-/*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                                name: deletePerson | purpose: delete person obj from localStorage and table
- - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-async function deletePerson(personId) {
-    console.log('id is: 1 ', JSON.parse(personId));
-    let persons = await getPersons();
-    
-    for(let i = 0; i < persons.length; i++){
-        if (personId == persons[i]._id){
-            console.log('id is: ', _id);
-            //delData(`http://localhost:8080/v1/persons/${_id}`);
-            delData('http://localhost:8080/v1/persons/' + _id);
-            break;
-        }else{
-            console.log('personId: ', personId);
-        }
     }
-    
-    initPerson();
+
 }
-/*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                            name: editPerson | purpose: edit person obj from localStorage and table row
- - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+
+//--------------------------------------------------------------------------------
+/**
+ * edit Person in form 
+ *
+ * @param {srting} personId
+ */
 async function editPerson(personId) {
     showPerson();
     let persons = await getPersons();
@@ -615,6 +408,12 @@ async function editPerson(personId) {
     }
         //initPerson??
 }
+
+//--------------------------------------------------------------------------------
+/**
+ * show Person form 
+ *
+ */
 function showPerson() {
     let sPerson = document.getElementById('sPerson').className;
     document.getElementById('pUpdateBtn').className = 'd-none';
@@ -628,6 +427,12 @@ function showPerson() {
     }
      
 }
+
+//--------------------------------------------------------------------------------
+/**
+ * hides Person in form 
+ *
+ */
 function hidePerson(){
     refreshPerson();
     let hPerson = document.getElementById('sPerson').className;
@@ -637,7 +442,13 @@ function hidePerson(){
     } else {
         console.log('hidePerson is not activated!!');
     }
-}
+}   
+
+//--------------------------------------------------------------------------------
+/**
+ * updates Person in form 
+ *
+ */
 function updatePerson() {
     let personList = JSON.parse(localStorage.getItem('personList'));
     let lastname = document.getElementById("lastname").value.trim();
@@ -659,13 +470,14 @@ function updatePerson() {
     }
     localStorage.setItem("personList", JSON.stringify(personList));
     initPerson();
-    /*
-    let saveID = document.getElementById('saveID').value;
-    deletePerson(saveID);
-    savePerson(saveID);*/
 }
+
+//--------------------------------------------------------------------------------
+/**
+ * refreashed Person page  
+ *
+ */
 function refreshPerson() {
-    //aktuelle werte auf eingabefelder löchen
     document.getElementById("lastname").value = '';
     document.getElementById("firstname").value = '';
     document.getElementById("personalno").value = '';
@@ -678,9 +490,21 @@ function refreshPerson() {
     document.getElementById("email").className = 'form-control';
 
 }
+
+//--------------------------------------------------------------------------------
+/**
+ * check for any failures with string taken from input in form  
+ *
+ */
 function personInputTranslation(input) {
 
 }
+
+//--------------------------------------------------------------------------------
+/**
+ * capitalize first and last name in Person form
+ *
+ */
 function capitalizeFirstLetter(string) {
      let words = string.split(' ');
      for (let i = 0; i < words.length; i++) {
