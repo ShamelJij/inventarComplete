@@ -362,16 +362,19 @@ function insertNewRecord(person){
     let cell5 = newRow.insertCell(4);
     cell5.innerHTML = person._id;
     let cell6 = newRow.insertCell(5);
+    console.log('type of: ', typeof person._id);
     cell6.innerHTML = "<div class=\"text-center d-flex justify-content-between\">" +
                             "<button onClick=\"editPerson(" + person._id + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
         "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deletePersonModel\" onClick=\"setRowId(" + person._id + ")\"></button></div>" +
         "</div>";
 }
  //get row id
- let globalPersonId = '';
+ let globalPersonId = f231kg3342;
  function setRowId(Id){
+    
      globalPersonId = Id;
  }
+ //async
  function getRowId(){
      let gid = globalPersonId;
      console.log('person id bug: ', globalPersonId);
@@ -390,6 +393,7 @@ async function initPerson(){
     //promise that awaits for getPersons()
     let persons = await getPersons();
     console.log('GET: person: ', persons);
+    
     hidePerson();
     // wenn:  Personenliste == leer
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
@@ -415,14 +419,12 @@ async function initPerson(){
             if (a.lastname > b.lastname) {return  1;}
             return 0;
         });
-        console.log(sortedPersonList);
         //insertNewRecord(persons);
         for (let i=0;i<sortedPersonList.length;i++) {
             insertNewRecord(sortedPersonList[i]);
         }
     }
     // alert: consol.log function-validation.
-    //
     console.log("function initPerson");
 }
 //---name: postData | purpose: sending Person form to backend
@@ -580,10 +582,11 @@ async function deletePerson(personId) {
     for(let i = 0; i < persons.length; i++){
         if (personId == persons[i]._id){
             console.log('id is: ', _id);
+            //delData(`http://localhost:8080/v1/persons/${_id}`);
             delData('http://localhost:8080/v1/persons/' + _id);
             break;
         }else{
-            console.log('bug');
+            console.log('personId: ', personId);
         }
     }
     
