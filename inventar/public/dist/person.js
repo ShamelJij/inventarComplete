@@ -31,9 +31,7 @@ function sendHTTPRequest (method, url) {
 }
 
 //################################################################################
-/**
- * routes section
- */
+//routes section
 
 //--------------------------------------------------------------------------------
 /**
@@ -92,9 +90,7 @@ async function getPersons() {
 }
 
 //################################################################################
-/**
- * form section
- */
+//form section
 /**
  * get input form as an object
  *
@@ -230,7 +226,7 @@ function inputValidationPerson() {
 
 //--------------------------------------------------------------------------------
 /**
- * insert new record into table below form
+ * inserts new record into table below form
  *
  * @param {Object} person
  */
@@ -260,10 +256,14 @@ function insertNewRecord(person){
  * bug
  */
 let globalPersonId = 0;
- function setRowId(Id){
+
+//--------------------------------------------------------------------------------
+function setRowId(Id){
     
     this.globalPersonId = Id;
  }
+
+ //--------------------------------------------------------------------------------
  //async?
  function getRowId(){
      let gid = globalPersonId;

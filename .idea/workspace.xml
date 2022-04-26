@@ -58,9 +58,6 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="ReaderModeSettings">
-    <option name="showRenderedDocs" value="false" />
-  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\deltastone\shamel-praktikum\inventar\public\dist" />
@@ -97,7 +94,7 @@
       <workItem from="1649172639195" duration="258000" />
       <workItem from="1649849436616" duration="18908000" />
       <workItem from="1649925559919" duration="23442000" />
-      <workItem from="1650956452891" duration="347000" />
+      <workItem from="1650956452891" duration="758000" />
     </task>
     <servers />
   </component>
