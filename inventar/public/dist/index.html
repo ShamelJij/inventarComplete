@@ -390,6 +390,9 @@
             </form>
         </div>
         <div class="container">
+			  <div class="form-group col-12 alert alert-danger text-center" id="personDelete" role="alert">
+				  <p>person ist gelöcht</p>
+			  </div>
             <table class="table table-striped text-center" id="persons">
                 <thead>
                 <tr>
@@ -453,7 +456,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">nein</button>
-                    <button type="button" class="btn btn-danger" onClick="deletePerson(getRowID()); hidePerson();" data-dismiss="modal">löschen</button>
+                    <button type="button" class="btn btn-danger" onClick="deletePerson(getRowId()); hidePerson();" data-dismiss="modal">löschen</button>
                 </div>
             </div>
         </div>

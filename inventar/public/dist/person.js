@@ -70,10 +70,13 @@ function delData(url) {
     xhr.send();
 
     xhr.onload = function () {
-        if(xhr.status === 201) {
-            console.log("Delete successfully created!");
-        } else if (xhr.status === 400){
-            console.log('400 (Bad Request)');
+        if(xhr.status === 200) {
+            alert("Delete successful!");
+            initPerson();
+
+        } else if (xhr.status === 404){
+            alert('person not found');
+            initPerson();
         }
     }
 
@@ -259,16 +262,15 @@ let globalPersonId = 0;
 
 //--------------------------------------------------------------------------------
 function setRowId(Id){
-    
+
     globalPersonId = Id;
  }
 
  //--------------------------------------------------------------------------------
- //async?
  function getRowId(){
-     let gId = globalPersonId;
+     let gid = globalPersonId;
      console.log('person id bug: ', gid);
-     return gId
+     return gid
  }
 
 //--------------------------------------------------------------------------------
@@ -288,21 +290,9 @@ function clearPersonTable() {
  * @param {srting} personId
  */
  async function deletePerson(personId) {
-    console.log('id is: 1 ', JSON.parse(personId));
-    let persons = await getPersons();
+            delData('http://localhost:8080/v1/persons/' + personId);
     
-    for(let i = 0; i < persons.length; i++){
-        if (personId == persons[i]._id){
-            console.log('id is: ', _id);
-            //delData(`http://localhost:8080/v1/persons/${_id}`);
-            delData('http://localhost:8080/v1/persons/' + _id);
-            break;
-        }else{
-            console.log('personId: ', personId);
-        }
-    }
-    
-    initPerson();
+
 }
 //################################################################################
 /**

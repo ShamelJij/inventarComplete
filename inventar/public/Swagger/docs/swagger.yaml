@@ -126,14 +126,14 @@ paths:
       tags:
         - "persons"
       summary: "Delete Person"
-      description: "this will delete Person with UNID"
+      description: "this will delete Person with id"
       operationId: "deletePerson"
       produces:
         - "application/json"
       parameters:
         - name: "id"
           in: "path"
-          description: "The Person that needs to be deleted"
+          description: "id of the Person that needs to be deleted"
           required: true
           type: "string"
       responses:
