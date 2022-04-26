@@ -260,15 +260,15 @@ let globalPersonId = 0;
 //--------------------------------------------------------------------------------
 function setRowId(Id){
     
-    this.globalPersonId = Id;
+    globalPersonId = Id;
  }
 
  //--------------------------------------------------------------------------------
  //async?
  function getRowId(){
-     let gid = globalPersonId;
+     let gId = globalPersonId;
      console.log('person id bug: ', gid);
-     return gid
+     return gId
  }
 
 //--------------------------------------------------------------------------------
