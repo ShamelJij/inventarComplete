@@ -76,6 +76,7 @@ function putData(postObj,url) {
     xhr.onload = function () {
         if(xhr.status === 200) {
             console.log("Put successfully done!");
+            initPerson();
         } else if (xhr.status === 400){
             console.log('invalid');
         } else if (xhr.status === 404){
@@ -515,10 +516,11 @@ async function updatePerson() {
         console.log('no revision in Person');
     }
     let url = 'http://localhost:8080/v1/persons/' + personID;
-    //await
+    //await?
     putData(personItem, url);
-    //await
-    initPerson();
+
+
+
 }
 
 //--------------------------------------------------------------------------------
@@ -545,7 +547,7 @@ function refreshPerson() {
  * updates Person in form
  *
  */
-function refreashPerson (){
+function refreshPerson(){
 
 }
 
