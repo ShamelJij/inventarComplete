@@ -271,6 +271,11 @@ let globalPersonId = 0;
      return gid
  }
 
+//--------------------------------------------------------------------------------
+/**
+ * clears Person table
+ *
+ */
 function clearPersonTable() {
     const personTable = document.getElementById("personTableBody");
     personTable.innerHTML = '';
