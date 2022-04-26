@@ -11,6 +11,24 @@ const personDeletedName = document.getElementById("personDeletedName");
 
 //################################################################################
 /**
+ * Custom Functions
+ */
+//--------------------------------------------------------------------------------
+function customAlert(elementId, strongText, text, delay){
+    let x = elementId.className
+    x = x.replace('d-block','');
+    x = x.replace('d-none','');
+    x = x.trim();
+    elementId.className = x + ' d-block' ;
+    personDeletedName.innerText = persons[i].firstname + ' ' + persons[i].lastname;
+    setTimeout(function () {
+
+        // Closing the alert
+        $('#personDelete').alert('close');
+    }, 5000);
+}
+//################################################################################
+/**
  * @param {string} method
  * @param {string} url
  */
@@ -326,7 +344,7 @@ function clearPersonTable() {
             x = x.replace('d-block','');
             x = x.replace('d-none','');
             x = x.trim();
-            personDelete.className = x + ' d-block' ;
+            personDelete.className = x + ' d-block';
             personDeletedName.innerText = persons[i].firstname + ' ' + persons[i].lastname;
             setTimeout(function () {
 
