@@ -61,6 +61,32 @@ function sendHTTPRequest (method, url) {
 
 //--------------------------------------------------------------------------------
 /**
+ * PUT /persons
+ *
+ * @param {Object} postObj
+ * @param {string} url
+ */
+function putData(postObj,url) {
+    let xhr = new XMLHttpRequest();
+    let personData = JSON.stringify(postObj)
+    xhr.open('PUT', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+    xhr.send(personData);
+
+    xhr.onload = function () {
+        if(xhr.status === 200) {
+            console.log("Put successfully done!");
+        } else if (xhr.status === 400){
+            console.log('invalid');
+        } else if (xhr.status === 404){
+            console.log('Person not found');
+        }
+    }
+
+}
+
+//--------------------------------------------------------------------------------
+/**
  * DELETE /persons/{id}
  *
  * @param url
@@ -251,15 +277,12 @@ function insertNewRecord(person){
     cell5.innerHTML = person._id;
     let cell6 = newRow.insertCell(5);
     cell6.innerHTML = "<div class=\"text-center d-flex justify-content-between\">" +
-                            "<button onClick=\"editPerson(" + person._id + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
+                            "<button onClick=\"editPerson("  + "\'" + person._id + "\'" + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>&nbsp;" +
         "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deletePersonModel\" onClick=\"setRowId(" + "\'"  + person._id + "\'" + ")\"></button></div>" +
         "</div>";
 }
 
 //################################################################################
-/**
- * bug
- */
 let globalPersonId = 0;
 
 //--------------------------------------------------------------------------------
@@ -408,7 +431,7 @@ function savePerson(){
 /**
  * edit Person in form 
  *
- * @param {srting} personId
+ * @param {string} personId
  */
 async function editPerson(personId) {
     showPerson();
@@ -419,16 +442,16 @@ async function editPerson(personId) {
         if (personId == persons[i]._id){
             //wenn dateien löchen wollen dann:
             //personList.splice(i,1);
-            console.log('editPerson', personList[i]);
-            document.getElementById("lastname").value = personList[i].lastname;
-            document.getElementById("firstname").value = personList[i].firstname;
-            document.getElementById("personalno").value = personList[i].personalno;
-            document.getElementById("email").value = personList[i].email;
-            document.getElementById("saveID").value = personList[i]._id;
+            console.log('editPerson', persons[i]);
+            document.getElementById("lastname").value = persons[i].lastname;
+            document.getElementById("firstname").value = persons[i].firstname;
+            document.getElementById("personalno").value = persons[i].personalno;
+            document.getElementById("email").value = persons[i].email;
+            document.getElementById("saveID").value = persons[i]._id;
             break;
         }
     }
-        //initPerson??
+
 }
 
 //--------------------------------------------------------------------------------
@@ -471,26 +494,30 @@ function hidePerson(){
  * updates Person in form 
  *
  */
-function updatePerson() {
-    let personList = JSON.parse(localStorage.getItem('personList'));
+async function updatePerson() {
+    let persons = await getPersons();
     let lastname = document.getElementById("lastname").value.trim();
     let firstname = document.getElementById("firstname").value.trim();
     let personalno = document.getElementById("personalno").value.trim();
     let email = document.getElementById("email").value.trim();
     let personID = document.getElementById("saveID").value;
+    let revision = document.getElementById("revision").value;
     let personItem = {
         lastname: lastname,
         firstname: firstname,
         personalno: personalno,
-        email: email
+        email: email,
+        _id: personID
     };
-    let found_obj = personList.find(element => element.personItemID == personID );
-    let found_obj_index = personList.indexOf(found_obj);
-    if(found_obj){
-        personItem.personItemID = personID;
-        personList[found_obj_index] = personItem;
+    if (personItem._rev !== null){
+        _rev: revision;
+    } else {
+        console.log('no revision in Person');
     }
-    localStorage.setItem("personList", JSON.stringify(personList));
+    let url = 'http://localhost:8080/v1/persons/' + personID;
+    //await
+    putData(personItem, url);
+    //await
     initPerson();
 }
 
@@ -510,6 +537,15 @@ function refreshPerson() {
     document.getElementById("firstname").className = 'form-control';
     document.getElementById("personalno").className = 'form-control';
     document.getElementById("email").className = 'form-control';
+
+}
+
+//--------------------------------------------------------------------------------
+/**
+ * updates Person in form
+ *
+ */
+function refreashPerson (){
 
 }
 
