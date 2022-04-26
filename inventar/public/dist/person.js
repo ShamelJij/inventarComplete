@@ -6,6 +6,8 @@
  * Global section
  */
 const personTableIsEmpty = document.getElementById("personTableIsEmpty");
+const personDelete = document.getElementById("personDelete");
+const personDeletedName = document.getElementById("personDeletedName");
 
 //################################################################################
 /**
@@ -290,7 +292,32 @@ function clearPersonTable() {
  * @param {srting} personId
  */
  async function deletePerson(personId) {
-            delData('http://localhost:8080/v1/persons/' + personId);
+
+     delData('http://localhost:8080/v1/persons/' + personId);
+
+    let persons = await getPersons();
+    for(let i = 0; i < persons.length; i++) {
+        if (personId == persons[i]._id) {
+            let x = personDelete.className
+            x = x.replace('d-block','');
+            x = x.replace('d-none','');
+            x = x.trim();
+            personDelete.className = x + ' d-block' ;
+            personDeletedName.innerText = persons[i].firstname + ' ' + persons[i].lastname;
+            setTimeout(function () {
+
+                // Closing the alert
+                $('#personDelete').alert('close');
+            }, 5000);
+        } else {
+            console.log('this person is not listed at all');
+        }
+    }
+
+
+
+
+
     
 
 }
@@ -388,8 +415,8 @@ async function editPerson(personId) {
     let persons = await getPersons();
     document.getElementById('pUpdateBtn').className = 'btn btn-success';
     document.getElementById('pSaveBtn').className = 'd-none';
-    for(let i = 0; i < personList.length; i++){
-        if (personId == personList[i]._id){
+    for(let i = 0; i < persons.length; i++){
+        if (personId == persons[i]._id){
             //wenn dateien löchen wollen dann:
             //personList.splice(i,1);
             console.log('editPerson', personList[i]);
@@ -469,7 +496,7 @@ function updatePerson() {
 
 //--------------------------------------------------------------------------------
 /**
- * refreashed Person page  
+ * refreashed Person page
  *
  */
 function refreshPerson() {

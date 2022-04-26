@@ -390,8 +390,9 @@
             </form>
         </div>
         <div class="container">
-			  <div class="form-group col-12 alert alert-danger text-center" id="personDelete" role="alert">
-				  <p>person ist gelöcht</p>
+			  <div class="form-group col-12 alert alert-danger text-center d-none" id="personDelete" role="alert">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <p><i class="fa fa-check-circle" aria-hidden="true">&nbsp;&nbsp;</i><strong id="personDeletedName"></strong> ist gelöcht</p>
 			  </div>
             <table class="table table-striped text-center" id="persons">
                 <thead>
