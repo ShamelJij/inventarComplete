@@ -91,6 +91,7 @@ class CouchValidator {
                             // perfect nothing to do
                             console.log('ok: ' + design._id);
                         } else {
+                            //ändern
                             if (process.env.NODE_ENV === 'production') {
                                 // update databasedesign
                                 doc.views = design.views;

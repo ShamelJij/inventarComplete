@@ -47,7 +47,8 @@ class InventoriesDb extends Database {
         if (!view) {
             view = 'id';
         }
-        return super.getDocumentsByKeyFromView('inventories', view, key, 0 , 0, desc);
+        let body = super.getDocumentsByKeyFromView('inventories', view, key, offset, limit, desc);
+        return body;
     }
 
     // --------------------------------------------------------------------------------
@@ -72,8 +73,22 @@ class InventoriesDb extends Database {
      */
     createDocument( objDbBody ) {
         let id = objDbBody.id;
+        return super.save(objDbBody, objDbBody._id);
+    }
+
+    // --------------------------------------------------------------------------------
+    /**
+     * save new item
+     *
+     * @method createItem
+     * @param {Object} Json to save
+     * @return promise
+     */
+    createDocument( objDbBody ) {
+        let id = objDbBody.id;
         return super.save(objDbBody, id);
     }
 }
+
 
 module.exports = new InventoriesDb();

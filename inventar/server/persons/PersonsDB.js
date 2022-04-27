@@ -60,6 +60,7 @@ class PersonsDb extends Database {
      * @return promise
      */
     updateDocument( objDbBody ) {
+        let id = objDbBody.id;
         return super.update(objDbBody, objDbBody._id);
     }
 

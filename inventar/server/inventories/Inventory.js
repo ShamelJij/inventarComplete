@@ -3,7 +3,6 @@
  */
 
 //################################################################################
- //---date: 3/17/2022 | time: 9:00 AM | name: Inventory | path: C:\deltastone\shamel-praktikum\inventar\server\inventories\Inventory.js
 
 /**
  * require section
@@ -11,35 +10,6 @@
 let dbInventories = require('./InventoriesDB');
 let Document   = require('../superclass/Document');
 const ld       = require('lodash');
-
-
-//################################################################################
-/**
- * PRIVATE DECLARATION
- * ES6 Class does not support private attributes / functions
- * Use this as workaraound
- */
-
-//--------------------------------------------------------------------------------
-/**
- * convert data
- */
-/*function inputTranslation( body ) {
-
-    // if flyer
-    if (body.flyer == true) {
-        body.flyerCount = body.flyerCount | 1;
-    } else {
-        body.flyerCount = 0;
-    }
-
-    // Tealgoal always = true
-    body.supplier.tealgoal    = true;
-    body.preSupplier.tealgoal = true;
-
-    return body;
-}*/
-
 
 //################################################################################
 /**
@@ -56,7 +26,7 @@ class Inventory extends Document {
 
         this._ressourcePath = '/v1/inventories/'; // + {id}
         this._form          = 'inventory';
-        this._schema        = 'swagger.json#/definitions/Inventory';
+        this._schema        = 'swagger.json#/definitions/InventoryWithoutID';
 
         if (ld.isObject(arg1)) {
             this._dbBody = arg1;
@@ -117,11 +87,6 @@ class Inventory extends Document {
             this._dbBody      = this._dbBody || {};
             this._dbBody = ld.merge( this._dbBody, newBody );
 
-            // if new .img or .docs are empty arrays, they will be not updated
-            // have to do it explicitly
-            this._dbBody.docs = newBody.docs;
-            this._dbBody.img = newBody.img;
-
             this._dbBody.form   = this._form;
             this._dbBody._id    = this._id;
             if (this._dbBody.deleted) {
@@ -150,7 +115,7 @@ class Inventory extends Document {
     async createnew(newBody, strUsername) {
         try {
             //newBody = inputTranslation(newBody);
-            //this.validateSchema( newBody );
+            this.validateSchema( newBody );
             this._dbBody        = {};
             this._dbBody        = newBody;
             this._dbBody.status = 1;

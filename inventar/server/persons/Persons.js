@@ -120,12 +120,6 @@ class Persons {
             let view = 'id';
 
             let body = await dbPersons.getAllDocumentsByKey(null, view, desc, limit, offset);
-            //body = lodash.forEach(lodash.forEach(body, (value) => value), (v, key) => key[2] );
-            /*body = body.forEach(function (arrayItem) {
-                let x = arrayItem.value;
-                console.log('personlist: ', x);
-            });*/
-            //console.log(  body);
             let result = [];
             body.forEach(function (v) {result.push(v.value)});
             return result;

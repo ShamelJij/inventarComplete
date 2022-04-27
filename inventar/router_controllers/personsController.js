@@ -33,10 +33,10 @@ module.exports.addPerson = async function addPerson (req, res) {
     console.log('(POST) body: ' + JSON.stringify(req.body));
 
     try {
-            let person = new Person("");
+        let person = new Person("");
 
-            await person.createnew(req.body,"anonym");
-           //let ret = { "response": "Person created! (function addPerson)" };
+        await person.createnew(req.body,"anonym");
+
         let ret = { "url": person.getRessource(),
                     "data": person.document};
             res.statusCode    = 201;
@@ -63,7 +63,6 @@ module.exports.updatePerson = async function updatePerson (req, res) {
 
     try {
 
-        //let person = new Person(req.swagger.params.id.value);
         let person = await Persons.getById( req.swagger.params.id.value );
 
         await person.update(req.body, "anonym");

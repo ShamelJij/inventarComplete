@@ -142,7 +142,7 @@ paths:
         "404":
           description: "Person not found"
       x-swagger-router-controller: "personsController"
-  /inventory:
+  /inventories:
     get:
       tags:
         - "inventories"
@@ -180,7 +180,7 @@ paths:
         201:
           description: "a resource has been created"
       x-swagger-router-controller: "inventoriesController"
-  /Inventory/{id}:
+  /Inventories/{id}:
     get:
       tags:
         - "inventories"
@@ -249,7 +249,7 @@ paths:
         "404":
           description: "Inventory record not found"
       x-swagger-router-controller: "inventoriesController"
-  /location:
+  /locations:
     get:
       tags:
         - "locations"
@@ -285,7 +285,7 @@ paths:
         200:
           description: "new location record successfully created "
       x-swagger-router-controller: "locationsController"
-  /location/{id}:
+  /locations/{id}:
     get:
       tags:
         - "locations"

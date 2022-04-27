@@ -34,13 +34,14 @@ module.exports.addInventory = async function addInventory (req, res) {
 
     try {
         let inventory = new Inventory("");
+
         await inventory.createnew(req.body,"anonym");
-        //let ret = { "response": "Inventory created! (function addInventory)" };
+
         let ret = { "url": inventory.getRessource(),
-            "data": inventory.document};
-        res.statusCode    = 201;
-        res.setHeader('Content-Type', 'application/json');
-        res.send( ret );
+                    "data": inventory.document};
+            res.statusCode    = 201;
+            res.setHeader('Content-Type', 'application/json');
+            res.send( ret );
     } catch (err) {
         console.log('error: ' + JSON.stringify( err ));
         let appErr = new AppError(err.appError || '10500', err, req);
@@ -61,11 +62,16 @@ module.exports.updateInventory = async function updateInventory (req, res) {
     console.log(' (PUT) id: ' +  req.swagger.params.id.value);
 
     try {
-        let ret = { "response": "Inventory updated!" + req.swagger.params.id.value + " (function addInventory)" };
+
+        let inventory = await Inventories.getById( req.swagger.params.id.value );
+
+        await inventory.update(req.body, "anonym");
+        let ret = { "data": inventory.document };
+
         console.log(JSON.stringify(req.body));
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.send(ret);
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.send(ret);
 
     } catch (err) {
         console.log('error: ' + JSON.stringify( err ));
@@ -83,28 +89,25 @@ module.exports.updateInventory = async function updateInventory (req, res) {
  * @return {Promise<void>}
  */
 module.exports.deleteInventory = async function deleteInventory(req, res) {
-    console.log(' (DELETE) id: ' +  req.swagger.params.inventoryId.value);
-
-    try {
-        let objInventory = await Inventories.getByUnid( req.swagger.params.inventoryId.value );
-
-        if (objInventory.hasWriteAccess( req.objUser.getRoles() )) {
-            let userName = req.objUser.username();
-
-            await objInventory.update(objInventory.document, userName, true);
-
-            res.statusCode = 204;
+    console.log(' (DELETE) id: ' +  req.swagger.params.id.value);
+    let objInventory = await Inventories.getById( req.swagger.params.id.value );
+    if (objInventory.document.deleted){
+        console.log('(---------------------DELETED --------------------');
+        res.setHeader('Content-Type', 'application/json');
+        res.sendStatus(404);
+    } else {
+        try {
+            await objInventory.update(objInventoy.document, "testNamez", true);
             res.setHeader('Content-Type', 'application/json');
-            res.send({});
-        } else {
-            // no access
-            throw {'appError': 20403};
+            res.sendStatus(200);
+
+        } catch (err) {
+            console.log('error: ' + JSON.stringify( err ));
+            let appErr = new AppError(err.appError || '10500', err, req);
+            res.status(appErr.getHttpStatusCode()).json(appErr.toJSON()).end();
         }
-    } catch (err) {
-        console.log('error: ' + JSON.stringify( err ));
-        let appErr = new AppError(err.appError || '10500', err, req);
-        res.status(appErr.getHttpStatusCode()).json(appErr.toJSON()).end();
     }
+
 };
 
 //--------------------------------------------------------------------------------
@@ -116,46 +119,27 @@ module.exports.deleteInventory = async function deleteInventory(req, res) {
  * @return {Promise<void>}
  */
 module.exports.getInventories = async function getInventories(req, res) {
-    console.log('(GET) ');
+
+    console.log('(GET) all Inventories:  ');
 
     try {
+        let limit = req.query.limit;
+        let offset = req.query.offset;
+        let desc = req.query.desc;
         // ids parameter available?
         let ret;
-        if (req.swagger.params.ids && req.swagger.params.ids.value) {
-            // select only requested inventories
-            ret = await Inventories.getByUnids( req.swagger.params.ids.value );
-        } else {
-            // get all inventories
-            ret = await Inventories.getAll(false, true);
-        }
+        // get all inventories
+        ret = await Inventories.getAll(limit,offset,desc);
 
-        if (ret.inventories) {
-            let fields;
-            if (req.swagger.params.fields && req.swagger.params.fields.value) {
-                fields = req.swagger.params.fields.value;
-                fields.push('_id');
-                fields = lodash.uniq(fields);
-            }
-
-            ret.inventories = ret.inventories.map( function( inventory ) {
-                // if fields available shrink content
-                if (fields) {
-                    return lodash.pick(inventory, fields);
-                } else {
-                    return inventory;
-                }
-            });
-
-            if (req.swagger.params.sortby && req.swagger.params.sortby.value) {
-                let sortby = req.swagger.params.sortby.value;
-                let desc   = (req.swagger.params.desc.value && req.swagger.params.desc.value !== 'false') ? 'desc' : 'asc';
-                ret.inventories = lodash.orderBy( ret.inventories, [sortby], [desc]);
-            }
-        }
 
         res.statusCode    = 200;
         res.setHeader('Content-Type', 'application/json');
         res.send(ret);
+
+
+        //console.log('§§§§§§§',ret.filter(a => a.value.lastname).map(a => a.value._id));
+        //console.log('§§§§§§§§', ret.map(a => a.value.label));
+
     } catch (err) {
         let appErr = new AppError(err.appError || '10500', err, req);
         res.status(appErr.getHttpStatusCode()).json(appErr.toJSON()).end();
@@ -172,38 +156,18 @@ module.exports.getInventories = async function getInventories(req, res) {
  * @return {Promise<void>}
  */
 module.exports.getInventoryById = async function getInventoryById (req, res) {
-    // console.log(' (GET) path: ' + req.swagger.params.inventoryId.value);
+
 
     try {
-        let ret = await Inventories.getByUnid(req.swagger.params.inventoryId.value);
-        // console.log(JSON.stringify(ret.document));
-        if ( req.objUser.isEK() === false && req.objUser.isGF() === false ) {
-            // this user should not have access to
-            let newret = lodash.omit( ret.document, ['supplier.buyPrice', 'supplier.buyPriceCurr', 'preSupplier.buyPrice', 'preSupplier.buyPriceCurr'] );
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.send(newret);
-        } else {
-            // sometimes supplier.buyPrice is saved as string in german format
-            // this causes failure of the formatted number display in frontend
-            if (ret.document && ret.document.supplier && ret.document.supplier.buyPrice) {
-                if (typeof ret.document.supplier.buyPrice === 'string') {
-                    ret.document.supplier.buyPrice = ret.document.supplier.buyPrice.replace(',', '.');
-                }
-            }
-            if (ret.document && ret.document.preSupplier && ret.document.preSupplier.buyPrice) {
-                if (typeof ret.document.preSupplier.buyPrice === 'string') {
-                    ret.document.preSupplier.buyPrice = ret.document.preSupplier.buyPrice.replace(',', '.');
-                }
-            }
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.send(ret.document);
-        }
+        let ret = await Inventories.getById(req.swagger.params.id.value);
+        console.log(JSON.stringify(ret.document));
+        // this user should not have access to
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.send(ret.document);
     } catch(err) {
         console.error(err);
         let appErr = new AppError(err.appError || '10500', err, req);
         res.status(appErr.getHttpStatusCode()).json(appErr.toJSON()).end();
     }
-
 };

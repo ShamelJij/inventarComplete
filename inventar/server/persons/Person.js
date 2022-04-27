@@ -10,35 +10,6 @@ let dbPersons = require('./PersonsDB');
 let Document   = require('../superclass/Document');
 const ld       = require('lodash');
 
-
-//################################################################################
-/**
- * PRIVATE DECLARATION
- * ES6 Class does not support private attributes / functions
- * Use this as workaraound
- */
-
-//--------------------------------------------------------------------------------
-/**
- * convert data
- */
-/*function inputTranslation( body ) {
-
-    // if flyer
-    if (body.flyer == true) {
-        body.flyerCount = body.flyerCount | 1;
-    } else {
-        body.flyerCount = 0;
-    }
-
-    // Tealgoal always = true
-    body.supplier.tealgoal    = true;
-    body.preSupplier.tealgoal = true;
-
-    return body;
-}*/
-
-
 //################################################################################
 /**
  * person object

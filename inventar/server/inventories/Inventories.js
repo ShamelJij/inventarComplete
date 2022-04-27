@@ -1,7 +1,7 @@
 /**
  * Created on 02.03.2022.
  */
-const dbInventories = require('./InventoriesDb');
+const dbInventories = require('./InventoriesDB');
 const Inventory = require('./Inventory');
 const lodash = require('lodash');
 const moment = require('moment');
@@ -58,7 +58,7 @@ class Inventories {
             }
 
         } catch (err) {
-            console.log('[Inventories.getByUnid] error: ' + JSON.stringify(err));
+            console.log('[Inventories.getById] error: ' + JSON.stringify(err));
             throw err;
         }
     }
@@ -110,53 +110,17 @@ class Inventories {
      * @param {boolean} desc sorting descenting
      * @return {Promise<{inventories: Array, distinctGroups: Array, distinctCreators: Array, distinctSuppliers: Array}>}
      */
-    static async getAll(complete, uniques, view, desc) {
+    static async getAll( limit, offset,  desc,query) {
         try {
             console.log('[Inventories.getAll]');
             desc     = desc || false;
-            let body = await dbInventories.getAllDocumentsByKey(null, view, desc);
+            limit = limit || 100;
+            offset = offset || 0;
+            let view = 'id';
 
-            let result = {
-                inventories: [],
-                distinctGroups: [],
-                distinctCreators: [],
-                distinctSuppliers: []
-            };
-
-            body.forEach(function(v) {
-                if (v.doc['history']) {
-                    if (v.doc['history'].createdBy) {
-                        let i = v.doc['history'].createdBy.indexOf('/');
-                        if (i !== -1) {
-                            v.doc['history'].createdBy = v.doc['history'].createdBy.substr(0, i);
-                        }
-                    }
-                    if (v.doc['history'].createdOn) {
-                        v.doc['history'].createdOn = moment(v.doc['history'].createdOn).format('YYYY-MM-DD');
-                    }
-                }
-                if (v.doc.hasOwnProperty('alt_group') && v.doc.alt_group) {
-                    v.doc.group = v.doc.alt_group;
-                }
-                if (v.doc.hasOwnProperty('retailPrice') && v.doc.retailPrice === '') {
-                    v.doc.retailPrice = 0;
-                }
-                result.inventories.push(v.doc);
-
-                if (uniques) {
-                    result.distinctGroups.push(v.doc.group);
-                    result.distinctCreators.push(v.doc.history.createdBy);
-                    if (v.doc.supplier) {
-                        result.distinctSuppliers.push(v.doc.supplier.no);
-                    }
-                }
-            });
-
-            if (uniques) {
-                result.distinctGroups    = lodash.uniq(result.distinctGroups).sort();
-                result.distinctCreators  = lodash.uniq(result.distinctCreators).sort();
-                result.distinctSuppliers = lodash.uniq(result.distinctSuppliers).sort();
-            }
+            let body = await dbInventories.getAllDocumentsByKey(null, view, desc, limit, offset);
+            let result = [];
+            body.forEach(function (v) {result.push(v.value)});
             return result;
         } catch (err) {
             console.log('[Inventories.getAllDocumentsByKey] error: ' + JSON.stringify(err));

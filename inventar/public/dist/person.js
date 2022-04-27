@@ -356,13 +356,8 @@ function clearPersonTable() {
         }
     }
 
-
-
-
-
-    
-
 }
+
 //################################################################################
 /**
  * 
@@ -370,17 +365,14 @@ function clearPersonTable() {
  */
 
 async function initPerson(){
-    //localstorage auslesen
-    //mark 2 wokring...
-    //promise that awaits for getPersons()
+
     let persons = await getPersons();
     console.log('GET: person: ', persons);
     
     hidePerson();
-    // wenn:  Personenliste == leer
-    // note(text):flag.. or tooltip wird and hidden div mit hinweiß
-    //error handling
+
     clearPersonTable();
+
     if (!persons || persons.length == 0){
         let x = personTableIsEmpty.className
         x = x.replace('d-block','');
@@ -406,29 +398,25 @@ async function initPerson(){
             insertNewRecord(sortedPersonList[i]);
         }
     }
-    // alert: consol.log function-validation.
+
     console.log("function initPerson");
 }
 
 //################################################################################
 /**
  * saving Person Object from form
- * 
- * 
+ *
  */
 function savePerson(){
     if (inputValidationPerson()) {
-        //mark 3
+
         postData(getInputPerson(),'http://localhost:8080/v1/persons/');
-        //return;
-        //localStorage ist nicht mehr gebraucht
-        //let personList = JSON.parse(localStorage.getItem('personList'));
 
         let lastname = document.getElementById("lastname").value.trim();
         let firstname = document.getElementById("firstname").value.trim();
         let personalno = document.getElementById("personalno").value.trim();
         let email = document.getElementById("email").value.trim();
-        let personID = document.getElementById("saveID").value;
+        let personId = document.getElementById("personId").value;
 
         //capitalize names
         lastname = capitalizeFirstLetter(lastname.replace(/ +/g, ""));
@@ -441,7 +429,16 @@ function savePerson(){
             personalno: personalno,
             email: email
         };
+
+        initPerson();
+
+        hidePerson();
+
+        //personIsSaved alert!!
+    } else {
+        console.log('savePerson is not working because query is not validated (inputValidationPerson');
     }
+
 
 }
 
@@ -459,18 +456,18 @@ async function editPerson(personId) {
     document.getElementById('pSaveBtn').className = 'd-none';
     for(let i = 0; i < persons.length; i++){
         if (personId == persons[i]._id){
-            //wenn dateien löchen wollen dann:
-            //personList.splice(i,1);
+
             console.log('editPerson', persons[i]);
+
             document.getElementById("lastname").value = persons[i].lastname;
             document.getElementById("firstname").value = persons[i].firstname;
             document.getElementById("personalno").value = persons[i].personalno;
             document.getElementById("email").value = persons[i].email;
-            document.getElementById("saveID").value = persons[i]._id;
+            document.getElementById("personId").value = persons[i]._id;
             break;
         }
     }
-
+    //initPerson??
 }
 
 //--------------------------------------------------------------------------------
@@ -519,31 +516,34 @@ async function updatePerson() {
     let firstname = document.getElementById("firstname").value.trim();
     let personalno = document.getElementById("personalno").value.trim();
     let email = document.getElementById("email").value.trim();
-    let personID = document.getElementById("saveID").value;
-    let revision = document.getElementById("revision").value;
+    let personId = document.getElementById("personId").value;
+    let revision = document.getElementById("personRevision").value;
+
     let personItem = {
         lastname: lastname,
         firstname: firstname,
         personalno: personalno,
         email: email,
-        _id: personID
+        _id: personId
     };
+
     if (personItem._rev !== null){
         _rev: revision;
     } else {
         console.log('no revision in Person');
     }
-    let url = 'http://localhost:8080/v1/persons/' + personID;
-    //await?
+
+    let url = 'http://localhost:8080/v1/persons/' + personId;
+
     putData(personItem, url);
 
-
+    //initPerson()??
 
 }
 
 //--------------------------------------------------------------------------------
 /**
- * refreashed Person page
+ * refreshes Person page
  *
  */
 function refreshPerson() {
@@ -551,7 +551,7 @@ function refreshPerson() {
     document.getElementById("firstname").value = '';
     document.getElementById("personalno").value = '';
     document.getElementById("email").value = '';
-    document.getElementById('saveID').value = '';
+    document.getElementById('personId').value = '';
 
     document.getElementById("lastname").className = 'form-control';
     document.getElementById("firstname").className = 'form-control';
