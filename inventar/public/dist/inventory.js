@@ -235,9 +235,9 @@ function inputValidationInventory() {
         //--------------------------------------------------------------------
         //if new booking category is Abschreibfähig
         if (price <= 2000 && price >= 0) {
-            document.getElementById('bookingcategory').value = 'GWG';
+            document.getElementById('bookingCategory').value = 'GWG';
             let oldStatus = document.getElementById('hiddenStatus').value;
-            let newStatus = document.getElementById('bookingcategory').value;
+            let newStatus = document.getElementById('bookingCategory').value;
             if ( oldStatus != newStatus ){
                 //bookingCategoryChanged Modal
                 document.getElementById('newStatusModal').innerText = newStatus;
@@ -371,6 +371,7 @@ function inputValidationInventory() {
  * @param {Object} inventory
  */
 function insertNewRecordInventory(inventory) {
+    let inventoryId = inventory._id;
     let table = document.getElementById("idInventoryList").getElementsByTagName('tbody')[0];
     let newRow = table.insertRow(table.length);
     let cell1 = newRow.insertCell(0);
@@ -393,8 +394,8 @@ function insertNewRecordInventory(inventory) {
     cell9.innerHTML = inventory.validationenddate;
     let cell10 = newRow.insertCell(9);
     cell10.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
-        "<button onClick=\"editInventory(" + inventory.inventoryId + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>&nbsp;" +
-        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deleteInventoryModel\" onClick=\"setRowID(" + inventory.inventoryId + ")\"></button></div>" +
+        "<button onClick=\"editInventory(" + "\'" + inventoryId + "\'" + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>&nbsp;" +
+        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deleteInventoryModel\" onClick=\"setRowID(" + "\'" + inventoryId + "\'" + ")\"></button></div>" +
         "</div>";
 }
 
@@ -463,8 +464,6 @@ async function initInventory() {
     //localstorage auslesen
     let inventory = await getInventories();
     console.log('GET: inventory: ', inventory);
-    
-    hideInventory();
     
     clearInventoryTable();
     
@@ -606,6 +605,7 @@ function showInventory() {
  *
  */
 function hideInventory() {
+
     refreshInventory();
     resetFormInventory();
     let hInventory = document.getElementById('sInventory').className;
@@ -615,6 +615,7 @@ function hideInventory() {
     } else {
         console.log('hideInventory is not working!!');
     }
+
 }
 
 //--------------------------------------------------------------------------------
@@ -699,8 +700,8 @@ function refresh() {
  */
 function refreshInventory() {
 
+    initInventory();
     showLastModified();
-    //initInventory();
 
     //status ausgebucht?
     let status = document.getElementById("idStatus").value;

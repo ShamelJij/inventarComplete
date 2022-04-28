@@ -181,8 +181,12 @@
             </div>
         </div>
         <div class="container-fluid">
-            <table class="table table-striped text-center" id="idInventoryList">
-                <thead>
+			  <div class="form-group col-md-auto alert alert-danger text-center d-none" id="inventoryDelete" role="alert">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <p><i class="fa fa-check-circle" aria-hidden="true">&nbsp;&nbsp;</i><strong id="inventoryDeletedName"></strong> ist gelöcht</p>
+			  </div>
+            <table class="table table-striped table-responsive text-center" id="idInventoryList">
+                <thead class="table-primary">
                 <tr>
                     <th>Status</th>
                     <th>Bezeichnung</th>
@@ -190,7 +194,7 @@
                     <th>Typ</th>
                     <th>Anschaffungsdatum</th>
                     <th>Preis</th>
-                    <th>Abschreibskategorie</th>
+                    <th>Abschreibekategorie</th>
                     <th>Datum abgebucht</th>
                     <th>Abgeschrieben am</th>
                     <th> - </th>

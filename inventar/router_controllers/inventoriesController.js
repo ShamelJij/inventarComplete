@@ -97,10 +97,9 @@ module.exports.deleteInventory = async function deleteInventory(req, res) {
         res.sendStatus(404);
     } else {
         try {
-            await objInventory.update(objInventoy.document, "testNamez", true);
+            await objInventory.update(objInventory.document, "testNamez", true);
             res.setHeader('Content-Type', 'application/json');
             res.sendStatus(200);
-
         } catch (err) {
             console.log('error: ' + JSON.stringify( err ));
             let appErr = new AppError(err.appError || '10500', err, req);

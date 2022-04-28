@@ -43,11 +43,11 @@ class InventoriesDb extends Database {
      * @param {String} key searchkey
      * @return promise
      */
-    getAllDocumentsByKey( key, view ,desc ) {
+    getAllDocumentsByKey( key, view ,desc, limit, offset ) {
         if (!view) {
             view = 'id';
         }
-        let body = super.getDocumentsByKeyFromView('inventories', view, key, 0,0, false);
+        let body = super.getDocumentsByKeyFromView('inventories', view, key, offset , limit, desc);
         return body;
     }
 
