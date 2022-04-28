@@ -220,9 +220,10 @@ function inputValidationInventory() {
     }
     //deprecation validation idDepreciationInput
     //deprecation validation muss nicht negatives Wert haben
-    let deprecation = document.getElementById('idDepreciationInput').value;
+    let deprecationdate = document.getElementById('idDepreciationInput').value;
+    deprecationdate = Number(deprecationdate);
     //Show booking category
-    if (deprecation < 0) {
+    if (deprecationdate < 0) {
         console.log('deprecation is negative');
         let x = document.getElementById("idDepreciationInput").className;
         x = x.replace('is-invalid', '');
@@ -328,8 +329,8 @@ function inputValidationInventory() {
         //ret = true;
     }
     //validating the label input not to be empty
-    let inventoryType = document.getElementById('idType').value;
-    if (inventoryType == '') {
+    let inventorytype = document.getElementById('idType').value;
+    if (inventorytype == '') {
         let it = document.getElementById("idType").className;
         it = it.replace('is-invalid', '');
         it = it.replace('is-valid', '');
@@ -380,7 +381,7 @@ function insertNewRecordInventory(inventory) {
     let cell3 = newRow.insertCell(2);
     cell3.innerHTML = inventory.serialnumber;
     let cell4 = newRow.insertCell(3);
-    cell4.innerHTML = inventory.type;
+    cell4.innerHTML = inventory.inventorytype;
     let cell5 = newRow.insertCell(4);
     cell5.innerHTML = inventory.purchasedate;
     let cell6 = newRow.insertCell(5);
@@ -388,7 +389,7 @@ function insertNewRecordInventory(inventory) {
     let cell7 = newRow.insertCell(6);
     cell7.innerHTML = inventory.bookingcategory;
     let cell8 = newRow.insertCell(7);
-    cell8.innerHTML = inventory.deprecation;
+    cell8.innerHTML = inventory.deprecationdate;
     let cell9 = newRow.insertCell(8);
     cell9.innerHTML = inventory.validationenddate;
     let cell10 = newRow.insertCell(9);
@@ -507,11 +508,11 @@ function saveInventory() {
             let status = document.getElementById("idStatus").value.trim();
             let label = document.getElementById("idLabel").value.trim();
             let serialnumber = document.getElementById("idInventorySerialNumber").value.trim();
-            let type = document.getElementById("idType").value.trim();
+            let inventorytype = document.getElementById("idType").value.trim();
             let purchasedate = document.getElementById("idPurchaseDate").value.trim();
             let price = document.getElementById("idPrice").value.trim();
             let bookingcategory = document.getElementById("bookingCategory").value.trim();
-            let deprecation = document.getElementById("idDepreciationInput").value.trim();
+            let deprecationdate = document.getElementById("idDepreciationInput").value.trim();
             let validationenddate = document.getElementById("validationEndDate").value.trim();
 
             let inventoryId = document.getElementById("saveIDInventory").value;
@@ -521,11 +522,11 @@ function saveInventory() {
                 status: status,
                 label: label,
                 serialnumber: serialnumber,
-                type: type,
+                inventorytype: inventorytype,
                 purchasedate: purchasedate,
                 price: price,
                 bookingcategory: bookingcategory,
-                deprecation: deprecation,
+                deprecationdate: deprecationdate,
                 validationenddate: validationenddate
             };
 
@@ -563,11 +564,11 @@ async function editInventory(inventoryId) {
             document.getElementById("idStatus").value = inventory[i].status;
             document.getElementById("idLabel").value = inventory[i].label;
             document.getElementById("idInventorySerialNumber").value = inventory[i].serialnumber;
-            document.getElementById("idType").value = inventory[i].type;
+            document.getElementById("idType").value = inventory[i].inventorytype;
             document.getElementById("idPurchaseDate").value = inventory[i].purchasedate;
             document.getElementById("idPrice").value = inventory[i].price;
             document.getElementById("bookingCategory").value = inventory[i].bookingcategory;
-            document.getElementById("idDepreciationInput").value = inventory[i].deprecation;
+            document.getElementById("idDepreciationInput").value = inventory[i].deprecationdate;
             document.getElementById("validationEndDate").value = inventory[i].validationenddate;
 
             document.getElementById("hiddenStatus").value = inventory[i].bookingcategory;
@@ -633,11 +634,13 @@ async function updateInventory() {
             let status = document.getElementById("idStatus").value.trim();
             let label = document.getElementById("idLabel").value.trim();
             let serialnumber = document.getElementById("idInventorySerialNumber").value.trim();
-            let type = document.getElementById("idType").value.trim();
+            let inventorytype = document.getElementById("idType").value.trim();
             let purchasedate = document.getElementById("idPurchaseDate").value.trim();
             let price = document.getElementById("idPrice").value.trim();
+            price = Number(price);
             let bookingcategory = document.getElementById("bookingCategory").value.trim();
-            let deprecation = document.getElementById("idDepreciationInput").value.trim();
+            let deprecationdate = document.getElementById("idDepreciationInput").value.trim();
+            deprecationdate = Number(deprecationdate);
             let validationenddate = document.getElementById("validationEndDate").value.trim();
 
             let inventoryId = document.getElementById("saveIDInventory").value;
@@ -655,11 +658,11 @@ async function updateInventory() {
                 status: status,
                 label: label,
                 serialnumber: serialnumber,
-                type: type,
+                inventorytype: inventorytype,
                 purchasedate: purchasedate,
                 price: price,
                 bookingcategory: bookingcategory,
-                deprecation: deprecation,
+                deprecationdate: deprecationdate,
                 validationenddate: validationenddate,
                 _id:inventoryId,
                 _rev: revision
@@ -793,12 +796,12 @@ function inputTranslation() {
 
     document.getElementById('idInventorySerialNumber').value = serialnumber;
     //typ
-    let type = document.getElementById('idType').value;
-    console.log('trimmed Type: ', type);
-    type = type.replace(/\s+/g, " ");
-    type = type.trim();
-    console.log('result type: ', type);
-    document.getElementById('idType').value = type;
+    let inventorytype = document.getElementById('idType').value;
+    console.log('trimmed Type: ', inventorytype);
+    inventorytype = inventorytype.replace(/\s+/g, " ");
+    inventorytype = inventorytype.trim();
+    console.log('result type: ', inventorytype);
+    document.getElementById('idType').value = inventorytype;
     // Formatieren des Preises im Format: x.xxx,xx
     let price = document.getElementById('idPrice').value;
     let itemId = document.getElementById('saveIDInventory').value;
