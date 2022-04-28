@@ -70,7 +70,7 @@ function postData(postObj,url) {
  * @param {Object} postObj
  * @param {string} url
  */
-function putData(postObj,url) {
+function putInventory(postObj,url) {
     let xhr = new XMLHttpRequest();
     let inventoryData = JSON.stringify(postObj)
     xhr.open('PUT', url, true);
@@ -573,6 +573,9 @@ async function editInventory(inventoryId) {
             document.getElementById("hiddenStatus").value = inventory[i].bookingcategory;
 
             document.getElementById("saveIDInventory").value = inventory[i]._id;
+
+            document.getElementById("inventoryRev").value = inventory[i]._rev;
+
             break;
         }
     }
@@ -641,7 +644,7 @@ async function updateInventory() {
 
             let oldStatus = document.getElementById('hiddenStatus').value;
 
-            let revision = document.getElementById("inventorRevision").value;
+            let revision = document.getElementById("inventoryRev").value;
 
             if(oldStatus == bookingcategory){
                 console.log('status not changed');
@@ -657,7 +660,9 @@ async function updateInventory() {
                 price: price,
                 bookingcategory: bookingcategory,
                 deprecation: deprecation,
-                validationenddate: validationenddate
+                validationenddate: validationenddate,
+                _id:inventoryId,
+                _rev: revision
             };
             if (inventoryItem._rev !== null){
                 _rev: revision;
@@ -667,7 +672,7 @@ async function updateInventory() {
 
             let url = 'http://localhost:8080/v1/inventories/' + inventoryId;
 
-            putData(inventoryItem, url);
+            putInventory(inventoryItem, url);
 
             initInventory();
         }
@@ -865,7 +870,7 @@ function calcForm() {
 
 
     let purchasedate = document.getElementById("idPurchaseDate").value;
-    //let getMonth = new Date(purchasedate);
+    let getMonth = new Date(purchasedate);
     let inputMonthValue = parseInt(document.getElementById("idDepreciationInput").value);
     let d = new Date(purchasedate);
     let currentMonth = d.getMonth();

@@ -60,6 +60,7 @@ class InventoriesDb extends Database {
      * @return promise
      */
     updateDocument( objDbBody ) {
+        let id = objDbBody.id;
         return super.update(objDbBody, objDbBody._id);
     }
 
@@ -76,18 +77,6 @@ class InventoriesDb extends Database {
         return super.save(objDbBody, objDbBody._id);
     }
 
-    // --------------------------------------------------------------------------------
-    /**
-     * save new item
-     *
-     * @method createItem
-     * @param {Object} Json to save
-     * @return promise
-     */
-    createDocument( objDbBody ) {
-        let id = objDbBody.id;
-        return super.save(objDbBody, id);
-    }
 }
 
 

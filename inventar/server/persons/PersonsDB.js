@@ -76,6 +76,7 @@ class PersonsDb extends Database {
         let id = objDbBody.id;
         return super.save(objDbBody, id);
     }
+
 }
 
 module.exports = new PersonsDb();

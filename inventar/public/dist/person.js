@@ -84,7 +84,7 @@ function sendHTTPRequest (method, url) {
  * @param {Object} postObj
  * @param {string} url
  */
-function putData(postObj,url) {
+function putPerson(postObj,url) {
     let xhr = new XMLHttpRequest();
     let personData = JSON.stringify(postObj)
     xhr.open('PUT', url, true);
@@ -535,7 +535,7 @@ async function updatePerson() {
 
     let url = 'http://localhost:8080/v1/persons/' + personId;
 
-    putData(personItem, url);
+    putPerson(personItem, url);
 
     //initPerson()??
 
