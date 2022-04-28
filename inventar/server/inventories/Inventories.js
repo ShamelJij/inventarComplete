@@ -28,7 +28,7 @@ class Inventories {
      * @param {String} strUnid inventories UNID
      * @return Inventory
      */
-    static async getByUnid(strUnid) {
+    static async getById(strUnid) {
         try {
             let body = await dbInventories.getDocumentByKey(strUnid);
 
@@ -67,7 +67,7 @@ class Inventories {
     /**
      * get multiple inventories by ids
      */
-    static async getByUnids(ids) {
+    static async getByIds(ids) {
         try {
             let documents = await dbInventories.getDocumentsByIds(ids);
             if (!documents.length) {
@@ -95,7 +95,7 @@ class Inventories {
                 return inventories;
             }
         } catch (err) {
-            console.log('[inventories.getByUnids] error: ' + JSON.stringify(err));
+            console.log('[inventories.getByIds] error: ' + JSON.stringify(err));
             throw {'appError': 20000};
         }
     }

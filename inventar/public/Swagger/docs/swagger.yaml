@@ -400,7 +400,15 @@ definitions:
   InventoryWithoutID:
     type: "object"
     required:
+      - status
       - label
+      - serialnumber
+      - inventorytype
+      - purchasedate
+      - price
+      - bookingcategory
+      - deprecationdate
+      - validationenddate
     properties:
       status:
         type: "string"
@@ -414,14 +422,14 @@ definitions:
         type: "string"
         example:
           "Dell"
-      serialNumber:
+      serialnumber:
         type: "string"
         example: "XNN-40069"
-      inventoryType:
+      inventorytype:
         type: "string"
         example:
           "Monitor"
-      purchaseDate:
+      purchasedate:
         type: "string"
         format: "date"
         example: "2016-08-04"
@@ -429,18 +437,18 @@ definitions:
         type: "number"
         example:
           "2500.25"
-      bookingCategory:
+      bookingcategory:
         type: "string"
         enum:
           - "GWG"
           - "Abschreibfähig"
         example:
           "Abschreibfähig"
-      deprecationDate:
+      deprecationdate:
         type: "number"
         example:
           "1"
-      validationEndDate:
+      validationenddate:
         type: "string"
         format: "date"
         example: "2016-08-04"

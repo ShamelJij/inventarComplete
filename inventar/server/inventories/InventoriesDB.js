@@ -47,7 +47,7 @@ class InventoriesDb extends Database {
         if (!view) {
             view = 'id';
         }
-        let body = super.getDocumentsByKeyFromView('inventories', view, key, offset, limit, desc);
+        let body = super.getDocumentsByKeyFromView('inventories', view, key, 0,0, false);
         return body;
     }
 

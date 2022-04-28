@@ -121,12 +121,11 @@ class Inventory extends Document {
             this._dbBody.status = 1;
             this._dbBody.form   = this._form;
             this.setHistory(strUsername, "Neu erstellt / created");
-            this.setDefaultAccess();
 
             let ret = await dbInventories.createDocument(this._dbBody);
             this._id          = ret.id;
             this._dbBody._rev = ret.rev;
-            await this.reloadFromDb();
+            //await this.reloadFromDb();
             return true;
         } catch(err) {
             console.error('[Inventory.createnew] error:' + JSON.stringify(err));
