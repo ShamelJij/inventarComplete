@@ -371,7 +371,6 @@ function inputValidationInventory() {
  * @param {Object} inventory
  */
 function insertNewRecordInventory(inventory) {
-    let inventoryId = inventory._id;
     let table = document.getElementById("idInventoryList").getElementsByTagName('tbody')[0];
     let newRow = table.insertRow(table.length);
     let cell1 = newRow.insertCell(0);
@@ -394,8 +393,8 @@ function insertNewRecordInventory(inventory) {
     cell9.innerHTML = inventory.validationenddate;
     let cell10 = newRow.insertCell(9);
     cell10.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
-        "<button onClick=\"editInventory(" + "\'" + inventoryId + "\'" + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>&nbsp;" +
-        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deleteInventoryModel\" onClick=\"setRowID(" + "\'" + inventoryId + "\'" + ")\"></button></div>" +
+        "<button onClick=\"editInventory(" + "\'" + inventory._id + "\'" + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>&nbsp;" +
+        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deleteInventoryModel\" onClick=\"setRowID(" + "\'" + inventory._id + "\'" + ")\"></button></div>" +
         "</div>";
 }
 
