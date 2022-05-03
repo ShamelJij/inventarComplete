@@ -41,7 +41,7 @@ function sendHTTPRequest (method, url) {
             if (xhr.status != 200) { // analyze HTTP status of the response
                 alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
             } else { // show the result
-                alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
+                console.log(`Done, got ${xhr.response.length} bytes`); // response is the server response
                 resolve(xhr.response);
             }
         };
@@ -118,7 +118,7 @@ function delData(url) {
 
     xhr.onload = function () {
         if(xhr.status === 200) {
-            alert("Delete successful!");
+            console.log("Delete successful!");
             initPerson();
 
         } else if (xhr.status === 404){
@@ -162,9 +162,9 @@ function getInputPerson(){
  * @return {boolean} ret
  */
 
-function inputValidationPerson() {
+async function inputValidationPerson() {
     let ret = true;
-    let personList = JSON.parse(localStorage.getItem('personList')) || [];
+    let personList = await getPersons() || [];
     let letters = /^[a-zA-Z]*$/;
 
     //Personal Nummer Validieren
@@ -346,11 +346,12 @@ function clearPersonTable() {
             x = x.trim();
             personDelete.className = x + ' d-block';
             personDeletedName.innerText = persons[i].firstname + ' ' + persons[i].lastname;
+            initPerson();
             setTimeout(function () {
 
                 // Closing the alert
                 $('#personDelete').alert('close');
-            }, 5000);
+            }, 10000);
         } else {
             console.log('this person is not listed at all');
         }
@@ -368,8 +369,6 @@ async function initPerson(){
 
     let persons = await getPersons();
     console.log('GET: person: ', persons);
-    
-    hidePerson();
 
     clearPersonTable();
 
@@ -422,6 +421,8 @@ function savePerson(){
         lastname = capitalizeFirstLetter(lastname.replace(/ +/g, ""));
         firstname = capitalizeFirstLetter(firstname.replace(/ +/g, ""));
 
+        //function für email Eingabe.. email muss eindeutig
+
         //storing as an object
         let personItem = {
             lastname: lastname,
@@ -464,6 +465,7 @@ async function editPerson(personId) {
             document.getElementById("personalno").value = persons[i].personalno;
             document.getElementById("email").value = persons[i].email;
             document.getElementById("personId").value = persons[i]._id;
+            document.getElementById("personRevision").value =persons[i]._rev;
             break;
         }
     }
@@ -524,7 +526,8 @@ async function updatePerson() {
         firstname: firstname,
         personalno: personalno,
         email: email,
-        _id: personId
+        _id: personId,
+        _rev: revision
     };
 
     if (personItem._rev !== null){
@@ -560,14 +563,6 @@ function refreshPerson() {
 
 }
 
-//--------------------------------------------------------------------------------
-/**
- * updates Person in form
- *
- */
-function refreshPerson(){
-
-}
 
 //--------------------------------------------------------------------------------
 /**

@@ -25,7 +25,7 @@ function sendHTTPRequest (method, url) {
             if (xhr.status != 200) { // analyze HTTP status of the response
                 alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
             } else { // show the result
-                alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
+                console.log(`Done, got ${xhr.response.length} bytes`); // response is the server response
                 resolve(xhr.response);
             }
         };
@@ -104,11 +104,11 @@ function delData(url) {
 
     xhr.onload = function () {
         if(xhr.status === 200) {
-            alert("Delete successful!");
+            console.log("Delete successful!");
             initInventory();
 
         } else if (xhr.status === 404){
-            alert('inventory not found');
+            console.log('inventory not found');
             initInventory();
         }
     }
@@ -268,7 +268,7 @@ function inputValidationInventory() {
                     x = x.replace('is-valid', '');
                     x = x.trim();
                     document.getElementById("idDepreciationInput").className = x + " is-invalid";
-                    document.getElementById("idDepreciationInputIsInValid").innerText = "bitte anpassen!";
+                    document.getElementById("idDepreciationInputIsInValid").innerText = "bitte esrt anpassen dann Brechnen drücken!";
                     ret = false;
                 }
                 $('#bookingCategoryChanged').modal('show');
@@ -443,13 +443,14 @@ async function deleteInventory(inventoryId) {
             x = x.trim();
             inventoryDelete.className = x + ' d-block';
             inventoryDeletedName.innerText = inventory[i].label;
+            initInventory();
             setTimeout(function () {
 
                 // Closing the alert
                 $('#inventoryDelete').alert('close');
-            }, 5000);
+            }, 10000);
         } else {
-            console.log('this inventory is not listed at all');
+            console.log('item cannot be delete. Must have id');
         }
     }
     
@@ -627,8 +628,8 @@ function hideInventory() {
  *
  */
 async function updateInventory() {
+    let inventory = await getInventories();
     if (refresh()) {
-        if (inputValidationInventory()) {
             let inventory = await getInventories();
 
             let status = document.getElementById("idStatus").value.trim();
@@ -677,8 +678,8 @@ async function updateInventory() {
 
             putInventory(inventoryItem, url);
 
-            initInventory();
-        }
+           // initInventory();
+
     }
 }
 
@@ -767,7 +768,7 @@ function dateChangeHandler() {
     g = g.replace('is-valid', '');
     g = g.trim();
     document.getElementById("idPurchaseDate").className = g + " is-invalid";
-    document.getElementById("idPurchaseDateInvalid").innerText = "jetzt Brechnen drucken!";
+    document.getElementById("idPurchaseDateInvalid").innerText = "evtl Preis geben dann Brechnen drucken!";
 }
 
 //--------------------------------------------------------------------------------
@@ -928,7 +929,7 @@ function calcForm() {
                 x = x.replace('is-valid', '');
                 x = x.trim();
                 document.getElementById("idDepreciationInput").className = x + " is-invalid";
-                document.getElementById("idDepreciationInputIsInValid").innerText = "bitte anpassen!";
+                document.getElementById("idDepreciationInputIsInValid").innerText = "bitte erst anpassen dann Brechnen drucken!";
             }
             $('#bookingCategoryChanged').modal('show');
             console.log('bookingCategory is changed!! Alert!!');

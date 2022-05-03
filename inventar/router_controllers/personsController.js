@@ -138,7 +138,7 @@ module.exports.getPersons = async function getPersons(req, res) {
 
 
         //console.log('§§§§§§§',ret.filter(a => a.value.lastname).map(a => a.value._id));
-        console.log('§§§§§§§§', ret.map(a => a.value.lastname));
+        console.log('§§§§§§§§', ret/*.map(a => a.value.lastname)*/);
 
     } catch (err) {
         let appErr = new AppError(err.appError || '10500', err, req);
