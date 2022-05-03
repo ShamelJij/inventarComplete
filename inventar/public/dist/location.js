@@ -6,8 +6,8 @@
  * Global section
  */
 const locationTableIsEmpty = document.getElementById("locationTableIsEmpty");
-//(const locationDelete = document.getElementById('locationDelete');
-//const locationDeletedName = document.getElementById('locationDeletedName')
+const locationDelete = document.getElementById('locationDelete');
+const locationDeletedName = document.getElementById('locationDeletedName')
 
 //################################################################################
 /**
@@ -246,8 +246,8 @@ function insertNewRecordLocation(locationList){
     cell7.innerHTML = locationList.roomnumber;
     let cell8 = newRow.insertCell(7);
     cell8.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
-        "<button onClick=\"editLocation(" + locationList._id + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
-        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deleteLocationModel\" onClick=\"setRowID(" + locationList._id + ")\"></button></div>" +
+        "<button onClick=\"editLocation(" + "\'" + locationList._id + "\'" + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
+        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deleteLocationModel\" onClick=\"setRowID(" + "\'" + locationList._id + "\'" + ")\"></button></div>" +
         "</div>";
 }
 
@@ -291,7 +291,7 @@ async function deleteLocation(locationId) {
             x = x.replace('d-none','');
             x = x.trim();
             locationDelete.className = x + ' d-block';
-            locationDeletedName.innerText = locations[i].firstname + ' ' + locations[i].lastname;
+            locationDeletedName.innerText = locations[i].locationlabel + ' ' + locations[i].locationname;
             initLocation();
             setTimeout(function () {
 
@@ -354,7 +354,6 @@ function saveLocation(){
 
         postData(getInputLocation(),'http://localhost:8080/v1/locations/');
 
-        let locationList = JSON.parse(localStorage.getItem('locationList'));
         let locationlabel = document.getElementById("locationlabel").value.trim();
         let locationstreet = document.getElementById("locationstreet").value.trim();
         let housenumber = document.getElementById("housenumber").value.trim();
@@ -362,7 +361,7 @@ function saveLocation(){
         let locationname= document.getElementById("locationname").value.trim();
         let floornumber = document.getElementById("floornumber").value.trim();
         let roomnumber = document.getElementById("roomnumber").value.trim();
-        let locationID = document.getElementById("saveIDLocation").value;
+        let locationId = document.getElementById("locationId").value;
 
         //storing as an object
         let locationItem = {
@@ -399,9 +398,8 @@ async function editLocation(locationID) {
     document.getElementById('lUpdateBtn').className = 'btn btn-success';
     document.getElementById('lSaveBtn').className = 'd-none';
     for(let i = 0; i < locationList.length; i++){
-        if (locationID == locationList[i].locationItemID){
-            //wenn dateien löchen wollen dann:
-            //locationList.splice(i,1);
+        if (locationID == locationList[i]._id){
+
             console.log('editLocation', locationList[i]);
 
             document.getElementById("locationlabel").value = locationList[i].locationlabel;
@@ -411,7 +409,8 @@ async function editLocation(locationID) {
             document.getElementById("locationname").value = locationList[i].locationname;
             document.getElementById("floornumber").value = locationList[i].floornumber;
             document.getElementById("roomnumber").value = locationList[i].roomnumber;
-            document.getElementById("saveIDLocation").value = locationList[i].locationItemID;
+            document.getElementById("locationId").value = locationList[i]._id;
+            document.getElementById("locationRev").value =locationList[i]._rev
             break;
         }
     }
@@ -468,7 +467,8 @@ async function updateLocation() {
     let locationname= document.getElementById("locationname").value.trim();
     let floornumber = document.getElementById("floornumber").value.trim();
     let roomnumber = document.getElementById("roomnumber").value.trim();
-    let locationId = document.getElementById("saveIDLocation").value;
+    let locationId = document.getElementById("locationId").value;
+    let revision = document.getElementById("locationRev").value;
 
     let locationItem = {
         locationlabel: locationlabel,
@@ -510,7 +510,7 @@ function refreshLocation() {
     document.getElementById("locationname").value = '';
     document.getElementById("floornumber").value = '';
     document.getElementById("roomnumber").value = '';
-    document.getElementById('saveIDLocation').value = '';
+    document.getElementById("locationId").value = '';
 
     document.getElementById("locationlabel").className = 'form-control';
     document.getElementById("locationstreet").className = 'form-control';
