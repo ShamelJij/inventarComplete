@@ -25,7 +25,7 @@ class Location extends Document {
 
         this._ressourcePath = '/v1/locations/'; // + {id}
         this._form          = 'location';
-        this._schema        = 'swagger.json#/definitions/Location';
+        this._schema        = 'swagger.json#/definitions/LocationWithoutID';
 
         if (ld.isObject(arg1)) {
             this._dbBody = arg1;
@@ -76,7 +76,7 @@ class Location extends Document {
         try {
             if (!deleteIt) {
                 // don't validate if should be deleted
-                newBody = inputTranslation(newBody);
+               // newBody = inputTranslation(newBody);
                 this.validateSchema( newBody );
             } else {
                 newBody.deleted = true;
