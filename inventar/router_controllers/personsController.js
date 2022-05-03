@@ -90,7 +90,9 @@ module.exports.updatePerson = async function updatePerson (req, res) {
  */
 module.exports.deletePerson = async function deletePerson(req, res) {
     console.log(' (DELETE) id: ' +  req.swagger.params.id.value);
-    let objPerson = await Persons.getById( req.swagger.params.id.value );
+
+        let objPerson = await Persons.getById( req.swagger.params.id.value );
+
         if (objPerson.document.deleted){
             console.log('(---------------------DELETED --------------------');
             res.setHeader('Content-Type', 'application/json');
@@ -138,7 +140,7 @@ module.exports.getPersons = async function getPersons(req, res) {
 
 
         //console.log('§§§§§§§',ret.filter(a => a.value.lastname).map(a => a.value._id));
-        console.log('§§§§§§§§', ret/*.map(a => a.value.lastname)*/);
+        console.log('§§§§§§§§', ret.map(a => a.lastname + ' ' + a.firstname));
 
     } catch (err) {
         let appErr = new AppError(err.appError || '10500', err, req);

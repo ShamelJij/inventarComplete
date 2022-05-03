@@ -14,6 +14,9 @@ let Location   = require('../server/locations/Location');
 let Locations  = require('../server/locations/Locations');
 let AppError  = require('../server/inventarUtils/ApplicationError');
 let lodash    = require('lodash');
+const Locaitons = require("../server/locations/Locations");
+const Locations = require("../server/locations/Locations");
+const Locations = require("../server/locations/Locations");
 
 
 
@@ -34,10 +37,11 @@ module.exports.addLocation = async function addLocation (req, res) {
 
     try {
         let location = new Location("");
+
         await location.createnew(req.body,"anonym");
-        //let ret = { "response": "Location created! (function addLocation)" };
+
         let ret = { "url": location.getRessource(),
-            "data": location.document};
+                    "data": location.document};
         res.statusCode    = 201;
         res.setHeader('Content-Type', 'application/json');
         res.send( ret );
@@ -61,7 +65,11 @@ module.exports.updateLocation = async function updateLocation (req, res) {
     console.log(' (PUT) id: ' +  req.swagger.params.id.value);
 
     try {
-        let ret = { "response": "Location updated!" + req.swagger.params.id.value + " (function addLocation)" };
+
+        let location = await Locations.getById( req.swagger.params.id.value );
+
+        await location.update(req.body, "anonym");
+        let ret = { "data": location.document }
         console.log(JSON.stringify(req.body));
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
@@ -83,28 +91,27 @@ module.exports.updateLocation = async function updateLocation (req, res) {
  * @return {Promise<void>}
  */
 module.exports.deleteLocation = async function deleteLocation(req, res) {
-    console.log(' (DELETE) id: ' +  req.swagger.params.locationId.value);
+    console.log(' (DELETE) id: ' +  req.swagger.params.id.value);
 
-    try {
-        let objLocation = await Locations.getByUnid( req.swagger.params.locationId.value );
+    let objLocation = await Locations.getById( req.swagger.params.id.value );
 
-        if (objLocation.hasWriteAccess( req.objUser.getRoles() )) {
-            let userName = req.objUser.username();
-
-            await objLocation.update(objLocation.document, userName, true);
-
-            res.statusCode = 204;
+    if (objLocation.document.deleted){
+        console.log('(---------------------DELETED --------------------');
+        res.setHeader('Content-Type', 'application/json');
+        res.sendStatus(404);
+    } else {
+        try {
+            await objLocation.update(objLocation.document, "testNamez", true);
             res.setHeader('Content-Type', 'application/json');
-            res.send({});
-        } else {
-            // no access
-            throw {'appError': 20403};
+            res.sendStatus(200);
+
+        } catch (err) {
+            console.log('error: ' + JSON.stringify( err ));
+            let appErr = new AppError(err.appError || '10500', err, req);
+            res.status(appErr.getHttpStatusCode()).json(appErr.toJSON()).end();
         }
-    } catch (err) {
-        console.log('error: ' + JSON.stringify( err ));
-        let appErr = new AppError(err.appError || '10500', err, req);
-        res.status(appErr.getHttpStatusCode()).json(appErr.toJSON()).end();
     }
+
 };
 
 //--------------------------------------------------------------------------------
@@ -116,46 +123,27 @@ module.exports.deleteLocation = async function deleteLocation(req, res) {
  * @return {Promise<void>}
  */
 module.exports.getLocations = async function getLocations(req, res) {
-    console.log('(GET) ');
+
+    console.log('(GET) all Locations:  ');
 
     try {
+        let limit = req.query.limit;
+        let offset = req.query.offset;
+        let desc = req.query.desc;
         // ids parameter available?
         let ret;
-        if (req.swagger.params.ids && req.swagger.params.ids.value) {
-            // select only requested locations
-            ret = await Locations.getByUnids( req.swagger.params.ids.value );
-        } else {
-            // get all locations
-            ret = await Locations.getAll(false, true);
-        }
+        // get all locations
+        ret = await Locations.getAll(limit,offset,desc);
 
-        if (ret.locations) {
-            let fields;
-            if (req.swagger.params.fields && req.swagger.params.fields.value) {
-                fields = req.swagger.params.fields.value;
-                fields.push('_id');
-                fields = lodash.uniq(fields);
-            }
-
-            ret.locations = ret.locations.map( function( location ) {
-                // if fields available shrink content
-                if (fields) {
-                    return lodash.pick(location, fields);
-                } else {
-                    return location;
-                }
-            });
-
-            if (req.swagger.params.sortby && req.swagger.params.sortby.value) {
-                let sortby = req.swagger.params.sortby.value;
-                let desc   = (req.swagger.params.desc.value && req.swagger.params.desc.value !== 'false') ? 'desc' : 'asc';
-                ret.locations = lodash.orderBy( ret.locations, [sortby], [desc]);
-            }
-        }
 
         res.statusCode    = 200;
         res.setHeader('Content-Type', 'application/json');
         res.send(ret);
+
+
+        //console.log('§§§§§§§',ret.filter(a => a.value.lastname).map(a => a.value._id));
+        console.log('§§§§§§§§', ret.map(a => a.locationlabel + ' ' + a.locationname));
+
     } catch (err) {
         let appErr = new AppError(err.appError || '10500', err, req);
         res.status(appErr.getHttpStatusCode()).json(appErr.toJSON()).end();
@@ -174,36 +162,17 @@ module.exports.getLocations = async function getLocations(req, res) {
 module.exports.getLocationById = async function getLocationById (req, res) {
     // console.log(' (GET) path: ' + req.swagger.params.locationId.value);
 
+
     try {
-        let ret = await Locations.getByUnid(req.swagger.params.locationId.value);
-        // console.log(JSON.stringify(ret.document));
-        if ( req.objUser.isEK() === false && req.objUser.isGF() === false ) {
-            // this user should not have access to
-            let newret = lodash.omit( ret.document, ['supplier.buyPrice', 'supplier.buyPriceCurr', 'preSupplier.buyPrice', 'preSupplier.buyPriceCurr'] );
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.send(newret);
-        } else {
-            // sometimes supplier.buyPrice is saved as string in german format
-            // this causes failure of the formatted number display in frontend
-            if (ret.document && ret.document.supplier && ret.document.supplier.buyPrice) {
-                if (typeof ret.document.supplier.buyPrice === 'string') {
-                    ret.document.supplier.buyPrice = ret.document.supplier.buyPrice.replace(',', '.');
-                }
-            }
-            if (ret.document && ret.document.preSupplier && ret.document.preSupplier.buyPrice) {
-                if (typeof ret.document.preSupplier.buyPrice === 'string') {
-                    ret.document.preSupplier.buyPrice = ret.document.preSupplier.buyPrice.replace(',', '.');
-                }
-            }
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.send(ret.document);
-        }
+        let ret = await Locations.getById(req.swagger.params.id.value);
+        console.log(JSON.stringify(ret.document));
+        // this user should not have access to
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.send(ret.document);
     } catch(err) {
         console.error(err);
         let appErr = new AppError(err.appError || '10500', err, req);
         res.status(appErr.getHttpStatusCode()).json(appErr.toJSON()).end();
     }
-
 };

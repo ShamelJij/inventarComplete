@@ -135,9 +135,7 @@ module.exports.getInventories = async function getInventories(req, res) {
         res.setHeader('Content-Type', 'application/json');
         res.send(ret);
 
-
-        //console.log('§§§§§§§',ret.filter(a => a.value.lastname).map(a => a.value._id));
-        //console.log('§§§§§§§§', ret.map(a => a.value.label));
+        console.log('§§§§§§§§', ret.map(a => a.label + ' ' + a.inventorytype));
 
     } catch (err) {
         let appErr = new AppError(err.appError || '10500', err, req);

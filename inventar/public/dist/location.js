@@ -1,137 +1,319 @@
-/*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-       date: 1/13/2022 | time: 5:52 PM | name: Location | path: C:\deltastone\shamel-praktikum\Location.js
- - - - - - - - - - - - - - - - - - - - - - - - - - -*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -*/
-/*
-Global Section
+/**
+ * location FRONTEND
+ */
+//################################################################################
+/**
+ * Global section
  */
 const locationTableIsEmpty = document.getElementById("locationTableIsEmpty");
-let saved_location = JSON.parse(localStorage.getItem('locationList'));
-localStorage.setItem('locationList', JSON.stringify(saved_location));
-//- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//(const locationDelete = document.getElementById('locationDelete');
+//const locationDeletedName = document.getElementById('locationDeletedName')
 
+//################################################################################
+/**
+ * Custom Functions
+ */
+//--------------------------------------------------------------------------------
+
+// to be added
+
+//################################################################################
+/**
+ * @param {string} method
+ * @param {string} url
+ */
+function sendHTTPRequest (method, url) {
+    let promise = new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open(method,url);
+        xhr.responseType = 'json';
+        xhr.onload = function() {
+            if (xhr.status != 200) { // analyze HTTP status of the response
+                alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
+            } else { // show the result
+                console.log(`Done, got ${xhr.response.length} bytes`); // response is the server response
+                resolve(xhr.response);
+            }
+        };
+        xhr.send();
+    });
+    return promise;
+}
+
+//################################################################################
+//routes section
+
+//--------------------------------------------------------------------------------
+/**
+ * POST /locations
+ *
+ * @param {Object} postObj
+ * @param {string} url
+ */
+function postData(postObj,url) {
+    let xhr = new XMLHttpRequest();
+    let locationData = JSON.stringify(postObj)
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+    xhr.send(locationData);
+
+    xhr.onload = function () {
+        if(xhr.status === 201) {
+            console.log("Post successfully created!");
+        } else if (xhr.status === 400){
+            console.log('400 (Bad Request)');
+        }
+    }
+
+}
+
+//--------------------------------------------------------------------------------
+/**
+ * PUT /locations
+ *
+ * @param {Object} postObj
+ * @param {string} url
+ */
+function putLocation(postObj,url) {
+    let xhr = new XMLHttpRequest();
+    let locationData = JSON.stringify(postObj)
+    xhr.open('PUT', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+    xhr.send(locationData);
+
+    xhr.onload = function () {
+        if(xhr.status === 200) {
+            console.log("Put successfully done!");
+            initLocation();
+        } else if (xhr.status === 400){
+            console.log('invalid');
+        } else if (xhr.status === 404){
+            console.log('Location not found');
+        }
+    }
+
+}
+
+//--------------------------------------------------------------------------------
+/**
+ * DELETE /locations/{id}
+ *
+ * @param url
+ */
+function delData(url) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('DELETE', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+    xhr.send();
+
+    xhr.onload = function () {
+        if(xhr.status === 200) {
+            console.log("Delete successful!");
+            initLocation();
+
+        } else if (xhr.status === 404){
+            alert('Location not found');
+            initLocation();
+        }
+    }
+
+}
+
+//--------------------------------------------------------------------------------
+/**
+ * GET /locations
+ *
+ * @return {Array.<Objects>} locations
+ */
+async function getLocations() {
+    return sendHTTPRequest('GET', 'http://localhost:8080/v1/locations');
+}
+
+//################################################################################
+//form section
+/**
+ * get input form as an object
+ *
+ * @return {locationData}
+ */
 function getInputLocation(){
     let locationData = {};
-    locationData ["locationLabel"] = document.getElementById("locationLabel").value;
-    locationData ["locationStreet"] = document.getElementById("locationStreet").value;
-    locationData ["houseNumber"] = document.getElementById("houseNumber").value;
-    locationData ["zipCode"] = document.getElementById("zipCode").value;
-    locationData ["locationName"] = document.getElementById("locationName").value;
+    locationData ["locationlabel"] = document.getElementById("locationlabel").value;
+    locationData ["locationstreet"] = document.getElementById("locationstreet").value;
+    locationData ["housenumber"] = document.getElementById("housenumber").value;
+    locationData ["zipcode"] = document.getElementById("zipcode").value;
+    locationData ["locationname"] = document.getElementById("locationname").value;
     locationData ["floorNumber"] = document.getElementById("floorNumber").value;
-    locationData ["roomNumber"] = document.getElementById("roomNumber").value;
+    locationData ["roomnumber"] = document.getElementById("roomnumber").value;
     return locationData;
 }
-//- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-function inputValidationLocation() {
+
+
+
+//################################################################################
+/**
+ * input validation
+ *
+ * @return {boolean} ret
+ */
+async function inputValidationLocation() {
     let ret = true;
-    let locationList = JSON.parse(localStorage.getItem('locationList')) || [];
+    let locationList = await getLocations() || [];
     let letters = /^[a-zA-Z]*$/;
 
-    let locationLabel = getInputLocation().locationLabel;
-    let locationStreet = getInputLocation().locationStreet;
-    let houseNumber = getInputLocation().houseNumber;
-    let zipCode = getInputLocation().zipCode;
-    let locationName = getInputLocation().locationName;
+    let locationlabel = getInputLocation().locationlabel;
+    let locationstreet = getInputLocation().locationstreet;
+    let housenumber = getInputLocation().housenumber;
+    let zipcode = getInputLocation().zipcode;
+    let locationname= getInputLocation().locationname;
     let floorNumber = getInputLocation().floorNumber;
-    let roomNumber = getInputLocation().roomNumber;
+    let roomnumber = getInputLocation().roomnumber;
 
-    if (houseNumber == '' || houseNumber < 1){
-        let x = document.getElementById("houseNumber").className;
+    if (housenumber == '' || housenumber < 1){
+        let x = document.getElementById("housenumber").className;
         x = x.replace('is-invalid', '');
         x = x.replace('is-valid', '');
         x = x.trim();
-        document.getElementById("houseNumber").className = x + " is-invalid";
+        document.getElementById("housenumber").className = x + " is-invalid";
         document.getElementById("houseNumberIsInValid").innerText = "es soll eine Eingabe geben!";
         ret = false;
     } else {
-        let y = document.getElementById("houseNumber").className;
+        let y = document.getElementById("housenumber").className;
         y = y.replace('is-invalid', '');
         y = y.replace('is-valid', '');
         y = y.trim();
-        document.getElementById("houseNumber").className = y + " is-valid";
+        document.getElementById("housenumber").className = y + " is-valid";
     }
     //Ort validieren
-    if (locationName == '' || !letters.test(locationName)){
-        let x = document.getElementById("locationName").className;
+    if (locationname== '' || !letters.test(locationname)){
+        let x = document.getElementById("locationname").className;
         x = x.replace('is-invalid', '');
         x = x.replace('is-valid', '');
         x = x.trim();
-        document.getElementById("locationName").className = x + " is-invalid";
+        document.getElementById("locationname").className = x + " is-invalid";
         document.getElementById("locationNameIsInValid").innerText = "es soll eine Eingabe geben!";
         ret = false;
     } else {
-        let y = document.getElementById("locationName").className;
+        let y = document.getElementById("locationname").className;
         y = y.replace('is-invalid', '');
         y = y.replace('is-valid', '');
         y = y.trim();
-        document.getElementById("locationName").className = y + " is-valid";
+        document.getElementById("locationname").className = y + " is-valid";
     }
     //strasse validieren
-    if (locationStreet == '' || !letters.test(locationStreet)){
-        let x = document.getElementById("locationStreet").className;
+    if (locationstreet == '' || !letters.test(locationstreet)){
+        let x = document.getElementById("locationstreet").className;
         x = x.replace('is-invalid', '');
         x = x.replace('is-valid', '');
         x = x.trim();
-        document.getElementById("locationStreet").className = x + " is-invalid";
+        document.getElementById("locationstreet").className = x + " is-invalid";
         document.getElementById("locationStreetIsInValid").innerText = "Eingabe ist falsch!";
         ret = false;
     } else {
-        let y = document.getElementById("locationStreet").className;
+        let y = document.getElementById("locationstreet").className;
         y = y.replace('is-invalid', '');
         y = y.replace('is-valid', '');
         y = y.trim();
-        document.getElementById("locationStreet").className = y + " is-valid";
+        document.getElementById("locationstreet").className = y + " is-valid";
     }
 
     return ret;
 }
-/*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                                name: insertNewRecord | purpose: building a new row for every new query
- - - - - - - - - - - - - - - - - - - - - - - - - - -*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-//Insert data from location
+
+//--------------------------------------------------------------------------------
+/**
+ * inserts new record into table below form
+ *
+ * @param {Object} location
+ */
 function insertNewRecordLocation(locationList){
 
     let table = document.getElementById("idLocationList").getElementsByTagName('tbody')[0];
     let newRow = table.insertRow(table.length);
     let cell1 = newRow.insertCell(0);
-    cell1.innerHTML = locationList.locationLabel;
+    cell1.innerHTML = locationList.locationlabel;
     let cell2 = newRow.insertCell(1);
-    cell2.innerHTML = locationList.locationStreet;
+    cell2.innerHTML = locationList.locationstreet;
     let cell3 = newRow.insertCell(2);
-    cell3.innerHTML = locationList.houseNumber;
+    cell3.innerHTML = locationList.housenumber;
     let cell4 = newRow.insertCell(3);
-    cell4.innerHTML = locationList.zipCode;
+    cell4.innerHTML = locationList.zipcode;
     let cell5 = newRow.insertCell(4);
-    cell5.innerHTML = locationList.locationName;
+    cell5.innerHTML = locationList.locationname;
     let cell6 = newRow.insertCell(5);
     cell6.innerHTML = locationList.floorNumber;
     let cell7 = newRow.insertCell(6);
-    cell7.innerHTML = locationList.roomNumber;
+    cell7.innerHTML = locationList.roomnumber;
     let cell8 = newRow.insertCell(7);
     cell8.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
-        "<button onClick=\"editLocation(" + locationList.locationItemID + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
-        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deleteLocationModel\" onClick=\"setRowID(" + locationList.locationItemID + ")\"></button></div>" +
+        "<button onClick=\"editLocation(" + locationList._id + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
+        "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deleteLocationModel\" onClick=\"setRowID(" + locationList._id + ")\"></button></div>" +
         "</div>";
 }
-//get row id
+
+//################################################################################
 let globalLocationId = 0;
-function setRowID(ID){
-    globalLocationId = ID
+function setRowID(id){
+    globalLocationId = id
 }
+
+//--------------------------------------------------------------------------------
 function getRowID(){
     let gid = globalLocationId;
     return gid
 }
+
+//--------------------------------------------------------------------------------
+/**
+ * clears Location table
+ *
+ */
 function clearLocationTable() {
     const locationTable = document.getElementById("locationTableBody");
     locationTable.innerHTML = '';
 }
-/*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                        name: initLocation | purpose: parse from localstorage then insert a new location to locationList
- - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-function initLocation(){
+
+//--------------------------------------------------------------------------------
+/**
+ * delete Location from form and from database
+ *
+ * @param {srting} locationId
+ */
+async function deleteLocation(locationId) {
+
+    delData('http://localhost:8080/v1/locations/' + locationId);
+
+    let locations = await getLocations();
+    for(let i = 0; i < locations.length; i++) {
+        if (locationId == locations[i]._id) {
+            let x = locationDelete.className
+            x = x.replace('d-block','');
+            x = x.replace('d-none','');
+            x = x.trim();
+            locationDelete.className = x + ' d-block';
+            locationDeletedName.innerText = locations[i].firstname + ' ' + locations[i].lastname;
+            initLocation();
+            setTimeout(function () {
+
+                // Closing the alert
+                $('#LocationDelete').alert('close');
+            }, 10000);
+        } else {
+            console.log('this location is not listed at all');
+        }
+    }
+
+}
+
+//################################################################################
+/**
+ *
+ * initiate Location page
+ */
+async function initLocation(){
     //localstorage auslesen
-    let locationList = JSON.parse(localStorage.getItem('locationList'));
-    hideLocation();
+    let locationList = await getLocations();
+
     // note(text):flag.. or tooltip wird and hidden div mit hinweiß
     //error handling
     clearLocationTable();
@@ -162,103 +344,59 @@ function initLocation(){
     //
     console.log("function initLocation")
 }
-/*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                            name: saveLocation | purpose: storing in localStorage and build a new row
- - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+//################################################################################
+/**
+ * saving Location Object from form
+ *
+ */
 function saveLocation(){
     if (inputValidationLocation()) {
 
-
+        postData(getInputLocation(),'http://localhost:8080/v1/locations/');
 
         let locationList = JSON.parse(localStorage.getItem('locationList'));
-        let locationLabel = document.getElementById("locationLabel").value.trim();
-        let locationStreet = document.getElementById("locationStreet").value.trim();
-        let houseNumber = document.getElementById("houseNumber").value.trim();
-        let zipCode = document.getElementById("zipCode").value.trim();
-        let locationName = document.getElementById("locationName").value.trim();
+        let locationlabel = document.getElementById("locationlabel").value.trim();
+        let locationstreet = document.getElementById("locationstreet").value.trim();
+        let housenumber = document.getElementById("housenumber").value.trim();
+        let zipcode = document.getElementById("zipcode").value.trim();
+        let locationname= document.getElementById("locationname").value.trim();
         let floorNumber = document.getElementById("floorNumber").value.trim();
-        let roomNumber = document.getElementById("roomNumber").value.trim();
+        let roomnumber = document.getElementById("roomnumber").value.trim();
         let locationID = document.getElementById("saveIDLocation").value;
 
         //storing as an object
         let locationItem = {
-            locationLabel: locationLabel,
-            locationStreet: locationStreet,
-            houseNumber: houseNumber,
-            zipCode: zipCode,
-            locationName: locationName,
+            locationlabel: locationlabel,
+            locationstreet: locationstreet,
+            housenumber: housenumber,
+            //zipcode muss ein Number sein
+            zipcode: zipcode,
+            locationname: locationname,
             floorNumber: floorNumber,
-            roomNumber: roomNumber
+            roomnumber: roomnumber
         };
-        let found_obj = locationList.find(element => element.locationItemID == locationID );
-        let found_obj_index = locationList.indexOf(found_obj);
 
-        if (locationID == '' || !found_obj){
-            console.log('new location is saved');
-            //locationCounter for itemID
-            let locationItemID = localStorage.getItem('locationCounter');
-            if (locationItemID === null) {
-                locationItemID = 0;
-            } else {
-                locationItemID++;
-            }
-            localStorage.setItem("locationCounter", locationItemID);
-            locationItem.locationItemID = locationItemID;
-            // note(text):flag.. or tooltip wird and hidden div mit hinweiß
-            //error handling
-            if (!locationList || locationList.length == 0) {
-                locationList = []; // [locationItem];
-                locationList.push(locationItem);
-            }
-            // sonst: neue Reihe zufügen für jeden Eintrag
-            else {
-                console.log('building a new row location');
-                //insertNewRecord(locationList);
-                locationList.push(locationItem);
-            }
-        } else {
-            if(found_obj){
-                locationItem.locationItemID = locationID;
-                locationList[found_obj_index] = locationItem;
-            }
-        }
-
-
-
-        localStorage.setItem("locationList", JSON.stringify(locationList));
-        //eingabe validierung
-        //Localstorage auslesen
-        //push auf die Liste und nicht neu erstellen
-        //die Liste ist am besten sortiert (array) nach name
-        // in localstorage speichern
-        //Tsbelle aktualiesieren
         initLocation();
-        hidePerson();
+
+        hideLocation();
+
+        //locationIsSaved alert!!
     }else {
         console.log('saveLocation in not starting because valid is not valid');
     }
 
 }
-/*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                                name: deleteLocation | purpose: delete location obj from localStorage and table
- - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-function deleteLocation(locationID) {
-    let locationList = JSON.parse(localStorage.getItem('locationList'));
-    for(let i = 0; i < locationList.length; i++){
-        if (locationID == locationList[i].locationItemID){
-            locationList.splice(i,1);
-            localStorage.setItem('locationList', JSON.stringify(locationList));
-            break;
-        }
-    }
-    initLocation();
-}
-/*- - - - - - - - - - - - - - - - - - - - - - - - - *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-                            name: editLocation | purpose: edit location obj from localStorage and table row
- - - - - - - - - - - - - - - - - - - - - - - - - -  *** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
-function editLocation(locationID) {
+
+//--------------------------------------------------------------------------------
+/**
+ * edit Location in form
+ *
+ * @param {string} locationId
+ */
+async function editLocation(locationID) {
     showLocation();
-    let locationList = JSON.parse(localStorage.getItem('locationList'));
+    let locationList = await getLocations();
     document.getElementById('lUpdateBtn').className = 'btn btn-success';
     document.getElementById('lSaveBtn').className = 'd-none';
     for(let i = 0; i < locationList.length; i++){
@@ -267,19 +405,25 @@ function editLocation(locationID) {
             //locationList.splice(i,1);
             console.log('editLocation', locationList[i]);
 
-            document.getElementById("locationLabel").value = locationList[i].locationLabel;
-            document.getElementById("locationStreet").value = locationList[i].locationStreet;
-            document.getElementById("houseNumber").value = locationList[i].houseNumber;
-            document.getElementById("zipCode").value = locationList[i].zipCode;
-            document.getElementById("locationName").value = locationList[i].locationName;
+            document.getElementById("locationlabel").value = locationList[i].locationlabel;
+            document.getElementById("locationstreet").value = locationList[i].locationstreet;
+            document.getElementById("housenumber").value = locationList[i].housenumber;
+            document.getElementById("zipcode").value = locationList[i].zipcode;
+            document.getElementById("locationname").value = locationList[i].locationname;
             document.getElementById("floorNumber").value = locationList[i].floorNumber;
-            document.getElementById("roomNumber").value = locationList[i].roomNumber;
+            document.getElementById("roomnumber").value = locationList[i].roomnumber;
             document.getElementById("saveIDLocation").value = locationList[i].locationItemID;
             break;
         }
     }
     //initLocation??
 }
+
+//--------------------------------------------------------------------------------
+/**
+ * show Location form
+ *
+ */
 function showLocation() {
     let sLocation = document.getElementById('sLocation').className;
     document.getElementById('lUpdateBtn').className = 'd-none';
@@ -292,6 +436,12 @@ function showLocation() {
     }
 
 }
+
+//--------------------------------------------------------------------------------
+/**
+ * hides Location in form
+ *
+ */
 function hideLocation(){
     refreshLocation();
     let hLocation = document.getElementById('sLocation').className;
@@ -302,59 +452,73 @@ function hideLocation(){
         console.log('hideLocation is not working!!');
     }
 }
-function updateLocation() {
 
-    let locationList = JSON.parse(localStorage.getItem('locationList'));
+//--------------------------------------------------------------------------------
+/**
+ * updates Location in form
+ *
+ */
+async function updateLocation() {
 
-    let locationLabel = document.getElementById("locationLabel").value.trim();
-    let locationStreet = document.getElementById("locationStreet").value.trim();
-    let houseNumber = document.getElementById("houseNumber").value.trim();
-    let zipCode = document.getElementById("zipCode").value.trim();
-    let locationName = document.getElementById("locationName").value.trim();
+    let locationList = await getLocations();
+
+    let locationlabel = document.getElementById("locationlabel").value.trim();
+    let locationstreet = document.getElementById("locationstreet").value.trim();
+    let housenumber = document.getElementById("housenumber").value.trim();
+    let zipcode = document.getElementById("zipcode").value.trim();
+    let locationname= document.getElementById("locationname").value.trim();
     let floorNumber = document.getElementById("floorNumber").value.trim();
-    let roomNumber = document.getElementById("roomNumber").value.trim();
-    let locationID = document.getElementById("saveIDLocation").value;
+    let roomnumber = document.getElementById("roomnumber").value.trim();
+    let locationId = document.getElementById("saveIDLocation").value;
 
     let locationItem = {
-        locationLabel: locationLabel,
-        locationStreet: locationStreet,
-        houseNumber: houseNumber,
-        zipCode: zipCode,
-        locationName: locationName,
+        locationlabel: locationlabel,
+        locationstreet: locationstreet,
+        housenumber: housenumber,
+        zipcode: zipcode,
+        locationname: locationname,
         floorNumber: floorNumber,
-        roomNumber: roomNumber
+        roomnumber: roomnumber,
+        _id: locationId,
+        _rev: revision
     };
-    let found_obj = locationList.find(element => element.locationItemID == locationID );
-    let found_obj_index = locationList.indexOf(found_obj);
-    if(found_obj){
-        locationItem.locationItemID = locationID;
-        locationList[found_obj_index] = locationItem;
+
+    if (locationItem._rev !== null){
+        _rev: revision;
+    } else {
+        console.log('no revision in Location');
     }
-    localStorage.setItem("locationList", JSON.stringify(locationList));
-    initLocation();
-    /*
-    let saveID = document.getElementById('saveID').value;
-    deleteLocation(saveID);
-    saveLocation(saveID);*/
+
+    let url = 'http://localhost:8080/v1/locations/' + locationId;
+
+    putLocation(locationItem, url);
+
+    //initLocation()??
 }
+
+//--------------------------------------------------------------------------------
+/**
+ * refreshes Location page
+ *
+ */
 function refreshLocation() {
     //aktuelle werte auf eingabefelder löchen
 
-    document.getElementById("locationLabel").value = '';
-    document.getElementById("locationStreet").value = '';
-    document.getElementById("houseNumber").value = '';
-    document.getElementById("zipCode").value = '';
-    document.getElementById("locationName").value = '';
+    document.getElementById("locationlabel").value = '';
+    document.getElementById("locationstreet").value = '';
+    document.getElementById("housenumber").value = '';
+    document.getElementById("zipcode").value = '';
+    document.getElementById("locationname").value = '';
     document.getElementById("floorNumber").value = '';
-    document.getElementById("roomNumber").value = '';
+    document.getElementById("roomnumber").value = '';
     document.getElementById('saveIDLocation').value = '';
 
-    document.getElementById("locationLabel").className = 'form-control';
-    document.getElementById("locationStreet").className = 'form-control';
-    document.getElementById("houseNumber").className = 'form-control';
-    document.getElementById("zipCode").className = 'form-control';
-    document.getElementById("locationName").className = 'form-control';
+    document.getElementById("locationlabel").className = 'form-control';
+    document.getElementById("locationstreet").className = 'form-control';
+    document.getElementById("housenumber").className = 'form-control';
+    document.getElementById("zipcode").className = 'form-control';
+    document.getElementById("locationname").className = 'form-control';
     document.getElementById("floorNumber").className = 'form-control';
-    document.getElementById("roomNumber").className = 'form-control';
+    document.getElementById("roomnumber").className = 'form-control';
 
 }

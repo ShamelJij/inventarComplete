@@ -27,6 +27,7 @@ function customAlert(elementId, strongText, text, delay){
         $('#personDelete').alert('close');
     }, 5000);
 }
+
 //################################################################################
 /**
  * @param {string} method
@@ -313,7 +314,6 @@ function setRowId(Id){
  //--------------------------------------------------------------------------------
  function getRowId(){
      let gid = globalPersonId;
-     console.log('person id bug: ', gid);
      return gid
  }
 

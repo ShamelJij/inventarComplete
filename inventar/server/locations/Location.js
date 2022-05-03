@@ -1,5 +1,5 @@
 /**
- * Created by Carsten Pogede on 18.07.2017.
+ * Created on 18.07.2017.
  */
 
 //################################################################################
@@ -9,35 +9,6 @@
 let dbLocations = require('./LocationsDb');
 let Document   = require('../superclass/Document');
 const ld       = require('lodash');
-
-
-//################################################################################
-/**
- * PRIVATE DECLARATION
- * ES6 Class does not support private attributes / functions
- * Use this as workaraound
- */
-
-//--------------------------------------------------------------------------------
-/**
- * convert data
- */
-function inputTranslation( body ) {
-
-    // if flyer
-    if (body.flyer == true) {
-        body.flyerCount = body.flyerCount | 1;
-    } else {
-        body.flyerCount = 0;
-    }
-
-    // Tealgoal always = true
-    body.supplier.tealgoal    = true;
-    body.preSupplier.tealgoal = true;
-
-    return body;
-}
-
 
 //################################################################################
 /**
@@ -70,30 +41,6 @@ class Location extends Document {
     //--------------------------------------------------------------------------------
     schema() {
 
-    }
-
-    //--------------------------------------------------------------------------------
-    /**
-     * validate write access. 'locations' must be member of userroles
-     *
-     * @param roles
-     * @return {boolean}
-     */
-    hasWriteAccess( roles ) {
-        // Write Access only with role locations
-        if ( roles ) {
-            if ( Array.isArray( roles ) ) {
-                if (roles.length === 0) {
-                    return false;
-                } else {
-                    return roles.includes('ek');
-                }
-            } else {
-                return roles === 'ek';
-            }
-        } else {
-            return false;
-        }
     }
 
     //--------------------------------------------------------------------------------
@@ -138,11 +85,6 @@ class Location extends Document {
             // merge the new object and the object from database
             this._dbBody      = this._dbBody || {};
             this._dbBody = ld.merge( this._dbBody, newBody );
-
-            // if new .img or .docs are empty arrays, they will be not updated
-            // have to do it explicitly
-            this._dbBody.docs = newBody.docs;
-            this._dbBody.img = newBody.img;
 
             this._dbBody.form   = this._form;
             this._dbBody._id    = this._id;
