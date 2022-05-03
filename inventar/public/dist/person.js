@@ -306,9 +306,9 @@ function insertNewRecord(person){
 let globalPersonId = 0;
 
 //--------------------------------------------------------------------------------
-function setRowId(Id){
+function setRowId(id){
 
-    globalPersonId = Id;
+    globalPersonId = id;
  }
 
  //--------------------------------------------------------------------------------

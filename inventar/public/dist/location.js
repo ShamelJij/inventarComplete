@@ -129,6 +129,17 @@ async function getLocations() {
     return sendHTTPRequest('GET', 'http://localhost:8080/v1/locations');
 }
 
+//--------------------------------------------------------------------------------
+/**
+ * GET /locations/id
+ * @param url
+ * @param id
+ * @return {<Objects>} locationObject
+ */
+async function getLocationById(url) {
+   return sendHTTPRequest('GET', 'http://localhost:8080/v1/locations/' + url);
+}
+
 //################################################################################
 //form section
 /**
@@ -392,29 +403,23 @@ function saveLocation(){
  *
  * @param {string} locationId
  */
-async function editLocation(locationID) {
+async function editLocation(locationId) {
     showLocation();
-    let locationList = await getLocations();
+    let location = await getLocationById(locationId);
     document.getElementById('lUpdateBtn').className = 'btn btn-success';
     document.getElementById('lSaveBtn').className = 'd-none';
-    for(let i = 0; i < locationList.length; i++){
-        if (locationID == locationList[i]._id){
 
-            console.log('editLocation', locationList[i]);
+            console.log('editLocation', location);
 
-            document.getElementById("locationlabel").value = locationList[i].locationlabel;
-            document.getElementById("locationstreet").value = locationList[i].locationstreet;
-            document.getElementById("housenumber").value = locationList[i].housenumber;
-            document.getElementById("zipcode").value = locationList[i].zipcode;
-            document.getElementById("locationname").value = locationList[i].locationname;
-            document.getElementById("floornumber").value = locationList[i].floornumber;
-            document.getElementById("roomnumber").value = locationList[i].roomnumber;
-            document.getElementById("locationId").value = locationList[i]._id;
-            document.getElementById("locationRev").value =locationList[i]._rev
-            break;
-        }
-    }
-    //initLocation??
+            document.getElementById("locationlabel").value = location.locationlabel;
+            document.getElementById("locationstreet").value = location.locationstreet;
+            document.getElementById("housenumber").value = location.housenumber;
+            document.getElementById("zipcode").value = location.zipcode;
+            document.getElementById("locationname").value = location.locationname;
+            document.getElementById("floornumber").value = location.floornumber;
+            document.getElementById("roomnumber").value = location.roomnumber;
+            document.getElementById("locationId").value = location._id;
+            document.getElementById("locationRev").value =location._rev;
 }
 
 //--------------------------------------------------------------------------------
@@ -458,7 +463,7 @@ function hideLocation(){
  */
 async function updateLocation() {
 
-    let locationList = await getLocations();
+    //let locationList = await getLocations();
 
     let locationlabel = document.getElementById("locationlabel").value.trim();
     let locationstreet = document.getElementById("locationstreet").value.trim();
