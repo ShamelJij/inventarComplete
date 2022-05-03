@@ -284,12 +284,15 @@ paths:
       responses:
         200:
           description: "new location record successfully created "
+        201:
+          description: "a resource has been created"
+
       x-swagger-router-controller: "locationsController"
   /locations/{id}:
     get:
       tags:
         - "locations"
-      summary: "Get location by UNId"
+      summary: "Get location by Id"
       description: ""
       operationId: "getLocationById"
       produces:
@@ -464,26 +467,35 @@ definitions:
         readOnly: true
   LocationWithoutID:
     type: "object"
+    required:
+      - locationname
+      - locationlabel
+      - locationstreet
+      - housenumber
+      - zipcode
+      - floornumber
+      - roomnumber
+    additionalProperties: false
     properties:
-      company:
+      locationname:
         type: "string"
-        example: "deltastone"
-      street:
+        example: "Mannheim"
+      locationlabel:
         type: "string"
-        example: "Süderstraße"
-      houseNumber:
+        example: "Nokia GmbH"
+      locationstreet:
         type: "string"
-        example: "14B"
-      zipCode:
+        example: "LudwigStr"
+      housenumber:
         type: "string"
-        example: "24135"
-      city:
+        example: "23"
+      zipcode:
         type: "string"
-        example: "Hamburg"
-      floor:
+        example: "22134"
+      floornumber:
         type: "string"
         example: "EG"
-      roomNumber:
+      roomnumber:
         type: "string"
         example: "13C"
         description: "Die location muss nicht eindeutig in der Datenbank sein"

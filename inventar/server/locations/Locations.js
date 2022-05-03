@@ -28,7 +28,7 @@ class Locations {
      * @param {String} strUnid locations UNID
      * @return Location
      */
-    static async getByUnid(strUnid) {
+    static async getById(strUnid) {
         try {
             let body = await dbLocations.getDocumentByKey(strUnid);
 
@@ -67,7 +67,7 @@ class Locations {
     /**
      * get multiple locations by ids
      */
-    static async getByUnids(ids) {
+    static async getByIds(ids) {
         try {
             let documents = await dbLocations.getDocumentsByIds(ids);
             if (!documents.length) {
@@ -110,53 +110,18 @@ class Locations {
      * @param {boolean} desc sorting descenting
      * @return {Promise<{locations: Array, distinctGroups: Array, distinctCreators: Array, distinctSuppliers: Array}>}
      */
-    static async getAll(complete, uniques, view, desc) {
+    //TODO: kommentare einpassen
+    static async getAll( limit, offset,  desc,query) {
         try {
             console.log('[Locations.getAll]');
             desc     = desc || false;
-            let body = await dbLocations.getAllDocumentsByKey(null, view, desc);
+            limit = limit || 100;
+            offset = offset || 0;
+            let view = 'id';
 
-            let result = {
-                locations: [],
-                distinctGroups: [],
-                distinctCreators: [],
-                distinctSuppliers: []
-            };
-
-            body.forEach(function(v) {
-                if (v.doc['history']) {
-                    if (v.doc['history'].createdBy) {
-                        let i = v.doc['history'].createdBy.indexOf('/');
-                        if (i !== -1) {
-                            v.doc['history'].createdBy = v.doc['history'].createdBy.substr(0, i);
-                        }
-                    }
-                    if (v.doc['history'].createdOn) {
-                        v.doc['history'].createdOn = moment(v.doc['history'].createdOn).format('YYYY-MM-DD');
-                    }
-                }
-                if (v.doc.hasOwnProperty('alt_group') && v.doc.alt_group) {
-                    v.doc.group = v.doc.alt_group;
-                }
-                if (v.doc.hasOwnProperty('retailPrice') && v.doc.retailPrice === '') {
-                    v.doc.retailPrice = 0;
-                }
-                result.locations.push(v.doc);
-
-                if (uniques) {
-                    result.distinctGroups.push(v.doc.group);
-                    result.distinctCreators.push(v.doc.history.createdBy);
-                    if (v.doc.supplier) {
-                        result.distinctSuppliers.push(v.doc.supplier.no);
-                    }
-                }
-            });
-
-            if (uniques) {
-                result.distinctGroups    = lodash.uniq(result.distinctGroups).sort();
-                result.distinctCreators  = lodash.uniq(result.distinctCreators).sort();
-                result.distinctSuppliers = lodash.uniq(result.distinctSuppliers).sort();
-            }
+            let body = await dbLocations.getAllDocumentsByKey(null, view, desc, limit, offset);
+            let result = [];
+            body.forEach(function (v) {result.push(v.value)});
             return result;
         } catch (err) {
             console.log('[Locations.getAllDocumentsByKey] error: ' + JSON.stringify(err));

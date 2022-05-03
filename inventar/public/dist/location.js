@@ -143,7 +143,7 @@ function getInputLocation(){
     locationData ["housenumber"] = document.getElementById("housenumber").value;
     locationData ["zipcode"] = document.getElementById("zipcode").value;
     locationData ["locationname"] = document.getElementById("locationname").value;
-    locationData ["floorNumber"] = document.getElementById("floorNumber").value;
+    locationData ["floornumber"] = document.getElementById("floornumber").value;
     locationData ["roomnumber"] = document.getElementById("roomnumber").value;
     return locationData;
 }
@@ -166,7 +166,7 @@ async function inputValidationLocation() {
     let housenumber = getInputLocation().housenumber;
     let zipcode = getInputLocation().zipcode;
     let locationname= getInputLocation().locationname;
-    let floorNumber = getInputLocation().floorNumber;
+    let floornumber = getInputLocation().floornumber;
     let roomnumber = getInputLocation().roomnumber;
 
     if (housenumber == '' || housenumber < 1){
@@ -241,7 +241,7 @@ function insertNewRecordLocation(locationList){
     let cell5 = newRow.insertCell(4);
     cell5.innerHTML = locationList.locationname;
     let cell6 = newRow.insertCell(5);
-    cell6.innerHTML = locationList.floorNumber;
+    cell6.innerHTML = locationList.floornumber;
     let cell7 = newRow.insertCell(6);
     cell7.innerHTML = locationList.roomnumber;
     let cell8 = newRow.insertCell(7);
@@ -328,7 +328,6 @@ async function initLocation(){
     }
     // sonst: neue Reihe zufügen für jeden Eintrag
     else {
-        let locationList = JSON.parse(localStorage.getItem('locationList'));
         let x = locationTableIsEmpty.className
         x = x.replace('d-block','');
         x = x.replace('d-none','');
@@ -361,7 +360,7 @@ function saveLocation(){
         let housenumber = document.getElementById("housenumber").value.trim();
         let zipcode = document.getElementById("zipcode").value.trim();
         let locationname= document.getElementById("locationname").value.trim();
-        let floorNumber = document.getElementById("floorNumber").value.trim();
+        let floornumber = document.getElementById("floornumber").value.trim();
         let roomnumber = document.getElementById("roomnumber").value.trim();
         let locationID = document.getElementById("saveIDLocation").value;
 
@@ -373,7 +372,7 @@ function saveLocation(){
             //zipcode muss ein Number sein
             zipcode: zipcode,
             locationname: locationname,
-            floorNumber: floorNumber,
+            floornumber: floornumber,
             roomnumber: roomnumber
         };
 
@@ -410,7 +409,7 @@ async function editLocation(locationID) {
             document.getElementById("housenumber").value = locationList[i].housenumber;
             document.getElementById("zipcode").value = locationList[i].zipcode;
             document.getElementById("locationname").value = locationList[i].locationname;
-            document.getElementById("floorNumber").value = locationList[i].floorNumber;
+            document.getElementById("floornumber").value = locationList[i].floornumber;
             document.getElementById("roomnumber").value = locationList[i].roomnumber;
             document.getElementById("saveIDLocation").value = locationList[i].locationItemID;
             break;
@@ -467,7 +466,7 @@ async function updateLocation() {
     let housenumber = document.getElementById("housenumber").value.trim();
     let zipcode = document.getElementById("zipcode").value.trim();
     let locationname= document.getElementById("locationname").value.trim();
-    let floorNumber = document.getElementById("floorNumber").value.trim();
+    let floornumber = document.getElementById("floornumber").value.trim();
     let roomnumber = document.getElementById("roomnumber").value.trim();
     let locationId = document.getElementById("saveIDLocation").value;
 
@@ -477,7 +476,7 @@ async function updateLocation() {
         housenumber: housenumber,
         zipcode: zipcode,
         locationname: locationname,
-        floorNumber: floorNumber,
+        floornumber: floornumber,
         roomnumber: roomnumber,
         _id: locationId,
         _rev: revision
@@ -509,7 +508,7 @@ function refreshLocation() {
     document.getElementById("housenumber").value = '';
     document.getElementById("zipcode").value = '';
     document.getElementById("locationname").value = '';
-    document.getElementById("floorNumber").value = '';
+    document.getElementById("floornumber").value = '';
     document.getElementById("roomnumber").value = '';
     document.getElementById('saveIDLocation').value = '';
 
@@ -518,7 +517,7 @@ function refreshLocation() {
     document.getElementById("housenumber").className = 'form-control';
     document.getElementById("zipcode").className = 'form-control';
     document.getElementById("locationname").className = 'form-control';
-    document.getElementById("floorNumber").className = 'form-control';
+    document.getElementById("floornumber").className = 'form-control';
     document.getElementById("roomnumber").className = 'form-control';
 
 }

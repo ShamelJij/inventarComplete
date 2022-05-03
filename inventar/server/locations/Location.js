@@ -113,19 +113,18 @@ class Location extends Document {
      */
     async createnew(newBody, strUsername) {
         try {
-            newBody = inputTranslation(newBody);
+            //newBody = inputTranslation(newBody);
             this.validateSchema( newBody );
             this._dbBody        = {};
             this._dbBody        = newBody;
             this._dbBody.status = 1;
             this._dbBody.form   = this._form;
             this.setHistory(strUsername, "Neu erstellt / created");
-            this.setDefaultAccess();
 
             let ret = await dbLocations.createDocument(this._dbBody);
             this._id          = ret.id;
             this._dbBody._rev = ret.rev;
-            await this.reloadFromDb();
+            //await this.reloadFromDb();
             return true;
         } catch(err) {
             console.error('[Location.createnew] error:' + JSON.stringify(err));

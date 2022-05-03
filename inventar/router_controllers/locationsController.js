@@ -14,9 +14,6 @@ let Location   = require('../server/locations/Location');
 let Locations  = require('../server/locations/Locations');
 let AppError  = require('../server/inventarUtils/ApplicationError');
 let lodash    = require('lodash');
-const Locaitons = require("../server/locations/Locations");
-const Locations = require("../server/locations/Locations");
-const Locations = require("../server/locations/Locations");
 
 
 
