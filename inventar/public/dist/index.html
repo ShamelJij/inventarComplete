@@ -32,7 +32,25 @@
     </nav>
     <div class="tab-content" id="v-pills-tabContent">
     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-        <div class="container">
+        <div class="container-fluid">
+			  <div class="row">
+				  <div class="col-lg-2 order-lg-1 ">
+					  <h4 class="d-flex justify-content-between mb-3 mx-2">
+						  <span>Data</span>
+						  <span>Anzahl</span>
+					  </h4>
+					  <ul class="list-group mb-3">
+						  <li class="list-group-item d-flex justify-content-between align-items-center">
+							  <div><h5>Personen</h5></div>
+							  <div><h5>23</h5></div>
+						  </li>
+						  <li class="list-group-item d-flex justify-content-between align-items-center">
+							  <div><h5>Gesamte Inventar</h5></div>
+							  <div><h5>2346</h5></div>
+						  </li>
+					  </ul>
+				  </div>
+				  <div class="col-lg-8 order-lg-2 ">
             <div class="container text-center mb-3"><h1>&#x1F4CB;Inventar</h1></div>
             <div class="form-row justify-content-center" id="nInventoryBtn">
                 <button class="btn btn-primary mb-4" type="button" onclick="showInventory()">Neu Inventar</button>
@@ -43,18 +61,37 @@
             </div>
             <div class="d-none" id="sInventory">
                 <form class="needs-validation" novalidate>
+						  <div class="form-row">
+							  <div class="col-md-6 mb-3">
+								  <label for="inventoryPerson">Person hinzufügen</label>
+								  <select class="form-control" type="text" readonly name="inventPerson" id="inventoryPerson" value="test person">
+									  <option value="v1">test1</option>
+									  <option value="v2">test2</option>
+								  </select>
+							  </div>
+							  <div class="col-md-6 mb-3">
+								  <label for="inventoryLocation">Standort hinzufügen</label>
+								  <select class="form-control" type="text" readonly name="editedName" id="inventoryLocation" value="test value">
+									  <option value="v1">test1</option>
+									  <option value="v2">test2</option>
+								  </select>
+							  </div>
+						  </div>
+						  <div class="form-row">
+
+						  </div>
                     <div class="form-row">
-                        <div class="col-md-6">
-                            <label for="idStatus">Status</label>
-                            <select class="form-control" name="status" id="idStatus" onchange="refreshInventory()">
-                                <option value="Aktiv">Aktiv</option>
-                                <option value="Ausgebucht">Ausgebucht</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="edited">zuletzt bearbeitet</label>
-                            <input class="form-control" type="text" readonly name="editedName" id="edited" value="10.01.2021">
-                        </div>
+							  <div class="col-md-6">
+									 <label for="idStatus">Status</label>
+								  <select class="form-control" type="text" readonly name="iinventoryStatus" id="idStatus" onchange="refreshInventory()">
+									  <option value="Aktiv">Aktiv</option>
+									  <option value="Ausgebucht">Ausgebucht</option>
+								  </select>
+							  </div>
+							  <div class="col-md-6 mb-3">
+								  <label for="edited">zuletzt bearbeitet</label>
+								  <input class="form-control" type="text" readonly name="editedName" id="edited" value="10.01.2021">
+							  </div>
                     </div>
                     <div class="form-row" id="formEndDate">
                         <div class="col-md-3 mb-3">
@@ -182,6 +219,24 @@
                     </div>
                 </form>
             </div>
+			  </div>
+				  <div class="col-lg-2 order-lg-3 ">
+					  <h4 class="d-flex justify-content-between mb-3 mx-2">
+						  <span>Data</span>
+						  <span>Anzahl</span>
+					  </h4>
+					  <ul class="list-group mb-3">
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<div><h5>Personen</h5></div>
+							<div><h5>44</h5></div>
+						</li>
+					  	<li class="list-group-item d-flex justify-content-between align-items-center">
+							 <div><h5>Gesamte Inventar</h5></div>
+							 <div><h5>5708</h5></div>
+					  	</li>
+					  </ul>
+				  </div>
+			  </div>
         </div>
         <div class="container-fluid">
 			  <div class="form-group col-md-auto alert alert-danger text-center d-none" id="inventoryDelete" role="alert">
@@ -452,6 +507,15 @@
         </div>
         </div>
     </div>
+		 <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1980" height="836" style="display: block; width: 990px; height: 418px;"></canvas>
+		 <footer class="my-5 pt-5 text-muted text-center text-small">
+			 <p class="mb-1">© 2022-2023 Inventar</p>
+			 <ul class="list-inline">
+				 <li class="list-inline-item"><a href="#">Privacy</a></li>
+				 <li class="list-inline-item"><a href="#">Terms</a></li>
+				 <li class="list-inline-item"><a href="#">Support</a></li>
+			 </ul>
+		 </footer>
     </div>
     <div class="modal fade" id="deleteInventoryModel" tabindex="-1" role="dialog" aria-labelledby="deleteInventoryModelCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -530,6 +594,7 @@
         </div>
     </div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.1/dist/Chart.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

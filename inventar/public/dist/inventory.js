@@ -453,6 +453,7 @@ async function deleteInventory(inventoryId) {
             console.log('item cannot be delete. Must have id');
         }
     }
+    initInventory();
     
 }
 
@@ -720,7 +721,6 @@ function refreshInventory() {
         console.log('Datumabgebucht: ((invis))');
         document.getElementById("formEndDate").className = 'd-none';
     }
-
 
     //price value to changes div (bookingcategory)
     let price = document.getElementById('idPrice').value;
