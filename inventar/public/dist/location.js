@@ -307,7 +307,7 @@ async function deleteLocation(locationId) {
             setTimeout(function () {
 
                 // Closing the alert
-                $('#LocationDelete').alert('close');
+                $('#locationDelete').alert('close');
             }, 10000);
         } else {
             console.log('this location is not listed at all');
