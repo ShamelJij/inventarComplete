@@ -1,3 +1,6 @@
+//import {App} from '../app.js';
+//let app = require(' ./app.js');
+
 /**
  * inventory FRONTEND
  */
@@ -468,6 +471,8 @@ async function initInventory() {
     console.log('GET: inventory: ', inventory);
     
     clearInventoryTable();
+    personCount();
+    inventoryCount()
     
     if (!inventory || inventory.length == 0) {
         ;
@@ -587,10 +592,54 @@ async function editInventory(inventoryId) {
 
 //--------------------------------------------------------------------------------
 /**
+ * inserts new option into select below choose person
+ *
+ */
+async function insertPersons(){
+
+    let selectPerson = document.getElementById('inventorySelectPerson');
+    let options = await getPersons();
+    for(let i = 0; i < options.length; i++ ){
+        let opt = options[i];
+        let el = document.createElement('option');
+        el.innerHTML = "<div class=\"text-center m-3\">" + opt.lastname + " " + opt.firstname + " " + "<span>" + opt.email + " " + opt.personalno +  "</span></div>";
+        selectPerson.appendChild(el);
+    }
+}
+
+//--------------------------------------------------------------------------------
+/**
+ * inserts new option into select below choose person
+ *
+ */
+async function personCount(){
+
+    let persons = await getPersons();
+    let personCount = document.getElementById('personCount');
+
+    personCount.innerText = persons.length;
+}
+
+//--------------------------------------------------------------------------------
+/**
+ * inserts new option into select below choose person
+ *
+ */
+async function inventoryCount(){
+
+    let inventories = await getInventories();
+    let inventoryCount = document.getElementById('inventoryCount');
+
+    inventoryCount.innerText = inventories.length;
+}
+
+//--------------------------------------------------------------------------------
+/**
  * show Inventory form
  *
  */
-function showInventory() {
+async function showInventory() {
+    await insertPersons();
     let sInventory = document.getElementById('sInventory').className;
     document.getElementById('iUpdateBtn').className = 'd-none';
     document.getElementById('iSaveBtn').className = 'btn btn-primary';
