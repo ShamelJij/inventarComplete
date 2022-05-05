@@ -148,6 +148,7 @@ async function getInventoryById(url) {
  */
 function getInputInventory() {
     let inventoryData = {};
+    inventoryData ["personId"] = document.getElementById("inventorySelectPerson").value;
     inventoryData ["status"] = document.getElementById("idStatus").value;
     inventoryData ["label"] = document.getElementById("idLabel").value;
     inventoryData ["serialnumber"] = document.getElementById("idInventorySerialNumber").value;
@@ -520,6 +521,7 @@ function saveInventory() {
 
             postInventory(getInputInventory(),'http://localhost:8080/v1/inventories/');
 
+            let personId = document.getElementById("inventorySelectPerson").value;
             let status = document.getElementById("idStatus").value.trim();
             let label = document.getElementById("idLabel").value.trim();
             let serialnumber = document.getElementById("idInventorySerialNumber").value.trim();
@@ -534,6 +536,7 @@ function saveInventory() {
 
             //storing as an object
             let inventoryItem = {
+                personId: personId,
                 status: status,
                 label: label,
                 serialnumber: serialnumber,
@@ -600,9 +603,28 @@ async function insertPersons(){
     for(let i = 0; i < options.length; i++ ){
         let opt = options[i];
         let el = document.createElement('option');
-        el.innerHTML = "<div class=\"text-center m-3\">" + opt.lastname + " " + opt.firstname + " " + "<span>" + opt.email + " " + opt.personalno +  "</span></div>";
+        el.innerHTML = "<div>" + opt.lastname + " " + opt.firstname + " " + "<span>" + opt.email + " " + opt.personalno +  "</span></div>";
+        el.className = "h5";
+        el.value = opt._id;
         selectPerson.appendChild(el);
     }
+    /*let newPeron = document.createElement('option');
+    newPeron.innerHTML = "<div>Neu Person + </div>";
+    newPeron.setAttribute('id', 'createPerson');
+    newPeron = document.getElementById('creatsPerson');
+    newPeron.setAttribute('onclick', createPerson());
+    newPeron.className = "bg-info text-white text-center h4";
+    selectPerson.appendChild(newPeron);*/
+}
+
+//--------------------------------------------------------------------------------
+/**
+ * will switch the user to create a new person
+ *
+ */
+function createPerson() {
+    console.log('user is switched to person page');
+
 }
 
 //--------------------------------------------------------------------------------

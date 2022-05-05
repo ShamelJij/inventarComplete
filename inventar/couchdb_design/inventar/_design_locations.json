@@ -1,0 +1,16 @@
+{
+  "_id": "_design/locations",
+  "_rev": "1-4561a0ed14a89d5f657b84009bf0ed09",
+  "views": {
+    "id": {
+      "map": "function (doc) {\n  if (doc.form === \"location\" && !doc.deleted) {\n  emit(doc._id, doc);\n  }\n}"
+    },
+    "get-all": {
+      "map": "function (doc) {\n  if (doc.form === \"location\"){\n  emit(doc._id, doc.value);\n  }\n}"
+    },
+    "test-view": {
+      "map": "function (doc) {\n  if (doc.form === \"location\" && !doc.deleted) {\n  emit(doc._id, doc.locationLabel + ', ' + doc.locationName);\n  }\n}"
+    }
+  },
+  "language": "javascript"
+}

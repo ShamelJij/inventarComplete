@@ -1,0 +1,16 @@
+{
+  "_id": "_design/inventories",
+  "_rev": "6-e1ee6648205af565706437aafd25d043",
+  "views": {
+    "get-all": {
+      "map": "function (doc) {\n  if (doc.form === \"inventory\") {\n  emit(doc);\n  }\n}"
+    },
+    "id": {
+      "map": "function (doc) {\n  if (doc.form === \"inventory\" && !doc.deleted) {\n  emit(doc._id, doc);\n  }\n}"
+    },
+    "test-view": {
+      "map": "function (doc) {\n  if (doc.form === \"inventory\" && !doc.deleted) {\n  emit(doc._id, doc.label);\n  }\n}"
+    }
+  },
+  "language": "javascript"
+}
