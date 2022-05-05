@@ -475,14 +475,12 @@ async function initInventory() {
     inventoryCount();
     
     if (!inventory || inventory.length == 0) {
-        ;
         let x = inventoryTableIsEmpty.className
         x = x.replace('d-block', '');
         x = x.replace('d-none', '');
         x = x.trim();
         inventoryTableIsEmpty.className = x + ' d-block';
         console.log('table is empty');
-
     }
     // sonst: neue Reihe zufügen für jeden Eintrag
     else {
