@@ -94,7 +94,7 @@ paths:
       tags:
         - "persons"
       summary: "Updated Person"
-      description: "This will update Person body with UNID"
+      description: "This will update Person body with id"
       operationId: "updatePerson"
       produces:
         - "application/json"

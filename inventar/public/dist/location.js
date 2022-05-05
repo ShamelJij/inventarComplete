@@ -308,7 +308,7 @@ async function deleteLocation(locationId) {
 
                 // Closing the alert
                 $('#locationDelete').alert('close');
-            }, 10000);
+            }, 4000);
         } else {
             console.log('this location is not listed at all');
         }
@@ -516,6 +516,7 @@ function refreshLocation() {
     document.getElementById("floornumber").value = '';
     document.getElementById("roomnumber").value = '';
     document.getElementById("locationId").value = '';
+    document.getElementById("locationRev").value = '';
 
     document.getElementById("locationlabel").className = 'form-control';
     document.getElementById("locationstreet").className = 'form-control';

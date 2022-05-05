@@ -140,6 +140,17 @@ async function getPersons() {
     return sendHTTPRequest('GET', 'http://localhost:8080/v1/persons');
 }
 
+//--------------------------------------------------------------------------------
+/**
+ * GET /persons/id
+ * @param url
+ * @param id
+ * @return {<Objects>} personObject
+ */
+async function getPersonById(url) {
+    return sendHTTPRequest('GET', 'http://localhost:8080/v1/persons/' + url);
+}
+
 //################################################################################
 //form section
 /**
@@ -337,25 +348,20 @@ function clearPersonTable() {
 
      delPerson('http://localhost:8080/v1/persons/' + personId);
 
-    let persons = await getPersons();
-    for(let i = 0; i < persons.length; i++) {
-        if (personId == persons[i]._id) {
+    let persons = await getPersonById(personId);
+
             let x = personDelete.className
             x = x.replace('d-block','');
             x = x.replace('d-none','');
             x = x.trim();
             personDelete.className = x + ' d-block';
-            personDeletedName.innerText = persons[i].firstname + ' ' + persons[i].lastname;
+            personDeletedName.innerText = persons.firstname + ' ' + persons.lastname;
             initPerson();
             setTimeout(function () {
 
                 // Closing the alert
                 $('#personDelete').alert('close');
-            }, 10000);
-        } else {
-            console.log('this person is not listed at all');
-        }
-    }
+            }, 4000);
 
 }
 
@@ -452,24 +458,18 @@ function savePerson(){
  */
 async function editPerson(personId) {
     showPerson();
-    let persons = await getPersons();
+    let persons = await getPersonById(personId);
     document.getElementById('pUpdateBtn').className = 'btn btn-success';
     document.getElementById('pSaveBtn').className = 'd-none';
-    for(let i = 0; i < persons.length; i++){
-        if (personId == persons[i]._id){
 
-            console.log('editPerson', persons[i]);
+            console.log('editPerson', persons);
 
-            document.getElementById("lastname").value = persons[i].lastname;
-            document.getElementById("firstname").value = persons[i].firstname;
-            document.getElementById("personalno").value = persons[i].personalno;
-            document.getElementById("email").value = persons[i].email;
-            document.getElementById("personId").value = persons[i]._id;
-            document.getElementById("personRevision").value =persons[i]._rev;
-            break;
-        }
-    }
-    //initPerson??
+            document.getElementById("lastname").value = persons.lastname;
+            document.getElementById("firstname").value = persons.firstname;
+            document.getElementById("personalno").value = persons.personalno;
+            document.getElementById("email").value = persons.email;
+            document.getElementById("personId").value = persons._id;
+            document.getElementById("personRevision").value =persons._rev;
 }
 
 //--------------------------------------------------------------------------------
@@ -555,6 +555,7 @@ function refreshPerson() {
     document.getElementById("personalno").value = '';
     document.getElementById("email").value = '';
     document.getElementById('personId').value = '';
+    document.getElementById('personRevision').value = '';
 
     document.getElementById("lastname").className = 'form-control';
     document.getElementById("firstname").className = 'form-control';
