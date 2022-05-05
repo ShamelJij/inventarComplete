@@ -121,7 +121,7 @@ class Locations {
 
             let body = await dbLocations.getAllDocumentsByKey(null, view, desc, limit, offset);
             let result = [];
-            body.forEach(function (v) {result.push(v.value)});
+            body?.forEach(function (v) {result.push(v.value)});
             return result;
         } catch (err) {
             console.log('[Locations.getAllDocumentsByKey] error: ' + JSON.stringify(err));

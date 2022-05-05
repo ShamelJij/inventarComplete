@@ -121,7 +121,7 @@ class Persons {
 
             let body = await dbPersons.getAllDocumentsByKey(null, view, desc, limit, offset);
             let result = [];
-            body.forEach(function (v) {result.push(v.value)});
+            body?.forEach(function (v) {result.push(v.value)});
             return result;
         } catch (err) {
             console.log('[Persons.getAllDocumentsByKey] error: ' + JSON.stringify(err));
