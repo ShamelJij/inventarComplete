@@ -99,22 +99,25 @@ function putInventory(postObj,url) {
  *
  * @param url
  */
-function delData(url) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('DELETE', url, true);
-    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
-    xhr.send();
+async function delData(url) {
+    let promise = new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.open('DELETE', url, true);
+        xhr.responseType = 'json';
+        xhr.onload = function () {
+            debugger;
+            if(xhr.status === 200) {
+                console.log("Delete successful!");
+                initInventory();
 
-    xhr.onload = function () {
-        if(xhr.status === 200) {
-            console.log("Delete successful!");
-            initInventory();
-
-        } else if (xhr.status === 404){
-            console.log('inventory not found');
-            initInventory();
+            } else if (xhr.status === 404){
+                console.log('inventory not found');
+                initInventory();
+            }
         }
-    }
+        xhr.send();
+    });
+    return promise;
 
 }
 
@@ -435,9 +438,9 @@ function clearInventoryTable() {
  */
 async function deleteInventory(inventoryId) {
 
-    delData('http://localhost:8080/v1/inventories/' + inventoryId);
+    await delData('http://localhost:8080/v1/inventories/' + inventoryId);
 
-    let inventory = await getInventories();
+    /*let inventory = await getInventories();
     for(let i = 0; i < inventory.length; i++) {
         if (inventoryId == inventory[i]._id) {
             let x = inventoryDelete.className
@@ -456,7 +459,7 @@ async function deleteInventory(inventoryId) {
             console.log('item cannot be delete. Must have id');
         }
     }
-    initInventory();
+    initInventory();*/
     
 }
 
