@@ -47,7 +47,7 @@ function sendHTTPRequest (method, url) {
  * @param {Object} postObj
  * @param {string} url
  */
-function postData(postObj,url) {
+function postInventory(postObj,url) {
     let xhr = new XMLHttpRequest();
     let inventoryData = JSON.stringify(postObj);
     xhr.open('POST', url, true);
@@ -99,25 +99,22 @@ function putInventory(postObj,url) {
  *
  * @param url
  */
-async function delData(url) {
-    let promise = new Promise((resolve, reject) => {
-        let xhr = new XMLHttpRequest();
-        xhr.open('DELETE', url, true);
-        xhr.responseType = 'json';
-        xhr.onload = function () {
-            debugger;
-            if(xhr.status === 200) {
-                console.log("Delete successful!");
-                initInventory();
+function delInventory(url) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('DELETE', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
+    xhr.send();
 
-            } else if (xhr.status === 404){
-                console.log('inventory not found');
-                initInventory();
-            }
+    xhr.onload = function () {
+        if(xhr.status === 200) {
+            console.log("Delete successful!");
+            initInventory();
+
+        } else if (xhr.status === 404){
+            console.log('inventory not found');
+            initInventory();
         }
-        xhr.send();
-    });
-    return promise;
+    }
 
 }
 
@@ -438,9 +435,9 @@ function clearInventoryTable() {
  */
 async function deleteInventory(inventoryId) {
 
-    await delData('http://localhost:8080/v1/inventories/' + inventoryId);
+    delInventory('http://localhost:8080/v1/inventories/' + inventoryId);
 
-    /*let inventory = await getInventories();
+    let inventory = await getInventories();
     for(let i = 0; i < inventory.length; i++) {
         if (inventoryId == inventory[i]._id) {
             let x = inventoryDelete.className
@@ -459,7 +456,7 @@ async function deleteInventory(inventoryId) {
             console.log('item cannot be delete. Must have id');
         }
     }
-    initInventory();*/
+    initInventory();
     
 }
 
@@ -475,7 +472,7 @@ async function initInventory() {
     
     clearInventoryTable();
     personCount();
-    inventoryCount()
+    inventoryCount();
     
     if (!inventory || inventory.length == 0) {
         ;
@@ -513,7 +510,7 @@ function saveInventory() {
     if (refresh()) {
         if (inputValidationInventory()) {
 
-            postData(getInputInventory(),'http://localhost:8080/v1/inventories/');
+            postInventory(getInputInventory(),'http://localhost:8080/v1/inventories/');
 
             let status = document.getElementById("idStatus").value.trim();
             let label = document.getElementById("idLabel").value.trim();

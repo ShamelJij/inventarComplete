@@ -61,7 +61,7 @@ function sendHTTPRequest (method, url) {
  * @param {Object} postObj
  * @param {string} url
  */
- function postData(postObj,url) {
+ function postPerson(postObj,url) {
     let xhr = new XMLHttpRequest();
     let personData = JSON.stringify(postObj)
     xhr.open('POST', url, true);
@@ -111,7 +111,7 @@ function putPerson(postObj,url) {
  *
  * @param url
  */
-function delData(url) {
+function delPerson(url) {
     let xhr = new XMLHttpRequest();
     xhr.open('DELETE', url, true);
     xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
@@ -335,7 +335,7 @@ function clearPersonTable() {
  */
  async function deletePerson(personId) {
 
-     delData('http://localhost:8080/v1/persons/' + personId);
+     delPerson('http://localhost:8080/v1/persons/' + personId);
 
     let persons = await getPersons();
     for(let i = 0; i < persons.length; i++) {
@@ -409,7 +409,7 @@ async function initPerson(){
 function savePerson(){
     if (inputValidationPerson()) {
 
-        postData(getInputPerson(),'http://localhost:8080/v1/persons/');
+        postPerson(getInputPerson(),'http://localhost:8080/v1/persons/');
 
         let lastname = document.getElementById("lastname").value.trim();
         let firstname = document.getElementById("firstname").value.trim();

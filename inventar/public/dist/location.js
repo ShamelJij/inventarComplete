@@ -50,7 +50,7 @@ function sendHTTPRequest (method, url) {
  * @param {Object} postObj
  * @param {string} url
  */
-function postData(postObj,url) {
+function postLocation(postObj,url) {
     let xhr = new XMLHttpRequest();
     let locationData = JSON.stringify(postObj)
     xhr.open('POST', url, true);
@@ -100,7 +100,7 @@ function putLocation(postObj,url) {
  *
  * @param url
  */
-function delData(url) {
+function delLocation(url) {
     let xhr = new XMLHttpRequest();
     xhr.open('DELETE', url, true);
     xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
@@ -292,7 +292,7 @@ function clearLocationTable() {
  */
 async function deleteLocation(locationId) {
 
-    delData('http://localhost:8080/v1/locations/' + locationId);
+    delLocation('http://localhost:8080/v1/locations/' + locationId);
 
     let locations = await getLocations();
     for(let i = 0; i < locations.length; i++) {
@@ -363,7 +363,7 @@ async function initLocation(){
 function saveLocation(){
     if (inputValidationLocation()) {
 
-        postData(getInputLocation(),'http://localhost:8080/v1/locations/');
+        postLocation(getInputLocation(),'http://localhost:8080/v1/locations/');
 
         let locationlabel = document.getElementById("locationlabel").value.trim();
         let locationstreet = document.getElementById("locationstreet").value.trim();
