@@ -1,611 +1,660 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!--additional CSS File-->
-    <!--<link rel="stylesheet" href="style.css">-->
-    <title>Inventar</title>
-    <!--w3 svg icons-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<style>
-			#inventorySelectPerson > option:nth-child(odd) {
-				background: #ffffff;
-			}
-			#inventorySelectPerson > option:nth-child(even) {
-				background: #e9ecef;
-			}
-		</style>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!--additional CSS File-->
+	<!--<link rel="stylesheet" href="style.css">-->
+	<title>Inventar</title>
+	<!--w3 svg icons-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+		#inventorySelectPerson > option:nth-child(odd) {
+			background: #ffffff;
+		}
+
+		#inventorySelectPerson > option:nth-child(even) {
+			background: #e9ecef;
+		}
+	</style>
 </head>
 <body onload="refreshInventory();">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <i class="fa fa-cubes mb-3" style="font-size:36px;color: dodgerblue">Inventar</i>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-            <div class="nav flex-row nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active" onclick="initInventory()" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Inventar</a>
-                <a class="nav-link" onclick="initPerson()" id="v-pills-person-tab" data-toggle="pill" href="#v-pills-person" role="tab" aria-controls="v-pills-person" aria-selected="false">Person</a>
-                <a class="nav-link" onclick="initLocation()" id="v-pills-location-tab" data-toggle="pill" href="#v-pills-location" role="tab" aria-controls="v-pills-location" aria-selected="false">Standort</a>
-                <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Einstellungen</a>
-            </div>
-        </div>
-    </nav>
-    <div class="tab-content" id="v-pills-tabContent">
-    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-        <div class="container-fluid pt-5">
-			  <div class="row">
-				  <div class="col-lg-2 order-lg-1 ">
-					  <h4 class="d-flex justify-content-between mb-3 mx-2">
-						  <span>Data</span>
-						  <span>Anzahl</span>
-					  </h4>
-					  <ul class="list-group mb-3">
-						  <li class="list-group-item d-flex justify-content-between align-items-center">
-							  <div><h5>Personen</h5></div>
-							  <div><h4><span id="personCount" class="badge badge-info"></span></h4></div>
-						  </li>
-						  <li class="list-group-item d-flex justify-content-between align-items-center">
-							  <div><h5>Gesamte Inventar</h5></div>
-							  <div><h4><span id="inventoryCount" class="badge badge-info"></span></h4></div>
-						  </li>
-					  </ul>
-				  </div>
-				  <div class="col-lg-8 order-lg-2 ">
-            <div class="container text-center mb-3"><h1>&#x1F4CB;Inventar</h1></div>
-            <div class="form-row justify-content-center" id="nInventoryBtn">
-                <button class="btn btn-primary mb-4" type="button" onclick="showInventory()">Neu Inventar</button>
-            </div>
-            <div id="inventoryIsSaved" class="d-none">
-                <div class="col text-center justify-content-center alert-info" id="inventoryIsSavedText">
-                </div>
-            </div>
-            <div class="d-none" id="sInventory">
-                <form class="needs-validation" novalidate>
-						  <div class="form-row">
-							  <div class="col-md-6 mb-3">
-								  <label for="inventorySelectPerson">Person hinzufügen</label>
-								  <select class="form-control" type="text" readonly name="inventPerson" id="inventorySelectPerson" value="test person">
-									  <option value="...">...</option>
-									  <option value="neu Perosn" class="bg-info text-white">Neu Person + </option>
-								  </select>
-							  </div>
-							  <div class="col-md-6 mb-3">
-								  <label for="inventorySelectLocation">Standort hinzufügen</label>
-								  <select class="form-control" type="text" readonly name="editedName" id="inventorySelectLocation" value="test value">
-									  <option value="v1">test1</option>
-									  <option value="v2">test2</option>
-								  </select>
-							  </div>
-						  </div>
-						  <div class="form-row">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<i class="fa fa-cubes mb-3" style="font-size:36px;color: dodgerblue">&nbsp;Inventar</i>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+			  aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+		<div class="nav flex-row nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+			<a class="nav-link active" onclick="initInventory()" id="v-pills-home-tab" data-toggle="pill"
+				href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Inventar</a>
+			<a class="nav-link" onclick="initPerson()" id="v-pills-person-tab" data-toggle="pill" href="#v-pills-person"
+				role="tab" aria-controls="v-pills-person" aria-selected="false">Person</a>
+			<a class="nav-link" onclick="initLocation()" id="v-pills-location-tab" data-toggle="pill"
+				href="#v-pills-location" role="tab" aria-controls="v-pills-location" aria-selected="false">Standort</a>
+			<a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+				aria-controls="v-pills-settings" aria-selected="false">Einstellungen</a>
+		</div>
+	</div>
+</nav>
+<div class="tab-content" id="v-pills-tabContent">
+	<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+		<div class="container-fluid pt-5">
+			<div class="row">
+				<div class="col-lg-10 order-lg-1">
+					<div class="container text-center mb-3"><h1>&#x1F4CB;Inventar</h1></div>
+					<div class="form-row justify-content-center" id="nInventoryBtn">
+						<button class="btn btn-primary mb-4" type="button" onclick="showInventory()">Neues Inventar</button>
+					</div>
+					<div id="inventoryIsSaved" class="d-none">
+						<div class="col text-center justify-content-center alert-info" id="inventoryIsSavedText">
+						</div>
+					</div>
+					<div class="d-none" id="sInventory">
+						<form class="needs-validation" novalidate>
+							<div class="form-row">
+								<div class="col-md-3 mb-3">
+									<label for="inventorySelectPerson">Person hinzufügen</label>
+									<select class="form-control" type="text" readonly name="inventPerson"
+											  id="inventorySelectPerson" value="test person">
+										<option value="...">...</option>
+									</select>
+								</div>
+								<div class="col-md-3 mt-4 text-center">
+									<button class="btn btn-primary" data-toggle="modal" data-target="#showAddPersonTable" onclick="showAddPersonTable()" href="#"><i class="fa fa-user-plus"
+																													style="font-size:24px"></i>&nbsp;&nbsp;neue
+										Person
+									</button>
+								</div>
+								<div class="col-md-3 mb-3">
+									<label for="inventorySelectLocation">Standort hinzufügen</label>
+									<select class="form-control" type="text" readonly name="editedName"
+											  id="inventorySelectLocation" value="test value">
+										<option value="v1">...</option>
+										<option value="v2">test2</option>
+									</select>
+								</div>
+								<div class="col-md-3 mt-4 text-center">
+									<button class="btn btn-primary" type="button" onclick=""><i class="fa fa-map-marker"
+																													style="font-size:24px"></i>&nbsp;&nbsp;neuer
+										Standort
+									</button>
+								</div>
+							</div>
+							<div class="form-row">
 
-						  </div>
-                    <div class="form-row">
-							  <div class="col-md-6">
-									 <label for="idStatus">Status</label>
-								  <select class="form-control" type="text" readonly name="inventoryStatus" id="idStatus" onchange="refreshInventory()">
-									  <option value="Aktiv">Aktiv</option>
-									  <option value="Ausgebucht">Ausgebucht</option>
-								  </select>
-							  </div>
-							  <div class="col-md-6 mb-3">
-								  <label for="edited">zuletzt bearbeitet</label>
-								  <input class="form-control" type="text" readonly name="editedName" id="edited" value="10.01.2021">
-							  </div>
-                    </div>
-                    <div class="form-row" id="formEndDate">
-                        <div class="col-md-3 mb-3">
-                            <label for="idDeprecationDate">Datum abgebucht</label>
-                            <input type="date" class="form-control" id="idDeprecationDate" min="2018-01-01" required>
-                            <div class="valid-feedback">
-                                Danke!
-                            </div>
-                            <div class="invalid-feedback">
-                                Bitte Datum eingeben!
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-3 mb-3">
-                            <label for="idLabel">Bezeichnung</label>
-                            <input type="text" class="form-control" id="idLabel" required>
-                            <div class="valid-feedback" id="idLabelIsValid">
-                                Danke!
-                            </div>
-                            <div class="invalid-feedback" id="idLabelIsInvalid">
-                                Bitte füllen Sie das Feld aus.
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="idInventorySerialNumber">Seriennummer</label>
-                            <input type="text" class="form-control" name="serialNumber" id="idInventorySerialNumber" required>
-                            <div class="valid-feedback" id="idInventorySerialNumberIsValid">
-                                die Eingabe sind gültig
-                            </div>
-                            <div class="invalid-feedback" id="idInventorySerialNumberIsInValid">
-                                die eingabe muss eindeutig sein!
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="idType">Typ</label>
-                            <input type="text" class="form-control" id="idType" required>
-                            <div class="valid-feedback" id="idTypeIsValid">
-                                Danke!
-                            </div>
-                            <div class="invalid-feedback" id="idTypeIsInValid">
-                                Bitte füllen Sie das Feld aus.
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="idPurchaseDate">Anschaffungsdatum</label>
-                            <input type="date" class="form-control" onchange="dateChangeHandler(event);" name="purchaseDate" id="idPurchaseDate" min="2018-01-01" required>
-                            <div class="invalid-feedback" id="idPurchaseDateInvalid">
-                                Bitte ein Datum eingeben.
-                            </div>
-                            <div class="valid-feedback" id="idPurchaseDateValid">
-                                Danke!
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-3 mb-3">
-                            <label for="idPrice">Preis&nbsp;&nbsp;<span class="badge badge-info">netto</span></label>
-                            <div class="input-group">
-                                <input type="number" class="form-control" id="idPrice" value="0" oninput="priceInputChange()">
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="inputGroupAppendType">&#128;<!--euro-symbol--></span>
-                                </div>
-                                <div class="valid-feedback" id="idPriceValid">
-                                </div>
-                                <div class="invalid-feedback"  id="idPriceNotValid">
-                                    negatives Wert ist nicht gültig
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 mt-4 text-center">
-                            <button class="btn btn-primary" type="button" onclick="refresh();"><i class="fa fa-calculator" style="font-size:24px"></i>&nbsp;berechnen</button>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="bookingCategory">Abschreibskategorie</label>
-                            <input class="form-control" type="text" readonly name="editedName" id="bookingCategory" value="GWG">
-                        </div>
-                    </div>
-                    <div class="form-row" id="rowDepreciation">
-                        <div class="col-md-3 offset-md-6">
-                            <div class="col-md-3 mb-3" id="deprecationInputGroup">
-                                <label for="idDepreciationInput">Abschreibzeitraum</label>
-                                <div class="input-group">
-                                    <input type="number" class="form-control" name="depreciationInput" id="idDepreciationInput"  required>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Monate</span>
-                                    </div>
-                                    <div class="valid-feedback" id="idDepreciationInputIsValid">
-                                        Danke!
-                                    </div>
-                                    <div class="invalid-feedback" id="idDepreciationInputIsInValid">
-                                        Bitte Datum eingeben!
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="col-md-3 mb-3" id="validationEndDateGroup">
-                                <label for="validationEndDate">Abgeschrieben am:</label>
-                                <input type="date" class="form-control"  id="validationEndDate" min="2018-01-01" readonly>
-                                <div class="valid-feedback">
-                                    Danke!
-                                </div>
-                                <div class="invalid-feedback">
-                                    Bitte Datum eingeben!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-block">
-                        <input type="text" id="saveIDInventory">
-                    </div>
-                    <div class="d-block">
-                        <input type="text" id="hiddenStatus">
-                    </div>
-						 <div class="d-block">
-							 <input type="text" id="inventoryRev">
-						 </div>
-                    <div class="form-group col-12 text-center my-3">
-                        <form class="submit-form">
-                            <button class="btn btn-success" type="button" onclick="updateInventory()" id="iUpdateBtn">Aktualisieren</button>
-                            <button class="btn btn-primary" type="button" onclick="saveInventory();" id="iSaveBtn">Speichern</button>
-                            <button class="btn btn-primary" type="button" onclick="hideInventory()" id="iCancelBtn">Abrechen</button>
-                        </form>
-                    </div>
-                </form>
-            </div>
-			  </div>
-				  <div class="col-lg-2 order-lg-3 ">
-					  <h4 class="d-flex justify-content-between mb-3 mx-2">
-						  <span>Data</span>
-						  <span>Anzahl</span>
-					  </h4>
-					  <ul class="list-group mb-3">
+							</div>
+							<div class="form-row">
+								<div class="col-md-6">
+									<label for="idStatus">Status</label>
+									<select class="form-control" type="text" readonly name="inventoryStatus" id="idStatus"
+											  onchange="refreshInventory()">
+										<option value="Aktiv">Aktiv</option>
+										<option value="Ausgebucht">Ausgebucht</option>
+									</select>
+								</div>
+								<div class="col-md-6 mb-3">
+									<label for="edited">zuletzt bearbeitet</label>
+									<input class="form-control" type="text" readonly name="editedName" id="edited"
+											 value="10.01.2021">
+								</div>
+							</div>
+							<div class="form-row" id="formEndDate">
+								<div class="col-md-3 mb-3">
+									<label for="idDeprecationDate">Datum abgebucht</label>
+									<input type="date" class="form-control" id="idDeprecationDate" min="2018-01-01" required>
+									<div class="valid-feedback">
+										Danke!
+									</div>
+									<div class="invalid-feedback">
+										Bitte Datum eingeben!
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-3 mb-3">
+									<label for="idLabel">Bezeichnung</label>
+									<input type="text" class="form-control" placeholder="z.B. Dell - Apple - Asus" id="idLabel" required>
+									<div class="valid-feedback" id="idLabelIsValid">
+										Danke!
+									</div>
+									<div class="invalid-feedback" id="idLabelIsInvalid">
+										Bitte füllen Sie das Feld aus.
+									</div>
+								</div>
+								<div class="col-md-3 mb-3">
+									<label for="idInventorySerialNumber">Seriennummer</label>
+									<input type="text" class="form-control" name="serialNumber" placeholder="die Gerätenummer auf dem Typenschild" id="idInventorySerialNumber"
+											 required>
+									<div class="valid-feedback" id="idInventorySerialNumberIsValid">
+										die Eingabe sind gültig
+									</div>
+									<div class="invalid-feedback" id="idInventorySerialNumberIsInValid">
+										die eingabe muss eindeutig sein!
+									</div>
+								</div>
+								<div class="col-md-3 mb-3">
+									<label for="idType">Typ</label>
+									<input type="text" class="form-control" placeholder="z.B. Laptop - Maus - Monitor" id="idType" required>
+									<div class="valid-feedback" id="idTypeIsValid">
+										Danke!
+									</div>
+									<div class="invalid-feedback" id="idTypeIsInValid">
+										Bitte füllen Sie das Feld aus.
+									</div>
+								</div>
+								<div class="col-md-3 mb-3">
+									<label for="idPurchaseDate">Anschaffungsdatum</label>
+									<input type="date" class="form-control" onchange="dateChangeHandler(event);"
+											 name="purchaseDate" id="idPurchaseDate" min="2018-01-01" required>
+									<div class="invalid-feedback" id="idPurchaseDateInvalid">
+										Bitte ein Datum eingeben.
+									</div>
+									<div class="valid-feedback" id="idPurchaseDateValid">
+										Danke!
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="col-md-3 mb-3">
+									<label for="idPrice">Preis&nbsp;&nbsp;<span class="badge badge-info"><h5>netto</h5></span></label>
+									<div class="input-group">
+										<input type="number" class="form-control" id="idPrice" value="0"
+												 oninput="priceInputChange()">
+										<div class="input-group-append">
+											<span class="input-group-text" id="inputGroupAppendType">&#128;
+												<!--euro-symbol--></span>
+										</div>
+										<div class="valid-feedback" id="idPriceValid">
+										</div>
+										<div class="invalid-feedback" id="idPriceNotValid">
+											negatives Wert ist nicht gültig
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3 mt-4 text-center">
+									<button class="btn btn-primary" type="button" onclick="refresh();"><i
+										class="fa fa-calculator" style="font-size:24px"></i>&nbsp;berechnen
+									</button>
+								</div>
+								<div class="col-md-3 mb-3">
+									<label for="bookingCategory">Abschreibskategorie</label>
+									<input class="form-control" type="text" readonly name="editedName" id="bookingCategory"
+											 value="GWG">
+								</div>
+							</div>
+							<div class="form-row" id="rowDepreciation">
+								<div class="col-md-3 offset-md-6">
+									<div class="col-md-3 mb-3" id="deprecationInputGroup">
+										<label for="idDepreciationInput">Abschreibzeitraum</label>
+										<div class="input-group">
+											<input type="number" class="form-control" name="depreciationInput"
+													 id="idDepreciationInput" required>
+											<div class="input-group-append">
+												<span class="input-group-text">Monate</span>
+											</div>
+											<div class="valid-feedback" id="idDepreciationInputIsValid">
+												Danke!
+											</div>
+											<div class="invalid-feedback" id="idDepreciationInputIsInValid">
+												Bitte Datum eingeben!
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="col-md-3 mb-3" id="validationEndDateGroup">
+										<label for="validationEndDate">Abgeschrieben am:</label>
+										<input type="date" class="form-control" id="validationEndDate" min="2018-01-01" readonly>
+										<div class="valid-feedback">
+											Danke!
+										</div>
+										<div class="invalid-feedback">
+											Bitte Datum eingeben!
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="d-block">
+								<input type="text" id="saveIDInventory">
+							</div>
+							<div class="d-block">
+								<input type="text" id="hiddenStatus">
+							</div>
+							<div class="d-block">
+								<input type="text" id="inventoryRev">
+							</div>
+							<div class="form-group col-12 text-center my-3">
+								<form class="submit-form">
+									<button class="btn btn-success" type="button" onclick="updateInventory()" id="iUpdateBtn">
+										Aktualisieren
+									</button>
+									<button class="btn btn-primary" type="button" onclick="saveInventory();" id="iSaveBtn">
+										Speichern
+									</button>
+									<button class="btn btn-primary" type="button" onclick="hideInventory()" id="iCancelBtn">
+										Abrechen
+									</button>
+								</form>
+							</div>
+						</form>
+					</div>
+					<div class="container-fluid">
+						<div class="form-group col-md-auto alert alert-danger text-center d-none" id="inventoryDelete"
+							  role="alert">
+							<p><i class="fa fa-check-circle" aria-hidden="true">&nbsp;&nbsp;</i><strong
+								id="inventoryDeletedName"></strong> ist gelöcht</p>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-striped text-center" id="idInventoryList">
+								<thead class="table-primary">
+								<tr>
+									<th>Status</th>
+									<th>Bezeichnung</th>
+									<th>Seriennummer</th>
+									<th>Typ</th>
+									<th>Anschaffungsdatum</th>
+									<th>Preis</th>
+									<th>Abschreiben kategorie</th>
+									<th>Datum abgebucht</th>
+									<th>Abgeschrieben am</th>
+									<th> -</th>
+								</tr>
+								</thead>
+								<tbody id="inventoryTableBody">
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="mt-3 d-flex justify-content-center">
+						<div class="form-group col-6 alert alert-danger text-center" id="inventoryTableIsEmpty" role="alert">
+							<p>Table ist noch leer</p>
+						</div>
+					</div>
+					<div class="container-fluid p-5">
+						<canvas class="p-4 chartjs-render-monitor" id="myChart" width="1980" height="836"
+								  style="display: block; width: 990px; height: 418px;"></canvas>
+					</div>
+				</div>
+				<div class="col-lg-2 order-lg-2 bg-light">
+					<ul class="list-group my-3">
 						<li class="list-group-item d-flex justify-content-between align-items-center">
-							<div><h5>Personen</h5></div>
-							<div><h5>44</h5></div>
+							<div><h4>Personen</h4></div>
+							<div><h4><span id="personCount" class="badge badge-info"></span></h4></div>
 						</li>
-					  	<li class="list-group-item d-flex justify-content-between align-items-center">
-							 <div><h5>Gesamte Inventar</h5></div>
-							 <div><h5>5708</h5></div>
-					  	</li>
-					  </ul>
-				  </div>
-			  </div>
-        </div>
-        <div class="container-fluid">
-			  <div class="form-group col-md-auto alert alert-danger text-center d-none" id="inventoryDelete" role="alert">
-				  <p><i class="fa fa-check-circle" aria-hidden="true">&nbsp;&nbsp;</i><strong id="inventoryDeletedName"></strong> ist gelöcht</p>
-			  </div>
-			  <div class="table-responsive">
-					<table class="table table-striped text-center" id="idInventoryList">
-						 <thead class="table-primary">
-							 <tr>
-								  <th>Status</th>
-								  <th>Bezeichnung</th>
-								  <th>Seriennummer</th>
-								  <th>Typ</th>
-								  <th>Anschaffungsdatum</th>
-								  <th>Preis</th>
-								  <th>Abschreiben kategorie</th>
-								  <th>Datum abgebucht</th>
-								  <th>Abgeschrieben am</th>
-								  <th> - </th>
-							 </tr>
-						 </thead>
-						 <tbody id="inventoryTableBody">
-						 </tbody>
-					</table>
-			  </div>
-		  </div>
-			 <div class="mt-3 d-flex justify-content-center">
-				 <div class="form-group col-6 alert alert-danger text-center" id="inventoryTableIsEmpty" role="alert">
-				 <p>Table ist noch leer</p>
-			 	</div>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<div><h4>Gesamte Inventar</h4></div>
+							<div><h4><span id="inventoryCount" class="badge badge-info"></span></h4></div>
+						</li>
+					</ul>
+				</div>
 			</div>
-		 <div class="container-fluid p-5">
-			 <canvas class="p-4 chartjs-render-monitor" id="myChart" width="1980" height="836" style="display: block; width: 990px; height: 418px;"></canvas>
-		 </div>
-    </div>
-    <div class="tab-pane fade" id="v-pills-location" role="tabpanel" aria-labelledby="v-pills-location-tab">
-        <div class="container">
-            <form class="store-form" autocomplete="off" id="locationForm">
-                <div class="form-row justify-content-center">
-                    <div class="container text-center mb-3"><h1>&#x1F4EC;Ort</h1></div>
-                </div>
-                <div class="form-row justify-content-center" id="nLocationBtn">
-                    <button class="btn btn-primary mb-4" type="button" onclick="showLocation()">Neu Ort </button>
-                </div>
-                <div class="d-none" id="sLocation">
-                    <div class="form-row">
-                        <div class="form-group col-md-3">
-                            <label for="locationlabel">Firma</label>
-                            <input class="form-control" type="text" id="locationlabel">
-                            <div class="valid-feedback" id="locationLabelIsValid">
-                                die Eingabe ist gültig
-                            </div>
-                            <div class="invalid-feedback" id="locationLabelIsInValid">
-                                die eingabe muss eindeutig sein!
-                            </div>
-                        </div>
-                        <div class="w-100"></div>
-                        <div class="form-group col-10 col-md-3">
-                            <label for="locationstreet">Straße</label>
-                            <input class="form-control" type="text" id="locationstreet">
-                            <div class="valid-feedback" id="locationStreetIsValid">
-                                die Eingabe ist gültig
-                            </div>
-                            <div class="invalid-feedback" id="locationStreetIsInValid">
-                                die eingabe muss eindeutig sein!
-                            </div>
-                        </div>
-                        <div class="form-group col-2 text-center">
-                            <label for="housenumber">Hausnummer</label>
-                            <input class="form-control" type="number" id="housenumber">
-                            <div class="valid-feedback" id="houseNumberIsValid">
-                                die Eingabe ist gültig
-                            </div>
-                            <div class="invalid-feedback" id="houseNumberIsInValid">
-                                die eingabe muss eindeutig sein!
-                            </div>
-                        </div>
-                        <div class="w-100"></div>
-                        <div class="form-group col-2">
-                            <label for="zipcode">PLZ</label>
-                            <input class="form-control" type="text" pattern="[0-9]*" id="zipcode">
-                            <div class="valid-feedback" id="zipCodeIsValid">
-                                die Eingabe ist gültig
-                            </div>
-                            <div class="invalid-feedback" id="zipCodeIsInValid">
-                                die eingabe muss eindeutig sein!
-                            </div>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="locationname">Ort</label>
-                            <input class="form-control" type="text" id="locationname">
-                            <div class="valid-feedback" id="locationNameIsValid">
-                                die Eingabe ist gültig
-                            </div>
-                            <div class="invalid-feedback" id="locationNameIsInValid">
-                                die eingabe muss eindeutig sein!
-                            </div>
-                        </div>
-                        <div class="w-100"></div>
-                        <div class="form-group col-2">
-                            <label for="floornumber">Stockwerk</label>
-                            <input class="form-control" type="number" id="floornumber">
-                            <div class="valid-feedback" id="floorNumberNameIsValid">
-                                die Eingabe ist gültig
-                            </div>
-                            <div class="invalid-feedback" id="floorNumberIsInValid">
-                                die eingabe muss eindeutig sein!
-                            </div>
-                        </div>
-                        <div class="form-group col-2">
-                            <label for="roomnumber">Zimmer</label>
-                            <input class="form-control" type="text" id="roomnumber">
-                            <div class="valid-feedback" id="roomNumberIsValid">
-                                die Eingabe ist gültig
-                            </div>
-                            <div class="invalid-feedback" id="roomNumberIsInValid">
-                                die eingabe muss eindeutig sein!
-                            </div>
-                        </div>
-                        <div class="d-block">
-                            <input type="text" id="locationId">
-                        </div>
-							  <div class="d-block">
-								  <input type="text" id="locationRev">
-							  </div>
-                        <div class="form-group col-12 text-center">
-                            <form class="submit-form">
-                                <button class="btn btn-success" type="button" onclick="updateLocation()" id="lUpdateBtn">Aktualisieren</button>
-                                <button class="btn btn-primary" type="button" onclick="saveLocation()" id="lSaveBtn">Speichern</button>
-                                <button class="btn btn-primary" type="button" onclick="hideLocation()" id="lCancelBtn">Abrechen</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="container">
-			  <div class="form-group col-md-auto alert alert-danger text-center d-none" id="locationDelete" role="alert">
-				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-				  <p><i class="fa fa-check-circle" aria-hidden="true">&nbsp;&nbsp;</i><strong id="locationDeletedName"></strong> ist gelöcht</p>
-			  </div>
-			  <div class="table-responsive">
-            <table class="table table-striped text-center" id="idLocationList">
-                <thead class="table-primary">
-                <tr>
-                    <th>Firma</th>
-                    <th>Straße</th>
-                    <th>Hausnummer</th>
-                    <th>PLZ</th>
-                    <th>Ort</th>
-                    <th>Stockwerk</th>
-                    <th>Zimmer</th>
-                    <th> - </th>
-                </tr>
-                </thead>
-                <tbody id="locationTableBody">
-                </tbody>
-            </table>
-			  </div>
-        </div>
-		 <div class="mt-3 d-flex justify-content-center">
-			 <div class="form-group col-6 alert alert-danger text-center" id="locationTableIsEmpty" role="alert">
-				 <p>Table ist noch leer</p>
-			 </div>
-		 </div>
-    </div>
-    <div class="tab-pane fade" id="v-pills-person" role="tabpanel" aria-labelledby="v-pills-person-tab">
-        <div class="container">
-            <form class="store-form" autocomplete="off" id="personForm">
-                <div class="form-row justify-content-center">
-                    <div class="container text-center mb-3"><h1>&#x1F464;Person</h1></div>
-                </div>
-                <div class="form-row justify-content-center" id="nPersonBtn">
-                    <button class="btn btn-primary mb-4" type="button" onclick="showPerson()">Neu Person</button>
-                </div>
-                <div class="d-none" id="sPerson">
-                    <div class="form-row">
-                        <div class="form-group col-md-3">
-                            <label for="lastname">Name</label>
-                            <input class="form-control" type="text" id="lastname">
-                            <div class="valid-feedback" id="lastNameIsValid">
-                                die Eingabe ist gültig
-                            </div>
-                            <div class="invalid-feedback" id="lastNameIsInValid">
-                                die eingabe muss eindeutig sein!
-                            </div>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="firstname">Vorname</label>
-                            <input class="form-control" type="text" id="firstname">
-                            <div class="valid-feedback" id="firstNameIsValid">
-                                die Eingabe ist gültig
-                            </div>
-                            <div class="invalid-feedback" id="firstNameIsInValid">
-                                die eingabe muss eindeutig sein!
-                            </div>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="personalno">Personalnummer</label>
-                            <input class="form-control" type="number" id="personalno">
-                            <div class="valid-feedback" id="personalNoIsValid">
-                                die Eingabe ist gültig
-                            </div>
-                            <div class="invalid-feedback" id="personalNoIsInValid">
-                                die eingabe muss eindeutig sein!
-                            </div>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="email">E-mail</label>
-                            <input class="form-control" type="email" id="email">
-                            <div class="valid-feedback" id="emailIsValid">
-                                die Eingabe ist gültig
-                            </div>
-                            <div class="invalid-feedback" id="emailIsInValid">
-                                die eingabe muss eindeutig sein!
-                            </div>
-                        </div>
-                        <div class="d-block">
-                            <input type="text" id="personId">
-                        </div>
-							  <div class="d-block">
-								  <input type="text" id="personRevision">
-							  </div>
-                        <div class="form-group col-12 text-center">
-                            <form class="submit-form">
-                                <button class="btn btn-success" type="button" onclick="updatePerson()" id="pUpdateBtn">Aktualisieren</button>
-                                <button class="btn btn-primary" type="button" onclick="savePerson()" id="pSaveBtn">Speichern</button>
-                                <button class="btn btn-primary" type="button" onclick="hidePerson()" id="pCancelBtn">Abrechen</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="container">
-			  <div class="form-group col-md-auto alert alert-danger text-center d-none" id="personDelete" role="alert">
-				  <button type="button" class="close" data-dismiss="alert">&times;</button>
-				  <p><i class="fa fa-check-circle" aria-hidden="true">&nbsp;&nbsp;</i><strong id="personDeletedName"></strong> ist gelöcht</p>
-			  </div>
-			  <div class="table-responsive">
-            <table class="table table-striped text-center" id="persons">
-                <thead class="table-primary">
-                <tr>
-                    <th>Name</th>
-                    <th>Vorname</th>
-                    <th>Personalnummer</th>
-                    <th>E-Mail</th>
-						  <th>id</th>
-                    <th> - </th>
-                </tr>
-                </thead>
-                <tbody id="personTableBody">
-                </tbody>
-            </table>
-			  </div>
-        </div>
-		 <div class="mt-3 d-flex justify-content-center">
-			 <div class="form-group col-6 alert alert-danger text-center" id="personTableIsEmpty" role="alert">
-				 <p>Table ist noch leer</p>
-			 </div>
-		 </div>
-    </div>
-    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-        <div class="container">
-            <div class="form-row justify-content-center">
-                <div class="container text-center mb-3"><h1>&#x1F527;Einstellungen&#x1F529;</h1></div>
-            </div>
-        <div class="mt-3 col-md-3 text-center">
-            <button class="btn btn-primary" type="button" onClick="resetInventory();">Reset Inventar</button>
-        </div>
-        </div>
-    </div>
-		 <footer class="my-5 p-5 text-muted text-center bg-light text-dark text-small">
-			 <p class="mb-1">© 2022-2023 Inventar</p>
-			 <ul class="list-inline">
-				 <li class="list-inline-item"><a href="#">Privacy</a></li>
-				 <li class="list-inline-item"><a href="#">Terms</a></li>
-				 <li class="list-inline-item"><a href="#">Support</a></li>
-			 </ul>
-		 </footer>
-    </div>
-    <div class="modal fade" id="deleteInventoryModel" tabindex="-1" role="dialog" aria-labelledby="deleteInventoryModelCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteInventoryModelLongTitle">Inventory Löschen</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    möchten Sie wirklich löschen?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">nein</button>
-                    <button type="button" class="btn btn-danger" onClick="deleteInventory(getRowID()); hideInventory();" data-dismiss="modal">löschen</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="deletePersonModel" tabindex="-1" role="dialog" aria-labelledby="deletePersonModelCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deletePersonModelLongTitle">Person Löschen</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    möchten Sie wirklich löschen?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">nein</button>
-                    <button type="button" class="btn btn-danger" onClick="deletePerson(getRowId()); hidePerson();" data-dismiss="modal">löschen</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="deleteLocationModel" tabindex="-1" role="dialog" aria-labelledby="deleteLocationModelCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteLocationModelLongTitle">Person Löschen</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    möchten Sie wirklich löschen?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">nein</button>
-                    <button type="button" class="btn btn-danger" onClick="deleteLocation(getRowID()); hideLocation();" data-dismiss="modal">löschen</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="bookingCategoryChanged" tabindex="-1" role="dialog" aria-labelledby="bookingCategoryChangedModelCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="bookingCategoryChangedModelLongTitle">Abschreibskategorie geändert</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    neu Status: <h2><span class="badge badge-success" id="newStatusModal"></span></h2>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" onClick="console.log('MODAL');" data-dismiss="modal">Schließen</button>
-                </div>
-            </div>
-        </div>
-    </div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="v-pills-location" role="tabpanel" aria-labelledby="v-pills-location-tab">
+		<div class="container">
+			<form class="store-form" autocomplete="off" id="locationForm">
+				<div class="form-row justify-content-center">
+					<div class="container text-center mb-3"><h1>&#x1F4EC;Ort</h1></div>
+				</div>
+				<div class="form-row justify-content-center" id="nLocationBtn">
+					<button class="btn btn-primary mb-4" type="button" onclick="showLocation()">Neuer Ort</button>
+				</div>
+				<div class="d-none" id="sLocation">
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<label for="locationlabel">Firma</label>
+							<input class="form-control" type="text" id="locationlabel">
+							<div class="valid-feedback" id="locationLabelIsValid">
+								die Eingabe ist gültig
+							</div>
+							<div class="invalid-feedback" id="locationLabelIsInValid">
+								die eingabe muss eindeutig sein!
+							</div>
+						</div>
+						<div class="w-100"></div>
+						<div class="form-group col-10 col-md-3">
+							<label for="locationstreet">Straße</label>
+							<input class="form-control" type="text" id="locationstreet">
+							<div class="valid-feedback" id="locationStreetIsValid">
+								die Eingabe ist gültig
+							</div>
+							<div class="invalid-feedback" id="locationStreetIsInValid">
+								die eingabe muss eindeutig sein!
+							</div>
+						</div>
+						<div class="form-group col-2 text-center">
+							<label for="housenumber">Hausnummer</label>
+							<input class="form-control" type="number" id="housenumber">
+							<div class="valid-feedback" id="houseNumberIsValid">
+								die Eingabe ist gültig
+							</div>
+							<div class="invalid-feedback" id="houseNumberIsInValid">
+								die eingabe muss eindeutig sein!
+							</div>
+						</div>
+						<div class="w-100"></div>
+						<div class="form-group col-2">
+							<label for="zipcode">PLZ</label>
+							<input class="form-control" type="text" pattern="[0-9]*" id="zipcode">
+							<div class="valid-feedback" id="zipCodeIsValid">
+								die Eingabe ist gültig
+							</div>
+							<div class="invalid-feedback" id="zipCodeIsInValid">
+								die eingabe muss eindeutig sein!
+							</div>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="locationname">Ort</label>
+							<input class="form-control" type="text" id="locationname">
+							<div class="valid-feedback" id="locationNameIsValid">
+								die Eingabe ist gültig
+							</div>
+							<div class="invalid-feedback" id="locationNameIsInValid">
+								die eingabe muss eindeutig sein!
+							</div>
+						</div>
+						<div class="w-100"></div>
+						<div class="form-group col-2">
+							<label for="floornumber">Stockwerk</label>
+							<input class="form-control" type="number" id="floornumber">
+							<div class="valid-feedback" id="floorNumberNameIsValid">
+								die Eingabe ist gültig
+							</div>
+							<div class="invalid-feedback" id="floorNumberIsInValid">
+								die eingabe muss eindeutig sein!
+							</div>
+						</div>
+						<div class="form-group col-2">
+							<label for="roomnumber">Zimmer</label>
+							<input class="form-control" type="text" id="roomnumber">
+							<div class="valid-feedback" id="roomNumberIsValid">
+								die Eingabe ist gültig
+							</div>
+							<div class="invalid-feedback" id="roomNumberIsInValid">
+								die eingabe muss eindeutig sein!
+							</div>
+						</div>
+						<div class="d-block">
+							<input type="text" id="locationId">
+						</div>
+						<div class="d-block">
+							<input type="text" id="locationRev">
+						</div>
+						<div class="form-group col-12 text-center">
+							<form class="submit-form">
+								<button class="btn btn-success" type="button" onclick="updateLocation()" id="lUpdateBtn">
+									Aktualisieren
+								</button>
+								<button class="btn btn-primary" type="button" onclick="saveLocation()" id="lSaveBtn">Speichern
+								</button>
+								<button class="btn btn-primary" type="button" onclick="hideLocation()" id="lCancelBtn">Abrechen
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="container">
+			<div class="form-group col-md-auto alert alert-danger text-center d-none" id="locationDelete" role="alert">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<p><i class="fa fa-check-circle" aria-hidden="true">&nbsp;&nbsp;</i><strong
+					id="locationDeletedName"></strong>
+					ist gelöcht</p>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-striped text-center" id="idLocationList">
+					<thead class="table-primary">
+					<tr>
+						<th>Firma</th>
+						<th>Straße</th>
+						<th>Hausnummer</th>
+						<th>PLZ</th>
+						<th>Ort</th>
+						<th>Stockwerk</th>
+						<th>Zimmer</th>
+						<th> -</th>
+					</tr>
+					</thead>
+					<tbody id="locationTableBody">
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="mt-3 d-flex justify-content-center">
+			<div class="form-group col-6 alert alert-danger text-center" id="locationTableIsEmpty" role="alert">
+				<p>Table ist noch leer</p>
+			</div>
+		</div>
+	</div>
+	<div class="tab-pane fade" id="v-pills-person" role="tabpanel" aria-labelledby="v-pills-person-tab">
+		<div class="container">
+			<form class="store-form" autocomplete="off" id="personForm">
+				<div class="form-row justify-content-center">
+					<div class="container text-center mb-3"><h1>&#x1F464;Person</h1></div>
+				</div>
+				<div class="form-row justify-content-center" id="nPersonBtn">
+					<button class="btn btn-primary mb-4" type="button" onclick="showPerson()">Neue Person</button>
+				</div>
+				<div class="d-none" id="sPerson">
+					<div class="form-row">
+						<div class="form-group col-md-3">
+							<label for="lastname">Name</label>
+							<input class="form-control" type="text" id="lastname">
+							<div class="valid-feedback" id="lastNameIsValid">
+								die Eingabe ist gültig
+							</div>
+							<div class="invalid-feedback" id="lastNameIsInValid">
+								die eingabe muss eindeutig sein!
+							</div>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="firstname">Vorname</label>
+							<input class="form-control" type="text" id="firstname">
+							<div class="valid-feedback" id="firstNameIsValid">
+								die Eingabe ist gültig
+							</div>
+							<div class="invalid-feedback" id="firstNameIsInValid">
+								die eingabe muss eindeutig sein!
+							</div>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="personalno">Personalnummer</label>
+							<input class="form-control" type="number" id="personalno">
+							<div class="valid-feedback" id="personalNoIsValid">
+								die Eingabe ist gültig
+							</div>
+							<div class="invalid-feedback" id="personalNoIsInValid">
+								die eingabe muss eindeutig sein!
+							</div>
+						</div>
+						<div class="form-group col-md-3">
+							<label for="email">E-mail</label>
+							<input class="form-control" type="email" id="email">
+							<div class="valid-feedback" id="emailIsValid">
+								die Eingabe ist gültig
+							</div>
+							<div class="invalid-feedback" id="emailIsInValid">
+								die eingabe muss eindeutig sein!
+							</div>
+						</div>
+						<div class="d-block">
+							<input type="text" id="personId">
+						</div>
+						<div class="d-block">
+							<input type="text" id="personRevision">
+						</div>
+						<div class="form-group col-12 text-center">
+							<form class="submit-form">
+								<button class="btn btn-success" type="button" onclick="updatePerson()" id="pUpdateBtn">
+									Aktualisieren
+								</button>
+								<button class="btn btn-primary" type="button" onclick="savePerson()" id="pSaveBtn">Speichern
+								</button>
+								<button class="btn btn-primary" type="button" onclick="hidePerson()" id="pCancelBtn">Abrechen
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="container">
+			<div class="form-group col-md-auto alert alert-danger text-center d-none" id="personDelete" role="alert">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<p><i class="fa fa-check-circle" aria-hidden="true">&nbsp;&nbsp;</i><strong id="personDeletedName"></strong>
+					ist gelöcht</p>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-striped text-center" id="persons">
+					<thead class="table-primary">
+					<tr>
+						<th>Name</th>
+						<th>Vorname</th>
+						<th>Personalnummer</th>
+						<th>E-Mail</th>
+						<th>id</th>
+						<th> -</th>
+					</tr>
+					</thead>
+					<tbody id="personTableBody">
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="mt-3 d-flex justify-content-center">
+			<div class="form-group col-6 alert alert-danger text-center" id="personTableIsEmpty" role="alert">
+				<p>Table ist noch leer</p>
+			</div>
+		</div>
+	</div>
+	<div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+		<div class="container">
+			<div class="form-row justify-content-center">
+				<div class="container text-center mb-3"><h1>&#x1F527;Einstellungen&#x1F529;</h1></div>
+			</div>
+			<div class="mt-3 col-md-3 text-center">
+				<button class="btn btn-primary" type="button" onClick="resetInventory();">Reset Inventar</button>
+			</div>
+		</div>
+	</div>
+	<footer class="my-5 p-5 text-muted text-center bg-light text-dark text-small">
+		<p class="mb-1">© 2022-2023 Inventar</p>
+		<ul class="list-inline">
+			<li class="list-inline-item"><a href="#">Privacy</a></li>
+			<li class="list-inline-item"><a href="#">Terms</a></li>
+			<li class="list-inline-item"><a href="#">Support</a></li>
+		</ul>
+	</footer>
+	<div class="modal fade" id="deleteInventoryModel" tabindex="-1" role="dialog"
+		  aria-labelledby="deleteInventoryModelCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="deleteInventoryModelLongTitle">Inventory Löschen</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					möchten Sie wirklich löschen?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">nein</button>
+					<button type="button" class="btn btn-danger" onClick="deleteInventory(getRowID()); hideInventory();"
+							  data-dismiss="modal">löschen
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="deletePersonModel" tabindex="-1" role="dialog"
+		  aria-labelledby="deletePersonModelCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="deletePersonModelLongTitle">Person Löschen</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					möchten Sie wirklich löschen?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">nein</button>
+					<button type="button" class="btn btn-danger" onClick="deletePerson(getRowId()); hidePerson();"
+							  data-dismiss="modal">löschen
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="deleteLocationModel" tabindex="-1" role="dialog"
+		  aria-labelledby="deleteLocationModelCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="deleteLocationModelLongTitle">Person Löschen</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					möchten Sie wirklich löschen?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">nein</button>
+					<button type="button" class="btn btn-danger" onClick="deleteLocation(getRowID()); hideLocation();"
+							  data-dismiss="modal">löschen
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="bookingCategoryChanged" tabindex="-1" role="dialog"
+		  aria-labelledby="bookingCategoryChangedModelCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="bookingCategoryChangedModelLongTitle">Abschreibskategorie geändert</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					neu Status: <h2><span class="badge badge-success" id="newStatusModal"></span></h2>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" onClick="console.log('MODAL');" data-dismiss="modal">
+						Schließen
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.1/dist/Chart.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		  crossorigin="anonymous"></script>
 
 <script src="app.js"></script>
 <script src="person.js"></script>

@@ -603,8 +603,8 @@ async function insertPersons(){
     for(let i = 0; i < options.length; i++ ){
         let opt = options[i];
         let el = document.createElement('option');
-        el.innerHTML = "<div>" + opt.lastname + " " + opt.firstname + " " + "<span>" + opt.email + " " + opt.personalno +  "</span></div>";
-        el.className = "h5";
+        el.innerHTML = "<div>" + opt.lastname + "&nbsp;&nbsp; " + opt.firstname + "&nbsp;&nbsp; " + "<span>" + opt.email + "&nbsp;&nbsp; " + opt.personalno +  "</span></div>";
+        el.className = "h5 ";
         el.value = opt._id;
         selectPerson.appendChild(el);
     }
@@ -1061,6 +1061,16 @@ function priceInputChange() {
     document.getElementById('idPrice').className = y + " is-invalid";
 
     document.getElementById('idPriceNotValid').innerText = "jetzt Brechnen drücken";
+
+}
+
+//--------------------------------------------------------------------------------
+/**
+ * shows a message under price when input changes in form
+ *
+ */
+function showAddPersonTable() {
+
 
 }
 
