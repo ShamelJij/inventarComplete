@@ -1070,7 +1070,22 @@ function priceInputChange() {
  *
  */
 function showAddPersonTable() {
-
+    console.log('showAddPersonTable');
+    let table = document.getElementById("showAddPersonTable").getElementsByTagName('tbody')[0];
+    let newRow = table.insertRow(table.length);
+    let cell1 = newRow.insertCell(0);
+    cell1.innerHTML = person.lastname;
+    let cell2 = newRow.insertCell(1);
+    cell2.innerHTML = person.firstname;
+    let cell3 = newRow.insertCell(2);
+    cell3.innerHTML = person.personalno;
+    let cell4 = newRow.insertCell(3);
+    cell4.innerHTML = person.email;
+    let cell5 = newRow.insertCell(4);
+    cell5.innerHTML = person._id;
+    let cell6 = newRow.insertCell(5);
+    cell6.innerHTML = "<div class=\"text-center d-flex justify-content-between\">" +
+        "<button onClick=\"editPerson("  + "\'" + person._id + "\'" + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" + "</div>";
 
 }
 

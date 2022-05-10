@@ -69,7 +69,7 @@
 									</select>
 								</div>
 								<div class="col-md-3 mt-4 text-center">
-									<button class="btn btn-primary" data-toggle="modal" data-target="#showAddPersonTable" onclick="showAddPersonTable()" href="#"><i class="fa fa-user-plus"
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showAddPerson" onclick="showAddPersonTable()" href="#"><i class="fa fa-user-plus"
 																													style="font-size:24px"></i>&nbsp;&nbsp;neue
 										Person
 									</button>
@@ -634,6 +634,43 @@
 				</div>
 				<div class="modal-body">
 					neu Status: <h2><span class="badge badge-success" id="newStatusModal"></span></h2>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" onClick="console.log('MODAL');" data-dismiss="modal">
+						Schließen
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="showAddPerson" tabindex="-1" role="dialog"
+		  aria-labelledby="showAddPersonTableModelCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="showAddPersonTableModelLongTitle">Abschreibskategorie geändert</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					neu Status: <h2><span class="badge badge-success" id="someid">sometext</span></h2>
+					<div class="table-responsive">
+						<table class="table table-striped text-center" id="showAddPersonTable">
+							<thead class="table-primary">
+							<tr>
+								<th>Name</th>
+								<th>Vorname</th>
+								<th>Personalnummer</th>
+								<th>E-Mail</th>
+								<th>id</th>
+								<th> -</th>
+							</tr>
+							</thead>
+							<tbody id="showAddPersonTableBody">
+							</tbody>
+						</table>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" onClick="console.log('MODAL');" data-dismiss="modal">
