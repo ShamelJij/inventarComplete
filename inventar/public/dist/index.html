@@ -69,7 +69,7 @@
 									</select>
 								</div>
 								<div class="col-md-3 mt-4 text-center">
-									<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showAddPerson" onclick="showAddPersonTable()" href="#"><i class="fa fa-user-plus"
+									<button type="button" class="btn btn-info" data-toggle="modal" data-target="#showAddPerson" onclick="showAddPersonTable()" href="#"><i class="fa fa-user-plus"
 																													style="font-size:24px"></i>&nbsp;&nbsp;neue
 										Person
 									</button>
@@ -83,7 +83,7 @@
 									</select>
 								</div>
 								<div class="col-md-3 mt-4 text-center">
-									<button class="btn btn-primary" type="button" onclick=""><i class="fa fa-map-marker"
+									<button class="btn btn-info" type="button" onclick=""><i class="fa fa-map-marker"
 																													style="font-size:24px"></i>&nbsp;&nbsp;neuer
 										Standort
 									</button>
@@ -165,12 +165,12 @@
 							</div>
 							<div class="form-row">
 								<div class="col-md-3 mb-3">
-									<label for="idPrice">Preis&nbsp;&nbsp;<span class="badge badge-info"><h5>netto</h5></span></label>
+									<label for="idPrice" class="h5">Preis&nbsp;&nbsp;<span class="text-success">netto</span></label>
 									<div class="input-group">
 										<input type="number" class="form-control" id="idPrice" value="0"
 												 oninput="priceInputChange()">
 										<div class="input-group-append">
-											<span class="input-group-text" id="inputGroupAppendType">&#128;
+											<span class="input-group-text text-success" id="inputGroupAppendType">&#128;
 												<!--euro-symbol--></span>
 										</div>
 										<div class="valid-feedback" id="idPriceValid">
@@ -181,7 +181,7 @@
 									</div>
 								</div>
 								<div class="col-md-3 mt-4 text-center">
-									<button class="btn btn-primary" type="button" onclick="refresh();"><i
+									<button class="btn btn-info" type="button" onclick="refresh();"><i
 										class="fa fa-calculator" style="font-size:24px"></i>&nbsp;berechnen
 									</button>
 								</div>
