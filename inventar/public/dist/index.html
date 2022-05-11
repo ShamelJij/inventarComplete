@@ -27,7 +27,7 @@
 </head>
 <body onload="refreshInventory();">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<i class="fa fa-cubes mb-3" style="font-size:36px;color: dodgerblue">&nbsp;Inventar</i>
+	<i class="fa fa-cubes mb-3" style="font-size:36px;color: royalblue">&nbsp;Inventar</i>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
 			  aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -61,32 +61,27 @@
 					<div class="d-none" id="sInventory">
 						<form class="needs-validation" novalidate>
 							<div class="form-row">
-								<div class="col-md-3 mb-3">
-									<label for="inventorySelectPerson">Person hinzufügen</label>
-									<select class="form-control" type="text" readonly name="inventPerson"
-											  id="inventorySelectPerson" value="test person">
-										<option value="...">...</option>
-									</select>
+								<div class="col-md-6">
+									<fieldset class="form-group border p-3 d-flex justify-content-around text-center bg-light">
+										<legend class=" px-2 h3 text-info">Person </legend>
+												<button type="button" id="inventorySelectPerson" class="btn btn-info" data-toggle="modal" data-target="#showAddPerson" onclick="showAddPersonTable()" href="#"><i class="fa fa-user"
+																																																									style="font-size:24px"></i>&nbsp;&nbsp;Person auswählen</button>&nbsp;	&nbsp;
+												<button type="button" class="btn btn-info" onclick="showNewPerson()" href="#"><i class="fa fa-user-plus"
+																																style="font-size:24px"></i>&nbsp;&nbsp;neue Person</button>
+									</fieldset>
 								</div>
-								<div class="col-md-3 mt-4 text-center">
-									<button type="button" class="btn btn-info" data-toggle="modal" data-target="#showAddPerson" onclick="showAddPersonTable()" href="#"><i class="fa fa-user-plus"
-																													style="font-size:24px"></i>&nbsp;&nbsp;neue
-										Person
-									</button>
-								</div>
-								<div class="col-md-3 mb-3">
-									<label for="inventorySelectLocation">Standort hinzufügen</label>
-									<select class="form-control" type="text" readonly name="editedName"
-											  id="inventorySelectLocation" value="test value">
-										<option value="v1">...</option>
-										<option value="v2">test2</option>
-									</select>
-								</div>
-								<div class="col-md-3 mt-4 text-center">
-									<button class="btn btn-info" type="button" onclick=""><i class="fa fa-map-marker"
-																													style="font-size:24px"></i>&nbsp;&nbsp;neuer
-										Standort
-									</button>
+								<div class="col-md-6">
+									<fieldset class="form-group border p-3 d-flex justify-content-around text-center bg-light">
+										<legend class=" px-2 h3 text-info">Standort </legend>
+											<button type="button" id="inventorySelectLocation" class="btn btn-info" data-toggle="modal" data-target="#showAddLocation" onclick="showAddLocationTable()" href="#"><i class="fa fa-map-marker"
+																																																																			style="font-size:24px"></i>&nbsp;&nbsp;Ort auswählen</button>&nbsp;&nbsp;
+
+
+											<button class="btn btn-info" type="button" onclick=""><i class="fa fa-map-marker"
+																														style="font-size:24px"></i>&nbsp;&nbsp;neuer
+												Standort&nbsp;&nbsp;<i class="fa fa-plus-circle" tyle="font-size:24px"></i>
+											</button>
+									</fieldset>
 								</div>
 							</div>
 							<div class="form-row">
@@ -165,12 +160,12 @@
 							</div>
 							<div class="form-row">
 								<div class="col-md-3 mb-3">
-									<label for="idPrice" class="h5">Preis&nbsp;&nbsp;<span class="text-success">netto</span></label>
+									<label for="idPrice" class="h5">Preis&nbsp;&nbsp;<span class="text-white bg-success">&nbsp;netto&nbsp;</span></label>
 									<div class="input-group">
 										<input type="number" class="form-control" id="idPrice" value="0"
 												 oninput="priceInputChange()">
 										<div class="input-group-append">
-											<span class="input-group-text text-success" id="inputGroupAppendType">&#128;
+											<span class="input-group-text text-white bg-success" id="inputGroupAppendType">&#128;
 												<!--euro-symbol--></span>
 										</div>
 										<div class="valid-feedback" id="idPriceValid">
@@ -643,33 +638,29 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal fade" id="showAddPerson" tabindex="-1" role="dialog"
+	<div class="modal fade " id="showAddPerson" tabindex="-1" role="dialog"
 		  aria-labelledby="showAddPersonTableModelCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="showAddPersonTableModelLongTitle">Abschreibskategorie geändert</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
 				<div class="modal-body">
-					neu Status: <h2><span class="badge badge-success" id="someid">sometext</span></h2>
 					<div class="table-responsive">
 						<table class="table table-striped text-center" id="showAddPersonTable">
 							<thead class="table-primary">
 							<tr>
 								<th>Name</th>
 								<th>Vorname</th>
-								<th>Personalnummer</th>
 								<th>E-Mail</th>
-								<th>id</th>
 								<th> -</th>
 							</tr>
 							</thead>
 							<tbody id="showAddPersonTableBody">
 							</tbody>
 						</table>
+					</div>
+					<div class="mt-3 d-flex justify-content-center">
+						<div class="form-group col-6 alert alert-danger text-center" id="addPersonTableIsEmpty" role="alert">
+							<p>Table ist noch leer</p>
+						</div>
 					</div>
 				</div>
 				<div class="modal-footer">

@@ -11,6 +11,8 @@
 const inventoryTableIsEmpty = document.getElementById("inventoryTableIsEmpty");
 const inventoryDelete = document.getElementById("inventoryDelete");
 const inventoryDeletedName = document.getElementById("inventoryDeletedName");
+
+const addPersonTableIsEmpty = document.getElementById("addPersonTableIsEmpty");
 /*let saved_inventory = JSON.parse(localStorage.getItem('inventory'));
 localStorage.setItem('inventory', JSON.stringify(saved_inventory));*/
 
@@ -148,7 +150,7 @@ async function getInventoryById(url) {
  */
 function getInputInventory() {
     let inventoryData = {};
-    inventoryData ["personId"] = document.getElementById("inventorySelectPerson").value;
+    //inventoryData ["personId"] = document.getElementById("inventorySelectPerson").value;
     inventoryData ["status"] = document.getElementById("idStatus").value;
     inventoryData ["label"] = document.getElementById("idLabel").value;
     inventoryData ["serialnumber"] = document.getElementById("idInventorySerialNumber").value;
@@ -521,7 +523,7 @@ function saveInventory() {
 
             postInventory(getInputInventory(),'http://localhost:8080/v1/inventories/');
 
-            let personId = document.getElementById("inventorySelectPerson").value;
+            //let personId = document.getElementById("inventorySelectPerson").value;
             let status = document.getElementById("idStatus").value.trim();
             let label = document.getElementById("idLabel").value.trim();
             let serialnumber = document.getElementById("idInventorySerialNumber").value.trim();
@@ -598,7 +600,7 @@ async function editInventory(inventoryId) {
  */
 async function insertPersons(){
 
-    let selectPerson = document.getElementById('inventorySelectPerson');
+/*    //let selectPerson = document.getElementById('inventorySelectPerson');
     let options = await getPersons();
     for(let i = 0; i < options.length; i++ ){
         let opt = options[i];
@@ -607,7 +609,7 @@ async function insertPersons(){
         el.className = "h5 ";
         el.value = opt._id;
         selectPerson.appendChild(el);
-    }
+    }*/
     /*let newPeron = document.createElement('option');
     newPeron.innerHTML = "<div>Neu Person + </div>";
     newPeron.setAttribute('id', 'createPerson');
@@ -659,7 +661,7 @@ async function inventoryCount(){
  *
  */
 async function showInventory() {
-    await insertPersons();
+    //await insertPersons();
     let sInventory = document.getElementById('sInventory').className;
     document.getElementById('iUpdateBtn').className = 'd-none';
     document.getElementById('iSaveBtn').className = 'btn btn-primary';
@@ -1066,11 +1068,52 @@ function priceInputChange() {
 
 //--------------------------------------------------------------------------------
 /**
- * shows a message under price when input changes in form
+ * shows Person table as modal
  *
  */
-function showAddPersonTable() {
+async function showAddPersonTable() {
     console.log('showAddPersonTable');
+    let persons = await getPersons();
+    console.log('GET: person: ', persons);
+
+    clearAddPersonTable();
+
+    if (!persons || persons.length == 0){
+        let x = addPersonTableIsEmpty.className
+        x = x.replace('d-block','');
+        x = x.replace('d-none','');
+        x = x.trim();
+        addPersonTableIsEmpty.className = x + ' d-block' ;
+        console.log('table is empty');
+    }
+    // sonst: neue Reihe zufügen für jeden Eintrag
+    else {
+        let x = addPersonTableIsEmpty.className
+        x = x.replace('d-block','');
+        x = x.replace('d-none','');
+        x = x.trim();
+        addPersonTableIsEmpty.className = x + ' d-none' ;
+        let sortedPersonList = persons.sort(function(a,b){
+            if (a.lastname < b.lastname) {return -1;}
+            if (a.lastname > b.lastname) {return  1;}
+            return 0;
+        });
+        //insertNewPersonRecord(persons);
+        for (let i=0;i<sortedPersonList.length;i++) {
+            insertNewPersonRecord(sortedPersonList[i]);
+        }
+    }
+
+    console.log("function initPerson");
+
+}
+
+//--------------------------------------------------------------------------------
+/**
+ * shows Person table as modal
+ *
+ */
+function insertNewPersonRecord(person) {
     let table = document.getElementById("showAddPersonTable").getElementsByTagName('tbody')[0];
     let newRow = table.insertRow(table.length);
     let cell1 = newRow.insertCell(0);
@@ -1078,16 +1121,40 @@ function showAddPersonTable() {
     let cell2 = newRow.insertCell(1);
     cell2.innerHTML = person.firstname;
     let cell3 = newRow.insertCell(2);
-    cell3.innerHTML = person.personalno;
+    cell3.innerHTML = person.email;
     let cell4 = newRow.insertCell(3);
-    cell4.innerHTML = person.email;
-    let cell5 = newRow.insertCell(4);
-    cell5.innerHTML = person._id;
-    let cell6 = newRow.insertCell(5);
-    cell6.innerHTML = "<div class=\"text-center d-flex justify-content-between\">" +
-        "<button onClick=\"editPerson("  + "\'" + person._id + "\'" + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" + "</div>";
-
+    cell4.innerHTML = "<div class=\"text-center d-flex justify-content-between\">" +
+        "<button onClick=\"addPersonInInventory("  + "\'" + person._id + "\'" + ")\" class=\"btn btn-info fa fa-plus\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" + "</div>";
 }
+
+//--------------------------------------------------------------------------------
+/**
+ * clears Person table in modal
+ *
+ */
+function clearAddPersonTable() {
+    const addPersonTable = document.getElementById("showAddPersonTableBody");
+    addPersonTable.innerHTML = '';
+}
+
+//--------------------------------------------------------------------------------
+/**
+ * add Person from table in modal to Inventory form
+ *
+ */
+function addPersonInInventory(token) {
+    console.log('person id added in inventory: ', token);
+}
+
+//--------------------------------------------------------------------------------
+/**
+ * add Person from table in modal to Inventory form
+ *
+ */
+function showNewPerson() {
+    $('#v-pills-person-tab').tab('show');
+}
+
 
 //function to refresh form calculated hide and visibility
 /*
