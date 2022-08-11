@@ -482,11 +482,9 @@ async function initInventory() {
     //localstorage auslesen
     let inventory = await getInventories();
     console.log('GET: inventory: ', inventory);
-    
     clearInventoryTable();
     personCount();
     inventoryCount();
-    
     if (!inventory || inventory.length == 0) {
         let x = inventoryTableIsEmpty.className
         x = x.replace('d-block', '');
@@ -589,7 +587,7 @@ async function editInventory(inventoryId) {
             document.getElementById("hiddenStatus").value = inventory.bookingcategory;
             document.getElementById("saveIDInventory").value = inventory._id;
             document.getElementById("inventoryRev").value = inventory._rev;
-            //document.getElementById("personIdInInventory").value = inventory.personId;
+            document.getElementById("personIdInInventory").value = inventory.personId;
 
 }
 
@@ -703,7 +701,7 @@ async function updateInventory() {
     let inventory = await getInventories();
     if (refresh()) {
             let inventory = await getInventories();
-
+            let personId = document.getElementById("personIdInInventory").value;
             let status = document.getElementById("idStatus").value.trim();
             let label = document.getElementById("idLabel").value.trim();
             let serialnumber = document.getElementById("idInventorySerialNumber").value.trim();
@@ -728,6 +726,7 @@ async function updateInventory() {
                 console.log('status changed!!');
             }
             let inventoryItem = {
+                personId: personId,
                 status: status,
                 label: label,
                 serialnumber: serialnumber,
