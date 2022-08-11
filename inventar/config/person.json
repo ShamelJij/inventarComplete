@@ -2,23 +2,23 @@
   "database": {
     "host": "192.168.100.10:5984",
     "login": "couchAdmin",
-    "password": "couchAdmin232"
+    "password": "couchAdmin123"
   },
   "jsonWebToken" :{
     "secret": "jwt_Secret-For+Production!",
     "expiresInMinutes": 30240
   },
   "ldap" :{
-    "host": "ldaps://de0001sadc10002.de.bauhaus.intra:3269",
-    "baseDN": "dc=bauhaus,dc=intra",
-    "username": "ldap-mdm@DE.BAUHAUS.INTRA",
+    "host": "ldaps://de0001sadc10002.de.inventar.intra:3269",
+    "baseDN": "dc=inventar,dc=intra",
+    "username": "ldap-mdm@DE.INVENTAR.INTRA",
     "password": "0§fgh75()_DFS",
-    "domain1": "DE.BAUHAUS.INTRA",
-    "domain2": "FC.DE.BAUHAUS.INTRA"
+    "domain1": "DE.INVENTAR.INTRA",
+    "domain2": "FC.DE.INVENTAR.INTRA"
   },
   "notesdomino" : {
     "username": "Admin Design",
-    "password": "DAdmin232"
+    "password": "DAdmin123"
   },
   "nldirectory" : {
     "url": "https://de0001slda10020.de.bauhaus.intra/BH_xapps/nldirectory.nsf/api/data/collections/name/restapiNL?count=1000&start=0&systemcolumns=0"

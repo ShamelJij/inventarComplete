@@ -150,7 +150,7 @@ async function getInventoryById(url) {
  */
 function getInputInventory() {
     let inventoryData = {};
-    //inventoryData ["personId"] = document.getElementById("inventorySelectPerson").value;
+    inventoryData ["personId"] = document.getElementById("personIdInInventory").value;
     inventoryData ["status"] = document.getElementById("idStatus").value;
     inventoryData ["label"] = document.getElementById("idLabel").value;
     inventoryData ["serialnumber"] = document.getElementById("idInventorySerialNumber").value;
@@ -523,7 +523,8 @@ function saveInventory() {
 
             postInventory(getInputInventory(),'http://localhost:8080/v1/inventories/');
 
-            //let personId = document.getElementById("inventorySelectPerson").value;
+
+            let personId = document.getElementById("personIdInInventory").value;
             let status = document.getElementById("idStatus").value.trim();
             let label = document.getElementById("idLabel").value.trim();
             let serialnumber = document.getElementById("idInventorySerialNumber").value.trim();
@@ -549,11 +550,8 @@ function saveInventory() {
                 deprecationdate: deprecationdate,
                 validationenddate: validationenddate
             };
-
             initInventory();
-            
             hideInventory();
-            
             /*document.getElementById("inventoryIsSaved").className = 'd-block';
             document.getElementById("inventoryIsSavedText").innerText = 'Item' + JSON.stringify(inventory[inventory.length - 1].label) + 'ist gespeichert';*/
         } else {
@@ -591,6 +589,8 @@ async function editInventory(inventoryId) {
             document.getElementById("hiddenStatus").value = inventory.bookingcategory;
             document.getElementById("saveIDInventory").value = inventory._id;
             document.getElementById("inventoryRev").value = inventory._rev;
+            //document.getElementById("personIdInInventory").value = inventory.personId;
+
 }
 
 //--------------------------------------------------------------------------------
@@ -1072,7 +1072,6 @@ function priceInputChange() {
  *
  */
 async function showAddPersonTable() {
-    console.log('showAddPersonTable');
     let persons = await getPersons();
     console.log('GET: person: ', persons);
 
@@ -1084,7 +1083,6 @@ async function showAddPersonTable() {
         x = x.replace('d-none','');
         x = x.trim();
         addPersonTableIsEmpty.className = x + ' d-block' ;
-        console.log('table is empty');
     }
     // sonst: neue Reihe zufügen für jeden Eintrag
     else {
@@ -1142,10 +1140,11 @@ function clearAddPersonTable() {
  * add Person from table in modal to Inventory form
  *
  */
-function addPersonInInventory(token) {
-    console.log('person id added in inventory: ', token);
-}
+function addPersonInInventory(perID) {
 
+    console.log('person id added in inventory: ', perID);
+    document.getElementById("personIdInInventory").value = perID; 
+}
 //--------------------------------------------------------------------------------
 /**
  * add Person from table in modal to Inventory form

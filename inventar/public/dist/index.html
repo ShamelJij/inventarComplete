@@ -64,25 +64,25 @@
 								<div class="col-md-6">
 									<fieldset class="form-group border p-3 d-flex justify-content-around text-center bg-light">
 										<legend class=" px-2 h3 text-info">Person </legend>
-												<button type="button" id="inventorySelectPerson" class="btn btn-info" data-toggle="modal" data-target="#showAddPerson" onclick="showAddPersonTable()" href="#"><i class="fa fa-user"
-																																																									style="font-size:24px"></i>&nbsp;&nbsp;Person auswählen</button>&nbsp;	&nbsp;
-												<button type="button" class="btn btn-info" onclick="showNewPerson()" href="#"><i class="fa fa-user-plus"
-																																style="font-size:24px"></i>&nbsp;&nbsp;neue Person</button>
+												<button type="button" id="inventorySelectPerson" class="btn btn-info" data-toggle="modal" data-target="#showAddPerson" onclick="showAddPersonTable()" href="#"><i class="fa fa-user" style="font-size:24px"></i>&nbsp;&nbsp;Person auswählen</button>&nbsp;	&nbsp;
+												<button type="button" class="btn btn-info" onclick="showNewPerson()" href="#"><i class="fa fa-user-plus" style="font-size:24px"></i>&nbsp;&nbsp;neue Person</button>
 									</fieldset>
 								</div>
 								<div class="col-md-6">
 									<fieldset class="form-group border p-3 d-flex justify-content-around text-center bg-light">
 										<legend class=" px-2 h3 text-info">Standort </legend>
-											<button type="button" id="inventorySelectLocation" class="btn btn-info" data-toggle="modal" data-target="#showAddLocation" onclick="showAddLocationTable()" href="#"><i class="fa fa-map-marker"
-																																																																			style="font-size:24px"></i>&nbsp;&nbsp;Ort auswählen</button>&nbsp;&nbsp;
-
-
+											<button type="button" id="inventorySelectLocation" class="btn btn-info" data-toggle="modal" data-target="#showAddLocation" onclick="showAddLocationTable()" href="#"><i class="fa fa-map-marker" style="font-size:24px"></i>&nbsp;&nbsp;Ort auswählen</button>&nbsp;&nbsp;
 											<button class="btn btn-info" type="button" onclick=""><i class="fa fa-map-marker" style="font-size:24px"></i>&nbsp;&nbsp;neuer Standort&nbsp;&nbsp; </button>
 									</fieldset>
 								</div>
 							</div>
 							<div class="form-row">
-
+								<div class="col-md-6">
+									<p>PersonID: <span id="personIDInventar"></span></p>
+								</div>
+								<div class="col-md-6">
+									<p>LocationID: <span id="locationIDInventar"></span></p>
+								</div>
 							</div>
 							<div class="form-row">
 								<div class="col-md-6">
@@ -223,6 +223,9 @@
 							</div>
 							<div class="d-block">
 								<input type="text" id="inventoryRev">
+							</div>
+							<div class="d-block">
+								<input type="text" id="personIdInInventory">
 							</div>
 							<div class="form-group col-12 text-center my-3">
 								<form class="submit-form">
@@ -635,8 +638,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal fade " id="showAddPerson" tabindex="-1" role="dialog"
-		  aria-labelledby="showAddPersonTableModelCenterTitle" aria-hidden="true">
+	<div class="modal fade " id="showAddPerson" tabindex="-1" role="dialog" aria-labelledby="showAddPersonTableModelCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
