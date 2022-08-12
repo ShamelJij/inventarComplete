@@ -1,4 +1,4 @@
-//import {App} from '../app.js';
+import {MyAlert} from '../myAlert.js';
 //let app = require(' ./app.js');
 
 /**
@@ -251,7 +251,7 @@ function inputValidationInventory() {
         ret = false;
     } else {
         //--------------------------------------------------------------------
-        //if new booking category is Abschreibfähig
+        //if new booking category is depreciable (abschreibfähig)
         if (price <= 2000 && price >= 0) {
             document.getElementById('bookingCategory').value = 'GWG';
             let oldStatus = document.getElementById('hiddenStatus').value;
@@ -371,17 +371,6 @@ function inputValidationInventory() {
     return ret;
 }
 
-/*function getInventoryID() {
-    let savedInventory = JSON.parse(localStorage.getItem('inventory'));
-    let inventoryId;
-    if (!savedInventory || savedInventory.length == 0) {
-        inventoryId = 1;
-    } else {
-        inventoryId = savedInventory.length;
-    }
-    return inventoryId;
-}*/
-
 //--------------------------------------------------------------------------------
 /**
  * inserts new record into table below form
@@ -470,7 +459,6 @@ async function deleteInventory(inventoryId) {
             }, 4000);
 
 
-    
 }
 
 //################################################################################
@@ -550,8 +538,9 @@ function saveInventory() {
             };
             initInventory();
             hideInventory();
-            /*document.getElementById("inventoryIsSaved").className = 'd-block';
-            document.getElementById("inventoryIsSavedText").innerText = 'Item' + JSON.stringify(inventory[inventory.length - 1].label) + 'ist gespeichert';*/
+            console.log('$$ ---- : ', inventoryItem);
+                document.getElementById("inventoryIsSaved").className = 'd-block';
+                document.getElementById("inventoryIsSavedText").innerText = 'Item' + JSON.stringify(inventoryItem.label) + ' ' + JSON.stringify(inventoryItem.inventorytype) + 'ist gespeichert';
         } else {
             console.log('saveInventory in not starting because valid is not valid');
         }
@@ -589,32 +578,6 @@ async function editInventory(inventoryId) {
             document.getElementById("inventoryRev").value = inventory._rev;
             document.getElementById("personIdInInventory").value = inventory.personId;
 
-}
-
-//--------------------------------------------------------------------------------
-/**
- * inserts new option into select below choose person
- *
- */
-async function insertPersons(){
-
-/*    //let selectPerson = document.getElementById('inventorySelectPerson');
-    let options = await getPersons();
-    for(let i = 0; i < options.length; i++ ){
-        let opt = options[i];
-        let el = document.createElement('option');
-        el.innerHTML = "<div>" + opt.lastname + "&nbsp;&nbsp; " + opt.firstname + "&nbsp;&nbsp; " + "<span>" + opt.email + "&nbsp;&nbsp; " + opt.personalno +  "</span></div>";
-        el.className = "h5 ";
-        el.value = opt._id;
-        selectPerson.appendChild(el);
-    }*/
-    /*let newPeron = document.createElement('option');
-    newPeron.innerHTML = "<div>Neu Person + </div>";
-    newPeron.setAttribute('id', 'createPerson');
-    newPeron = document.getElementById('creatsPerson');
-    newPeron.setAttribute('onclick', createPerson());
-    newPeron.className = "bg-info text-white text-center h4";
-    selectPerson.appendChild(newPeron);*/
 }
 
 //--------------------------------------------------------------------------------
@@ -1101,7 +1064,6 @@ async function showAddPersonTable() {
         }
     }
 
-    console.log("function initPerson");
 
 }
 

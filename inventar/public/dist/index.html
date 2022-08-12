@@ -15,15 +15,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<style>
-		#inventorySelectPerson > option:nth-child(odd) {
-			background: #ffffff;
-		}
-
-		#inventorySelectPerson > option:nth-child(even) {
-			background: #e9ecef;
-		}
-	</style>
 </head>
 <body onload="refreshInventory();">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -87,8 +78,7 @@
 							<div class="form-row">
 								<div class="col-md-6">
 									<label for="idStatus">Status</label>
-									<select class="form-control" type="text" readonly name="inventoryStatus" id="idStatus"
-											  onchange="refreshInventory()">
+									<select class="form-control" type="text" readonly name="inventoryStatus" id="idStatus" onchange="refreshInventory()">
 										<option value="Aktiv">Aktiv</option>
 										<option value="Ausgebucht">Ausgebucht</option>
 									</select>
@@ -683,10 +673,10 @@
 		  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		  crossorigin="anonymous"></script>
 
-<script src="app.js"></script>
-<script src="person.js"></script>
-<script src="inventory.js"></script>
-<script src="location.js"></script>
+<script type="module" src="app.js"></script>
+<script type="module" src="person.js"></script>
+<script type="module" src="inventory.js"></script>
+<script type="module" src="location.js"></script>
 </body>
 </html>
 
