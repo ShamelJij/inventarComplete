@@ -1,8 +1,7 @@
-//import {MyAlert} from '../myAlert.js';
-//import { InitPage } from "./initPage.js";
-import InitPage from "./initPage.js";
-import {getPersons} from "./person.js";
+import { InitPage } from "./initPage.js";
+import { getPersons } from "./person.js";
 //let app = require(' ./app.js');
+let InitInventory = new InitPage();
 window.onload = function() {
  refreshInventory();
 }
@@ -493,11 +492,12 @@ async function initInventory() {
         x = x.replace('d-none', '');
         x = x.trim();
         inventoryTableIsEmpty.className = x + ' d-none';
-        InitPage.insertNewRecord;
+        InitInventory.insertNewRecord(inventory);
+        console.log("array:: ", JSON.stringify(inventory.form));
         //insertNewRecord(inventory);
-        for (let i = 0; i < inventory.length; i++) {
-            insertNewRecordInventory(inventory[i]);
-        }
+        //for (let i = 0; i < inventory.length; i++) {
+        //    insertNewRecordInventory(inventory[i]);
+        //}
     }
 
     console.log("function initInventory");
@@ -628,11 +628,11 @@ async function inventoryCount(){
  */
 async function showInventory() {
     //await insertPersons();
-    let sInventory = document.getElementById('sInventory').className;
+    let show_inventory = document.getElementById('show_inventory').className;
     document.getElementById('iUpdateBtn').className = 'd-none';
     document.getElementById('iSaveBtn').className = 'btn btn-primary';
-    if (sInventory == 'd-none') {
-        document.getElementById('sInventory').className = 'd-block';
+    if (show_inventory == 'd-none') {
+        document.getElementById('show_inventory').className = 'd-block';
         document.getElementById('nInventoryBtn').className = 'd-none';
         console.log('dblock');
     } else {
@@ -650,9 +650,9 @@ function hideInventory() {
 
     refreshInventory();
     resetFormInventory();
-    let hInventory = document.getElementById('sInventory').className;
+    let hInventory = document.getElementById('show_inventory').className;
     if (hInventory == 'd-block') {
-        document.getElementById('sInventory').className = 'd-none';
+        document.getElementById('show_inventory').className = 'd-none';
         document.getElementById('nInventoryBtn').className = 'form-row justify-content-center';
     } else {
         console.log('hideInventory is not working!!');
@@ -758,22 +758,6 @@ function refreshInventory() {
     } else {
         console.log('Datumabgebucht: ((invis))');
         document.getElementById("formEndDate").className = 'd-none';
-    }
-
-    //price value to changes div (bookingcategory)
-    let price = document.getElementById('idPrice').value;
-    //Show booking category
-    if (price <= 2000 && price > 0) {
-        document.getElementById("deprecationInputGroup").className = 'd-none';
-        document.getElementById("validationEndDateGroup").className = 'd-none';
-    } else if (price <= 0) {
-        document.getElementById("deprecationInputGroup").className = 'd-none';
-        document.getElementById("validationEndDateGroup").className = 'd-none';
-
-    } else {
-        document.getElementById("deprecationInputGroup").className = 'd-block';
-        document.getElementById("validationEndDateGroup").className = 'd-block';
-
     }
 
 }

@@ -1,12 +1,14 @@
-export default class InitPage {
+import { Req } from "./request.js";
+
+export class InitPage {
     constructor(objArray, tableId) {
         this.objArray = objArray;
         this.tableId = tableId;
     }
 
     insertNewRecord(objArray){
-        console.log("§§§§§: " + objArray);
-        if(this.objArray.form === "inventory"){
+        if(objArray[0].form === "inventory"){
+            let inventory = objArray;
             let table = document.getElementById("idInventoryList").getElementsByTagName('tbody')[0];
             let newRow = table.insertRow(table.length);
             let cell1 = newRow.insertCell(0);
@@ -32,7 +34,9 @@ export default class InitPage {
                 "<button onClick=\"editInventory(" + "\'" + inventory._id + "\'" + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>&nbsp;" +
                 "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deleteInventoryModel\" onClick=\"setRowID(" + "\'" + inventory._id + "\'" + ")\"></button></div>" +
                 "</div>";
-        }else if(this.objArray.form === "person"){
+        console.log("§§§§§: INVENTORY");
+        }else if(objArray[0].form === "person"){
+            let person = objArrayj;
             let table = document.getElementById("persons").getElementsByTagName('tbody')[0];
             let newRow = table.insertRow(table.length);
             let cell1 = newRow.insertCell(0);
@@ -50,7 +54,8 @@ export default class InitPage {
                                     "<button onClick=\"editPerson("  + "\'" + person._id + "\'" + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>&nbsp;" +
                 "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deletePersonModel\" onClick=\"setRowId(" + "\'"  + person._id + "\'" + ")\"></button></div>" +
                 "</div>";
-        }else if(this.objArray.form === "location"){
+        }else if(objArray[0].form === "location"){
+            let locationList = objArray;
             let table = document.getElementById("idLocationList").getElementsByTagName('tbody')[0];
             let newRow = table.insertRow(table.length);
             let cell1 = newRow.insertCell(0);
@@ -72,6 +77,8 @@ export default class InitPage {
                 "<button onClick=\"editLocation(" + "\'" + locationList._id + "\'" + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
                 "<div data-toggle=\"tooltip\" data-placement=\"left\"><button   class=\"btn btn-danger fa fa-trash\" data-toggle=\"modal\"  title=\"löschen\" data-target=\"#deleteLocationModel\" onClick=\"setRowID(" + "\'" + locationList._id + "\'" + ")\"></button></div>" +
                 "</div>";
+        }else{
+            console.log("no array..");
         }
     }
 
