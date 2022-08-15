@@ -1,5 +1,5 @@
-import { MyAlert } from "./myAlert";
-import { Req } from "./request";
+//import { MyAlert } from "./myAlert";
+//import { Req } from "./request";
 /**
  * person FRONTEND
  */
@@ -138,7 +138,7 @@ function delPerson(url) {
  *
  * @return {Array.<Objects>} persons
  */
-async function getPersons() {
+export async function getPersons() {
     return sendHTTPRequest('GET', 'http://localhost:8080/v1/persons');
 }
 

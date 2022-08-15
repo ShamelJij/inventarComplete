@@ -1,6 +1,11 @@
-import {MyAlert} from '../myAlert.js';
+//import {MyAlert} from '../myAlert.js';
+//import { InitPage } from "./initPage.js";
+import InitPage from "./initPage.js";
+import {getPersons} from "./person.js";
 //let app = require(' ./app.js');
-
+window.onload = function() {
+ refreshInventory();
+}
 /**
  * inventory FRONTEND
  */
@@ -488,7 +493,7 @@ async function initInventory() {
         x = x.replace('d-none', '');
         x = x.trim();
         inventoryTableIsEmpty.className = x + ' d-none';
-
+        InitPage.insertNewRecord;
         //insertNewRecord(inventory);
         for (let i = 0; i < inventory.length; i++) {
             insertNewRecordInventory(inventory[i]);
