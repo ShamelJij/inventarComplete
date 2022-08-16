@@ -57,7 +57,7 @@ paths:
             $ref: "#/definitions/PersonWithoutID"
       responses:
         201:
-          description: "new Person is been created"  #als Array nicht Objekt
+          description: "new Person is been created" #als Array nicht Objekt
           schema:
             $ref: "#/definitions/Person"
         400:
@@ -417,46 +417,39 @@ definitions:
       personId:
         type: "string"
         description: "der person der diese Inventory hat"
-        example:
-          "34342342j342h2h3k42342kl323"
+        example: "34342342j342h2h3k42342kl323"
       status:
         type: "string"
         description: "ein festgelegte status Aktiv oder Ausgebugt"
-        enum:               #stimmt?
+        enum: #stimmt?
           - "Aktiv"
           - "Ausgebucht"
-        example:
-          "Aktiv"
+        example: "Aktiv"
       label:
         type: "string"
-        example:
-          "Dell"
+        example: "Dell"
       serialnumber:
         type: "string"
         example: "XNN-40069"
       inventorytype:
         type: "string"
-        example:
-          "Monitor"
+        example: "Monitor"
       purchasedate:
         type: "string"
         format: "date"
         example: "2016-08-04"
       price:
         type: "number"
-        example:
-          "2500.25"
+        example: "2500.25"
       bookingcategory:
         type: "string"
         enum:
           - "GWG"
           - "Abschreibfähig"
-        example:
-          "Abschreibfähig"
+        example: "Abschreibfähig"
       deprecationdate:
         type: "number"
-        example:
-          "1"
+        example: "1"
       validationenddate:
         type: "string"
         format: "date"
