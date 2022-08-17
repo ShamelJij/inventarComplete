@@ -7,33 +7,15 @@ import { Requests } from "./requests.js";
  */
 
 export class InitPage {
-  objArray = "";
-  form = "";
-  tableId = "";
+  data = "";
   constructor(data) {
-    this.getAll();
-    this.data = data;
-    if (this.data === "inventories") {
-      this.form = "inventory";
-      this.tableId = "inventoryTable";
-    } else if (this.data === "persons") {
-      this.form = "person";
-      this.tableId = "personTable";
-    } else if (this.data === "locations") {
-      this.form = "location";
-      this.tableId = "locationTable";
-    }
-  }
-  async getAll() {
-    let objArray = await Requests.getAll(this.data);
+  this.data = data;
   }
 
-  insertNewRecord() {
-    if (this.form === "inventory") {
-      let inventory = this.objArray;
-      let table = document
-        .getElementById("inventoryTable")
-        .getElementsByTagName("tbody")[0];
+  insertNewRecord(objArray) {
+    if(objArray[0].form === "inventory"){
+      let inventory = objArray;
+      let table = document.getElementById('idInventoryTable').getElementsByTagName('tbody')[0];
       let newRow = table.insertRow(table.length);
       let cell1 = newRow.insertCell(0);
       cell1.innerHTML = inventory.status;
@@ -68,8 +50,8 @@ export class InitPage {
         ')"></button></div>' +
         "</div>";
       console.log("§§§§§: INVENTORY");
-    } else if (this.form === "person") {
-      let person = this.objArray;
+        }else if(objArray[0].form === "person"){
+      let person = objArray;
       let table = document
         .getElementById("personTable")
         .getElementsByTagName("tbody")[0];
@@ -98,8 +80,8 @@ export class InitPage {
         "'" +
         ')"></button></div>' +
         "</div>";
-    } else if (this.form === "location") {
-      let location = this.objArray;
+         }else if(objArray[0].form === "location"){
+      let location = objArray;
       let table = document
         .getElementById("locationTable")
         .getElementsByTagName("tbody")[0];

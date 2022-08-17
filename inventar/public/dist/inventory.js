@@ -2,10 +2,11 @@ import { InitPage } from "./initPage.js";
 import { getPersons } from "./person.js";
 import { Requests } from "./requests.js";
 //let app = require(' ./app.js');
-let InitInventory = new InitPage("inventories");
+let InitInventory = new InitPage('inventories');
 let InventoryRequest = new Requests();
-window.onload = function () {
-  refreshInventory();
+window.onload =  function () {
+  console.log("page is fully loaded!");
+   refreshInventory();
 };
 /**
  * inventory FRONTEND
@@ -462,7 +463,7 @@ function getRowId() {
  *
  */
 function clearInventoryTable() {
-  const inventoryTable = document.getElementById("inventoryTable");
+  const inventoryTable = document.getElementById("inventoryTableIsEmpty");
   inventoryTable.innerHTML = "";
 }
 
@@ -524,12 +525,11 @@ async function initInventory() {
     x = x.replace("d-none", "");
     x = x.trim();
     inventoryTableIsEmpty.className = x + " d-none";
-    InitInventory.insertNewRecord(inventory);
+    await InitInventory.insertNewRecord(inventory);
     console.log("array:: ", JSON.stringify(inventory.form));
-    //insertNewRecord(inventory);
-    //for (let i = 0; i < inventory.length; i++) {
-    //    insertNewRecordInventory(inventory[i]);
-    //}
+    for (let i = 0; i < inventory.length; i++) {
+        insertNewRecordInventory(inventory[i]);
+    }
   }
 
   console.log("function initInventory");
@@ -671,11 +671,11 @@ async function inventoryCount() {
  */
 async function showInventory() {
   //await insertPersons();
-  let show_inventory = document.getElementById("show_inventory").className;
+  let showInventory = document.getElementById("showInventory").className;
   document.getElementById("iUpdateBtn").className = "d-none";
   document.getElementById("iSaveBtn").className = "btn btn-primary";
-  if (show_inventory == "d-none") {
-    document.getElementById("show_inventory").className = "d-block";
+  if (showInventory == "d-none") {
+    document.getElementById("showInventory").className = "d-block";
     document.getElementById("nInventoryBtn").className = "d-none";
     console.log("dblock");
   } else {
@@ -691,9 +691,9 @@ async function showInventory() {
 function hideInventory() {
   refreshInventory();
   resetFormInventory();
-  let hInventory = document.getElementById("show_inventory").className;
+  let hInventory = document.getElementById("showInventory").className;
   if (hInventory == "d-block") {
-    document.getElementById("show_inventory").className = "d-none";
+    document.getElementById("showInventory").className = "d-none";
     document.getElementById("nInventoryBtn").className =
       "form-row justify-content-center";
   } else {
