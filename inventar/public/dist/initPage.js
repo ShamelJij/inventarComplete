@@ -15,7 +15,7 @@ export class InitPage {
   insertNewRecord(objArray) {
     if(objArray[0].form === "inventory"){
       let inventory = objArray;
-      let table = document.getElementById('idInventoryTable').getElementsByTagName('tbody')[0];
+      let table = document.getElementById('inventoryTable').getElementsByTagName('tbody')[0];
       let newRow = table.insertRow(table.length);
       let cell1 = newRow.insertCell(0);
       cell1.innerHTML = inventory.status;

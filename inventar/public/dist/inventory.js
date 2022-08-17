@@ -463,8 +463,8 @@ function getRowId() {
  *
  */
 function clearInventoryTable() {
-  const inventoryTable = document.getElementById("inventoryTableBody");
-  inventoryTable.innerHTML = "";
+  const inventoryTableBody = document.getElementById("inventoryTableBody");
+  inventoryTableBody.innerHTML = "";
 }
 
 //--------------------------------------------------------------------------------
