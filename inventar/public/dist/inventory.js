@@ -4,10 +4,8 @@ import { Requests } from "./requests.js";
 //let app = require(' ./app.js');
 let InitInventory = new InitPage('inventories');
 let InventoryRequest = new Requests();
-window.onload =  function () {
-  console.log("page is fully loaded!");
-   refreshInventory();
-};
+document.getElementById("btnshowInventory").addEventListener("click", showInventory, false);
+
 /**
  * inventory FRONTEND
  */
@@ -526,7 +524,7 @@ async function initInventory() {
     x = x.trim();
     inventoryTableIsEmpty.className = x + " d-none";
     await InitInventory.insertNewRecord(inventory);
-    console.log("array:: ", JSON.stringify(inventory.form));
+    console.log("array:: ", JSON.stringify(inventory[0].form));
     for (let i = 0; i < inventory.length; i++) {
         insertNewRecordInventory(inventory[i]);
     }
@@ -669,7 +667,7 @@ async function inventoryCount() {
  * show Inventory form
  *
  */
-async function showInventory() {
+function showInventory() {
   //await insertPersons();
   let showInventory = document.getElementById("showInventory").className;
   document.getElementById("iUpdateBtn").className = "d-none";
@@ -792,7 +790,7 @@ function refresh() {
  * refreshes inventory page
  *
  */
-function refreshInventory() {
+window.refreshInventory = function() {
   initInventory();
   showLastModified();
 
