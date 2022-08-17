@@ -9,7 +9,7 @@ class Req{
      * @param {string} method
      * @param {string} url
      */
-    sendHTTPRequest (method, url) {
+    sendReq(method, url) {
         let promise = new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest();
             xhr.open(method,url);
