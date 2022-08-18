@@ -4,7 +4,6 @@ import { Requests } from "./requests.js";
 //let app = require(' ./app.js');
 let InitInventory = new InitPage('inventories');
 let InventoryRequest = new Requests();
-document.getElementById("btnshowInventory").addEventListener("click", showInventory, false);
 
 /**
  * inventory FRONTEND
@@ -794,6 +793,7 @@ window.refreshInventory = function() {
   initInventory();
   showLastModified();
 
+document.getElementById("btnshowInventory").addEventListener("click", showInventory, false);
   //status ausgebucht?
   let status = document.getElementById("idStatus").value;
   if (status == "Ausgebucht") {

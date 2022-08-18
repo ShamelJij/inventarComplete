@@ -9,52 +9,42 @@ import { Requests } from "./requests.js";
 export class InitPage {
   data = "";
   constructor(data) {
-  this.data = data;
+this.data = data; 
   }
 
   insertNewRecord(objArray) {
+
     if(objArray[0].form === "inventory"){
+      let inventorySchema = [];
+      for(let i = 0; i < Object.keys(objArray[0]).length-5; i++){
+        inventorySchema[i] = Object.keys(objArray[0])[i+3]
+      }
       let inventory = objArray;
       let table = document.getElementById('inventoryTable').getElementsByTagName('tbody')[0];
       let newRow = table.insertRow(table.length);
-      let cell1 = newRow.insertCell(0);
-      cell1.innerHTML = inventory.status;
-      let cell2 = newRow.insertCell(1);
-      cell2.innerHTML = inventory.label;
-      let cell3 = newRow.insertCell(2);
-      cell3.innerHTML = inventory.serialnumber;
-      let cell4 = newRow.insertCell(3);
-      cell4.innerHTML = inventory.inventorytype;
-      let cell5 = newRow.insertCell(4);
-      cell5.innerHTML = inventory.purchasedate;
-      let cell6 = newRow.insertCell(5);
-      cell6.innerHTML = inventory.price;
-      let cell7 = newRow.insertCell(6);
-      cell7.innerHTML = inventory.bookingcategory;
-      let cell8 = newRow.insertCell(7);
-      cell8.innerHTML = inventory.deprecationdate;
-      let cell9 = newRow.insertCell(8);
-      cell9.innerHTML = inventory.validationenddate;
-      let cell10 = newRow.insertCell(9);
-      cell10.innerHTML =
-        '<div class="text-center d-flex justify-content-around">' +
-        '<button onClick="editInventory(' +
-        "'" +
-        inventory._id +
-        "'" +
-        ')" class="btn btn-secondary fa fa-edit" data-toggle="tooltip" data-placement="left" title="bearbeiten"></button>&nbsp;' +
-        '<div data-toggle="tooltip" data-placement="left"><button   class="btn btn-danger fa fa-trash" data-toggle="modal"  title="löschen" data-target="#deleteInventoryModel" onClick="setRowID(' +
-        "'" +
-        inventory._id +
-        "'" +
-        ')"></button></div>' +
-        "</div>";
-      console.log("§§§§§: INVENTORY");
-        }else if(objArray[0].form === "person"){
+      let cells = [];
+      for(let i = 0; i < inventorySchema.length; i++){
+        cells[i] = newRow.insertCell(i);
+        cells[i].innerHTML = inventory.inventorySchema;
+      }
+        let invString = "Inventory";
+        cells[inventorySchema.length] = newRow.insertCell(inventorySchema.length);
+        cells[inventorySchema.length].innerHTML =
+          '<div class="text-center d-flex justify-content-around">' +
+          '<button onclick="editInventory(' +
+          "'" +
+          inventory._id +
+          "'" +
+          ')" class="btn btn-secondary fa fa-edit" data-toggle="tooltip" data-placement="left" title="bearbeiten"></button>&nbsp;' +
+          '<div data-toggle="tooltip" data-placement="left"><button   class="btn btn-danger fa fa-trash" data-toggle="modal"  title="löschen" data-target="#delete' + invString + 'Model" onclick="setRowID(' +
+          "'" +
+          inventory._id +
+          "'" +
+          ')"></button></div>' +
+          "</div>";
+    }else if(objArray[0].form === "person"){
       let person = objArray;
-      let table = document
-        .getElementById("personTable")
-        .getElementsByTagName("tbody")[0];
+      let table = document.getElementById("personTable").getElementsByTagName("tbody")[0];
       let newRow = table.insertRow(table.length);
       let cell1 = newRow.insertCell(0);
       cell1.innerHTML = person.lastname;
@@ -69,12 +59,12 @@ export class InitPage {
       let cell6 = newRow.insertCell(5);
       cell6.innerHTML =
         '<div class="text-center d-flex justify-content-between">' +
-        '<button onClick="editPerson(' +
+        '<button onclick="editPerson(' +
         "'" +
         person._id +
         "'" +
         ')" class="btn btn-secondary fa fa-edit" data-toggle="tooltip" data-placement="left" title="bearbeiten"></button>&nbsp;' +
-        '<div data-toggle="tooltip" data-placement="left"><button   class="btn btn-danger fa fa-trash" data-toggle="modal"  title="löschen" data-target="#deletePersonModel" onClick="setRowId(' +
+        '<div data-toggle="tooltip" data-placement="left"><button   class="btn btn-danger fa fa-trash" data-toggle="modal"  title="löschen" data-target="#deletePersonModel" onclick="setRowId(' +
         "'" +
         person._id +
         "'" +
@@ -103,12 +93,12 @@ export class InitPage {
       let cell8 = newRow.insertCell(7);
       cell8.innerHTML =
         '<div class="text-center d-flex justify-content-around">' +
-        '<button onClick="editLocation(' +
+        '<button onclick="editLocation(' +
         "'" +
         location._id +
         "'" +
         ')" class="btn btn-secondary fa fa-edit" data-toggle="tooltip" data-placement="left" title="bearbeiten"></button>' +
-        '<div data-toggle="tooltip" data-placement="left"><button   class="btn btn-danger fa fa-trash" data-toggle="modal"  title="löschen" data-target="#deleteLocationModel" onClick="setRowID(' +
+        '<div data-toggle="tooltip" data-placement="left"><button   class="btn btn-danger fa fa-trash" data-toggle="modal"  title="löschen" data-target="#deleteLocationModel" onclick="setRowID(' +
         "'" +
         location._id +
         "'" +
