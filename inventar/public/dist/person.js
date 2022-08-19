@@ -8,8 +8,8 @@
  * Global section
  */
 const personTableIsEmpty = document.getElementById("personTableIsEmpty");
-const personDelete = document.getElementById("personDelete");
-const personDeletedName = document.getElementById("personDeletedName");
+const deletePerson = document.getElementById("deletePerson");
+const deletedPersonName = document.getElementById("deletedPersonName");
 
 //################################################################################
 /**
@@ -22,11 +22,11 @@ function customAlert(elementId, strongText, text, delay) {
   x = x.replace("d-none", "");
   x = x.trim();
   elementId.className = x + " d-block";
-  personDeletedName.innerText =
-    persons[i].firstname + " " + persons[i].lastname;
+  deletedPersonName.innerText =
+    persons[i].personFirstName + " " + persons[i].personLastName;
   setTimeout(function () {
     // Closing the alert
-    $("#personDelete").alert("close");
+    $("#deletePerson").alert("close");
   }, 5000);
 }
 
@@ -160,10 +160,10 @@ async function getPersonById(url) {
  */
 function getInputPerson() {
   let personData = {};
-  personData["lastname"] = document.getElementById("lastname").value;
-  personData["firstname"] = document.getElementById("firstname").value;
-  personData["personalno"] = document.getElementById("personalno").value;
-  personData["email"] = document.getElementById("email").value;
+  personData["personLastName"] = document.getElementById("personLastName").value;
+  personData["personFirstName"] = document.getElementById("personFirstName").value;
+  personData["personPersonalNumber"] = document.getElementById("personPersonalNumber").value;
+  personData["personEmail"] = document.getElementById("personEmail").value;
   return personData;
 }
 
@@ -180,117 +180,117 @@ async function inputValidationPerson() {
   let letters = /^[a-zA-Z]*$/;
 
   //Personal Nummer Validieren
-  let personalNumber = getInputPerson().personalno;
-  let email = getInputPerson().email.replace(/ +/g, "");
-  let l_name = getInputPerson().lastname.replace(/ +/g, "");
-  let f_name = getInputPerson().firstname.replace(/ +/g, "");
+  let personalNumber = getInputPerson().personPersonalNumber;
+  let personEmail = getInputPerson().personEmail.replace(/ +/g, "");
+  let l_name = getInputPerson().personLastName.replace(/ +/g, "");
+  let f_name = getInputPerson().personFirstName.replace(/ +/g, "");
   const found_personal_number = personList.find(
-    (element) => element.personalno == getInputPerson().personalno
+    (element) => element.personPersonalNumber == getInputPerson().personPersonalNumber
   );
-  const found_email = personList.find(
-    (element) => element.email == getInputPerson().email
+  const found_personEmail = personList.find(
+    (element) => element.personEmail == getInputPerson().personEmail
   );
-  let is_email = email.match(/([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/g);
+  let is_personEmail = personEmail.match(/([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/g);
   if (found_personal_number) {
-    let x = document.getElementById("personalno").className;
+    let x = document.getElementById("personPersonalNumber").className;
     x = x.replace("is-invalid", "");
     x = x.replace("is-valid", "");
     x = x.trim();
-    document.getElementById("personalno").className = x + " is-invalid";
-    document.getElementById("personalnoIsInValid").innerText =
+    document.getElementById("personPersonalNumber").className = x + " is-invalid";
+    document.getElementById("personPersonalNumberIsInValid").innerText =
       "die Eingabe soll eindeutig sein!";
     ret = false;
   } else if (personalNumber == "" || personalNumber < 1) {
-    let x = document.getElementById("personalno").className;
+    let x = document.getElementById("personPersonalNumber").className;
     x = x.replace("is-invalid", "");
     x = x.replace("is-valid", "");
     x = x.trim();
-    document.getElementById("personalno").className = x + " is-invalid";
-    document.getElementById("personalnoIsInValid").innerText =
+    document.getElementById("personPersonalNumber").className = x + " is-invalid";
+    document.getElementById("personPersonalNumberIsInValid").innerText =
       "es soll eine Eingabe geben!";
     ret = false;
   } else {
-    let y = document.getElementById("personalno").className;
+    let y = document.getElementById("personPersonalNumber").className;
     y = y.replace("is-invalid", "");
     y = y.replace("is-valid", "");
     y = y.trim();
-    document.getElementById("personalno").className = y + " is-valid";
+    document.getElementById("personPersonalNumber").className = y + " is-valid";
   }
   // E-Mail validieren
-  if (is_email) {
-    let y = document.getElementById("email").className;
+  if (is_personEmail) {
+    let y = document.getElementById("personEmail").className;
     y = y.replace("is-invalid", "");
     y = y.replace("is-valid", "");
     y = y.trim();
-    document.getElementById("email").className = y + " is-valid";
-    if (found_email) {
-      let x = document.getElementById("email").className;
+    document.getElementById("personEmail").className = y + " is-valid";
+    if (found_personEmail) {
+      let x = document.getElementById("personEmail").className;
       x = x.replace("is-invalid", "");
       x = x.replace("is-valid", "");
       x = x.trim();
-      document.getElementById("email").className = x + " is-invalid";
-      document.getElementById("emailIsInValid").innerText =
+      document.getElementById("personEmail").className = x + " is-invalid";
+      document.getElementById("personEmailIsInValid").innerText =
         "die Eingabe soll eindeutig sein!";
       ret = false;
-    } else if (email == "") {
-      let x = document.getElementById("email").className;
+    } else if (personEmail == "") {
+      let x = document.getElementById("personEmail").className;
       x = x.replace("is-invalid", "");
       x = x.replace("is-valid", "");
       x = x.trim();
-      document.getElementById("email").className = x + " is-invalid";
-      document.getElementById("emailIsInValid").innerText =
+      document.getElementById("personEmail").className = x + " is-invalid";
+      document.getElementById("personEmailIsInValid").innerText =
         "es soll eine Eingabe geben!";
       ret = false;
     } else {
-      let y = document.getElementById("email").className;
+      let y = document.getElementById("personEmail").className;
       y = y.replace("is-invalid", "");
       y = y.replace("is-valid", "");
       y = y.trim();
-      document.getElementById("email").className = y + " is-valid";
+      document.getElementById("personEmail").className = y + " is-valid";
     }
   } else {
-    let x = document.getElementById("email").className;
+    let x = document.getElementById("personEmail").className;
     x = x.replace("is-invalid", "");
     x = x.replace("is-valid", "");
     x = x.trim();
-    document.getElementById("email").className = x + " is-invalid";
-    document.getElementById("emailIsInValid").innerText =
+    document.getElementById("personEmail").className = x + " is-invalid";
+    document.getElementById("personEmailIsInValid").innerText =
       "die Eingabe ist kein E-Mail!";
     ret = false;
   }
   //Name validieren
   if (l_name == "" || !letters.test(l_name)) {
-    let x = document.getElementById("lastname").className;
+    let x = document.getElementById("personLastName").className;
     x = x.replace("is-invalid", "");
     x = x.replace("is-valid", "");
     x = x.trim();
-    document.getElementById("lastname").className = x + " is-invalid";
-    document.getElementById("lastnameIsInValid").innerText =
+    document.getElementById("personLastName").className = x + " is-invalid";
+    document.getElementById("personLastNameIsInValid").innerText =
       "es soll eine Eingabe geben!";
     ret = false;
   } else {
-    let y = document.getElementById("lastname").className;
+    let y = document.getElementById("personLastName").className;
     y = y.replace("is-invalid", "");
     y = y.replace("is-valid", "");
     y = y.trim();
-    document.getElementById("lastname").className = y + " is-valid";
+    document.getElementById("personLastName").className = y + " is-valid";
   }
   //Vorname validieren
   if (f_name == "" || !letters.test(f_name)) {
-    let x = document.getElementById("firstname").className;
+    let x = document.getElementById("personFirstName").className;
     x = x.replace("is-invalid", "");
     x = x.replace("is-valid", "");
     x = x.trim();
-    document.getElementById("firstname").className = x + " is-invalid";
-    document.getElementById("firstnameIsInValid").innerText =
+    document.getElementById("personFirstName").className = x + " is-invalid";
+    document.getElementById("personFirstNameIsInValid").innerText =
       "Eingabe ist falsch!";
     ret = false;
   } else {
-    let y = document.getElementById("firstname").className;
+    let y = document.getElementById("personFirstName").className;
     y = y.replace("is-invalid", "");
     y = y.replace("is-valid", "");
     y = y.trim();
-    document.getElementById("firstname").className = y + " is-valid";
+    document.getElementById("personFirstName").className = y + " is-valid";
   }
 
   return ret;
@@ -308,26 +308,26 @@ function insertNewRecord(person) {
     .getElementsByTagName("tbody")[0];
   let newRow = table.insertRow(table.length);
   let cell1 = newRow.insertCell(0);
-  cell1.innerHTML = person.lastname;
+  cell1.innerHTML = person.personLastName;
   let cell2 = newRow.insertCell(1);
-  cell2.innerHTML = person.firstname;
+  cell2.innerHTML = person.personFirstName;
   let cell3 = newRow.insertCell(2);
-  cell3.innerHTML = person.personalno;
+  cell3.innerHTML = person.personPersonalNumber;
   let cell4 = newRow.insertCell(3);
-  cell4.innerHTML = person.email;
+  cell4.innerHTML = person.personEmail;
   let cell5 = newRow.insertCell(4);
-  cell5.innerHTML = person._id;
+  cell5.innerHTML = person.personId;
   let cell6 = newRow.insertCell(5);
   cell6.innerHTML =
     '<div class="text-center d-flex justify-content-between">' +
     '<button onclick="editPerson(' +
     "'" +
-    person._id +
+    person.personId +
     "'" +
     ')" class="btn btn-secondary fa fa-edit" data-toggle="tooltip" data-placement="left" title="bearbeiten"></button>&nbsp;' +
     '<div data-toggle="tooltip" data-placement="left"><button   class="btn btn-danger fa fa-trash" data-toggle="modal"  title="löschen" data-target="#deletePersonModel" onclick="setRowId(' +
     "'" +
-    person._id +
+    person.personId +
     "'" +
     ')"></button></div>' +
     "</div>";
@@ -368,16 +368,16 @@ async function deletePerson(personId) {
 
   let persons = await getPersonById(personId);
 
-  let x = personDelete.className;
+  let x = deletePerson.className;
   x = x.replace("d-block", "");
   x = x.replace("d-none", "");
   x = x.trim();
-  personDelete.className = x + " d-block";
-  personDeletedName.innerText = persons.firstname + " " + persons.lastname;
+  deletePerson.className = x + " d-block";
+  deletedPersonName.innerText = persons.personFirstName + " " + persons.personLastName;
   initPerson();
   setTimeout(function () {
     // Closing the alert
-    $("#personDelete").alert("close");
+    $("#deletePerson").alert("close");
   }, 4000);
 }
 
@@ -409,10 +409,10 @@ async function initPerson() {
     x = x.trim();
     personTableIsEmpty.className = x + " d-none";
     let sortedPersonList = persons.sort(function (a, b) {
-      if (a.lastname < b.lastname) {
+      if (a.personLastName < b.personLastName) {
         return -1;
       }
-      if (a.lastname > b.lastname) {
+      if (a.personLastName > b.personLastName) {
         return 1;
       }
       return 0;
@@ -435,24 +435,24 @@ function savePerson() {
   if (inputValidationPerson()) {
     postPerson(getInputPerson(), "http://localhost:8080/v1/persons/");
 
-    let lastname = document.getElementById("lastname").value.trim();
-    let firstname = document.getElementById("firstname").value.trim();
-    let personalno = document.getElementById("personalno").value.trim();
-    let email = document.getElementById("email").value.trim();
+    let personLastName = document.getElementById("personLastName").value.trim();
+    let personFirstName = document.getElementById("personFirstName").value.trim();
+    let personPersonalNumber = document.getElementById("personPersonalNumber").value.trim();
+    let personEmail = document.getElementById("personEmail").value.trim();
     let personId = document.getElementById("personId").value;
 
     //capitalize names
-    lastname = capitalizeFirstLetter(lastname.replace(/ +/g, ""));
-    firstname = capitalizeFirstLetter(firstname.replace(/ +/g, ""));
+    personLastName = capitalizeFirstLetter(personLastName.replace(/ +/g, ""));
+    personFirstName = capitalizeFirstLetter(personFirstName.replace(/ +/g, ""));
 
-    //function für email Eingabe.. email muss eindeutig
+    //function für personEmail Eingabe.. personEmail muss eindeutig
 
     //storing as an object
     let personItem = {
-      lastname: lastname,
-      firstname: firstname,
-      personalno: personalno,
-      email: email,
+      personLastName: personLastName,
+      personFirstName: personFirstName,
+      personPersonalNumber: personPersonalNumber,
+      personEmail: personEmail,
     };
 
     initPerson();
@@ -476,17 +476,15 @@ function savePerson() {
 async function editPerson(personId) {
   showPerson();
   let persons = await getPersonById(personId);
-  document.getElementById("pUpdateBtn").className = "btn btn-success";
-  document.getElementById("pSaveBtn").className = "d-none";
+  document.getElementById("updatePersonBtn").className = "btn btn-success";
+  document.getElementById("savePersonBtn").className = "d-none";
 
-  console.log("editPerson", persons);
-
-  document.getElementById("lastname").value = persons.lastname;
-  document.getElementById("firstname").value = persons.firstname;
-  document.getElementById("personalno").value = persons.personalno;
-  document.getElementById("email").value = persons.email;
-  document.getElementById("personId").value = persons._id;
-  document.getElementById("personRevision").value = persons._rev;
+  document.getElementById("personLastName").value = persons.personLastName;
+  document.getElementById("personFirstName").value = persons.personFirstName;
+  document.getElementById("personPersonalNumber").value = persons.personPersonalNumber;
+  document.getElementById("personEmail").value = persons.personEmail;
+  document.getElementById("personId").value = persons.personId;
+  document.getElementById("personRevision").value = persons.personRevision;
 }
 
 //--------------------------------------------------------------------------------
@@ -495,12 +493,12 @@ async function editPerson(personId) {
  *
  */
 function showPerson() {
-  let sPerson = document.getElementById("sPerson").className;
-  document.getElementById("pUpdateBtn").className = "d-none";
-  document.getElementById("pSaveBtn").className = "btn btn-primary";
-  if (sPerson == "d-none") {
-    document.getElementById("sPerson").className = "d-block";
-    document.getElementById("nPersonBtn").className = "d-none";
+  let showPerson = document.getElementById("showPerson").className;
+  document.getElementById("updatePersonBtn").className = "d-none";
+  document.getElementById("savePersonBtn").className = "btn btn-primary";
+  if (showPerson == "d-none") {
+    document.getElementById("showPerson").className = "d-block";
+    document.getElementById("newPersonBtn").className = "d-none";
     console.log("dblock");
   } else {
     console.log("showPerson is not working!!");
@@ -514,10 +512,10 @@ function showPerson() {
  */
 function hidePerson() {
   refreshPerson();
-  let hPerson = document.getElementById("sPerson").className;
+  let hPerson = document.getElementById("showPerson").className;
   if (hPerson == "d-block") {
-    document.getElementById("sPerson").className = "d-none";
-    document.getElementById("nPersonBtn").className =
+    document.getElementById("showPerson").className = "d-none";
+    document.getElementById("newPersonBtn").className =
       "form-row justify-content-center";
   } else {
     console.log("hidePerson is not activated!!");
@@ -531,26 +529,26 @@ function hidePerson() {
  */
 async function updatePerson() {
   let persons = await getPersons();
-  let lastname =    document.getElementById("lastname").value.trim();
-  let firstname =   document.getElementById("firstname").value.trim();
-  let personalno =  document.getElementById("personalno").value.trim();
-  let email =       document.getElementById("email").value.trim();
+  let personLastName =    document.getElementById("personLastName").value.trim();
+  let personFirstName =   document.getElementById("personFirstName").value.trim();
+  let personPersonalNumber =  document.getElementById("personPersonalNumber").value.trim();
+  let personEmail =       document.getElementById("personEmail").value.trim();
   let personId =    document.getElementById("personId").value;
-  let revision =    document.getElementById("personRevision").value;
+  let personRevision =    document.getElementById("personRevision").value;
 
   let personItem = {
-    lastname:   lastname,
-    firstname:  firstname,
-    personalno: personalno,
-    email:      email,
-    _id:        personId,
-    _rev:       revision,
+    personLastName:   personLastName,
+    personFirstName:  personFirstName,
+    personPersonalNumber: personPersonalNumber,
+    personEmail:      personEmail,
+    personId:        personId,
+    personRevision:       personRevision,
   };
 
-  if (personItem._rev !== null) {
-    _rev: revision;
+  if (personItem.personRevision !== null) {
+    personRevision: personRevision;
   } else {
-    console.log("no revision in Person");
+    console.log("no personRevision in Person");
   }
 
   let url = "http://localhost:8080/v1/persons/" + personId;
@@ -566,17 +564,17 @@ async function updatePerson() {
  *
  */
 function refreshPerson() {
-  document.getElementById("lastname").value = "";
-  document.getElementById("firstname").value = "";
-  document.getElementById("personalno").value = "";
-  document.getElementById("email").value = "";
+  document.getElementById("personLastName").value = "";
+  document.getElementById("personFirstName").value = "";
+  document.getElementById("personPersonalNumber").value = "";
+  document.getElementById("personEmail").value = "";
   document.getElementById("personId").value = "";
   document.getElementById("personRevision").value = "";
 
-  document.getElementById("lastname").className = "form-control";
-  document.getElementById("firstname").className = "form-control";
-  document.getElementById("personalno").className = "form-control";
-  document.getElementById("email").className = "form-control";
+  document.getElementById("personLastName").className = "form-control";
+  document.getElementById("personFirstName").className = "form-control";
+  document.getElementById("personPersonalNumber").className = "form-control";
+  document.getElementById("personEmail").className = "form-control";
 }
 
 //--------------------------------------------------------------------------------

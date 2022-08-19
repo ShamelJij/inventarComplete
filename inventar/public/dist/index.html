@@ -467,14 +467,14 @@
 							<h1>&#x1F464;Person</h1>
 						</div>
 					</div>
-					<div class="form-row justify-content-center" id="nPersonBtn">
+					<div class="form-row justify-content-center" id="newPersonBtn">
 						<button class="btn btn-primary mb-4" type="button" onclick="showPerson()">Neue Person</button>
 					</div>
-					<div class="d-none" id="sPerson">
+					<div class="d-none" id="showPerson">
 						<div class="form-row">
 							<div class="form-group col-md-3">
-								<label for="lastname">Name</label>
-								<input class="form-control" type="text" id="lastname">
+								<label for="personLastName">Name</label>
+								<input class="form-control" type="text" id="personLastName">
 								<div class="valid-feedback" id="lastNameIsValid">
 									die Eingabe ist gültig
 								</div>
@@ -483,8 +483,8 @@
 								</div>
 							</div>
 							<div class="form-group col-md-3">
-								<label for="firstname">Vorname</label>
-								<input class="form-control" type="text" id="firstname">
+								<label for="personFirstName">Vorname</label>
+								<input class="form-control" type="text" id="personFirstName">
 								<div class="valid-feedback" id="firstNameIsValid">
 									die Eingabe ist gültig
 								</div>
@@ -493,8 +493,8 @@
 								</div>
 							</div>
 							<div class="form-group col-md-3">
-								<label for="personalno">Personalnummer</label>
-								<input class="form-control" type="number" id="personalno">
+								<label for="personPersonalNumber">Personalnummer</label>
+								<input class="form-control" type="number" id="personPersonalNumber">
 								<div class="valid-feedback" id="personalNoIsValid">
 									die Eingabe ist gültig
 								</div>
@@ -503,12 +503,12 @@
 								</div>
 							</div>
 							<div class="form-group col-md-3">
-								<label for="email">E-mail</label>
-								<input class="form-control" type="email" id="email">
-								<div class="valid-feedback" id="emailIsValid">
+								<label for="personEmail">E-mail</label>
+								<input class="form-control" type="email" id="personEmail">
+								<div class="valid-feedback" id="personEmailIsValid">
 									die Eingabe ist gültig
 								</div>
-								<div class="invalid-feedback" id="emailIsInValid">
+								<div class="invalid-feedback" id="personEmailIsInValid">
 									die eingabe muss eindeutig sein!
 								</div>
 							</div>
@@ -520,12 +520,12 @@
 							</div>
 							<div class="form-group col-12 text-center">
 								<form class="submit-form">
-									<button class="btn btn-success" type="button" onclick="updatePerson()" id="pUpdateBtn">
+									<button class="btn btn-success" type="button" onclick="updatePerson()" id="updatePersonBtn">
 										Aktualisieren
 									</button>
-									<button class="btn btn-primary" type="button" onclick="savePerson()" id="pSaveBtn">Speichern
+									<button class="btn btn-primary" type="button" onclick="savePerson()" id="savePersonBtn">Speichern
 									</button>
-									<button class="btn btn-primary" type="button" onclick="hidePerson()" id="pCancelBtn">Abrechen
+									<button class="btn btn-primary" type="button" onclick="hidePerson()" id="personCancelUpdateBtn">Abrechen
 									</button>
 								</form>
 							</div>

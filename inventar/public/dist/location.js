@@ -149,13 +149,13 @@ async function getLocationById(url) {
  */
 function getInputLocation(){
     let locationData = {};
-    locationData ["locationlabel"] = document.getElementById("locationlabel").value;
-    locationData ["locationstreet"] = document.getElementById("locationstreet").value;
-    locationData ["housenumber"] = document.getElementById("housenumber").value;
-    locationData ["zipcode"] = document.getElementById("zipcode").value;
-    locationData ["locationname"] = document.getElementById("locationname").value;
-    locationData ["floornumber"] = document.getElementById("floornumber").value;
-    locationData ["roomnumber"] = document.getElementById("roomnumber").value;
+    locationData ["locationBusinessName"] = document.getElementById("locationBusinessName").value;
+    locationData ["locationStreetName"] = document.getElementById("locationStreetName").value;
+    locationData ["locationHouseNumber"] = document.getElementById("locationHouseNumber").value;
+    locationData ["locationZipcode"] = document.getElementById("locationZipcode").value;
+    locationData ["locationAreaName"] = document.getElementById("locationAreaName").value;
+    locationData ["locationFloorNumber"] = document.getElementById("locationFloorNumber").value;
+    locationData ["locationRoomNumber"] = document.getElementById("locationRoomNumber").value;
     return locationData;
 }
 
@@ -172,60 +172,60 @@ async function inputValidationLocation() {
     let locationList = await getLocations() || [];
     let letters = /^[a-zA-Z]*$/;
 
-    let locationlabel = getInputLocation().locationlabel;
-    let locationstreet = getInputLocation().locationstreet;
-    let housenumber = getInputLocation().housenumber;
-    let zipcode = getInputLocation().zipcode;
-    let locationname= getInputLocation().locationname;
-    let floornumber = getInputLocation().floornumber;
-    let roomnumber = getInputLocation().roomnumber;
+    let locationBusinessName = getInputLocation().locationBusinessName;
+    let locationStreetName = getInputLocation().locationStreetName;
+    let locationHouseNumber = getInputLocation().locationHouseNumber;
+    let locationZipcode = getInputLocation().locationZipcode;
+    let locationAreaName= getInputLocation().locationAreaName;
+    let locationFloorNumber = getInputLocation().locationFloorNumber;
+    let locationRoomNumber = getInputLocation().locationRoomNumber;
 
-    if (housenumber == '' || housenumber < 1){
-        let x = document.getElementById("housenumber").className;
+    if (locationHouseNumber == '' || locationHouseNumber < 1){
+        let x = document.getElementById("locationHouseNumber").className;
         x = x.replace('is-invalid', '');
         x = x.replace('is-valid', '');
         x = x.trim();
-        document.getElementById("housenumber").className = x + " is-invalid";
+        document.getElementById("locationHouseNumber").className = x + " is-invalid";
         document.getElementById("houseNumberIsInValid").innerText = "es soll eine Eingabe geben!";
         ret = false;
     } else {
-        let y = document.getElementById("housenumber").className;
+        let y = document.getElementById("locationHouseNumber").className;
         y = y.replace('is-invalid', '');
         y = y.replace('is-valid', '');
         y = y.trim();
-        document.getElementById("housenumber").className = y + " is-valid";
+        document.getElementById("locationHouseNumber").className = y + " is-valid";
     }
     //Ort validieren
-    if (locationname== '' || !letters.test(locationname)){
-        let x = document.getElementById("locationname").className;
+    if (locationAreaName== '' || !letters.test(locationAreaName)){
+        let x = document.getElementById("locationAreaName").className;
         x = x.replace('is-invalid', '');
         x = x.replace('is-valid', '');
         x = x.trim();
-        document.getElementById("locationname").className = x + " is-invalid";
+        document.getElementById("locationAreaName").className = x + " is-invalid";
         document.getElementById("locationNameIsInValid").innerText = "es soll eine Eingabe geben!";
         ret = false;
     } else {
-        let y = document.getElementById("locationname").className;
+        let y = document.getElementById("locationAreaName").className;
         y = y.replace('is-invalid', '');
         y = y.replace('is-valid', '');
         y = y.trim();
-        document.getElementById("locationname").className = y + " is-valid";
+        document.getElementById("locationAreaName").className = y + " is-valid";
     }
     //strasse validieren
-    if (locationstreet == '' || !letters.test(locationstreet)){
-        let x = document.getElementById("locationstreet").className;
+    if (locationStreetName == '' || !letters.test(locationStreetName)){
+        let x = document.getElementById("locationStreetName").className;
         x = x.replace('is-invalid', '');
         x = x.replace('is-valid', '');
         x = x.trim();
-        document.getElementById("locationstreet").className = x + " is-invalid";
+        document.getElementById("locationStreetName").className = x + " is-invalid";
         document.getElementById("locationStreetIsInValid").innerText = "Eingabe ist falsch!";
         ret = false;
     } else {
-        let y = document.getElementById("locationstreet").className;
+        let y = document.getElementById("locationStreetName").className;
         y = y.replace('is-invalid', '');
         y = y.replace('is-valid', '');
         y = y.trim();
-        document.getElementById("locationstreet").className = y + " is-valid";
+        document.getElementById("locationStreetName").className = y + " is-valid";
     }
 
     return ret;
@@ -242,19 +242,19 @@ function insertNewRecordLocation(locationList){
     let table = document.getElementById("idLocationList").getElementsByTagName('tbody')[0];
     let newRow = table.insertRow(table.length);
     let cell1 = newRow.insertCell(0);
-    cell1.innerHTML = locationList.locationlabel;
+    cell1.innerHTML = locationList.locationBusinessName;
     let cell2 = newRow.insertCell(1);
-    cell2.innerHTML = locationList.locationstreet;
+    cell2.innerHTML = locationList.locationStreetName;
     let cell3 = newRow.insertCell(2);
-    cell3.innerHTML = locationList.housenumber;
+    cell3.innerHTML = locationList.locationHouseNumber;
     let cell4 = newRow.insertCell(3);
-    cell4.innerHTML = locationList.zipcode;
+    cell4.innerHTML = locationList.locationZipcode;
     let cell5 = newRow.insertCell(4);
-    cell5.innerHTML = locationList.locationname;
+    cell5.innerHTML = locationList.locationAreaName;
     let cell6 = newRow.insertCell(5);
-    cell6.innerHTML = locationList.floornumber;
+    cell6.innerHTML = locationList.locationFloorNumber;
     let cell7 = newRow.insertCell(6);
-    cell7.innerHTML = locationList.roomnumber;
+    cell7.innerHTML = locationList.locationRoomNumber;
     let cell8 = newRow.insertCell(7);
     cell8.innerHTML = "<div class=\"text-center d-flex justify-content-around\">" +
         "<button onClick=\"editLocation(" + "\'" + locationList._id + "\'" + ")\" class=\"btn btn-secondary fa fa-edit\" data-toggle=\"tooltip\" data-placement=\"left\" title=\"bearbeiten\"></button>" +
@@ -302,7 +302,7 @@ async function deleteLocation(locationId) {
             x = x.replace('d-none','');
             x = x.trim();
             locationDelete.className = x + ' d-block';
-            locationDeletedName.innerText = locations[i].locationlabel + ' ' + locations[i].locationname;
+            locationDeletedName.innerText = locations[i].locationBusinessName + ' ' + locations[i].locationAreaName;
             initLocation();
             setTimeout(function () {
 
@@ -365,25 +365,25 @@ function saveLocation(){
 
         postLocation(getInputLocation(),'http://localhost:8080/v1/locations/');
 
-        let locationlabel = document.getElementById("locationlabel").value.trim();
-        let locationstreet = document.getElementById("locationstreet").value.trim();
-        let housenumber = document.getElementById("housenumber").value.trim();
-        let zipcode = document.getElementById("zipcode").value.trim();
-        let locationname= document.getElementById("locationname").value.trim();
-        let floornumber = document.getElementById("floornumber").value.trim();
-        let roomnumber = document.getElementById("roomnumber").value.trim();
+        let locationBusinessName = document.getElementById("locationBusinessName").value.trim();
+        let locationStreetName = document.getElementById("locationStreetName").value.trim();
+        let locationHouseNumber = document.getElementById("locationHouseNumber").value.trim();
+        let locationZipcode = document.getElementById("locationZipcode").value.trim();
+        let locationAreaName= document.getElementById("locationAreaName").value.trim();
+        let locationFloorNumber = document.getElementById("locationFloorNumber").value.trim();
+        let locationRoomNumber = document.getElementById("locationRoomNumber").value.trim();
         let locationId = document.getElementById("locationId").value;
 
         //storing as an object
         let locationItem = {
-            locationlabel: locationlabel,
-            locationstreet: locationstreet,
-            housenumber: housenumber,
-            //zipcode muss ein Number sein
-            zipcode: zipcode,
-            locationname: locationname,
-            floornumber: floornumber,
-            roomnumber: roomnumber
+            locationBusinessName: locationBusinessName,
+            locationStreetName: locationStreetName,
+            locationHouseNumber: locationHouseNumber,
+            //locationZipcode muss ein Number sein
+            locationZipcode: locationZipcode,
+            locationAreaName: locationAreaName,
+            locationFloorNumber: locationFloorNumber,
+            locationRoomNumber: locationRoomNumber
         };
 
         initLocation();
@@ -411,13 +411,13 @@ async function editLocation(locationId) {
 
             console.log('editLocation', location);
 
-            document.getElementById("locationlabel").value = location.locationlabel;
-            document.getElementById("locationstreet").value = location.locationstreet;
-            document.getElementById("housenumber").value = location.housenumber;
-            document.getElementById("zipcode").value = location.zipcode;
-            document.getElementById("locationname").value = location.locationname;
-            document.getElementById("floornumber").value = location.floornumber;
-            document.getElementById("roomnumber").value = location.roomnumber;
+            document.getElementById("locationBusinessName").value = location.locationBusinessName;
+            document.getElementById("locationStreetName").value = location.locationStreetName;
+            document.getElementById("locationHouseNumber").value = location.locationHouseNumber;
+            document.getElementById("locationZipcode").value = location.locationZipcode;
+            document.getElementById("locationAreaName").value = location.locationAreaName;
+            document.getElementById("locationFloorNumber").value = location.locationFloorNumber;
+            document.getElementById("locationRoomNumber").value = location.locationRoomNumber;
             document.getElementById("locationId").value = location._id;
             document.getElementById("locationRev").value =location._rev;
 }
@@ -465,24 +465,24 @@ async function updateLocation() {
 
     //let locationList = await getLocations();
 
-    let locationlabel = document.getElementById("locationlabel").value.trim();
-    let locationstreet = document.getElementById("locationstreet").value.trim();
-    let housenumber = document.getElementById("housenumber").value.trim();
-    let zipcode = document.getElementById("zipcode").value.trim();
-    let locationname= document.getElementById("locationname").value.trim();
-    let floornumber = document.getElementById("floornumber").value.trim();
-    let roomnumber = document.getElementById("roomnumber").value.trim();
+    let locationBusinessName = document.getElementById("locationBusinessName").value.trim();
+    let locationStreetName = document.getElementById("locationStreetName").value.trim();
+    let locationHouseNumber = document.getElementById("locationHouseNumber").value.trim();
+    let locationZipcode = document.getElementById("locationZipcode").value.trim();
+    let locationAreaName= document.getElementById("locationAreaName").value.trim();
+    let locationFloorNumber = document.getElementById("locationFloorNumber").value.trim();
+    let locationRoomNumber = document.getElementById("locationRoomNumber").value.trim();
     let locationId = document.getElementById("locationId").value;
     let revision = document.getElementById("locationRev").value;
 
     let locationItem = {
-        locationlabel: locationlabel,
-        locationstreet: locationstreet,
-        housenumber: housenumber,
-        zipcode: zipcode,
-        locationname: locationname,
-        floornumber: floornumber,
-        roomnumber: roomnumber,
+        locationBusinessName: locationBusinessName,
+        locationStreetName: locationStreetName,
+        locationHouseNumber: locationHouseNumber,
+        locationZipcode: locationZipcode,
+        locationAreaName: locationAreaName,
+        locationFloorNumber: locationFloorNumber,
+        locationRoomNumber: locationRoomNumber,
         _id: locationId,
         _rev: revision
     };
@@ -508,22 +508,22 @@ async function updateLocation() {
 function refreshLocation() {
     //aktuelle werte auf eingabefelder löchen
 
-    document.getElementById("locationlabel").value = '';
-    document.getElementById("locationstreet").value = '';
-    document.getElementById("housenumber").value = '';
-    document.getElementById("zipcode").value = '';
-    document.getElementById("locationname").value = '';
-    document.getElementById("floornumber").value = '';
-    document.getElementById("roomnumber").value = '';
+    document.getElementById("locationBusinessName").value = '';
+    document.getElementById("locationStreetName").value = '';
+    document.getElementById("locationHouseNumber").value = '';
+    document.getElementById("locationZipcode").value = '';
+    document.getElementById("locationAreaName").value = '';
+    document.getElementById("locationFloorNumber").value = '';
+    document.getElementById("locationRoomNumber").value = '';
     document.getElementById("locationId").value = '';
     document.getElementById("locationRev").value = '';
 
-    document.getElementById("locationlabel").className = 'form-control';
-    document.getElementById("locationstreet").className = 'form-control';
-    document.getElementById("housenumber").className = 'form-control';
-    document.getElementById("zipcode").className = 'form-control';
-    document.getElementById("locationname").className = 'form-control';
-    document.getElementById("floornumber").className = 'form-control';
-    document.getElementById("roomnumber").className = 'form-control';
+    document.getElementById("locationBusinessName").className = 'form-control';
+    document.getElementById("locationStreetName").className = 'form-control';
+    document.getElementById("locationHouseNumber").className = 'form-control';
+    document.getElementById("locationZipcode").className = 'form-control';
+    document.getElementById("locationAreaName").className = 'form-control';
+    document.getElementById("locationFloorNumber").className = 'form-control';
+    document.getElementById("locationRoomNumber").className = 'form-control';
 
 }
