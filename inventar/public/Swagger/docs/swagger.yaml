@@ -5,7 +5,7 @@ info:
   title: "INVENTAR"
   termsOfService: "http://deltastone.com"
   contact:
-    email: "info@deltastone.com"
+    personEmail: "info@deltastone.com"
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
@@ -371,22 +371,22 @@ definitions:
   PersonWithoutID: #ändern
     type: "object"
     required:
-      - lastname
-      - firstname
-      - personalno
-      - email
+      - personLastName
+      - personFirstName
+      - personPersonalNumber
+      - personEmail
     additionalProperties: false
     properties:
-      lastname:
+      personLastName:
         type: "string"
         example: "Müller"
-      firstname:
+      personFirstName:
         type: "string"
         example: "Max"
-      personalno:
+      personPersonalNumber:
         type: "string"
         example: "LS-11324"
-      email:
+      personEmail:
         type: "string"
         example: "example@example.com"
         description: "Die person muss eindeutig in der Datenbank sein"
@@ -467,37 +467,37 @@ definitions:
   LocationWithoutID:
     type: "object"
     required:
-      - locationname
-      - locationlabel
-      - locationstreet
-      - housenumber
-      - zipcode
-      - floornumber
-      - roomnumber
+      - locationAreaName
+      - locationBusinessName
+      - locationStreetName
+      - locationHouseNumber
+      - locationZipcode
+      - locationFloorNumber
+      - locationRoomNumber
     additionalProperties: false
     properties:
-      locationname:
+      locationAreaName:
         type: "string"
         example: "Mannheim"
-      locationlabel:
+      locationBusinessName:
         type: "string"
         example: "Nokia GmbH"
-      locationstreet:
+      locationStreetName:
         type: "string"
         example: "LudwigStr"
-      housenumber:
+      locationHouseNumber:
         type: "string"
         example: "23"
-      zipcode:
+      locationZipcode:
         type: "string"
         example: "22134"
-      floornumber:
+      locationFloorNumber:
         type: "string"
         example: "EG"
-      roomnumber:
+      locationRoomNumber:
         type: "string"
         example: "13C"
-        description: "Die location muss nicht eindeutig in der Datenbank sein"
+        description: "Das Ort muss nicht eindeutig in der Datenbank sein"
   Error:
     type: "object"
     properties:

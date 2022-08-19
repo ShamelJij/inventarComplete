@@ -76,26 +76,26 @@ this.data = data;
       tableId.className = x + " d-none";
       let sortedList = objArray.sort(function (a, b) {
         if (data === "persons") {
-          if (a.lastname < b.lastname) {
+          if (a.personLastName < b.personLastName) {
             return -1;
           }
-          if (a.lastname > b.lastname) {
+          if (a.personLastName > b.personLastName) {
             return 1;
           }
           return 0;
         } else if (data === "locations") {
-          if (a.locationname < b.locationname) {
+          if (a.locationAreaName < b.locationAreaName) {
             return -1;
           }
-          if (a.locationname > b.locationname) {
+          if (a.locationAreaName > b.locationAreaName) {
             return 1;
           }
           return 0;
         } else if (data === "inventories") {
-          if (a.price < b.price) {
+          if (a.inventoryPrice < b.inventoryPrice) {
             return -1;
           }
-          if (a.price > b.price) {
+          if (a.inventoryPrice > b.inventoryPrice) {
             return 1;
           }
           return 0;
