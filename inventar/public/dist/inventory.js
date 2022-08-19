@@ -4,6 +4,7 @@ import { Requests } from "./requests.js";
 //let app = require(' ./app.js');
 let InitInventory = new InitPage('inventories');
 let InventoryRequest = new Requests();
+document.getElementById("btnshowInventory").addEventListener("click", showInventory, false);
 
 /**
  * inventory FRONTEND
@@ -151,27 +152,26 @@ async function getInventoryById(url) {
  * @return {inventoryData}
  */
 function getInputInventory() {
+  let inventoryForm = ['personIdInInventory', 'inventoryStatus', 'inventoryLabel', 'inventorySerialNumber', 'inventoryType',
+  'inventoryPurchaseDate', 'inventoryPrice', 'inventoryBookingCategory', 'inventoryDepreciationInput','inventoryValidationEndDate'];
   let inventoryData = {};
-  inventoryData["personId"] = document.getElementById(
-    "personIdInInventory"
-  ).value;
-  inventoryData["status"] = document.getElementById("idStatus").value;
-  inventoryData["label"] = document.getElementById("idLabel").value;
-  inventoryData["serialnumber"] = document.getElementById(
-    "idInventorySerialNumber"
-  ).value;
-  inventoryData["inventorytype"] = document.getElementById("idType").value;
-  inventoryData["purchasedate"] =
-    document.getElementById("idPurchaseDate").value;
-  inventoryData["price"] = parseInt(document.getElementById("idPrice").value);
-  inventoryData["bookingcategory"] =
-    document.getElementById("bookingCategory").value;
-  inventoryData["deprecationdate"] = parseInt(
-    document.getElementById("idDepreciationInput").value
-  );
-  inventoryData["validationenddate"] =
-    document.getElementById("validationEndDate").value;
-  console.log(typeof inventoryData.price);
+  for (let i = 0; i < inventoryForm.length; i++) {
+    if(inventoryData[inventoryForm[i]] === 'inventoryPrice' || inventoryData[inventoryForm[i]] === 'inventoryDepreciationInput'){
+      inventoryData[inventoryForm[i]] = parseInt(document.getElementById(inventoryForm[i]).value);
+    }
+      inventoryData[inventoryForm[i]] = document.getElementById(inventoryForm[i]).value;
+  }
+    //inventoryData["personId"] =            document.getElementById("personIdInInventory").value;
+    //inventoryData["status"] =              document.getElementById("inventoryStatus").value;
+    //inventoryData["label"] =               document.getElementById("inventoryLabel").value;
+    //inventoryData["serialnumber"] =        document.getElementById("inventorySerialNumber").value;
+    //inventoryData["inventorytype"] =       document.getElementById("inventoryType").value;
+    //inventoryData["purchasedate"] =        document.getElementById("inventoryPurchaseDate").value;
+    //inventoryData["price"] =               parseInt(document.getElementById("inventoryPrice").value);
+    //inventoryData["bookingcategory"] =     document.getElementById("inventoryBookingCategory").value;
+    //inventoryData["deprecationdate"] =     parseInt(document.getElementById("inventoryDepreciationInput").value);
+    //inventoryData["validationenddate"] =  document.getElementById("inventoryValidationEndDate").value;
+  console.log(inventoryData);
   return inventoryData;
 }
 
@@ -186,207 +186,205 @@ function inputValidationInventory() {
   let ret = true;
   //Anschaffungsdatum validieren (muss nicht in zukunft sein)
   //Anschaffungsdatum als wert
-  let purchasedate = document.getElementById("idPurchaseDate").value;
+  let inventorypurchaseDate = document.getElementById("inventoryPurchaseDate").value;
   //jetztgen Datum
   let nowDate = new Date().toISOString().split("T")[0];
 
-  console.log("purchase date is: ", Number(purchasedate));
+  console.log("purchase date is: ", Number(inventorypurchaseDate));
   console.log("now is: ", nowDate);
 
-  if (purchasedate > nowDate) {
+  if (inventorypurchaseDate > nowDate) {
     console.log("purchase date is bigger than now");
-    let x = document.getElementById("idPurchaseDate").className;
+    let x = document.getElementById("inventoryPurchaseDate").className;
     x = x.replace("is-invalid", "");
     x = x.replace("is-valid", "");
     x = x.trim();
-    document.getElementById("idPurchaseDate").className = x + " is-invalid";
-    document.getElementById("idPurchaseDateInvalid").innerText =
+    document.getElementById("inventoryPurchaseDate").className = x + " is-invalid";
+    document.getElementById("inventoryPurchaseDateInvalid").innerText =
       "Das Datum legt in Zukunft!";
     ret = false;
-  } else if (purchasedate == "") {
-    let t = document.getElementById("idPurchaseDate").className;
+  } else if (inventorypurchaseDate == "") {
+    let t = document.getElementById("inventoryPurchaseDate").className;
     t = t.replace("is-invalid", "");
     t = t.replace("is-valid", "");
     t = t.trim();
-    document.getElementById("idPurchaseDate").className = t + " is-invalid";
-    document.getElementById("idPurchaseDateInvalid").innerText =
+    document.getElementById("inventoryPurchaseDate").className = t + " is-invalid";
+    document.getElementById("inventoryPurchaseDateInvalid").innerText =
       "Das Datum ist leer!";
     ret = false;
   } else {
     console.log("purchase date is smaller than now");
-    let y = document.getElementById("idPurchaseDate").className;
+    let y = document.getElementById("inventoryPurchaseDate").className;
     y = y.replace("is-invalid", "");
     y = y.replace("is-valid", "");
     y = y.trim();
-    document.getElementById("idPurchaseDate").className = y + " is-valid";
-    document.getElementById("idPurchaseDateValid").innerText =
+    document.getElementById("inventoryPurchaseDate").className = y + " is-valid";
+    document.getElementById("inventoryPurchaseDateValid").innerText =
       "Das Datum ist gültig!";
   }
   //price validation muss nicht negatives Wert haben
-  let price = document.getElementById("idPrice").value;
+  let inventoryPrice = document.getElementById("inventoryPrice").value;
   //parsing input to number without zeros on the left
-  price = Number(price);
-  document.getElementById("idPrice").value = price;
-  console.log("the price is: ", price);
+  inventoryPrice = Number(inventoryPrice);
+  document.getElementById("inventoryPrice").value = inventoryPrice;
+  console.log("the inventoryPrice is: ", inventoryPrice);
 
   //Show booking category
-  if (price < 0) {
-    console.log("price is negative");
-    let x = document.getElementById("idPrice").className;
+  if (inventoryPrice < 0) {
+    console.log("inventoryPrice is negative");
+    let x = document.getElementById("inventoryPrice").className;
     x = x.replace("is-invalid", "");
     x = x.replace("is-valid", "");
     x = x.trim();
-    document.getElementById("idPrice").className = x + " is-invalid";
-    document.getElementById("idPriceNotValid").innerText =
+    document.getElementById("inventoryPrice").className = x + " is-invalid";
+    document.getElementById("inventoryPriceNotValid").innerText =
       "Kein negativem Wert bitte!";
     ret = false;
   } else {
-    console.log("price is not negative");
-    let y = document.getElementById("idPrice").className;
+    console.log("inventoryPrice is not negative");
+    let y = document.getElementById("inventoryPrice").className;
     y = y.replace("is-invalid", "");
     y = y.replace("is-valid", "");
     y = y.trim();
-    document.getElementById("idPrice").className = y + " is-valid";
-    document.getElementById("idPriceValid").innerText = "Der Wert ist gültig!";
+    document.getElementById("inventoryPrice").className = y + " is-valid";
+    document.getElementById("inventoryPriceValid").innerText = "Der Wert ist gültig!";
   }
-  //deprecation validation idDepreciationInput
+  //deprecation validation inventoryDepreciationInput
   //deprecation validation muss nicht negatives Wert haben
-  let deprecationdate = document.getElementById("idDepreciationInput").value;
-  deprecationdate = Number(deprecationdate);
+  let inventoryDepreciationDate = document.getElementById("inventoryDepreciationInput").value;
+  inventoryDepreciationDate = Number(inventoryDepreciationDate);
   //Show booking category
-  if (deprecationdate < 0) {
+  if (inventoryDepreciationDate < 0) {
     console.log("deprecation is negative");
-    let x = document.getElementById("idDepreciationInput").className;
+    let x = document.getElementById("inventoryDepreciationInput").className;
     x = x.replace("is-invalid", "");
     x = x.replace("is-valid", "");
     x = x.trim();
-    document.getElementById("idDepreciationInput").className =
+    document.getElementById("inventoryDepreciationInput").className =
       x + " is-invalid";
-    document.getElementById("idDepreciationInputIsInValid").innerText =
+    document.getElementById("inventoryDepreciationInputIsInValid").innerText =
       "Kein negativem Wert bitte!";
     ret = false;
   } else {
     //--------------------------------------------------------------------
     //if new booking category is depreciable (abschreibfähig)
-    if (price <= 2000 && price >= 0) {
-      document.getElementById("bookingCategory").value = "GWG";
+    if (inventoryPrice <= 2000 && inventoryPrice >= 0) {
+      document.getElementById("inventoryBookingCategory").value = "GWG";
       let oldStatus = document.getElementById("hiddenStatus").value;
-      let newStatus = document.getElementById("bookingCategory").value;
+      let newStatus = document.getElementById("inventoryBookingCategory").value;
       if (oldStatus != newStatus) {
-        //bookingCategoryChanged Modal
+        //inventoryBookingCategoryChanged Modal
         document.getElementById("newStatusModal").innerText = newStatus;
-        $("#bookingCategoryChanged").modal("show");
-        console.log("bookingcategory is changed!! Alert!!");
+        $("#inventoryBookingCategoryChanged").modal("show");
         document.getElementById("hiddenStatus").value = newStatus;
       } else {
-        console.log("deprecation is not negative");
-        let y = document.getElementById("idDepreciationInput").className;
+        let y = document.getElementById("inventoryDepreciationInput").className;
         y = y.replace("is-invalid", "");
         y = y.replace("is-valid", "");
         y = y.trim();
-        document.getElementById("idDepreciationInput").className =
+        document.getElementById("inventoryDepreciationInput").className =
           y + " is-valid";
-        document.getElementById("idDepreciationInputIsValid").innerText =
+        document.getElementById("inventoryDepreciationInputIsValid").innerText =
           "Der Wert ist gültig!";
       }
     } else {
       let oldStatus = document.getElementById("hiddenStatus").value;
-      let newStatus = document.getElementById("bookingCategory").value;
+      let newStatus = document.getElementById("inventoryBookingCategory").value;
       if (oldStatus != newStatus) {
         document.getElementById("newStatusModal").innerText = newStatus;
         if (newStatus == "Abschreibfähig") {
           document.getElementById("deprecationInputGroup").className =
             "d-block";
-          document.getElementById("validationEndDateGroup").className =
+          document.getElementById("inventoryValidationEndDateGroup").className =
             "d-block";
           console.warn("success!!!");
-          let x = document.getElementById("idDepreciationInput").className;
+          let x = document.getElementById("inventoryDepreciationInput").className;
           x = x.replace("is-invalid", "");
           x = x.replace("is-valid", "");
           x = x.trim();
-          document.getElementById("idDepreciationInput").className =
+          document.getElementById("inventoryDepreciationInput").className =
             x + " is-invalid";
-          document.getElementById("idDepreciationInputIsInValid").innerText =
+          document.getElementById("inventoryDepreciationInputIsInValid").innerText =
             "bitte esrt anpassen dann Brechnen drücken!";
           ret = false;
         }
-        $("#bookingCategoryChanged").modal("show");
+        $("#inventoryBookingCategoryChanged").modal("show");
         console.log("bookingcategory is changed!! Alert!!");
         document.getElementById("hiddenStatus").value = newStatus;
       } else {
         console.log("bookingcategory is not changed!! ALERT!");
         document.getElementById("deprecationInputGroup").className = "d-none";
-        document.getElementById("validationEndDateGroup").className = "d-none";
+        document.getElementById("inventoryValidationEndDateGroup").className = "d-none";
       }
     }
     //--------------------------------------------------------------------
   }
   //validating the label input not to be empty
-  let labelInput = document.getElementById("idLabel").value;
+  let labelInput = document.getElementById("inventoryLabel").value;
   if (labelInput == "") {
-    let l = document.getElementById("idLabel").className;
+    let l = document.getElementById("inventoryLabel").className;
     l = l.replace("is-invalid", "");
     l = l.replace("is-valid", "");
     l = l.trim();
-    document.getElementById("idLabel").className = l + " is-invalid";
-    document.getElementById("idLabelIsInvalid").innerText = "leer!";
+    document.getElementById("inventoryLabel").className = l + " is-invalid";
+    document.getElementById("inventoryLabelIsInvalid").innerText = "leer!";
     //optional
     //ret = false;
   } else {
-    let lv = document.getElementById("idLabel").className;
+    let lv = document.getElementById("inventoryLabel").className;
     lv = lv.replace("is-invalid", "");
     lv = lv.replace("is-valid", "");
     lv = lv.trim();
-    document.getElementById("idLabel").className = lv + " is-valid";
-    document.getElementById("idLabelIsValid").innerText = "Eingabe ist gültig";
+    document.getElementById("inventoryLabel").className = lv + " is-valid";
+    document.getElementById("inventoryLabelIsValid").innerText = "Eingabe ist gültig";
     console.log("labelInput is not empty");
     //optional
     //ret = true;
   }
   //validating the label input not to be empty
-  let serialnumber = document.getElementById("idInventorySerialNumber").value;
-  if (serialnumber == "") {
-    let sn = document.getElementById("idInventorySerialNumber").className;
+  let inventorySerialNumber = document.getElementById("inventorySerialNumber").value;
+  if (inventorySerialNumber == "") {
+    let sn = document.getElementById("inventorySerialNumber").className;
     sn = sn.replace("is-invalid", "");
     sn = sn.replace("is-valid", "");
     sn = sn.trim();
-    document.getElementById("idInventorySerialNumber").className =
+    document.getElementById("inventorySerialNumber").className =
       sn + " is-invalid";
-    document.getElementById("idInventorySerialNumberIsInValid").innerText =
+    document.getElementById("inventorySerialNumberIsInValid").innerText =
       "leer!";
     //optional
     //ret = false;
   } else {
-    let snv = document.getElementById("idInventorySerialNumber").className;
+    let snv = document.getElementById("inventorySerialNumber").className;
     snv = snv.replace("is-invalid", "");
     snv = snv.replace("is-valid", "");
     snv = snv.trim();
-    document.getElementById("idInventorySerialNumber").className =
+    document.getElementById("inventorySerialNumber").className =
       snv + " is-valid";
-    document.getElementById("idInventorySerialNumberIsValid").innerText =
+    document.getElementById("inventorySerialNumberIsValid").innerText =
       "Eingabe ist gültig";
     console.log("serialnumber is not empty");
     //optional
     //ret = true;
   }
   //validating the label input not to be empty
-  let inventorytype = document.getElementById("idType").value;
-  if (inventorytype == "") {
-    let it = document.getElementById("idType").className;
+  let inventoryType = document.getElementById("inventoryType").value;
+  if (inventoryType == "") {
+    let it = document.getElementById("inventoryType").className;
     it = it.replace("is-invalid", "");
     it = it.replace("is-valid", "");
     it = it.trim();
-    document.getElementById("idType").className = it + " is-invalid";
-    document.getElementById("idTypeIsInValid").innerText = "leer!";
+    document.getElementById("inventoryType").className = it + " is-invalid";
+    document.getElementById("inventoryTypeIsInValid").innerText = "leer!";
     //optional
     //ret = false;
   } else {
-    let itv = document.getElementById("idType").className;
+    let itv = document.getElementById("inventoryType").className;
     itv = itv.replace("is-invalid", "");
     itv = itv.replace("is-valid", "");
     itv = itv.trim();
-    document.getElementById("idType").className = itv + " is-valid";
-    document.getElementById("idTypeIsValid").innerText = "Eingabe ist gültig";
+    document.getElementById("inventoryType").className = itv + " is-valid";
+    document.getElementById("inventoryTypeIsValid").innerText = "Eingabe ist gültig";
     console.log("Type is not empty");
     //optional
     //ret = true;
@@ -411,19 +409,19 @@ function insertNewRecordInventory(inventory) {
   let cell2 = newRow.insertCell(1);
   cell2.innerHTML = inventory.label;
   let cell3 = newRow.insertCell(2);
-  cell3.innerHTML = inventory.serialnumber;
+  cell3.innerHTML = inventory.inventorySerialNumber;
   let cell4 = newRow.insertCell(3);
-  cell4.innerHTML = inventory.inventorytype;
+  cell4.innerHTML = inventory.inventoryType;
   let cell5 = newRow.insertCell(4);
-  cell5.innerHTML = inventory.purchasedate;
+  cell5.innerHTML = inventory.inventorypurchaseDate;
   let cell6 = newRow.insertCell(5);
-  cell6.innerHTML = inventory.price;
+  cell6.innerHTML = inventory.inventoryPrice;
   let cell7 = newRow.insertCell(6);
-  cell7.innerHTML = inventory.bookingcategory;
+  cell7.innerHTML = inventory.inventoryBookingCategory;
   let cell8 = newRow.insertCell(7);
-  cell8.innerHTML = inventory.deprecationdate;
+  cell8.innerHTML = inventory.inventoryDepreciationDate;
   let cell9 = newRow.insertCell(8);
-  cell9.innerHTML = inventory.validationenddate;
+  cell9.innerHTML = inventory.inventoryValidationDate;
   let cell10 = newRow.insertCell(9);
   cell10.innerHTML =
     '<div class="text-center d-flex justify-content-around">' +
@@ -481,7 +479,7 @@ async function deleteInventory(inventoryId) {
   x = x.trim();
   inventoryDelete.className = x + " d-block";
   inventoryDeletedName.innerText =
-    inventory.label + " " + inventory.inventorytype;
+    inventory.label + " " + inventory.inventoryType;
   $("#inventoryDelete").show();
 
   initInventory();
@@ -545,38 +543,38 @@ function saveInventory() {
         "http://localhost:8080/v1/inventories/"
       );
 
-      let personId = document.getElementById("personIdInInventory").value;
-      let status = document.getElementById("idStatus").value.trim();
-      let label = document.getElementById("idLabel").value.trim();
-      let serialnumber = document
-        .getElementById("idInventorySerialNumber")
+      let personIdInInventory = document.getElementById("personIdInInventory").value;
+      let status = document.getElementById("inventoryStatus").value.trim();
+      let label = document.getElementById("inventoryLabel").value.trim();
+      let inventorySerialNumber = document
+        .getElementById("inventorySerialNumber")
         .value.trim();
-      let inventorytype = document.getElementById("idType").value.trim();
-      let purchasedate = document.getElementById("idPurchaseDate").value.trim();
-      let price = document.getElementById("idPrice").value.trim();
-      let bookingcategory = document
-        .getElementById("bookingCategory")
+      let inventoryType = document.getElementById("inventoryType").value.trim();
+      let inventorypurchaseDate = document.getElementById("inventoryPurchaseDate").value.trim();
+      let inventoryPrice = document.getElementById("inventoryPrice").value.trim();
+      let inventoryBookingCategory = document
+        .getElementById("inventoryBookingCategory")
         .value.trim();
-      let deprecationdate = document
-        .getElementById("idDepreciationInput")
+      let inventoryDepreciationDate = document
+        .getElementById("inventoryDepreciationInput")
         .value.trim();
-      let validationenddate = document
-        .getElementById("validationEndDate")
+      let inventoryValidationDate = document
+        .getElementById("inventoryValidationEndDate")
         .value.trim();
       let inventoryId = document.getElementById("saveIDInventory").value;
 
       //storing as an object
       let inventoryItem = {
-        personId: personId,
+        personIdInInventory: personIdInInventory,
         status: status,
         label: label,
-        serialnumber: serialnumber,
-        inventorytype: inventorytype,
-        purchasedate: purchasedate,
-        price: price,
-        bookingcategory: bookingcategory,
-        deprecationdate: deprecationdate,
-        validationenddate: validationenddate,
+        inventorySerialNumber: inventorySerialNumber,
+        inventoryType: inventoryType,
+        inventorypurchaseDate: inventorypurchaseDate,
+        inventoryPrice: inventoryPrice,
+        inventoryBookingCategory: inventoryBookingCategory,
+        inventoryDepreciationDate: inventoryDepreciationDate,
+        inventoryValidationDate: inventoryValidationDate,
       };
       initInventory();
       hideInventory();
@@ -586,7 +584,7 @@ function saveInventory() {
         "Item" +
         JSON.stringify(inventoryItem.label) +
         " " +
-        JSON.stringify(inventoryItem.inventorytype) +
+        JSON.stringify(inventoryItem.inventoryType) +
         "ist gespeichert";
     } else {
       console.log("saveInventory in not starting because valid is not valid");
@@ -610,22 +608,22 @@ async function editInventory(inventoryId) {
 
   console.log("editInventory", inventory);
 
-  document.getElementById("idStatus").value = inventory.status;
-  document.getElementById("idLabel").value = inventory.label;
-  document.getElementById("idInventorySerialNumber").value =
-    inventory.serialnumber;
-  document.getElementById("idType").value = inventory.inventorytype;
-  document.getElementById("idPurchaseDate").value = inventory.purchasedate;
-  document.getElementById("idPrice").value = inventory.price;
-  document.getElementById("bookingCategory").value = inventory.bookingcategory;
-  document.getElementById("idDepreciationInput").value =
-    inventory.deprecationdate;
-  document.getElementById("validationEndDate").value =
-    inventory.validationenddate;
-  document.getElementById("hiddenStatus").value = inventory.bookingcategory;
+  document.getElementById("inventoryStatus").value = inventory.status;
+  document.getElementById("inventoryLabel").value = inventory.label;
+  document.getElementById("inventorySerialNumber").value =
+    inventory.inventorySerialNumber;
+  document.getElementById("inventoryType").value = inventory.inventoryType;
+  document.getElementById("inventoryPurchaseDate").value = inventory.inventorypurchaseDate;
+  document.getElementById("inventoryPrice").value = inventory.inventoryPrice;
+  document.getElementById("inventoryBookingCategory").value = inventory.inventoryBookingCategory;
+  document.getElementById("inventoryDepreciationInput").value =
+    inventory.inventoryDepreciationDate;
+  document.getElementById("inventoryValidationEndDate").value =
+    inventory.inventoryValidationDate;
+  document.getElementById("hiddenStatus").value = inventory.inventoryBookingCategory;
   document.getElementById("saveIDInventory").value = inventory._id;
   document.getElementById("inventoryRev").value = inventory._rev;
-  document.getElementById("personIdInInventory").value = inventory.personId;
+  document.getElementById("personIdInInventory").value = inventory.personIdInInventory;
 }
 
 //--------------------------------------------------------------------------------
@@ -707,25 +705,25 @@ async function updateInventory() {
   let inventory = await getInventories();
   if (refresh()) {
     let inventory = await getInventories();
-    let personId = document.getElementById("personIdInInventory").value;
-    let status = document.getElementById("idStatus").value.trim();
-    let label = document.getElementById("idLabel").value.trim();
-    let serialnumber = document
-      .getElementById("idInventorySerialNumber")
+    let personIdInInventory = document.getElementById("personIdInInventory").value;
+    let status = document.getElementById("inventoryStatus").value.trim();
+    let label = document.getElementById("inventoryLabel").value.trim();
+    let inventorySerialNumber = document
+      .getElementById("inventorySerialNumber")
       .value.trim();
-    let inventorytype = document.getElementById("idType").value.trim();
-    let purchasedate = document.getElementById("idPurchaseDate").value.trim();
-    let price = document.getElementById("idPrice").value.trim();
-    price = Number(price);
-    let bookingcategory = document
-      .getElementById("bookingCategory")
+    let inventoryType = document.getElementById("inventoryType").value.trim();
+    let inventorypurchaseDate = document.getElementById("inventoryPurchaseDate").value.trim();
+    let inventoryPrice = document.getElementById("inventoryPrice").value.trim();
+    inventoryPrice = Number(inventoryPrice);
+    let inventoryBookingCategory = document
+      .getElementById("inventoryBookingCategory")
       .value.trim();
-    let deprecationdate = document
-      .getElementById("idDepreciationInput")
+    let inventoryDepreciationDate = document
+      .getElementById("inventoryDepreciationInput")
       .value.trim();
-    deprecationdate = Number(deprecationdate);
-    let validationenddate = document
-      .getElementById("validationEndDate")
+    inventoryDepreciationDate = Number(inventoryDepreciationDate);
+    let inventoryValidationDate = document
+      .getElementById("inventoryValidationEndDate")
       .value.trim();
 
     let inventoryId = document.getElementById("saveIDInventory").value;
@@ -734,22 +732,22 @@ async function updateInventory() {
 
     let revision = document.getElementById("inventoryRev").value;
 
-    if (oldStatus == bookingcategory) {
+    if (oldStatus == inventoryBookingCategory) {
       console.log("status not changed");
     } else {
       console.log("status changed!!");
     }
     let inventoryItem = {
-      personId: personId,
+      personIdInInventory: personIdInInventory,
       status: status,
       label: label,
-      serialnumber: serialnumber,
-      inventorytype: inventorytype,
-      purchasedate: purchasedate,
-      price: price,
-      bookingcategory: bookingcategory,
-      deprecationdate: deprecationdate,
-      validationenddate: validationenddate,
+      inventorySerialNumber: inventorySerialNumber,
+      inventoryType: inventoryType,
+      inventorypurchaseDate: inventorypurchaseDate,
+      inventoryPrice: inventoryPrice,
+      inventoryBookingCategory: inventoryBookingCategory,
+      inventoryDepreciationDate: inventoryDepreciationDate,
+      inventoryValidationDate: inventoryValidationDate,
       _id: inventoryId,
       _rev: revision,
     };
@@ -793,9 +791,8 @@ window.refreshInventory = function() {
   initInventory();
   showLastModified();
 
-document.getElementById("btnshowInventory").addEventListener("click", showInventory, false);
   //status ausgebucht?
-  let status = document.getElementById("idStatus").value;
+  let status = document.getElementById("inventoryStatus").value;
   if (status == "Ausgebucht") {
     console.log("Datumabgebucht: ((vis))");
     document.getElementById("formEndDate").className = "d-block";
@@ -839,12 +836,12 @@ function showLastModified() {
  *
  */
 function dateChangeHandler() {
-  let g = document.getElementById("idPurchaseDate").className;
+  let g = document.getElementById("inventoryPurchaseDate").className;
   g = g.replace("is-invalid", "");
   g = g.replace("is-valid", "");
   g = g.trim();
-  document.getElementById("idPurchaseDate").className = g + " is-invalid";
-  document.getElementById("idPurchaseDateInvalid").innerText =
+  document.getElementById("inventoryPurchaseDate").className = g + " is-invalid";
+  document.getElementById("inventoryPurchaseDateInvalid").innerText =
     "evtl Preis geben dann Brechnen drucken!";
 }
 
@@ -858,49 +855,49 @@ function dateChangeHandler() {
 function inputTranslation() {
   // "Bezeichnung", "Seriennummer", "Typ" die vorherigen und hinteren Leerzeichen entfernen
   //Bezeichnung
-  let label = document.getElementById("idLabel").value;
+  let label = document.getElementById("inventoryLabel").value;
 
   label = label.replace(/\s+/g, " ");
   label = label.trim();
   console.log("trimmed Bezeichnung: ", label);
-  document.getElementById("idLabel").value = label;
+  document.getElementById("inventoryLabel").value = label;
   //seriennummer
-  let serialnumber = document.getElementById("idInventorySerialNumber").value;
+  let inventorySerialNumber = document.getElementById("inventorySerialNumber").value;
 
-  serialnumber = serialnumber.replace(/\s+/g, " ");
-  console.log("Serial Number after replace: ", serialnumber);
-  serialnumber = serialnumber.trim();
-  console.log("trimmed serial NUmber: ", serialnumber);
+  inventorySerialNumber = inventorySerialNumber.replace(/\s+/g, " ");
+  console.log("Serial Number after replace: ", inventorySerialNumber);
+  inventorySerialNumber = inventorySerialNumber.trim();
+  console.log("trimmed serial NUmber: ", inventorySerialNumber);
 
-  document.getElementById("idInventorySerialNumber").value = serialnumber;
+  document.getElementById("inventorySerialNumber").value = inventorySerialNumber;
   //typ
-  let inventorytype = document.getElementById("idType").value;
-  console.log("trimmed Type: ", inventorytype);
-  inventorytype = inventorytype.replace(/\s+/g, " ");
-  inventorytype = inventorytype.trim();
-  console.log("result type: ", inventorytype);
-  document.getElementById("idType").value = inventorytype;
+  let inventoryType = document.getElementById("inventoryType").value;
+  console.log("trimmed Type: ", inventoryType);
+  inventoryType = inventoryType.replace(/\s+/g, " ");
+  inventoryType = inventoryType.trim();
+  console.log("result type: ", inventoryType);
+  document.getElementById("inventoryType").value = inventoryType;
   // Formatieren des Preises im Format: x.xxx,xx
-  let price = document.getElementById("idPrice").value;
+  let inventoryPrice = document.getElementById("inventoryPrice").value;
   let itemId = document.getElementById("saveIDInventory").value;
 
-  if (price <= 2000) {
-    document.getElementById("bookingCategory").value = "GWG";
+  if (inventoryPrice <= 2000) {
+    document.getElementById("inventoryBookingCategory").value = "GWG";
     if (itemId == "") {
       //neue Datensatz
       //nichts machen
-      document.getElementById("idDepreciationInput").value = 0;
+      document.getElementById("inventoryDepreciationInput").value = 0;
     } else {
       //vorhandener Datensatz
       //nichts machen
     }
-    document.getElementById("idDepreciationInput").value = 0;
+    document.getElementById("inventoryDepreciationInput").value = 0;
   } else {
-    document.getElementById("bookingCategory").value = "Abschreibfähig";
+    document.getElementById("inventoryBookingCategory").value = "Abschreibfähig";
     if (itemId == "") {
       //neue Datensatz
       //nichts machen
-      if (document.getElementById("idDepreciationInput").value == "") {
+      if (document.getElementById("inventoryDepreciationInput").value == "") {
         //bleibt leer
       } else {
         //
@@ -919,7 +916,7 @@ function inputTranslation() {
  */
 //macht alle berechnungen auf eine Maske
 function calcForm() {
-  let status = document.getElementById("idStatus").value;
+  let status = document.getElementById("inventoryStatus").value;
   if (status == "Ausgebucht") {
     console.log("Datumabgebucht: ((vis))");
     document.getElementById("formEndDate").className = "d-block";
@@ -928,41 +925,41 @@ function calcForm() {
     document.getElementById("formEndDate").className = "d-none";
   }
 
-  //price value to changes div (bookingCategory)
-  let price = document.getElementById("idPrice").value;
+  //inventoryPrice value to changes div (inventoryBookingCategory)
+  let inventoryPrice = document.getElementById("inventoryPrice").value;
   //Show booking category
-  if (price <= 2000 && price > 0) {
+  if (inventoryPrice <= 2000 && inventoryPrice > 0) {
     document.getElementById("deprecationInputGroup").className = "d-none";
-    document.getElementById("validationEndDateGroup").className = "d-none";
-    document.getElementById("idDepreciationInput").value = 0;
-  } else if (price <= 0) {
+    document.getElementById("inventoryValidationEndDateGroup").className = "d-none";
+    document.getElementById("inventoryDepreciationInput").value = 0;
+  } else if (inventoryPrice <= 0) {
     document.getElementById("deprecationInputGroup").className = "d-none";
-    document.getElementById("validationEndDateGroup").className = "d-none";
+    document.getElementById("inventoryValidationEndDateGroup").className = "d-none";
   } else {
     document.getElementById("deprecationInputGroup").className = "d-block";
-    document.getElementById("validationEndDateGroup").className = "d-block";
+    document.getElementById("inventoryValidationEndDateGroup").className = "d-block";
   }
 
-  let purchasedate = document.getElementById("idPurchaseDate").value;
-  let getMonth = new Date(purchasedate);
+  let inventorypurchaseDate = document.getElementById("inventoryPurchaseDate").value;
+  let getMonth = new Date(inventorypurchaseDate);
   let inputMonthValue = parseInt(
-    document.getElementById("idDepreciationInput").value
+    document.getElementById("inventoryDepreciationInput").value
   );
-  let d = new Date(purchasedate);
+  let d = new Date(inventorypurchaseDate);
   let currentMonth = d.getMonth();
   d.setMonth(currentMonth + inputMonthValue);
   console.log("d: ", d);
-  let pd = new Date(purchasedate);
+  let pd = new Date(inventorypurchaseDate);
   console.log("d: ", d);
-  document.getElementById("validationEndDate").value = d
+  document.getElementById("inventoryValidationEndDate").value = d
     .toISOString()
     .split("T")[0];
-  let ved = document.getElementById("validationEndDate").value;
-  console.log("validationEndDate is: ", ved);
-  let v = document.getElementById("validationEndDate").value;
+  let ved = document.getElementById("inventoryValidationEndDate").value;
+  console.log("inventoryValidationEndDate is: ", ved);
+  let v = document.getElementById("inventoryValidationEndDate").value;
   console.log("input Abgeschrieben am: ", v);
 
-  //document.getElementById("validationEndDate").value = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDay();
+  //document.getElementById("inventoryValidationEndDate").value = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDay();
 
   if (pd.getTime() <= d.getTime()) {
     console.log("time: ", pd.getTime());
@@ -972,44 +969,44 @@ function calcForm() {
     //return false;
   }
   //asking for a better solution!!
-  //price value to changes div (bookingCategory)
+  //inventoryPrice value to changes div (inventoryBookingCategory)
   //Show booking category
-  if (price <= 2000 && price >= 0) {
-    document.getElementById("bookingCategory").value = "GWG";
+  if (inventoryPrice <= 2000 && inventoryPrice >= 0) {
+    document.getElementById("inventoryBookingCategory").value = "GWG";
     let oldStatus = document.getElementById("hiddenStatus").value;
-    let newStatus = document.getElementById("bookingCategory").value;
+    let newStatus = document.getElementById("inventoryBookingCategory").value;
     if (oldStatus != newStatus) {
-      //bookingCategoryChanged Modal
+      //inventoryBookingCategoryChanged Modal
       document.getElementById("newStatusModal").innerText = newStatus;
-      $("#bookingCategoryChanged").modal("show");
-      console.log("bookingCategory is changed!! Alert!!");
+      $("#inventoryBookingCategoryChanged").modal("show");
+      console.log("inventoryBookingCategory is changed!! Alert!!");
       document.getElementById("hiddenStatus").value = newStatus;
     } else {
-      console.log("bookingCategory is not changed!! ALERT!");
+      console.log("inventoryBookingCategory is not changed!! ALERT!");
     }
   } else {
     console.log("category: Abschribsfähig");
-    document.getElementById("bookingCategory").value = "Abschreibfähig";
+    document.getElementById("inventoryBookingCategory").value = "Abschreibfähig";
     let oldStatus = document.getElementById("hiddenStatus").value;
-    let newStatus = document.getElementById("bookingCategory").value;
+    let newStatus = document.getElementById("inventoryBookingCategory").value;
     if (oldStatus != newStatus) {
       document.getElementById("newStatusModal").innerText = newStatus;
       if (newStatus == "Abschreibfähig") {
         console.warn("success!!!");
-        let x = document.getElementById("idDepreciationInput").className;
+        let x = document.getElementById("inventoryDepreciationInput").className;
         x = x.replace("is-invalid", "");
         x = x.replace("is-valid", "");
         x = x.trim();
-        document.getElementById("idDepreciationInput").className =
+        document.getElementById("inventoryDepreciationInput").className =
           x + " is-invalid";
-        document.getElementById("idDepreciationInputIsInValid").innerText =
+        document.getElementById("inventoryDepreciationInputIsInValid").innerText =
           "bitte erst anpassen dann Brechnen drucken!";
       }
-      $("#bookingCategoryChanged").modal("show");
-      console.log("bookingCategory is changed!! Alert!!");
+      $("#inventoryBookingCategoryChanged").modal("show");
+      console.log("inventoryBookingCategory is changed!! Alert!!");
       document.getElementById("hiddenStatus").value = newStatus;
     } else {
-      console.log("bookingCategory is not changed!! ALERT!");
+      console.log("inventoryBookingCategory is not changed!! ALERT!");
     }
   }
 }
@@ -1022,32 +1019,32 @@ function calcForm() {
 //all Werte in Form zurückschalten
 function resetFormInventory() {
   //reset value
-  document.getElementById("idStatus").value = "Aktiv";
-  document.getElementById("idLabel").value = "";
-  document.getElementById("idInventorySerialNumber").value = "";
-  document.getElementById("idType").value = "";
-  document.getElementById("idPurchaseDate").value = "";
-  document.getElementById("idPrice").value = "";
-  document.getElementById("bookingCategory").value = "GWG";
+  document.getElementById("inventoryStatus").value = "Aktiv";
+  document.getElementById("inventoryLabel").value = "";
+  document.getElementById("inventorySerialNumber").value = "";
+  document.getElementById("inventoryType").value = "";
+  document.getElementById("inventoryPurchaseDate").value = "";
+  document.getElementById("inventoryPrice").value = "";
+  document.getElementById("inventoryBookingCategory").value = "GWG";
 
-  document.getElementById("idDepreciationInput").value = "";
-  document.getElementById("validationEndDate").value = "";
+  document.getElementById("inventoryDepreciationInput").value = "";
+  document.getElementById("inventoryValidationEndDate").value = "";
 
   document.getElementById("saveIDInventory").value = "";
   document.getElementById("inventoryRev").value = "";
 
   //reset classname
-  document.getElementById("idStatus").className = "form-control";
-  document.getElementById("idLabel").className = "form-control";
-  document.getElementById("idInventorySerialNumber").className = "form-control";
-  document.getElementById("idType").className = "form-control";
-  document.getElementById("idPurchaseDate").className = "form-control";
-  document.getElementById("idPrice").className = "form-control";
-  document.getElementById("bookingCategory").className = "form-control";
-  document.getElementById("idDepreciationInput").className = "form-control";
-  document.getElementById("validationEndDate").className = "form-control";
+  document.getElementById("inventoryStatus").className = "form-control";
+  document.getElementById("inventoryLabel").className = "form-control";
+  document.getElementById("inventorySerialNumber").className = "form-control";
+  document.getElementById("inventoryType").className = "form-control";
+  document.getElementById("inventoryPurchaseDate").className = "form-control";
+  document.getElementById("inventoryPrice").className = "form-control";
+  document.getElementById("inventoryBookingCategory").className = "form-control";
+  document.getElementById("inventoryDepreciationInput").className = "form-control";
+  document.getElementById("inventoryValidationEndDate").className = "form-control";
   document.getElementById("deprecationInputGroup").className = "d-none";
-  document.getElementById("validationEndDateGroup").className = "d-none";
+  document.getElementById("inventoryValidationEndDateGroup").className = "d-none";
 }
 
 //--------------------------------------------------------------------------------
@@ -1057,13 +1054,13 @@ function resetFormInventory() {
  */
 function priceInputChange() {
   console.log("price is changed");
-  let y = document.getElementById("idPrice").className;
+  let y = document.getElementById("inventoryPrice").className;
   y = y.replace("is-invalid", "");
   y = y.replace("is-valid", "");
   y = y.trim();
-  document.getElementById("idPrice").className = y + " is-invalid";
+  document.getElementById("inventoryPrice").className = y + " is-invalid";
 
-  document.getElementById("idPriceNotValid").innerText =
+  document.getElementById("inventoryPriceNotValid").innerText =
     "jetzt Brechnen drücken";
 }
 

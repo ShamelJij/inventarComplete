@@ -403,54 +403,54 @@ definitions:
   InventoryWithoutID:
     type: "object"
     required:
-      - personId
-      - status
-      - label
-      - serialnumber
-      - inventorytype
-      - purchasedate
-      - price
-      - bookingcategory
-      - deprecationdate
-      - validationenddate
+      - personIdInInventory
+      - inventoryStatus
+      - inventoryLabel
+      - inventorySerialNumber
+      - inventoryType
+      - inventoryPurchaseDate
+      - inventoryPrice
+      - inventoryBookingCategory
+      - inventoryDepreciationInput
+      - inventoryValidationEndDate
     properties:
-      personId:
+      personIdInInventory:
         type: "string"
         description: "der person der diese Inventory hat"
         example: "34342342j342h2h3k42342kl323"
-      status:
+      inventoryStatus:
         type: "string"
         description: "ein festgelegte status Aktiv oder Ausgebugt"
         enum: #stimmt?
           - "Aktiv"
           - "Ausgebucht"
         example: "Aktiv"
-      label:
+      inventoryLabel:
         type: "string"
         example: "Dell"
-      serialnumber:
+      inventorySerialNumber:
         type: "string"
         example: "XNN-40069"
-      inventorytype:
+      inventoryType:
         type: "string"
         example: "Monitor"
-      purchasedate:
+      inventoryPurchaseDate:
         type: "string"
         format: "date"
         example: "2016-08-04"
-      price:
+      inventoryPrice:
         type: "number"
         example: "2500.25"
-      bookingcategory:
+      inventoryBookingCategory:
         type: "string"
         enum:
           - "GWG"
           - "Abschreibfähig"
         example: "Abschreibfähig"
-      deprecationdate:
+      inventoryDepreciationInput:
         type: "number"
         example: "1"
-      validationenddate:
+      inventoryValidationEndDate:
         type: "string"
         format: "date"
         example: "2016-08-04"

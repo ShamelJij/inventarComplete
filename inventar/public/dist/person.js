@@ -320,12 +320,12 @@ function insertNewRecord(person) {
   let cell6 = newRow.insertCell(5);
   cell6.innerHTML =
     '<div class="text-center d-flex justify-content-between">' +
-    '<button onClick="editPerson(' +
+    '<button onclick="editPerson(' +
     "'" +
     person._id +
     "'" +
     ')" class="btn btn-secondary fa fa-edit" data-toggle="tooltip" data-placement="left" title="bearbeiten"></button>&nbsp;' +
-    '<div data-toggle="tooltip" data-placement="left"><button   class="btn btn-danger fa fa-trash" data-toggle="modal"  title="löschen" data-target="#deletePersonModel" onClick="setRowId(' +
+    '<div data-toggle="tooltip" data-placement="left"><button   class="btn btn-danger fa fa-trash" data-toggle="modal"  title="löschen" data-target="#deletePersonModel" onclick="setRowId(' +
     "'" +
     person._id +
     "'" +
@@ -531,20 +531,20 @@ function hidePerson() {
  */
 async function updatePerson() {
   let persons = await getPersons();
-  let lastname = document.getElementById("lastname").value.trim();
-  let firstname = document.getElementById("firstname").value.trim();
-  let personalno = document.getElementById("personalno").value.trim();
-  let email = document.getElementById("email").value.trim();
-  let personId = document.getElementById("personId").value;
-  let revision = document.getElementById("personRevision").value;
+  let lastname =    document.getElementById("lastname").value.trim();
+  let firstname =   document.getElementById("firstname").value.trim();
+  let personalno =  document.getElementById("personalno").value.trim();
+  let email =       document.getElementById("email").value.trim();
+  let personId =    document.getElementById("personId").value;
+  let revision =    document.getElementById("personRevision").value;
 
   let personItem = {
-    lastname: lastname,
-    firstname: firstname,
+    lastname:   lastname,
+    firstname:  firstname,
     personalno: personalno,
-    email: email,
-    _id: personId,
-    _rev: revision,
+    email:      email,
+    _id:        personId,
+    _rev:       revision,
   };
 
   if (personItem._rev !== null) {

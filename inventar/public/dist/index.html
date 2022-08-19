@@ -93,8 +93,8 @@
 								</div>
 								<div class="form-row">
 									<div class="col-md-6">
-										<label for="idStatus">Status</label>
-										<select class="form-control" type="text" readonly name="inventoryStatus" id="idStatus"
+										<label for="inventoryStatus">Status</label>
+										<select class="form-control" type="text" readonly name="inventoryStatus" id="inventoryStatus"
 											onchange="refreshInventory()">
 											<option value="Aktiv">Aktiv</option>
 											<option value="Ausgebucht">Ausgebucht</option>
@@ -120,57 +120,57 @@
 								</div>
 								<div class="form-row">
 									<div class="col-md-3 mb-3">
-										<label for="idLabel">Bezeichnung</label>
+										<label for="inventoryLabel">Bezeichnung</label>
 										<input type="text" class="form-control" placeholder="z.B. Dell - Apple - Asus"
-											id="idLabel" required>
-										<div class="valid-feedback" id="idLabelIsValid">
+											id="inventoryLabel" required>
+										<div class="valid-feedback" id="inventoryLabelIsValid">
 											Danke!
 										</div>
-										<div class="invalid-feedback" id="idLabelIsInvalid">
+										<div class="invalid-feedback" id="inventoryLabelIsInvalid">
 											Bitte füllen Sie das Feld aus.
 										</div>
 									</div>
 									<div class="col-md-3 mb-3">
-										<label for="idInventorySerialNumber">Seriennummer</label>
+										<label for="inventorySerialNumber">Seriennummer</label>
 										<input type="text" class="form-control" name="serialNumber"
-											placeholder="die Gerätenummer auf dem Typenschild" id="idInventorySerialNumber"
+											placeholder="die Gerätenummer auf dem Typenschild" id="inventorySerialNumber"
 											required>
-										<div class="valid-feedback" id="idInventorySerialNumberIsValid">
+										<div class="valid-feedback" id="inventorySerialNumberIsValid">
 											die Eingabe sind gültig
 										</div>
-										<div class="invalid-feedback" id="idInventorySerialNumberIsInValid">
+										<div class="invalid-feedback" id="inventorySerialNumberIsInValid">
 											die eingabe muss eindeutig sein!
 										</div>
 									</div>
 									<div class="col-md-3 mb-3">
-										<label for="idType">Typ</label>
+										<label for="inventoryType">Typ</label>
 										<input type="text" class="form-control" placeholder="z.B. Laptop - Maus - Monitor"
-											id="idType" required>
-										<div class="valid-feedback" id="idTypeIsValid">
+											id="inventoryType" required>
+										<div class="valid-feedback" id="inventoryTypeIsValid">
 											Danke!
 										</div>
-										<div class="invalid-feedback" id="idTypeIsInValid">
+										<div class="invalid-feedback" id="inventoryTypeIsInValid">
 											Bitte füllen Sie das Feld aus.
 										</div>
 									</div>
 									<div class="col-md-3 mb-3">
-										<label for="idPurchaseDate">Anschaffungsdatum</label>
+										<label for="inventoryPurchaseDate">Anschaffungsdatum</label>
 										<input type="date" class="form-control" onchange="dateChangeHandler(event);"
-											name="purchaseDate" id="idPurchaseDate" min="2018-01-01" required>
-										<div class="invalid-feedback" id="idPurchaseDateInvalid">
+											name="purchaseDate" id="inventoryPurchaseDate" min="2018-01-01" required>
+										<div class="invalid-feedback" id="inventoryPurchaseDateInvalid">
 											Bitte ein Datum eingeben.
 										</div>
-										<div class="valid-feedback" id="idPurchaseDateValid">
+										<div class="valid-feedback" id="inventoryPurchaseDateValid">
 											Danke!
 										</div>
 									</div>
 								</div>
 								<div class="form-row">
 									<div class="col-md-3 mb-3">
-										<label for="idPrice" class="h5">Preis&nbsp;&nbsp;<span
+										<label for="inventoryPrice" class="h5">Preis&nbsp;&nbsp;<span
 												class="text-white bg-success">&nbsp;netto&nbsp;</span></label>
 										<div class="input-group">
-											<input type="number" class="form-control" id="idPrice" value="0"
+											<input type="number" class="form-control" id="inventoryPrice" value="0"
 												oninput="priceInputChange()">
 											<div class="input-group-append">
 												<span class="input-group-text text-white bg-success"
@@ -178,9 +178,9 @@
 													<!--euro-symbol-->
 												</span>
 											</div>
-											<div class="valid-feedback" id="idPriceValid">
+											<div class="valid-feedback" id="inventoryPriceValid">
 											</div>
-											<div class="invalid-feedback" id="idPriceNotValid">
+											<div class="invalid-feedback" id="inventoryPriceNotValid">
 												negatives Wert ist nicht gültig
 											</div>
 										</div>
@@ -191,34 +191,34 @@
 										</button>
 									</div>
 									<div class="col-md-3 mb-3">
-										<label for="bookingCategory">Abschreibskategorie</label>
-										<input class="form-control" type="text" readonly name="editedName" id="bookingCategory"
+										<label for="inventoryBookingCategory">Abschreibskategorie</label>
+										<input class="form-control" type="text" readonly name="editedName" id="inventoryBookingCategory"
 											value="GWG">
 									</div>
 								</div>
 								<div class="form-row" id="rowDepreciation">
 									<div class="col-md-3 offset-md-6">
 										<div class="col-md-3 mb-3" id="deprecationInputGroup">
-											<label for="idDepreciationInput">Abschreibzeitraum</label>
+											<label for="inventoryDepreciationInput">Abschreibzeitraum</label>
 											<div class="input-group">
 												<input type="number" class="form-control" name="depreciationInput"
-													id="idDepreciationInput" required>
+													id="inventoryDepreciationInput" required>
 												<div class="input-group-append">
 													<span class="input-group-text">Monate</span>
 												</div>
-												<div class="valid-feedback" id="idDepreciationInputIsValid">
+												<div class="valid-feedback" id="inventoryDepreciationInputIsValid">
 													Danke!
 												</div>
-												<div class="invalid-feedback" id="idDepreciationInputIsInValid">
+												<div class="invalid-feedback" id="inventoryDepreciationInputIsInValid">
 													Bitte Datum eingeben!
 												</div>
 											</div>
 										</div>
 									</div>
 									<div class="col-md-3">
-										<div class="col-md-3 mb-3" id="validationEndDateGroup">
-											<label for="validationEndDate">Abgeschrieben am:</label>
-											<input type="date" class="form-control" id="validationEndDate" min="2018-01-01"
+										<div class="col-md-3 mb-3" id="inventoryValidationEndDateGroup">
+											<label for="inventoryValidationEndDate">Abgeschrieben am:</label>
+											<input type="date" class="form-control" id="inventoryValidationEndDate" min="2018-01-01"
 												readonly>
 											<div class="valid-feedback">
 												Danke!
@@ -649,12 +649,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="bookingCategoryChanged" tabindex="-1" role="dialog"
-			aria-labelledby="bookingCategoryChangedModelCenterTitle" aria-hidden="true">
+		<div class="modal fade" id="inventoryBookingCategoryChanged" tabindex="-1" role="dialog"
+			aria-labelledby="inventoryBookingCategoryChangedModelCenterTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="bookingCategoryChangedModelLongTitle">Abschreibskategorie geändert</h5>
+						<h5 class="modal-title" id="inventoryBookingCategoryChangedModelLongTitle">Abschreibskategorie geändert</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
