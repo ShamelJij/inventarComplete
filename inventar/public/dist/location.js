@@ -433,7 +433,7 @@ function showLocation() {
     document.getElementById('lSaveBtn').className = 'btn btn-primary';
     if (sLocation == 'd-none') {
         document.getElementById('sLocation').className = 'd-block';
-        document.getElementById('nLocationBtn').className = 'd-none';
+        document.getElementById('newLocationBtn').className = 'd-none';
     } else {
         console.log('showLocation is not working!!');
     }
@@ -450,7 +450,7 @@ function hideLocation(){
     let hLocation = document.getElementById('sLocation').className;
     if(hLocation == 'd-block'){
         document.getElementById('sLocation').className = 'd-none';
-        document.getElementById('nLocationBtn').className = 'form-row justify-content-center';
+        document.getElementById('newLocationBtn').className = 'form-row justify-content-center';
     } else {
         console.log('hideLocation is not working!!');
     }

@@ -11,6 +11,9 @@ export class InitPage {
   constructor(data) {
 this.data = data; 
   }
+  assignEventsToElements(){
+    
+  }
 
   insertNewRecord(objArray) {
     let someArr = ['one', 'two', 'three', 'four', 'five'];

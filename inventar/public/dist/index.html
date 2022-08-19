@@ -47,7 +47,7 @@
 							<h1>&#x1F4CB;Inventar</h1>
 						</div>
 						<div class="form-row justify-content-center" id="nInventoryBtn">
-							<button class="btn btn-primary mb-4" type="button" id="btnshowInventory">Neues
+							<button class="btn btn-primary mb-4" type="button" id="showInventoryBtn">Neues
 								Inventar</button>
 						</div>
 						<div id="inventoryIsSaved" class="d-none">
@@ -230,26 +230,26 @@
 									</div>
 								</div>
 								<div class="d-block">
-									<input type="text" id="saveIDInventory">
+									<input type="text" id="inventoryId">
 								</div>
 								<div class="d-block">
-									<input type="text" id="hiddenStatus">
+									<input type="text" id="inventoryHiddenStatus">
 								</div>
 								<div class="d-block">
-									<input type="text" id="inventoryRev">
+									<input type="text" id="inventoryRevisionId">
 								</div>
 								<div class="d-block">
 									<input type="text" id="personIdInInventory">
 								</div>
 								<div class="form-group col-12 text-center my-3">
 									<form class="submit-form">
-										<button class="btn btn-success" type="button" onclick="updateInventory()" id="iUpdateBtn">
+										<button class="btn btn-success" type="button" onclick="updateInventory()" id="updateInventoryBtn">
 											Aktualisieren
 										</button>
-										<button class="btn btn-primary" type="button" onclick="saveInventory();" id="iSaveBtn">
+										<button class="btn btn-primary" type="button" onclick="saveInventory();" id="saveInventoryBtn">
 											Speichern
 										</button>
-										<button class="btn btn-primary" type="button" onclick="hideInventory()" id="iCancelBtn">
+										<button class="btn btn-primary" type="button" onclick="hideInventory()" id="inventoryCancelUpdateBtn">
 											Abrechen
 										</button>
 									</form>
@@ -326,7 +326,7 @@
 							<h1>&#x1F4EC;Ort</h1>
 						</div>
 					</div>
-					<div class="form-row justify-content-center" id="nLocationBtn">
+					<div class="form-row justify-content-center" id="newLocationBtn">
 						<button class="btn btn-primary mb-4" type="button" onclick="showLocation()">Neuer Ort</button>
 					</div>
 					<div class="d-none" id="sLocation">

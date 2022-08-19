@@ -5,7 +5,7 @@ info:
   title: "INVENTAR"
   termsOfService: "http://deltastone.com"
   contact:
-    personEmail: "info@deltastone.com"
+    email: "info@deltastone.com"
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
@@ -71,7 +71,7 @@ paths:
     get:
       tags:
         - "persons"
-      summary: "Get Person by Id"
+      summary: "Get Person by id"
       description: ""
       operationId: "getPersonById"
       produces:
@@ -184,7 +184,7 @@ paths:
     get:
       tags:
         - "inventories"
-      summary: "Get inventory by Id"
+      summary: "Get inventory by id"
       description: ""
       operationId: "getInventoryById"
       produces:
@@ -292,7 +292,7 @@ paths:
     get:
       tags:
         - "locations"
-      summary: "Get location by Id"
+      summary: "Get location by id"
       description: ""
       operationId: "getLocationById"
       produces:
@@ -371,22 +371,22 @@ definitions:
   PersonWithoutID: #ändern
     type: "object"
     required:
-      - personLastName
-      - personFirstName
-      - personPersonalNumber
-      - personEmail
+      - lastname
+      - firstname
+      - personalno
+      - email
     additionalProperties: false
     properties:
-      personLastName:
+      lastname:
         type: "string"
         example: "Müller"
-      personFirstName:
+      firstname:
         type: "string"
         example: "Max"
-      personPersonalNumber:
+      personalno:
         type: "string"
         example: "LS-11324"
-      personEmail:
+      email:
         type: "string"
         example: "example@example.com"
         description: "Die person muss eindeutig in der Datenbank sein"
@@ -468,33 +468,33 @@ definitions:
     type: "object"
     required:
       - locationAreaName
-      - locationBusinessName
-      - locationStreetName
-      - locationHouseNumber
-      - locationZipcode
-      - locationFloorNumber
-      - locationRoomNumber
+      - businessName
+      - locationstreet
+      - housenumber
+      - zipcode
+      - floornumber
+      - roomnumber
     additionalProperties: false
     properties:
       locationAreaName:
         type: "string"
         example: "Mannheim"
-      locationBusinessName:
+      businessName:
         type: "string"
         example: "Nokia GmbH"
-      locationStreetName:
+      locationstreet:
         type: "string"
         example: "LudwigStr"
-      locationHouseNumber:
+      housenumber:
         type: "string"
         example: "23"
-      locationZipcode:
+      zipcode:
         type: "string"
         example: "22134"
-      locationFloorNumber:
+      floornumber:
         type: "string"
         example: "EG"
-      locationRoomNumber:
+      roomnumber:
         type: "string"
         example: "13C"
         description: "Das Ort muss nicht eindeutig in der Datenbank sein"
