@@ -34,15 +34,6 @@ export class InitPage {
   }
 
   insertNewRecord(objArray){
-    let someArr = ['one', 'two', 'three', 'four', 'five'];
-    let someObj = {};
-    for(let i = 0; i < someArr.length; i++ ){
-      someObj[someArr[i]] = someArr[i];
-    }
-      console.log(typeof(someObj.one));
-    if(objArray[0].form === "inventory"){
-      let data = 'inventory';
-    }
       let schema = [];
       for(let i = 0; i < Object.keys(objArray[0]).length-5; i++){
         schema[i] = Object.keys(objArray[0])[i+3]

@@ -1,9 +1,11 @@
 import { InitPage } from "./initPage.js";
 import { getPersons } from "./person.js";
 import { Requests } from "./requests.js";
+
+let db = 'inventories';
 //let app = require(' ./app.js');
 let InitInventory = new InitPage('inventory');
-let InventoryRequest = new Requests();
+let InventoryRequests = new Requests(db);
 document.getElementById("showInventoryBtn").addEventListener("click", showInventory, false);
 
 /**
@@ -13,137 +15,10 @@ document.getElementById("showInventoryBtn").addEventListener("click", showInvent
 /**
  * Global section
  */
-const inventoryTableIsEmpty = document.getElementById("inventoryTableIsEmpty");
-const inventoryDelete = document.getElementById("inventoryDelete");
-const inventoryDeletedName = document.getElementById("inventoryDeletedName");
-
-const addPersonTableIsEmpty = document.getElementById("addPersonTableIsEmpty");
-/*let saved_inventory = JSON.parse(localStorage.getItem('inventory'));
-localStorage.setItem('inventory', JSON.stringify(saved_inventory));*/
-
-//################################################################################
-/**
- * @param {string} method
- * @param {string} url
- */
-function sendHTTPRequest(method, url) {
-  let promise = new Promise((resolve, reject) => {
-    let xhr = new XMLHttpRequest();
-    xhr.open(method, url);
-    xhr.responseType = "json";
-    xhr.onload = function () {
-      if (xhr.status != 200) {
-        // analyze HTTP status of the response
-        alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
-      } else {
-        // show the result
-        console.log(`Done, got ${xhr.response.length} bytes`); // response is the server response
-        resolve(xhr.response);
-      }
-    };
-    xhr.send();
-  });
-  return promise;
-}
+InitInventory.assignEventsToHTMLElements();
 
 //################################################################################
 //routes section
-
-//--------------------------------------------------------------------------------
-/**
- * POST /inventories
- *
- * @param {Object} postObj
- * @param {string} url
- */
-function postInventory(postObj, url) {
-  let xhr = new XMLHttpRequest();
-  let inventoryData = JSON.stringify(postObj);
-  xhr.open("POST", url, true);
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  xhr.send(inventoryData);
-
-  xhr.onload = function () {
-    if (xhr.status === 201) {
-      console.log("Post successfully created!");
-      //alert am website
-    } else if (xhr.status === 400) {
-      console.log("400 (Bad Request)");
-      //alert am website
-    }
-  };
-}
-
-//--------------------------------------------------------------------------------
-/**
- * PUT /inventories
- *
- * @param {Object} postObj
- * @param {string} url
- */
-function putInventory(postObj, url) {
-  let xhr = new XMLHttpRequest();
-  let inventoryData = JSON.stringify(postObj);
-  xhr.open("PUT", url, true);
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  xhr.send(inventoryData);
-
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      console.log("Put successfully done!");
-      initInventory();
-    } else if (xhr.status === 400) {
-      console.log("invalid");
-    } else if (xhr.status === 404) {
-      console.log("Inventory not found");
-    }
-  };
-}
-
-//--------------------------------------------------------------------------------
-/**
- * DELETE /inventory/{id}
- *
- * @param url
- */
-function delInventory(url) {
-  let xhr = new XMLHttpRequest();
-  xhr.open("DELETE", url, true);
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  xhr.send();
-
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      console.log("Delete successful!");
-      initInventory();
-    } else if (xhr.status === 404) {
-      console.log("inventory not found");
-      initInventory();
-    }
-  };
-}
-
-//--------------------------------------------------------------------------------
-/**
- * GET /inventories
- *
- * @return {Array.<Objects>} inventories
- */
-async function getInventories() {
-  return sendHTTPRequest("GET", "http://localhost:8080/v1/inventories");
-}
-
-//--------------------------------------------------------------------------------
-/**
- * GET /inventories/id
- * @param url
- * @param id
- * @return {<Objects>} inventoryObject
- */
-async function getInventoryById(url) {
-  return sendHTTPRequest("GET", "http://localhost:8080/v1/inventories/" + url);
-}
-
 //################################################################################
 //form section
 /**
@@ -161,17 +36,6 @@ function getInputInventory() {
     }
       inventoryData[inventoryForm[i]] = document.getElementById(inventoryForm[i]).value;
   }
-    //inventoryData["personId"] =            document.getElementById("personIdInInventory").value;
-    //inventoryData["status"] =              document.getElementById("inventoryStatus").value;
-    //inventoryData["label"] =               document.getElementById("inventoryLabel").value;
-    //inventoryData["serialnumber"] =        document.getElementById("inventorySerialNumber").value;
-    //inventoryData["inventorytype"] =       document.getElementById("inventoryType").value;
-    //inventoryData["purchasedate"] =        document.getElementById("inventoryPurchaseDate").value;
-    //inventoryData["price"] =               parseInt(document.getElementById("inventoryPrice").value);
-    //inventoryData["bookingcategory"] =     document.getElementById("inventoryBookingCategory").value;
-    //inventoryData["deprecationdate"] =     parseInt(document.getElementById("inventoryDepreciationInput").value);
-    //inventoryData["validationenddate"] =  document.getElementById("inventoryValidationEndDate").value;
-  console.log(inventoryData);
   return inventoryData;
 }
 
@@ -399,44 +263,8 @@ function inputValidationInventory() {
  *
  * @param {Object} inventory
  */
-function insertNewRecordInventory(inventory) {
-  let table = document
-    .getElementById("inventoryTable")
-    .getElementsByTagName("tbody")[0];
-  let newRow = table.insertRow(table.length);
-  let cell1 = newRow.insertCell(0);
-  cell1.innerHTML = inventory.status;
-  let cell2 = newRow.insertCell(1);
-  cell2.innerHTML = inventory.label;
-  let cell3 = newRow.insertCell(2);
-  cell3.innerHTML = inventory.inventorySerialNumber;
-  let cell4 = newRow.insertCell(3);
-  cell4.innerHTML = inventory.inventoryType;
-  let cell5 = newRow.insertCell(4);
-  cell5.innerHTML = inventory.inventoryPurchaseDate;
-  let cell6 = newRow.insertCell(5);
-  cell6.innerHTML = inventory.inventoryPrice;
-  let cell7 = newRow.insertCell(6);
-  cell7.innerHTML = inventory.inventoryBookingCategory;
-  let cell8 = newRow.insertCell(7);
-  cell8.innerHTML = inventory.inventoryDepreciationDate;
-  let cell9 = newRow.insertCell(8);
-  cell9.innerHTML = inventory.inventoryValidationDate;
-  let cell10 = newRow.insertCell(9);
-  cell10.innerHTML =
-    '<div class="text-center d-flex justify-content-around">' +
-    '<button onClick="editInventory(' +
-    "'" +
-    inventory._id +
-    "'" +
-    ')" class="btn btn-secondary fa fa-edit" data-toggle="tooltip" data-placement="left" title="bearbeiten"></button>&nbsp;' +
-    '<div data-toggle="tooltip" data-placement="left"><button   class="btn btn-danger fa fa-trash" data-toggle="modal"  title="löschen" data-target="#deleteInventoryModel" onClick="setRowID(' +
-    "'" +
-    inventory._id +
-    "'" +
-    ')"></button></div>' +
-    "</div>";
-}
+InitInventory.insertNewRecord(InventoryRequests.getAll('inventories'));
+
 
 //################################################################################
 let globalInventoryId = 0;
@@ -468,11 +296,14 @@ function clearInventoryTable() {
  *
  * @param {srting} inventoryId
  */
+InventoryRequests.del
 async function deleteInventory(inventoryId) {
-  delInventory("http://localhost:8080/v1/inventories/" + inventoryId);
+  let db = 'inventories';
+  InventoryRequests.del(db, inventoryId);
 
-  let inventory = await getInventoryById(inventoryId);
+  let inventory = await InventoryRequests.getById(db ,inventoryId);
 
+  //here should be myAlert.delete(inventory)
   let x = inventoryDelete.className;
   x = x.replace("d-block", "");
   x = x.replace("d-none", "");
@@ -499,7 +330,7 @@ async function initInventory() {
   //localstorage auslesen
   let inventory = await getInventories();
   let data = "inventories";
-  let objArray = await InventoryRequest.getAll(data);
+  let objArray = await InventoryRequests.getAll(data);
   console.log("$$$$$: " + data + ": " + objArray);
   console.log("GET: inventory: ", inventory);
   clearInventoryTable();
@@ -539,8 +370,7 @@ function saveInventory() {
   if (calculate()) {
     if (inputValidationInventory()) {
       postInventory(
-        getInputInventory(),
-        "http://localhost:8080/v1/inventories/"
+        getInputInventory()
       );
 
       let personIdInInventory = document.getElementById("personIdInInventory").value;
@@ -755,9 +585,7 @@ async function updateInventory() {
       console.log("no revision in Inventory");
     }
 
-    let url = "http://localhost:8080/v1/inventories/" + inventoryId;
-
-    putInventory(inventoryItem, url);
+    putInventory(inventoryItem, inventoryId);
 
     // initInventory();
   }
@@ -1013,32 +841,26 @@ function calcForm() {
 //all Werte in Form zurückschalten
 function resetFormInventory() {
   //reset value
-  document.getElementById("inventoryStatus").value = "Aktiv";
-  document.getElementById("inventoryLabel").value = "";
-  document.getElementById("inventorySerialNumber").value = "";
-  document.getElementById("inventoryType").value = "";
-  document.getElementById("inventoryPurchaseDate").value = "";
-  document.getElementById("inventoryPrice").value = "";
-  document.getElementById("inventoryBookingCategory").value = "GWG";
-
-  document.getElementById("inventoryDepreciationInput").value = "";
-  document.getElementById("inventoryValidationEndDate").value = "";
-
-  document.getElementById("inventoryId").value = "";
-  document.getElementById("inventoryRevisionId").value = "";
+  let inventoryFormIds = ['inventoryStatus', 'inventoryLabel', 'inventorySerialNumber',
+  'inventoryType', 'inventoryPurchaseDate', 'inventoryPrice', 'inventoryBookingCategory',
+  'inventoryDepreciationInput', 'inventoryValidationEndDate', 'inventoryId', 'inventoryRevisionId'];
+  let inventoryForm = {};
+  for(let i = 0; i < inventoryFormIds.length; i++){
+    if(inventoryFormIds[i] === 'inventoryStatus'){
+      document.getElementById(inventoryFormIds[i]).value = "Aktiv";
+    }else if(inventoryFormIds[i] === 'inventoryBookingCategory'){
+      document.getElementById(inventoryFormIds[i]).value = "GWG";
+    }
+   document.getElementById(inventoryFormIds[i]).value = "";
+  }
 
   //reset classname
-  document.getElementById("inventoryStatus").className = "form-control";
-  document.getElementById("inventoryLabel").className = "form-control";
-  document.getElementById("inventorySerialNumber").className = "form-control";
-  document.getElementById("inventoryType").className = "form-control";
-  document.getElementById("inventoryPurchaseDate").className = "form-control";
-  document.getElementById("inventoryPrice").className = "form-control";
-  document.getElementById("inventoryBookingCategory").className = "form-control";
-  document.getElementById("inventoryDepreciationInput").className = "form-control";
-  document.getElementById("inventoryValidationEndDate").className = "form-control";
-  document.getElementById("inventoryDepreciationGroup").className = "d-none";
-  document.getElementById("inventoryValidationEndDateGroup").className = "d-none";
+  for (let i = 0; i < inventoryFormIds.length; i++) {
+    if (inventoryFormIds[i] === 'inventoryDepreciationGroup' || inventoryFormIds[i] === 'inventoryValidationEndDateGroup') {
+    document.getElementById(inventoryFormIds[i]).className = 'd-none';
+    }
+    document.getElementById(inventoryFormIds[i]).className = '';
+  }
 }
 
 //--------------------------------------------------------------------------------
@@ -1046,12 +868,12 @@ function resetFormInventory() {
  * shows a message under price when input changes in form
  *
  */
-function priceInputChange() {
-  console.log("price is changed");
+function inventoryPriceChange() {
   let y = document.getElementById("inventoryPrice").className;
   y = y.replace("is-invalid", "");
   y = y.replace("is-valid", "");
   y = y.trim();
+
   document.getElementById("inventoryPrice").className = y + " is-invalid";
 
   document.getElementById("inventoryPriceNotValid").innerText =
@@ -1151,7 +973,7 @@ function addPersonInInventory(perID) {
  *
  */
 function showNewPerson() {
-  $("#v-pills-person-tab").tab("show");
+  $("#personPage").tab("show");
 }
 
 //function to refresh form calculated hide and visibility

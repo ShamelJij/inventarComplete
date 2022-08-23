@@ -1,16 +1,17 @@
 export class Requests {
-  constructor() {
+  db = '';
+  constructor(db) {
+    this.db = db;
   }
 
   //################################################################################
   /**
    * @param {string} method POST/PUT/DELETE/GET
-   * @param {string} url
    */
-  sendHTTPRequest(method, url) {
+  sendHTTPRequest(method) {
     let promise = new Promise((resolve, reject) => {
       let xhr = new XMLHttpRequest();
-      xhr.open(method, url);
+      xhr.open(method, "http://localhost:8080/v1/" + this.db);
       xhr.responseType = "json";
       xhr.onload = function () {
         if (xhr.status != 200) {
@@ -35,12 +36,11 @@ export class Requests {
    * POST inventories/persons/locations
    *
    * @param {Object} postObj
-   * @param {string} url
    */
-  post(postObj, url) {
+  post(postObj) {
     let xhr = new XMLHttpRequest();
     let jsonPostObj = JSON.stringify(postObj);
-    xhr.open("POST", url, true);
+    xhr.open("POST", "http://localhost:8080/v1/" + this.db + "/", true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhr.send(jsonPostObj);
 
@@ -58,12 +58,12 @@ export class Requests {
    * PUT /inventories or /persons or /locations
    *
    * @param {Object} postObj
-   * @param {string} url
+   * @param {string} id
    */
-  put(putObj, url) {
+  put(putObj, id) {
     let xhr = new XMLHttpRequest();
     let jsonPutObj = JSON.stringify(putObj);
-    xhr.open("PUT", url, true);
+    xhr.open("PUT", "http://localhost:8080/v1/" + this.db + "/" + id, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhr.send(jsonPutObj);
 
@@ -84,12 +84,12 @@ export class Requests {
   //--------------------------------------------------------------------------------
   /**
    * DELETE /inventories/{id} or /persons/{id} or /locations/{id}
-   *
-   * @param url
+   * db are inventories or persons or locations
+   * @param db
    */
-  del(url) {
+  del(id) {
     let xhr = new XMLHttpRequest();
-    xhr.open("DELETE", url, true);
+    xhr.open("DELETE", "http://localhost:8080/v1/" + this.db + "/" + id, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
     xhr.send();
 
@@ -109,24 +109,22 @@ export class Requests {
   //--------------------------------------------------------------------------------
   /**
    * GET /inventoreis or /persons or /locations
-   * @param {string}
    * @return {Array.<Objects>}
    */
-  async getAll(items) {
-    return this.sendHTTPRequest("GET", "http://localhost:8080/v1/" + items);
+  async getAll() {
+    return this.sendHTTPRequest("GET", "http://localhost:8080/v1/" + this.db);
   }
 
   //--------------------------------------------------------------------------------
   /**
    * GET /inventories/id or /persons/id or /locations/id
-   * @param {string} url id
-   * @param {string} items /inventories or /persons or /locations
+   * @param {string} id
    * @return {string} JSON
    */
-  async getById(items, url) {
+  async getById(id) {
     return this.sendHTTPRequest(
       "GET",
-      "http://localhost:8080/v1/" + items + "/" + url
+      "http://localhost:8080/v1/" + this.db + "/" + id
     );
   }
 }
