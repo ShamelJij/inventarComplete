@@ -1,5 +1,5 @@
 export class Requests {
-  db = '';
+  db = "";
   constructor(db) {
     this.db = db;
   }
@@ -7,11 +7,12 @@ export class Requests {
   //################################################################################
   /**
    * @param {string} method POST/PUT/DELETE/GET
+   * @param {string} url
    */
-  sendHTTPRequest(method) {
+  sendHTTPRequest(method, url) {
     let promise = new Promise((resolve, reject) => {
       let xhr = new XMLHttpRequest();
-      xhr.open(method, "http://localhost:8080/v1/" + this.db);
+      xhr.open(method, url);
       xhr.responseType = "json";
       xhr.onload = function () {
         if (xhr.status != 200) {

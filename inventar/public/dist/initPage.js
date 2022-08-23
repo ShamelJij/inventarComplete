@@ -13,52 +13,93 @@ export class InitPage {
 
   constructor(page) {
     this.page = page;
-    this.elementIds = [ page + 'TableIsEmpty', page + 'Delete', page + 'DeletedName', 'addPersonTableIsEmpty', 'addLocationTableIsEmpty'];
-    for(let i = 0; i < elementIds.length; i++){
-      elements[elementIds[i]] = document.getElementById(elementIds[i]);
+    this.elementsIds = [
+      page + "TableIsEmpty",
+      page + "Delete",
+      page + "DeletedName",
+      "addPersonTableIsEmpty",
+      "addLocationTableIsEmpty",
+    ];
+    for (let i = 0; i < this.elementsIds.length; i++) {
+      this.elements[this.elementsIds[i]] = document.getElementById(
+        this.elementsIds[i]
+      );
     }
   }
 
-  assignEventsToHTMLElements(){
-    let eventClickIds =    ['showInventoryBtn', 'inventorySelectPerson', 'showNewPerson', 'inventorySelectLocation', 'showNewLocation', 'inventoryStatus', 'inventoryPurchaseDate', 'inventoryPrice', 'calculate', 'updateInventoryBtn', 'saveInventoryBtn', 'inventoryCancelUpdateBtn', 'showLocationBtn', 'updateLocationBtn', 'saveLocationBtn', 'locationCancelUpdateBtn', 'updatePersonBtn', 'savePersonBtn', 'personCancelUpdateBtn', 'deleteInventoryBtn','deletePersonBtn', 'deleteLocationBtn'];
-    let eventClickElements =  {};
-    for(let i = 0; i < eventClickIds; i++){
-      eventClickElements[eventClickIds[i]] = document.getElementById(eventClickIds[i]).addEventListener("click", eventClickIds[i], false);
+  assignEventsToHTMLElements() {
+    let eventClickIds = [
+      "showInventoryBtn",
+      "inventorySelectPerson",
+      "showNewPerson",
+      "inventorySelectLocation",
+      "showNewLocation",
+      "inventoryStatus",
+      "inventoryPurchaseDate",
+      "inventoryPrice",
+      "calculate",
+      "updateInventoryBtn",
+      "saveInventoryBtn",
+      "inventoryCancelUpdateBtn",
+      "showLocationBtn",
+      "updateLocationBtn",
+      "saveLocationBtn",
+      "locationCancelUpdateBtn",
+      "updatePersonBtn",
+      "savePersonBtn",
+      "personCancelUpdateBtn",
+      "deleteInventoryBtn",
+      "deletePersonBtn",
+      "deleteLocationBtn",
+    ];
+    let eventClickElements = {};
+    for (let i = 0; i < eventClickIds; i++) {
+      eventClickElements[eventClickIds[i]] = document
+        .getElementById(eventClickIds[i])
+        .addEventListener("click", eventClickIds[i], false);
     }
 
-    let eventLoadIds = ['inventoryPage', 'personPage', 'locationPage'];
+    let eventLoadIds = ["inventoryPage", "personPage", "locationPage"];
     let eventLoadElements = {};
-    for(let i = 0; i < eventLoadIds; i++){
-      eventLoadElements[eventLoadIds[i]] = document.getElementById(eventLoadIds[i]).addEventListener("load", eventLoadIds[i], false);
+    for (let i = 0; i < eventLoadIds; i++) {
+      eventLoadElements[eventLoadIds[i]] = document
+        .getElementById(eventLoadIds[i])
+        .addEventListener("load", eventLoadIds[i], false);
     }
   }
 
-  insertNewRecord(objArray){
-      let schema = [];
-      for(let i = 0; i < Object.keys(objArray[0]).length-5; i++){
-        schema[i] = Object.keys(objArray[0])[i+3]
-      }
-      let table = document.getElementById(objArray[0].form + 'Table').getElementsByTagName('tbody')[0];
-      let newRow = table.insertRow(table.length);
-      let cells = [];
-      for(let i = 0; i < schema.length; i++){
-        cells[i] = newRow.insertCell(i);
-        cells[i].innerHTML = objArray.schema;
-      }
-        cells[schema.length] = newRow.insertCell(schema.length);
-        cells[schema.length].innerHTML =
-          '<div class="text-center d-flex justify-content-around">' +
-          '<button onclick="editInventory(' +
-          "'" +
-          objArray._id +
-          "'" +
-          ')" class="btn btn-secondary fa fa-edit" data-toggle="tooltip" data-placement="left" title="bearbeiten"></button>&nbsp;' +
-          '<div data-toggle="tooltip" data-placement="left"><button   class="btn btn-danger fa fa-trash" data-toggle="modal"  title="löschen" data-target="#delete' + objArray[0].form + 'Model" onclick="setRowID(' +
-          "'" +
-          objArray._id +
-          "'" +
-          ')"></button></div>' +
-          "</div>";
+  insertNewRecord(obj) {
+    let schema = [];
+    let objArray = Object.keys(obj);
+    console.log(objArray);
+    for (let i = 0; i < Object.keys(obj).length - 5; i++) {
+      schema[i] = Object.keys(obj)[i + 3];
+    }
+    let table = document
+      .getElementById(objArray[0].form + "Table")
+      .getElementsByTagName("tbody")[0];
+    let newRow = table.insertRow(table.length);
+    let cells = [];
+    for (let i = 0; i < schema.length; i++) {
+      cells[i] = newRow.insertCell(i);
+      cells[i].innerHTML = objArray.schema;
+    }
+    cells[schema.length] = newRow.insertCell(schema.length);
+    cells[schema.length].innerHTML =
+      '<div class="text-center d-flex justify-content-around">' +
+      '<button onclick="editInventory(' +
+      "'" +
+      objArray[0]._id +
+      "'" +
+      ')" class="btn btn-secondary fa fa-edit" data-toggle="tooltip" data-placement="left" title="bearbeiten"></button>&nbsp;' +
+      '<div data-toggle="tooltip" data-placement="left"><button   class="btn btn-danger fa fa-trash" data-toggle="modal"  title="löschen" data-target="#delete' +
+      objArray[0].form +
+      'Model" onclick="setRowID(' +
+      "'" +
+      objArray._id +
+      "'" +
+      ')"></button></div>' +
+      "</div>";
   }
 
   //################################################################################
@@ -114,7 +155,7 @@ export class InitPage {
       });
       //insertNewRecord(objArray);
       for (let i = 0; i < sortedList.length; i++) {
-        insertNewRecord(sortedList[i]);
+        this.insertNewRecord(sortedList[i]);
       }
     }
   }
