@@ -7,15 +7,33 @@ import { Requests } from "./requests.js";
  */
 
 export class InitPage {
-  data = "";
-  constructor(data) {
-this.data = data; 
-  }
-  assignEventsToElements(){
-    
+  page = "";
+  elementsIds = [];
+  elements = {};
+
+  constructor(page) {
+    this.page = page;
+    this.elementIds = [ page + 'TableIsEmpty', page + 'Delete', page + 'DeletedName', 'addPersonTableIsEmpty', 'addLocationTableIsEmpty'];
+    for(let i = 0; i < elementIds.length; i++){
+      elements[elementIds[i]] = document.getElementById(elementIds[i]);
+    }
   }
 
-  insertNewRecord(objArray) {
+  assignEventsToHTMLElements(){
+    let eventClickIds =    ['showInventoryBtn', 'inventorySelectPerson', 'showNewPerson', 'inventorySelectLocation', 'showNewLocation', 'inventoryStatus', 'inventoryPurchaseDate', 'inventoryPrice', 'calculate', 'updateInventoryBtn', 'saveInventoryBtn', 'inventoryCancelUpdateBtn', 'showLocationBtn', 'updateLocationBtn', 'saveLocationBtn', 'locationCancelUpdateBtn', 'updatePersonBtn', 'savePersonBtn', 'personCancelUpdateBtn', 'deleteInventoryBtn','deletePersonBtn', 'deleteLocationBtn'];
+    let eventClickElements =  {};
+    for(let i = 0; i < eventClickIds; i++){
+      eventClickElements[eventClickIds[i]] = document.getElementById(eventClickIds[i]).addEventListener("click", eventClickIds[i], false);
+    }
+
+    let eventLoadIds = ['inventoryPage', 'personPage', 'locationPage'];
+    let eventLoadElements = {};
+    for(let i = 0; i < eventLoadIds; i++){
+      eventLoadElements[eventLoadIds[i]] = document.getElementById(eventLoadIds[i]).addEventListener("load", eventLoadIds[i], false);
+    }
+  }
+
+  insertNewRecord(objArray){
     let someArr = ['one', 'two', 'three', 'four', 'five'];
     let someObj = {};
     for(let i = 0; i < someArr.length; i++ ){
@@ -59,9 +77,8 @@ this.data = data;
    */
   async initPage(data) {
     let objArray = await Requests.getAll(data);
-    console.log("GET:" + data + ": ", objArray);
 
-    clearTable();
+    this.clearTable(this.tableId);
 
     if (!objArray || objArray.length == 0) {
       let x = tableId.className;

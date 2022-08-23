@@ -1,7 +1,5 @@
 export class Requests {
-  data = "";
-  constructor(data) {
-    this.data = data;
+  constructor() {
   }
 
   //################################################################################

@@ -2,7 +2,7 @@ import { InitPage } from "./initPage.js";
 import { getPersons } from "./person.js";
 import { Requests } from "./requests.js";
 //let app = require(' ./app.js');
-let InitInventory = new InitPage('inventories');
+let InitInventory = new InitPage('inventory');
 let InventoryRequest = new Requests();
 document.getElementById("showInventoryBtn").addEventListener("click", showInventory, false);
 
@@ -293,7 +293,7 @@ function inputValidationInventory() {
       if (inventoryOldStatus != newStatus) {
         document.getElementById("newStatusModal").innerText = newStatus;
         if (newStatus == "Abschreibfähig") {
-          document.getElementById("depreciationInputGroup").className =
+          document.getElementById("inventoryDepreciationGroup").className =
             "d-block";
           document.getElementById("inventoryValidationEndDateGroup").className =
             "d-block";
@@ -313,7 +313,7 @@ function inputValidationInventory() {
         document.getElementById("inventoryHiddenStatus").value = newStatus;
       } else {
         console.log("bookingcategory is not changed!! ALERT!");
-        document.getElementById("depreciationInputGroup").className = "d-none";
+        document.getElementById("inventoryDepreciationGroup").className = "d-none";
         document.getElementById("inventoryValidationEndDateGroup").className = "d-none";
       }
     }
@@ -536,7 +536,7 @@ async function initInventory() {
  *
  */
 function saveInventory() {
-  if (refresh()) {
+  if (calculate()) {
     if (inputValidationInventory()) {
       postInventory(
         getInputInventory(),
@@ -701,7 +701,7 @@ function hideInventory() {
  */
 async function updateInventory() {
   let inventory = await getInventories();
-  if (refresh()) {
+  if (calculate()) {
     let inventory = await getInventories();
     let personIdInInventory = document.getElementById("personIdInInventory").value;
     let status = document.getElementById("inventoryStatus").value.trim();
@@ -769,7 +769,7 @@ async function updateInventory() {
  *
  */
 //this is for the speichern button!
-function refresh() {
+function calculate() {
   //refreshInventory();
   inputTranslation();
   if (inputValidationInventory()) {
@@ -785,6 +785,7 @@ function refresh() {
  * refreshes inventory page
  *
  */
+//this will change to InitPage.assignEventsToHTMLElements()
 window.refreshInventory = function() {
   initInventory();
   showLastModified();
@@ -916,10 +917,8 @@ function inputTranslation() {
 function calcForm() {
   let status = document.getElementById("inventoryStatus").value;
   if (status == "Ausgebucht") {
-    console.log("Datumabgebucht: ((vis))");
     document.getElementById("formEndDate").className = "d-block";
   } else {
-    console.log("Datumabgebucht: ((invis))");
     document.getElementById("formEndDate").className = "d-none";
   }
 
@@ -927,19 +926,18 @@ function calcForm() {
   let inventoryPrice = document.getElementById("inventoryPrice").value;
   //Show booking category
   if (inventoryPrice <= 2000 && inventoryPrice > 0) {
-    document.getElementById("depreciationInputGroup").className = "d-none";
+    document.getElementById("inventoryDepreciationGroup").className = "d-none";
     document.getElementById("inventoryValidationEndDateGroup").className = "d-none";
     document.getElementById("inventoryDepreciationInput").value = 0;
   } else if (inventoryPrice <= 0) {
-    document.getElementById("depreciationInputGroup").className = "d-none";
+    document.getElementById("inventoryDepreciationGroup").className = "d-none";
     document.getElementById("inventoryValidationEndDateGroup").className = "d-none";
   } else {
-    document.getElementById("depreciationInputGroup").className = "d-block";
+    document.getElementById("inventoryDepreciationGroup").className = "d-block";
     document.getElementById("inventoryValidationEndDateGroup").className = "d-block";
   }
 
   let inventoryPurchaseDate = document.getElementById("inventoryPurchaseDate").value;
-  let getMonth = new Date(inventoryPurchaseDate);
   let inputMonthValue = parseInt(
     document.getElementById("inventoryDepreciationInput").value
   );
@@ -949,9 +947,7 @@ function calcForm() {
   console.log("d: ", d);
   let pd = new Date(inventoryPurchaseDate);
   console.log("d: ", d);
-  document.getElementById("inventoryValidationEndDate").value = d
-    .toISOString()
-    .split("T")[0];
+  document.getElementById("inventoryValidationEndDate").value = d.toISOString().split("T")[0];
   let ved = document.getElementById("inventoryValidationEndDate").value;
   console.log("inventoryValidationEndDate is: ", ved);
   let v = document.getElementById("inventoryValidationEndDate").value;
@@ -1041,7 +1037,7 @@ function resetFormInventory() {
   document.getElementById("inventoryBookingCategory").className = "form-control";
   document.getElementById("inventoryDepreciationInput").className = "form-control";
   document.getElementById("inventoryValidationEndDate").className = "form-control";
-  document.getElementById("depreciationInputGroup").className = "d-none";
+  document.getElementById("inventoryDepreciationGroup").className = "d-none";
   document.getElementById("inventoryValidationEndDateGroup").className = "d-none";
 }
 

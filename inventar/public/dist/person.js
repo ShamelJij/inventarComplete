@@ -8,9 +8,9 @@
  * Global section
  */
 const personTableIsEmpty = document.getElementById("personTableIsEmpty");
-const deletePerson = document.getElementById("deletePerson");
-const deletedPersonName = document.getElementById("deletedPersonName");
-
+const personDelete = document.getElementById("personDelete");
+const personDeletedName = document.getElementById("personDeletedName");
+//make id the same name as function and then id to the end of id
 //################################################################################
 /**
  * Custom Functions
@@ -22,11 +22,11 @@ function customAlert(elementId, strongText, text, delay) {
   x = x.replace("d-none", "");
   x = x.trim();
   elementId.className = x + " d-block";
-  deletedPersonName.innerText =
+  personDeletedName.innerText =
     persons[i].personFirstName + " " + persons[i].personLastName;
   setTimeout(function () {
     // Closing the alert
-    $("#deletePerson").alert("close");
+    $("#personDelete").alert("close");
   }, 5000);
 }
 
@@ -368,16 +368,16 @@ async function deletePerson(personId) {
 
   let persons = await getPersonById(personId);
 
-  let x = deletePerson.className;
+  let x = personDelete.className;
   x = x.replace("d-block", "");
   x = x.replace("d-none", "");
   x = x.trim();
-  deletePerson.className = x + " d-block";
-  deletedPersonName.innerText = persons.personFirstName + " " + persons.personLastName;
+  personDelete.className = x + " d-block";
+  personDeletedName.innerText = persons.personFirstName + " " + persons.personLastName;
   initPerson();
   setTimeout(function () {
     // Closing the alert
-    $("#deletePerson").alert("close");
+    $("#personDelete").alert("close");
   }, 4000);
 }
 
@@ -493,11 +493,11 @@ async function editPerson(personId) {
  *
  */
 function showPerson() {
-  let showPerson = document.getElementById("showPerson").className;
+  let showPerson = document.getElementById("showInventoryForm").className;
   document.getElementById("updatePersonBtn").className = "d-none";
   document.getElementById("savePersonBtn").className = "btn btn-primary";
   if (showPerson == "d-none") {
-    document.getElementById("showPerson").className = "d-block";
+    document.getElementById("showInventoryForm").className = "d-block";
     document.getElementById("newPersonBtn").className = "d-none";
     console.log("dblock");
   } else {
@@ -512,9 +512,9 @@ function showPerson() {
  */
 function hidePerson() {
   refreshPerson();
-  let hPerson = document.getElementById("showPerson").className;
+  let hPerson = document.getElementById("showInventoryForm").className;
   if (hPerson == "d-block") {
-    document.getElementById("showPerson").className = "d-none";
+    document.getElementById("showInventoryForm").className = "d-none";
     document.getElementById("newPersonBtn").className =
       "form-row justify-content-center";
   } else {
