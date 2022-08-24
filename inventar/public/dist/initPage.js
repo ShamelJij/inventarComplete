@@ -1,6 +1,9 @@
 import { Requests } from "./requests.js";
 
-//################################################################################
+let db = '';
+let InitPageRequests = new Requests(db);
+
+//##############################################
 /**
  * @constructor
  * @param {string} data inventories or persons or locations
@@ -72,17 +75,21 @@ export class InitPage {
     let schema = [];
     let objArray = Object.keys(obj);
     console.log(objArray);
-    for (let i = 0; i < Object.keys(obj).length - 5; i++) {
-      schema[i] = Object.keys(obj)[i + 3];
+    console.log(obj);
+    for (let i = 0; i < objArray.length - 5; i++) {
+      schema[i] =  objArray[i + 3];
     }
     let table = document
-      .getElementById(objArray[0].form + "Table")
+      .getElementById(obj.form + "Table")
       .getElementsByTagName("tbody")[0];
     let newRow = table.insertRow(table.length);
     let cells = [];
+    let value; 
     for (let i = 0; i < schema.length; i++) {
+      console.log(obj.schema[i]);
+      value = schema[i];
       cells[i] = newRow.insertCell(i);
-      cells[i].innerHTML = objArray.schema;
+      cells[i].innerHTML = obj.value;
     }
     cells[schema.length] = newRow.insertCell(schema.length);
     cells[schema.length].innerHTML =
@@ -107,27 +114,27 @@ export class InitPage {
    *
    * initiate page
    */
-  async initPage(data) {
-    let objArray = await Requests.getAll(data);
-
-    this.clearTable(this.tableId);
+  async initPage(objArray) {
+    let data = objArray[0].form;
+    let tableIsEmpty = document.getElementById(this.page + 'TableIsEmpty');
+    this.clearTable();
 
     if (!objArray || objArray.length == 0) {
-      let x = tableId.className;
+      let x = tableIsEmpty.className;
       x = x.replace("d-block", "");
       x = x.replace("d-none", "");
       x = x.trim();
-      tableId.className = x + " d-block";
+      tableIsEmpty.className = x + " d-block";
     }
     // sonst: neue Reihe zufügen für jeden Eintrag
     else {
-      let x = tableId.className;
+      let x = tableIsEmpty.className;
       x = x.replace("d-block", "");
       x = x.replace("d-none", "");
       x = x.trim();
-      tableId.className = x + " d-none";
+      tableIsEmpty.className = x + " d-none";
       let sortedList = objArray.sort(function (a, b) {
-        if (data === "persons") {
+        if (data === "person") {
           if (a.personLastName < b.personLastName) {
             return -1;
           }
@@ -135,7 +142,7 @@ export class InitPage {
             return 1;
           }
           return 0;
-        } else if (data === "locations") {
+        } else if (data === "location") {
           if (a.locationAreaName < b.locationAreaName) {
             return -1;
           }
@@ -143,7 +150,7 @@ export class InitPage {
             return 1;
           }
           return 0;
-        } else if (data === "inventories") {
+        } else if (data === "inventory") {
           if (a.inventoryPrice < b.inventoryPrice) {
             return -1;
           }
@@ -153,7 +160,7 @@ export class InitPage {
           return 0;
         }
       });
-      //insertNewRecord(objArray);
+      //insertNewRecord(obj);
       for (let i = 0; i < sortedList.length; i++) {
         this.insertNewRecord(sortedList[i]);
       }
@@ -161,7 +168,7 @@ export class InitPage {
   }
 
   clearTable() {
-    const formTable = document.getElementById(this.tableId);
+    const formTable = document.getElementById(this.page + 'TableBody');
     formTable.innerHTML = "";
   }
 }

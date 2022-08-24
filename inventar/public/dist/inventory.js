@@ -12,6 +12,7 @@ let db = "inventories";
 let InitInventory = new InitPage("inventory");
 let InventoryRequests = new Requests(db);
 let ValidateInventory = new Validation(db);
+let inventories = await InventoryRequests.getAll(db);
 document
   .getElementById("showInventoryBtn")
   .addEventListener("click", showInventory, false);
@@ -64,15 +65,7 @@ function getInputInventory() {
   return inventoryData;
 }
 
-InitInventory.initPage(this.db);
-
-//--------------------------------------------------------------------------------
-/**
- * inserts new record into table below form
- *
- * @param {Array}
- */
-InitInventory.insertNewRecord(await InventoryRequests.getAll());
+InitInventory.initPage(inventories);
 
 //################################################################################
 let globalInventoryId = 0;
