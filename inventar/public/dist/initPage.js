@@ -1,6 +1,6 @@
 import { Requests } from "./requests.js";
 
-let db = '';
+let db = "";
 let InitPageRequests = new Requests(db);
 
 //##############################################
@@ -77,19 +77,19 @@ export class InitPage {
     console.log(objArray);
     console.log(obj);
     for (let i = 0; i < objArray.length - 5; i++) {
-      schema[i] =  objArray[i + 3];
+      schema[i] = objArray[i + 3];
     }
     let table = document
       .getElementById(obj.form + "Table")
       .getElementsByTagName("tbody")[0];
     let newRow = table.insertRow(table.length);
     let cells = [];
-    let value; 
+    let value = "";
     for (let i = 0; i < schema.length; i++) {
-      console.log(obj.schema[i]);
       value = schema[i];
+      console.log(obj.label);
       cells[i] = newRow.insertCell(i);
-      cells[i].innerHTML = obj.value;
+      cells[i].innerHTML = obj.label;
     }
     cells[schema.length] = newRow.insertCell(schema.length);
     cells[schema.length].innerHTML =
@@ -116,7 +116,7 @@ export class InitPage {
    */
   async initPage(objArray) {
     let data = objArray[0].form;
-    let tableIsEmpty = document.getElementById(this.page + 'TableIsEmpty');
+    let tableIsEmpty = document.getElementById(this.page + "TableIsEmpty");
     this.clearTable();
 
     if (!objArray || objArray.length == 0) {
@@ -168,7 +168,7 @@ export class InitPage {
   }
 
   clearTable() {
-    const formTable = document.getElementById(this.page + 'TableBody');
+    const formTable = document.getElementById(this.page + "TableBody");
     formTable.innerHTML = "";
   }
 }

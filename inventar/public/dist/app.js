@@ -22,7 +22,7 @@ class Req{
                     resolve(xhr.response);
                 }
             };
-            xhr.send();
+            xhr.           send();
         });
         return promise;
     }
