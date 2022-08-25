@@ -73,37 +73,32 @@ export class InitPage {
 
   insertNewRecord(obj) {
     let schema = [];
-    let objArray = Object.keys(obj);
-    console.log(objArray);
-    console.log(obj);
-    for (let i = 0; i < objArray.length - 5; i++) {
-      schema[i] = objArray[i + 3];
+    let objKeys = Object.keys(obj);
+    for (let i = 0; i < objKeys.length - 5; i++) {
+      schema[i] = objKeys[i + 3];
     }
     let table = document
       .getElementById(obj.form + "Table")
       .getElementsByTagName("tbody")[0];
     let newRow = table.insertRow(table.length);
     let cells = [];
-    let value = "";
     for (let i = 0; i < schema.length; i++) {
-      value = schema[i];
-      console.log(obj.label);
       cells[i] = newRow.insertCell(i);
-      cells[i].innerHTML = obj.label;
+      cells[i].innerHTML = eval("obj." + schema[i]);
     }
     cells[schema.length] = newRow.insertCell(schema.length);
     cells[schema.length].innerHTML =
       '<div class="text-center d-flex justify-content-around">' +
       '<button onclick="editInventory(' +
       "'" +
-      objArray[0]._id +
+      obj._id +
       "'" +
       ')" class="btn btn-secondary fa fa-edit" data-toggle="tooltip" data-placement="left" title="bearbeiten"></button>&nbsp;' +
       '<div data-toggle="tooltip" data-placement="left"><button   class="btn btn-danger fa fa-trash" data-toggle="modal"  title="löschen" data-target="#delete' +
-      objArray[0].form +
+      obj.form +
       'Model" onclick="setRowID(' +
       "'" +
-      objArray._id +
+      obj._id +
       "'" +
       ')"></button></div>' +
       "</div>";
