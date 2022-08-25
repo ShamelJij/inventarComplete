@@ -46,7 +46,7 @@
 						<div class="container text-center mb-3">
 							<h1>&#x1F4CB;Inventar</h1>
 						</div>
-						<div class="form-row justify-content-center" id="nInventoryBtn">
+						<div class="form-row justify-content-center" id="newInventoryBtn">
 							<button class="btn btn-primary mb-4" type="button" id="showInventoryBtn">Neues
 								Inventar</button>
 						</div>
@@ -60,26 +60,24 @@
 									<div class="col-md-6">
 										<fieldset
 											class="form-group border p-3 d-flex justify-content-around text-center bg-light">
-											<legend class=" px-2 h3 text-info">Person </legend>
-											<button type="button" id="inventorySelectPerson" class="btn btn-info"
+											<legend class=" px-2 h3 text-info"><i class="fa fa-user" style="font-size:24px"></i>&nbsp;&nbsp;Person</legend>
+											<button type="button" id="inventorySelectPersonBtn" class="btn btn-info"
 												data-toggle="modal" data-target="#showAddPerson" onclick="showAddPersonTable()"
-												href="#"><i class="fa fa-user" style="font-size:24px"></i>&nbsp;&nbsp;Person
+												href="#">Person
 												auswählen</button>&nbsp; &nbsp;
-											<button type="button" class="btn btn-info" id="showNewPerson" onclick="showNewPerson()" href="#"><i
-													class="fa fa-user-plus" style="font-size:24px"></i>&nbsp;&nbsp;neue
+											<button type="button" class="btn btn-info" id="showNewPerson" onclick="showNewPerson()" href="#">neue
 												Person</button>
 										</fieldset>
 									</div>
 									<div class="col-md-6">
 										<fieldset
 											class="form-group border p-3 d-flex justify-content-around text-center bg-light">
-											<legend class=" px-2 h3 text-info">Standort </legend>
+											<legend class=" px-2 h3 text-info"><i class="fa fa-map-marker" style="font-size:24px"></i>&nbsp;&nbsp;Standort </legend>
 											<button type="button" id="inventorySelectLocation" class="btn btn-info"
 												data-toggle="modal" data-target="#showAddLocation" onclick="showAddLocationTable()"
-												href="#"><i class="fa fa-map-marker" style="font-size:24px"></i>&nbsp;&nbsp;Ort
+												href="#">Ort
 												auswählen</button>&nbsp;&nbsp;
-											<button class="btn btn-info" type="button" id="showNewLocation" onclick="showNewLocation()"><i class="fa fa-map-marker"
-													style="font-size:24px"></i>&nbsp;&nbsp;neuer Standort&nbsp;&nbsp; </button>
+											<button class="btn btn-info" type="button" id="showNewLocation" onclick="showNewLocation()">neuer Standort</button>
 										</fieldset>
 									</div>
 								</div>
@@ -711,10 +709,7 @@
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
 
-	<script type="module" src="app.js"></script>
 	<script type="module" src="person.js"></script>
-	<script type="module" src="initPage.js"></script>
-	<script type="module" src="requests.js"></script>
 	<script type="module" src="inventory.js"></script>
 	<script type="module" src="location.js"></script>
 </body>

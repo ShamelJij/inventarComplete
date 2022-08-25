@@ -24,7 +24,7 @@ document
 /**
  * Global section
  */
-InitInventory.assignEventsToHTMLElements();
+InitInventory.assignEventsToButtons();
 
 //################################################################################
 //routes section
@@ -725,47 +725,6 @@ function inventoryPriceChange() {
 
   document.getElementById("inventoryPriceNotValid").innerText =
     "jetzt Brechnen drücken";
-}
-
-//--------------------------------------------------------------------------------
-/**
- * shows Person table as modal
- *
- */
-async function showAddPersonTable() {
-  let persons = await getPersons();
-  console.log("GET: person: ", persons);
-
-  clearAddPersonTable();
-
-  if (!persons || persons.length == 0) {
-    let x = addPersonTableIsEmpty.className;
-    x = x.replace("d-block", "");
-    x = x.replace("d-none", "");
-    x = x.trim();
-    addPersonTableIsEmpty.className = x + " d-block";
-  }
-  // sonst: neue Reihe zufügen für jeden Eintrag
-  else {
-    let x = addPersonTableIsEmpty.className;
-    x = x.replace("d-block", "");
-    x = x.replace("d-none", "");
-    x = x.trim();
-    addPersonTableIsEmpty.className = x + " d-none";
-    let sortedPersonList = persons.sort(function (a, b) {
-      if (a.lastname < b.lastname) {
-        return -1;
-      }
-      if (a.lastname > b.lastname) {
-        return 1;
-      }
-      return 0;
-    });
-    //insertNewPersonRecord(persons);
-    for (let i = 0; i < sortedPersonList.length; i++) {
-      insertNewPersonRecord(sortedPersonList[i]);
-    }
-  }
 }
 
 //--------------------------------------------------------------------------------

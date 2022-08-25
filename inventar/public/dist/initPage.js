@@ -3,7 +3,7 @@ import { Requests } from "./requests.js";
 let db = "";
 let InitPageRequests = new Requests(db);
 
-//##############################################
+//§##############################################
 /**
  * @constructor
  * @param {string} data inventories or persons or locations
@@ -29,11 +29,10 @@ export class InitPage {
       );
     }
   }
-
-  assignEventsToHTMLElements() {
-    let eventClickIds = [
-      "showInventoryBtn",
-      "inventorySelectPerson",
+//§
+  assignEventsToButtons() {
+    document.getElementById('inventoryPage').addEventListener('click', this.initPage())
+    let events = [
       "showNewPerson",
       "inventorySelectLocation",
       "showNewLocation",
@@ -41,6 +40,10 @@ export class InitPage {
       "inventoryPurchaseDate",
       "inventoryPrice",
       "calculate",
+    ];
+    let eventClickIds = [
+      "showInventoryBtn",
+      "inventorySelectPersonBtn",
       "updateInventoryBtn",
       "saveInventoryBtn",
       "inventoryCancelUpdateBtn",
@@ -56,10 +59,14 @@ export class InitPage {
       "deleteLocationBtn",
     ];
     let eventClickElements = {};
-    for (let i = 0; i < eventClickIds; i++) {
-      eventClickElements[eventClickIds[i]] = document
-        .getElementById(eventClickIds[i])
-        .addEventListener("click", eventClickIds[i], false);
+    function somefunction(){
+      console.log('dont forget to assign functions to eventClickElements');
+    }
+    for (let i = 0; i < eventClickIds.length; i++) {
+      let eventFunction = eventClickIds[i].slice(0, -3);
+      console.log(eventFunction);
+      eventClickElements[eventClickIds[i]] = eval('document.getElementById(' + eventClickIds[i] + ');');
+      document.getElementById(eventClickIds[i]).addEventListener('click',eval(eventFunction), false);
     }
 
     let eventLoadIds = ["inventoryPage", "personPage", "locationPage"];
@@ -69,6 +76,48 @@ export class InitPage {
         .getElementById(eventLoadIds[i])
         .addEventListener("load", eventLoadIds[i], false);
     }
+
+  //--------------------------------------------------------------------------------
+  /**
+   * shows Person table as modal
+   *
+   */
+  async function inventorySelectPerson() {
+    this.db = 'persons';
+    let persons = await InitPageRequests.getAll();
+    console.log("GET: person: ", persons);
+
+    clearAddPersonTable();
+
+    if (!persons || persons.length == 0) {
+      let x = addPersonTableIsEmpty.className;
+      x = x.replace("d-block", "");
+      x = x.replace("d-none", "");
+      x = x.trim();
+      addPersonTableIsEmpty.className = x + " d-block";
+    }
+    // sonst: neue Reihe zufügen für jeden Eintrag
+    else {
+      let x = addPersonTableIsEmpty.className;
+      x = x.replace("d-block", "");
+      x = x.replace("d-none", "");
+      x = x.trim();
+      addPersonTableIsEmpty.className = x + " d-none";
+      let sortedPersonList = persons.sort(function (a, b) {
+        if (a.lastname < b.lastname) {
+          return -1;
+        }
+        if (a.lastname > b.lastname) {
+          return 1;
+        }
+        return 0;
+      });
+      //insertNewPersonRecord(persons);
+      for (let i = 0; i < sortedPersonList.length; i++) {
+        insertNewPersonRecord(sortedPersonList[i]);
+      }
+    }
+  }
   }
 
   insertNewRecord(obj) {
