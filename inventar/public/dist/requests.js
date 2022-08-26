@@ -1,5 +1,5 @@
 export class Requests {
-  db = "";
+  db = '';
   constructor(db) {
     this.db = db;
   }

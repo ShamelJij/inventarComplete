@@ -1,7 +1,5 @@
 import { Requests } from "./requests.js";
 
-let db = "";
-let InitPageRequests = new Requests(db);
 
 //§##############################################
 /**
@@ -13,8 +11,11 @@ export class InitPage {
   page = "";
   elementsIds = [];
   elements = {};
-
-  constructor(page) {
+  db = '';
+  InitPageRequests;
+  constructor(page, db) {
+    this.InitPageRequests = new Requests(db);
+    this.db = db;
     this.page = page;
     this.elementsIds = [
       page + "TableIsEmpty",
@@ -75,16 +76,17 @@ export class InitPage {
       eventLoadElements[eventLoadIds[i]] = document
         .getElementById(eventLoadIds[i])
         .addEventListener("load", eventLoadIds[i], false);
-    }
+      }
+  }
 
   //--------------------------------------------------------------------------------
   /**
    * shows Person table as modal
    *
    */
-  async function inventorySelectPerson() {
+  async inventorySelectPerson() {
     this.db = 'persons';
-    let persons = await InitPageRequests.getAll();
+    let persons = await this.InitPageRequests.getAll();
     console.log("GET: person: ", persons);
 
     clearAddPersonTable();
@@ -117,7 +119,6 @@ export class InitPage {
         insertNewPersonRecord(sortedPersonList[i]);
       }
     }
-  }
   }
 
   insertNewRecord(obj) {

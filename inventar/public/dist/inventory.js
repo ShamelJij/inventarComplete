@@ -9,7 +9,7 @@ import { Validation } from "./validation.js";
  */
 let db = "inventories";
 //let app = require(' ./app.js');
-let InitInventory = new InitPage("inventory");
+let InitInventory = new InitPage("inventory", db);
 let InventoryRequests = new Requests(db);
 let ValidateInventory = new Validation(db);
 let inventories = await InventoryRequests.getAll(db);
@@ -83,26 +83,14 @@ function getRowId() {
 
 //--------------------------------------------------------------------------------
 /**
- * clears Inventory table
- *
- */
-function clearInventoryTable() {
-  const inventoryTableBody = document.getElementById("inventoryTableBody");
-  inventoryTableBody.innerHTML = "";
-}
-
-//--------------------------------------------------------------------------------
-/**
  * delete Inventory from form and from database
  *
  * @param {srting} inventoryId
  */
-InventoryRequests.del;
 async function deleteInventory(inventoryId) {
-  let db = "inventories";
-  InventoryRequests.del(db, inventoryId);
+  InventoryRequests.del(this.db, inventoryId);
 
-  let inventory = await InventoryRequests.getById(db, inventoryId);
+  let inventory = await InventoryRequests.getById(this.db, inventoryId);
 
   //here should be myAlert.delete(inventory)
   let x = inventoryDelete.className;
@@ -114,52 +102,13 @@ async function deleteInventory(inventoryId) {
     inventory.label + " " + inventory.inventoryType;
   $("#inventoryDelete").show();
 
+  InitInventory.initPage(this.inventories);
   initInventory();
   setTimeout(function () {
     // Closing the alert
     $("#inventoryDelete").hide();
     inventoryDelete.className = x + " d-none";
   }, 4000);
-}
-
-//################################################################################
-/**
- *
- * initiate Inventory page
- */
-async function initInventory() {
-  //localstorage auslesen
-  let inventory = await getInventories();
-  let data = "inventories";
-  let objArray = await InventoryRequests.getAll(data);
-  console.log("$$$$$: " + data + ": " + objArray);
-  console.log("GET: inventory: ", inventory);
-  clearInventoryTable();
-  personCount();
-  inventoryCount();
-  if (!inventory || inventory.length == 0) {
-    let x = inventoryTableIsEmpty.className;
-    x = x.replace("d-block", "");
-    x = x.replace("d-none", "");
-    x = x.trim();
-    inventoryTableIsEmpty.className = x + " d-block";
-    console.log("table is empty");
-  }
-  // sonst: neue Reihe zufügen für jeden Eintrag
-  else {
-    let x = inventoryTableIsEmpty.className;
-    x = x.replace("d-block", "");
-    x = x.replace("d-none", "");
-    x = x.trim();
-    inventoryTableIsEmpty.className = x + " d-none";
-    await InitInventory.insertNewRecord(inventory);
-    console.log("array:: ", JSON.stringify(inventory[0].form));
-    for (let i = 0; i < inventory.length; i++) {
-      insertNewRecordInventory(inventory[i]);
-    }
-  }
-
-  console.log("function initInventory");
 }
 
 //################################################################################
