@@ -32,8 +32,7 @@ export class InitPage {
   }
 //§
   assignEventsToButtons() {
-    document.getElementById('inventoryPage').addEventListener('click', this.initPage())
-    let events = [
+    let eventIds = [
       "showNewPerson",
       "inventorySelectLocation",
       "showNewLocation",
