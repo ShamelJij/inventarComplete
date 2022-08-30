@@ -68,7 +68,7 @@ export class InitPage {
     document.getElementById("inventoryPriceInpt").className = y + " is-invalid";
 
     document.getElementById("inventoryPriceNotValid").innerText =
-      "jetzt Brechnen drücken";
+      "jetzt Berechnen drücken";
     }
 
     //################################################################################
@@ -146,6 +146,7 @@ export class InitPage {
       this.db = 'persons';
       this.page = 'person';
       let persons = await this.InitPageRequests.getAll();
+      console.log(persons);
 
       this.clearTable();
 
@@ -244,9 +245,10 @@ export class InitPage {
      *
      */
     async function updateInventory() {
-      let inventory = await getInventories();
+      this.db = 'inventories';
+
+      let inventory = await this.InitPageRequests.getAll();
       if (calculate()) {
-        let inventory = await getInventories();
         let personIdInInventory = document.getElementById(
           "personIdInInventory"
         ).value;
@@ -305,7 +307,8 @@ export class InitPage {
           console.log("no revision in Inventory");
         }
 
-        putInventory(inventoryItem, inventoryId);
+        this.InitPageRequests.put(inventoryItem, inventoryId);
+        console.log((this.InitPageRequests.put(inventoryItem, inventoryId)).toString());
 
         // initInventory();
       }
