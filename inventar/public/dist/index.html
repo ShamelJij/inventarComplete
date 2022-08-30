@@ -62,10 +62,10 @@
 											class="form-group border p-3 d-flex justify-content-around text-center bg-light">
 											<legend class=" px-2 h3 text-info"><i class="fa fa-user" style="font-size:24px"></i>&nbsp;&nbsp;Person</legend>
 											<button type="button" id="inventorySelectPersonBtn" class="btn btn-info"
-												data-toggle="modal" data-target="#showAddPerson" onclick="showAddPersonTable()"
+												data-toggle="modal" data-target="#showAddPerson"
 												href="#">Person
 												auswählen</button>&nbsp; &nbsp;
-											<button type="button" class="btn btn-info" id="showNewPerson" onclick="showNewPerson()" href="#">neue
+											<button type="button" class="btn btn-info" id="inventoryNewPersonBtn" href="#">neue
 												Person</button>
 										</fieldset>
 									</div>
@@ -73,11 +73,11 @@
 										<fieldset
 											class="form-group border p-3 d-flex justify-content-around text-center bg-light">
 											<legend class=" px-2 h3 text-info"><i class="fa fa-map-marker" style="font-size:24px"></i>&nbsp;&nbsp;Standort </legend>
-											<button type="button" id="inventorySelectLocation" class="btn btn-info"
-												data-toggle="modal" data-target="#showAddLocation" onclick="showAddLocationTable()"
+											<button type="button" id="inventorySelectLocationBtn" class="btn btn-info"
+												data-toggle="modal" data-target="#showAddLocation"
 												href="#">Ort
 												auswählen</button>&nbsp;&nbsp;
-											<button class="btn btn-info" type="button" id="showNewLocation" onclick="showNewLocation()">neuer Standort</button>
+											<button class="btn btn-info" type="button" id="inventoryNewLocationBtn">neuer Standort</button>
 										</fieldset>
 									</div>
 								</div>
@@ -152,9 +152,9 @@
 										</div>
 									</div>
 									<div class="col-md-3 mb-3">
-										<label for="inventoryPurchaseDate">Anschaffungsdatum</label>
+										<label for="inventoryPurchaseDateChg">Anschaffungsdatum</label>
 										<input type="date" class="form-control" onchange="dateChangeHandler(event);"
-											name="purchaseDate" id="inventoryPurchaseDate" min="2018-01-01" required>
+											name="purchaseDate" id="inventoryPurchaseDateChg" min="2018-01-01" required>
 										<div class="invalid-feedback" id="inventoryPurchaseDateInvalid">
 											Bitte ein Datum eingeben.
 										</div>
@@ -168,8 +168,7 @@
 										<label for="inventoryPrice" class="h5">Preis&nbsp;&nbsp;<span
 												class="text-white bg-success">&nbsp;netto&nbsp;</span></label>
 										<div class="input-group">
-											<input type="number" class="form-control" id="inventoryPrice" value="0"
-												oninput="inventoryPriceChange()">
+											<input type="number" class="form-control" id="inventoryPriceInpt" value="0">
 											<div class="input-group-append">
 												<span class="input-group-text text-white bg-success"
 													id="inputGroupAppendType">&#128;

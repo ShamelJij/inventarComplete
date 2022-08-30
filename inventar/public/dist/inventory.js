@@ -24,7 +24,7 @@ document
 /**
  * Global section
  */
-InitInventory.assignEventsToButtons();
+InitInventory.assignEventsToElements();
 
 //################################################################################
 //routes section
@@ -43,7 +43,7 @@ function getInputInventory() {
     "inventorySerialNumber",
     "inventoryType",
     "inventoryPurchaseDate",
-    "inventoryPrice",
+    "inventoryPriceInpt",
     "inventoryBookingCategory",
     "inventoryDepreciationInput",
     "inventoryValidationEndDate",
@@ -51,7 +51,7 @@ function getInputInventory() {
   let inventoryData = {};
   for (let i = 0; i < inventoryForm.length; i++) {
     if (
-      inventoryData[inventoryForm[i]] === "inventoryPrice" ||
+      inventoryData[inventoryForm[i]] === "inventoryPriceInpt" ||
       inventoryData[inventoryForm[i]] === "inventoryDepreciationInput"
     ) {
       inventoryData[inventoryForm[i]] = parseInt(
@@ -133,8 +133,8 @@ function saveInventory() {
       let inventoryPurchaseDate = document
         .getElementById("inventoryPurchaseDate")
         .value.trim();
-      let inventoryPrice = document
-        .getElementById("inventoryPrice")
+      let inventoryPriceInpt = document
+        .getElementById("inventoryPriceInpt")
         .value.trim();
       let inventoryBookingCategory = document
         .getElementById("inventoryBookingCategory")
@@ -155,7 +155,7 @@ function saveInventory() {
         inventorySerialNumber: inventorySerialNumber,
         inventoryType: inventoryType,
         inventoryPurchaseDate: inventoryPurchaseDate,
-        inventoryPrice: inventoryPrice,
+        inventoryPriceInpt: inventoryPriceInpt,
         inventoryBookingCategory: inventoryBookingCategory,
         inventoryDepreciationDate: inventoryDepreciationDate,
         inventoryValidationDate: inventoryValidationDate,
@@ -199,7 +199,7 @@ async function editInventory(inventoryId) {
   document.getElementById("inventoryType").value = inventory.inventoryType;
   document.getElementById("inventoryPurchaseDate").value =
     inventory.inventoryPurchaseDate;
-  document.getElementById("inventoryPrice").value = inventory.inventoryPrice;
+  document.getElementById("inventoryPriceInpt").value = inventory.inventoryPriceInpt;
   document.getElementById("inventoryBookingCategory").value =
     inventory.inventoryBookingCategory;
   document.getElementById("inventoryDepreciationInput").value =
@@ -304,8 +304,8 @@ async function updateInventory() {
     let inventoryPurchaseDate = document
       .getElementById("inventoryPurchaseDate")
       .value.trim();
-    let inventoryPrice = document.getElementById("inventoryPrice").value.trim();
-    inventoryPrice = Number(inventoryPrice);
+    let inventoryPriceInpt = document.getElementById("inventoryPriceInpt").value.trim();
+    inventoryPriceInpt = Number(inventoryPriceInpt);
     let inventoryBookingCategory = document
       .getElementById("inventoryBookingCategory")
       .value.trim();
@@ -337,7 +337,7 @@ async function updateInventory() {
       inventorySerialNumber: inventorySerialNumber,
       inventoryType: inventoryType,
       inventoryPurchaseDate: inventoryPurchaseDate,
-      inventoryPrice: inventoryPrice,
+      inventoryPriceInpt: inventoryPriceInpt,
       inventoryBookingCategory: inventoryBookingCategory,
       inventoryDepreciationDate: inventoryDepreciationDate,
       inventoryValidationDate: inventoryValidationDate,
@@ -474,10 +474,10 @@ function inputTranslation() {
   console.log("result type: ", inventoryType);
   document.getElementById("inventoryType").value = inventoryType;
   // Formatieren des Preises im Format: x.xxx,xx
-  let inventoryPrice = document.getElementById("inventoryPrice").value;
+  let inventoryPriceInpt = document.getElementById("inventoryPriceInpt").value;
   let itemId = document.getElementById("inventoryId").value;
 
-  if (inventoryPrice <= 2000) {
+  if (inventoryPriceInpt <= 2000) {
     document.getElementById("inventoryBookingCategory").value = "GWG";
     if (itemId == "") {
       //neue Datensatz
@@ -520,15 +520,15 @@ function calcForm() {
     document.getElementById("formEndDate").className = "d-none";
   }
 
-  //inventoryPrice value to changes div (inventoryBookingCategory)
-  let inventoryPrice = document.getElementById("inventoryPrice").value;
+  //inventoryPriceInpt value to changes div (inventoryBookingCategory)
+  let inventoryPriceInpt = document.getElementById("inventoryPriceInpt").value;
   //Show booking category
-  if (inventoryPrice <= 2000 && inventoryPrice > 0) {
+  if (inventoryPriceInpt <= 2000 && inventoryPriceInpt > 0) {
     document.getElementById("inventoryDepreciationGroup").className = "d-none";
     document.getElementById("inventoryValidationEndDateGroup").className =
       "d-none";
     document.getElementById("inventoryDepreciationInput").value = 0;
-  } else if (inventoryPrice <= 0) {
+  } else if (inventoryPriceInpt <= 0) {
     document.getElementById("inventoryDepreciationGroup").className = "d-none";
     document.getElementById("inventoryValidationEndDateGroup").className =
       "d-none";
@@ -568,9 +568,9 @@ function calcForm() {
     //return false;
   }
   //asking for a better solution!!
-  //inventoryPrice value to changes div (inventoryBookingCategory)
+  //inventoryPriceInpt value to changes div (inventoryBookingCategory)
   //Show booking category
-  if (inventoryPrice <= 2000 && inventoryPrice >= 0) {
+  if (inventoryPriceInpt <= 2000 && inventoryPriceInpt >= 0) {
     document.getElementById("inventoryBookingCategory").value = "GWG";
     let inventoryOldStatus = document.getElementById(
       "inventoryHiddenStatus"
@@ -630,7 +630,7 @@ function resetFormInventory() {
     "inventorySerialNumber",
     "inventoryType",
     "inventoryPurchaseDate",
-    "inventoryPrice",
+    "inventoryPriceInpt",
     "inventoryBookingCategory",
     "inventoryDepreciationInput",
     "inventoryValidationEndDate",
@@ -662,15 +662,15 @@ function resetFormInventory() {
 //--------------------------------------------------------------------------------
 /**
  * shows a message under price when input changes in form
- *
+ * assigned to element 'inventoryPriceInpt'
  */
-function inventoryPriceChange() {
-  let y = document.getElementById("inventoryPrice").className;
+function inventoryPrice() {
+  let y = document.getElementById("inventoryPriceInpt").className;
   y = y.replace("is-invalid", "");
   y = y.replace("is-valid", "");
   y = y.trim();
 
-  document.getElementById("inventoryPrice").className = y + " is-invalid";
+  document.getElementById("inventoryPriceInpt").className = y + " is-invalid";
 
   document.getElementById("inventoryPriceNotValid").innerText =
     "jetzt Brechnen drücken";
