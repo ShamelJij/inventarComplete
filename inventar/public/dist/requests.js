@@ -13,7 +13,7 @@ export class Requests {
     let promise = new Promise((resolve, reject) => {
       let xhr = new XMLHttpRequest();
       xhr.open(method, url);
-      xhr.responseType = "json";
+      xhr.responseType = 'json';
       xhr.onload = function () {
         if (xhr.status != 200) {
           // analyze HTTP status of the response
@@ -41,15 +41,15 @@ export class Requests {
   post(postObj) {
     let xhr = new XMLHttpRequest();
     let jsonPostObj = JSON.stringify(postObj);
-    xhr.open("POST", "http://localhost:8080/v1/" + this.db + "/", true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhr.open('POST', 'http://localhost:8080/v1/' + this.db + '/', true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
     xhr.send(jsonPostObj);
 
     xhr.onload = function () {
       if (xhr.status === 201) {
-        console.log("Post successfully created!");
+        console.log('Post successfully created!');
       } else if (xhr.status === 400) {
-        console.log("400 (Bad Request)");
+        console.log('400 (Bad Request)');
       }
     };
   }
@@ -64,20 +64,20 @@ export class Requests {
   put(putObj, id) {
     let xhr = new XMLHttpRequest();
     let jsonPutObj = JSON.stringify(putObj);
-    xhr.open("PUT", "http://localhost:8080/v1/" + this.db + "/" + id, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhr.open('PUT', 'http://localhost:8080/v1/' + this.db + '/' + id, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
     xhr.send(jsonPutObj);
 
     xhr.onload = function () {
       if (xhr.status === 200) {
-        console.log("Put successfully done!");
-        if (this.data === "inventory") {
+        console.log('Put successfully done!');
+        if (this.data === 'inventory') {
           initPerson();
         }
       } else if (xhr.status === 400) {
-        console.log("invalid PUT REQUEST");
+        console.log('invalid PUT REQUEST');
       } else if (xhr.status === 404) {
-        console.log("not found");
+        console.log('not found');
       }
     };
   }
@@ -90,17 +90,17 @@ export class Requests {
    */
   del(id) {
     let xhr = new XMLHttpRequest();
-    xhr.open("DELETE", "http://localhost:8080/v1/" + this.db + "/" + id, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhr.open('DELETE', 'http://localhost:8080/v1/' + this.db + '/' + id, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
     xhr.send();
 
     xhr.onload = function () {
       if (xhr.status === 200) {
-        console.log("Delete successful!");
+        console.log('Delete successful!');
         //todo: change it to initPage();
         initPerson();
       } else if (xhr.status === 404) {
-        alert("not found");
+        alert('not found');
         //todo: change it to initPage();
         initPerson();
       }
@@ -109,11 +109,11 @@ export class Requests {
 
   //--------------------------------------------------------------------------------
   /**
-   * GET /inventoreis or /persons or /locations
+   * GET /inventories or /persons or /locations
    * @return {Array.<Objects>}
    */
   async getAll() {
-    return this.sendHTTPRequest("GET", "http://localhost:8080/v1/" + this.db);
+    return this.sendHTTPRequest('GET', 'http://localhost:8080/v1/' + this.db);
   }
 
   //--------------------------------------------------------------------------------
@@ -124,8 +124,8 @@ export class Requests {
    */
   async getById(id) {
     return this.sendHTTPRequest(
-      "GET",
-      "http://localhost:8080/v1/" + this.db + "/" + id
+      'GET',
+      'http://localhost:8080/v1/' + this.db + '/' + id
     );
   }
 }
