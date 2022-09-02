@@ -25,7 +25,7 @@ export class Events {
     let eventInputIds = ['inventoryPriceInpt'];
     let eventInputElements = {};
     for (let i = 0; i < eventIds.length; i++) {
-      let eventFunction = eventIds[i].slice(0, -sliceLength);
+      let eventFunction = eventIds[i].slice(0, -4);
       console.log(eventFunction);
       eventInputElements[eventIds[i]] = eval(
         'document.getElementById(' + eventIds[i] + ');'
