@@ -3,7 +3,11 @@ import { Events } from './events.js';
 
 let InitPageEvents = new Events();
 
-InitPageEvents.assignEvents();
+InitPageEvents.assignEvents(InitPageEvents.eventIds, 0, 'click');
+InitPageEvents.assignEvents(InitPageEvents.eventClickIds, 3, 'click');
+InitPageEvents.assignEvents(InitPageEvents.eventInputIds, 4, 'input');
+InitPageEvents.assignEvents(InitPageEvents.eventChangeIds, 3, 'change');
+InitPageEvents.assignEvents(InitPageEvents.eventLoadIds, 0, 'load');
 //§##############################################
 /**
  * @constructor

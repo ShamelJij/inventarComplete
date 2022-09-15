@@ -3,6 +3,7 @@ import { getPersons } from './person.js';
 import { Requests } from './requests.js';
 import { Validation } from './validation.js';
 import { Events } from './events.js';
+import { Translation } from './translation.js';
 
 //###############################################################################
 /**
@@ -13,6 +14,7 @@ let db = 'inventories';
 let InitInventory = new InitPage('inventory');
 let InventoryRequests = new Requests(db);
 let InventoryValidation = new Validation(db);
+let InventoryTranslation = new Translation(db);
 let InventoryEvents = new Events();
 let inventories = await InventoryRequests.getAll(db);
 document
@@ -26,7 +28,6 @@ document
 /**
  * Global section
  */
-InventoryEvents.assignEvents();
 
 InitInventory.initPage(inventories);
 
@@ -288,15 +289,120 @@ function hideInventory() {
 
 //--------------------------------------------------------------------------------
 /**
- * refreashed inventory form after saving
+ * will calcuate and return a boolen inventory form after saving
  *
  */
 //this is for the speichern button!
 function calculate() {
-  //refreshInventory();
-  inputTranslation();
-  if (inputValidationInventory()) {
-    calcForm();
+  InventoryTranslation.inputTranslation();
+  if (InventoryValidation.inputValidation()) {
+    let status = document.getElementById('inventoryStatus').value;
+    if (status == 'Ausgebucht') {
+      document.getElementById('formEndDate').className = 'd-block';
+    } else {
+      document.getElementById('formEndDate').className = 'd-none';
+    }
+
+    //inventoryPriceInpt value to changes div (inventoryBookingCategory)
+    let inventoryPriceInpt =
+      document.getElementById('inventoryPriceInpt').value;
+    //Show booking category
+    if (inventoryPriceInpt <= 2000 && inventoryPriceInpt > 0) {
+      document.getElementById('inventoryDepreciationGroup').className =
+        'd-none';
+      document.getElementById('inventoryValidationEndDateGroup').className =
+        'd-none';
+      document.getElementById('inventoryDepreciationInput').value = 0;
+    } else if (inventoryPriceInpt <= 0) {
+      document.getElementById('inventoryDepreciationGroup').className =
+        'd-none';
+      document.getElementById('inventoryValidationEndDateGroup').className =
+        'd-none';
+    } else {
+      document.getElementById('inventoryDepreciationGroup').className =
+        'd-block';
+      document.getElementById('inventoryValidationEndDateGroup').className =
+        'd-block';
+    }
+
+    let inventoryPurchaseDate = document.getElementById(
+      'inventoryPurchaseDate'
+    ).value;
+    let inputMonthValue = parseInt(
+      document.getElementById('inventoryDepreciationInput').value
+    );
+    let d = new Date(inventoryPurchaseDate);
+    let currentMonth = d.getMonth();
+    d.setMonth(currentMonth + inputMonthValue);
+    console.log('d: ', d);
+    let pd = new Date(inventoryPurchaseDate);
+    console.log('d: ', d);
+    document.getElementById('inventoryValidationEndDate').value = d
+      .toISOString()
+      .split('T')[0];
+    let ved = document.getElementById('inventoryValidationEndDate').value;
+    console.log('inventoryValidationEndDate is: ', ved);
+    let v = document.getElementById('inventoryValidationEndDate').value;
+    console.log('input Abgeschrieben am: ', v);
+
+    //document.getElementById("inventoryValidationEndDate").value = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDay();
+
+    if (pd.getTime() <= d.getTime()) {
+      console.log('time: ', pd.getTime());
+      console.log(currentMonth);
+    } else {
+      console.log('resultDate is else!!?');
+      //return false;
+    }
+    //asking for a better solution!!
+    //inventoryPriceInpt value to changes div (inventoryBookingCategory)
+    //Show booking category
+    if (inventoryPriceInpt <= 2000 && inventoryPriceInpt >= 0) {
+      document.getElementById('inventoryBookingCategory').value = 'GWG';
+      let inventoryOldStatus = document.getElementById(
+        'inventoryHiddenStatus'
+      ).value;
+      let newStatus = document.getElementById('inventoryBookingCategory').value;
+      if (inventoryOldStatus != newStatus) {
+        //inventoryBookingCategoryChanged Modal
+        document.getElementById('newStatusModal').innerText = newStatus;
+        $('#inventoryBookingCategoryChanged').modal('show');
+        console.log('inventoryBookingCategory is changed!! Alert!!');
+        document.getElementById('inventoryHiddenStatus').value = newStatus;
+      } else {
+        console.log('inventoryBookingCategory is not changed!! ALERT!');
+      }
+    } else {
+      console.log('category: Abschribsfähig');
+      document.getElementById('inventoryBookingCategory').value =
+        'Abschreibfähig';
+      let inventoryOldStatus = document.getElementById(
+        'inventoryHiddenStatus'
+      ).value;
+      let newStatus = document.getElementById('inventoryBookingCategory').value;
+      if (inventoryOldStatus != newStatus) {
+        document.getElementById('newStatusModal').innerText = newStatus;
+        if (newStatus == 'Abschreibfähig') {
+          console.warn('success!!!');
+          let x = document.getElementById(
+            'inventoryDepreciationInput'
+          ).className;
+          x = x.replace('is-invalid', '');
+          x = x.replace('is-valid', '');
+          x = x.trim();
+          document.getElementById('inventoryDepreciationInput').className =
+            x + ' is-invalid';
+          document.getElementById(
+            'inventoryDepreciationInputIsInValid'
+          ).innerText = 'bitte erst anpassen dann Brechnen drucken!';
+        }
+        $('#inventoryBookingCategoryChanged').modal('show');
+        console.log('inventoryBookingCategory is changed!! Alert!!');
+        document.getElementById('inventoryHiddenStatus').value = newStatus;
+      } else {
+        console.log('inventoryBookingCategory is not changed!! ALERT!');
+      }
+    }
     return true;
   } else {
     return false;
@@ -351,75 +457,6 @@ function showLastModified() {
     lastModifiedObj.time;
   document.getElementById('edited').value = lastModifiedResult;
 }
-
-//--------------------------------------------------------------------------------
-/**
- * Translates and corrects input from user grammatically
- *
- */
-// Konvertieren von Eingaben in das richtige Format
-// Bsp Trim bei Textfeldern
-function inputTranslation() {
-  // "Bezeichnung", "Seriennummer", "Typ" die vorherigen und hinteren Leerzeichen entfernen
-  //Bezeichnung
-  let label = document.getElementById('inventoryLabel').value;
-
-  label = label.replace(/\s+/g, ' ');
-  label = label.trim();
-  console.log('trimmed Bezeichnung: ', label);
-  document.getElementById('inventoryLabel').value = label;
-  //seriennummer
-  let inventorySerialNumber = document.getElementById(
-    'inventorySerialNumber'
-  ).value;
-
-  inventorySerialNumber = inventorySerialNumber.replace(/\s+/g, ' ');
-  console.log('Serial Number after replace: ', inventorySerialNumber);
-  inventorySerialNumber = inventorySerialNumber.trim();
-  console.log('trimmed serial NUmber: ', inventorySerialNumber);
-
-  document.getElementById('inventorySerialNumber').value =
-    inventorySerialNumber;
-  //typ
-  let inventoryType = document.getElementById('inventoryType').value;
-  console.log('trimmed Type: ', inventoryType);
-  inventoryType = inventoryType.replace(/\s+/g, ' ');
-  inventoryType = inventoryType.trim();
-  console.log('result type: ', inventoryType);
-  document.getElementById('inventoryType').value = inventoryType;
-  // Formatieren des Preises im Format: x.xxx,xx
-  let inventoryPriceInpt = document.getElementById('inventoryPriceInpt').value;
-  let itemId = document.getElementById('inventoryId').value;
-
-  if (inventoryPriceInpt <= 2000) {
-    document.getElementById('inventoryBookingCategory').value = 'GWG';
-    if (itemId == '') {
-      //neue Datensatz
-      //nichts machen
-      document.getElementById('inventoryDepreciationInput').value = 0;
-    } else {
-      //vorhandener Datensatz
-      //nichts machen
-    }
-    document.getElementById('inventoryDepreciationInput').value = 0;
-  } else {
-    document.getElementById('inventoryBookingCategory').value =
-      'Abschreibfähig';
-    if (itemId == '') {
-      //neue Datensatz
-      //nichts machen
-      if (document.getElementById('inventoryDepreciationInput').value == '') {
-        //bleibt leer
-      } else {
-        //
-      }
-    } else {
-      //vorhandener Datensatz
-      //nichts machen
-    }
-  }
-}
-
 //--------------------------------------------------------------------------------
 /**
  * calculator for input in form
