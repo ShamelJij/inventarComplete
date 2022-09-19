@@ -666,3 +666,33 @@ function showNewPerson() {
 DIESE Funktion macht nur folgend und sonst nichts!:
 - Ein und Ausblenden von Designelementen. SONST NICHTS!
  */
+let schema = [];
+let objKeys = Object.keys(obj);
+for (let i = 0; i < objKeys.length - 5; i++) {
+  schema[i] = objKeys[i + 3];
+}
+let table = document
+  .getElementById(obj.form + 'Table')
+  .getElementsByTagName('tbody')[0];
+let newRow = table.insertRow(table.length);
+let cells = [];
+for (let i = 0; i < schema.length; i++) {
+  cells[i] = newRow.insertCell(i);
+  cells[i].innerHTML = eval('obj.' + schema[i]);
+}
+cells[schema.length] = newRow.insertCell(schema.length);
+cells[schema.length].innerHTML =
+  '<div class="text-center d-flex justify-content-around">' +
+  '<button onclick="editInventory(' +
+  "'" +
+  obj._id +
+  "'" +
+  ')" class="btn btn-secondary fa fa-edit" data-toggle="tooltip" data-placement="left" title="bearbeiten"></button>&nbsp;' +
+  '<div data-toggle="tooltip" data-placement="left"><button   class="btn btn-danger fa fa-trash" data-toggle="modal"  title="löschen" data-target="#delete' +
+  obj.form +
+  'Model" onclick="setRowID(' +
+  "'" +
+  obj._id +
+  "'" +
+  ')"></button></div>' +
+  '</div>';
