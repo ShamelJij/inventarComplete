@@ -3,13 +3,15 @@
     "version": "1.0.0",
     "releaseDate": "2022-09-21",
     "private": true,
-    "engines": {"node": "14.15.0"},
+    "engines": {
+        "node": "14.0.0"
+    },
     "scripts": {
         "test": "istanbul cover node_modules\tapeecho \"Error: no test specified\" && exit 1",
         "start": "node /bin/www"
-},
+    },
     "dependencies": {
-    "ajv": "^6.5.1",
+        "ajv": "^6.5.1",
         "ajv-errors": "^1.0.0",
         "ajv-i18n": "^2.2.0",
         "angular-tree-control": "^0.2.30",
@@ -52,11 +54,11 @@
         "swagger-express-middleware": "^1.0.0-alpha.12",
         "swagger-tools": "^0.10.3",
         "webpack": "^3.12.0"
-},
+    },
     "description": "inventory Application",
     "main": "app.js",
     "devDependencies": {
-    "chai": "^4.1.2",
+        "chai": "^4.1.2",
         "detect-indent": "^6.0.0",
         "detect-newline": "^3.1.0",
         "gulp": "^4.0.2",
@@ -74,10 +76,10 @@
         "standard-version": "^9.2.0",
         "stringify-package": "^1.0.1",
         "supertest": "^3.1.0"
-},
+    },
     "keywords": [
-    "inventory"
-],
+        "inventory"
+    ],
     "author": "shamel Jij",
     "license": "ISC"
 }
