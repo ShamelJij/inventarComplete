@@ -3,7 +3,7 @@
     "version": "2.0.17",
     "releaseDate": "2021-04-26",
     "private": true,
-    "engines": {"node": "14.15.0",
+    "engines": {"node": "14.15.0"},
     "scripts": {
     "test": "istanbul cover node_modules\tapeecho \"Error: no test specified\" && exit 1",
         "postinstall": "gulp build",
