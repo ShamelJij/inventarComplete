@@ -6,7 +6,7 @@
     "engines": {"node": "14.15.0"},
     "scripts": {
         "test": "istanbul cover node_modules\tapeecho \"Error: no test specified\" && exit 1",
-        "start": "node ./bin/www"
+        "start": "node /bin/www"
 },
     "dependencies": {
     "ajv": "^6.5.1",
